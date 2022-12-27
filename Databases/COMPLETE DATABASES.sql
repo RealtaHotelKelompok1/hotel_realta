@@ -544,6 +544,7 @@ create schema booking;
 
 create table booking.special_offers (
 	spof_id serial,
+	spof_name varchar(55),
 	spof_description varchar(255),
 	spof_type varchar(50),
 	spof_discount money,
@@ -568,7 +569,6 @@ create table booking.booking_order_detail(
 	borde_tax money,
 	borde_subtotal money,
 	borde_faci_id int,
-	
 	constraint pk_boor_borde_id primary key (border_boor_id, borde_id),
 	constraint fk_borde_faci_id foreign key (borde_faci_id) references hotel.facilities(faci_id) on delete cascade on update cascade
 );
@@ -606,7 +606,6 @@ create table booking.booking_order_detail_extra(
 );
 
 
-
 create table booking.booking_orders(
 	boor_id serial,
 	boor_order_number varchar(20) unique,
@@ -626,7 +625,6 @@ create table booking.booking_orders(
 	boor_status varchar(15),
 	boor_user_id int,
 	boor_hotel_id int,
-	
 
 	constraint pk_boor_id primary key (boor_id),
 	constraint fk_boor_user_id foreign key (boor_user_id) references users.users(user_id) on delete cascade on update cascade,
