@@ -19,9 +19,11 @@ Database: PostgreSQL
 - [] TBA . . .
 
 ### Contributors
-* Add name
-* Add name
-* Add name
-* Add name
-* Add name
-* Add name
+* Rifqi
+* Annisa
+* Zul
+* Eugene
+* Dimas
+* Pengestu
+* Dani
+* Faqih
