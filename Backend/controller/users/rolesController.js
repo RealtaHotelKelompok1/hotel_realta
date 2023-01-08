@@ -20,12 +20,10 @@ const findAllRows = async (req, res) => {
                 });
             }
         }).catch(err => {
-            return res.status(500)
-                .send({
-                    error: err.name,
-                    status: err.status,
-                    message: err.message
-                });
+            return res.status(500).send({
+                error: err.errors[0].message,
+                message: err.message
+            });
         });
 }
 
@@ -45,11 +43,10 @@ const findAllRowsById = async (req, res) => {
             }
         })
         .catch(err => {
-            return res.status(500)
-                .send({
-                    error: err.name,
-                    message: err.message
-                });
+            return res.status(500).send({
+                error: err.errors[0].message,
+                message: err.message
+            });
         });
 }
 
@@ -68,7 +65,7 @@ const createRoles = async (req, res) => {
             });
         }).catch(err => {
             return res.status(500).send({
-                error: err.name,
+                error: err.errors[0].message,
                 message: err.message
             });
         });
@@ -97,11 +94,10 @@ const updateRoles = async (req, res) => {
                 });
             }
         }).catch(err => {
-            return res.status(500)
-                .send({
-                    error: err.name,
-                    message: err.message
-                });
+            return res.status(500).send({
+                error: err.errors[0].message,
+                message: err.message
+            });
         });
     }
 }
@@ -117,11 +113,10 @@ const deleteRoles = async (req, res) => {
                 role_id: req.params.id
             });
         }).catch(err => {
-            return res.status(500)
-                .send({
-                    error: err.name,
-                    message: err.message
-                });
+            return res.status(500).send({
+                error: err.errors[0].message,
+                message: err.message
+            });
         });
     } else {
         return res.status(404).send({
