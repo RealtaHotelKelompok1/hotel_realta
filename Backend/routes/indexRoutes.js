@@ -28,10 +28,10 @@ router.delete("/users/:id", usersController.deleteUsers)
 
 /* USERS.USER_ROLES */
 router.get("/userRoles", userRolesController.findAllRows)
-router.get("/userRoles/:id1/:id2", userRolesController.findAllRowsById)
+router.get("/userRoles/:id", userRolesController.findAllRowsById)
 router.post("/userRoles/", userRolesController.createUserRoles)
-router.put("/userRoles/:id1/:id2", userRolesController.updateUserRoles)
-router.delete("/userRoles/:id1/:id2", userRolesController.deleteUserRoles)
+router.put("/userRoles/:id", userRolesController.updateUserRoles)
+router.delete("/userRoles/:id", userRolesController.deleteUserRoles)
 
 
 export default router
