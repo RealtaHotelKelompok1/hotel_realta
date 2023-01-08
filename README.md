@@ -21,7 +21,7 @@ Repository ini berisikan mini project dari Code X Academy
 - [] TBA . . .
 
 ### Contributors
-* Rifqi
+* [Rifqi](https://github.com/rifqiramdhani)
 * [Annisa Nuri Nabila](https://github.com/annisann)
 * Zul
 * Eugene
