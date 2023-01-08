@@ -56,6 +56,20 @@ const findAllRowsById = async (req, res) => {
 }
 
 const createUsers = async (req, res) => {
+    let phoneNumber;
+    if (req.body.user_phone_number) {
+        // phoneNumber = models.users.findOne({
+        //     where: { user_phone_number: req.body.user_phone_number }
+        // })
+        phoneNumber = sequelize.query(
+            `SELECT * FROM users.users
+        WHERE user_phone_number DESC`,
+            {
+                type: sequelize.QueryTypes.SELECT,
+                model: models.users,
+                mapToModel: true
+            })
+    }
     if (req.body.user_full_name == "") {
         return res.status(401).send({
             message: "FAILED! user_full_name cannot be empty"
@@ -75,6 +89,10 @@ const createUsers = async (req, res) => {
     } else if (req.body.user_phone_number == "") {
         return res.status(401).send({
             message: "FAILED! user_phone_number cannot be empty"
+        });
+    } else if (phoneNumber) {
+        return res.status(401).send({
+            message: "FAILED! user_phone_number has been used" + phoneNumber[0]
         });
     } else {
         if (req.body.user_type == "T" || req.body.user_type == "I" || req.body.user_type == "C") {
@@ -105,7 +123,14 @@ const createUsers = async (req, res) => {
     }
 }
 
+
 const updateUsers = async (req, res) => {
+    let phoneNumber;
+    if (req.body.user_phone_number) {
+        phoneNumber = models.users.findOne({
+            where: { user_phone_number: req.body.user_phone_number }
+        })
+    }
     if (req.body.user_full_name == "") {
         return res.status(401).send({
             message: "FAILED! user_full_name cannot be empty"
@@ -126,6 +151,10 @@ const updateUsers = async (req, res) => {
     } else if (req.body.user_phone_number == "") {
         return res.status(401).send({
             message: "FAILED! user_phone_number cannot be empty"
+        });
+    } else if (phoneNumber) {
+        return res.status(401).send({
+            message: "FAILED! user_phone_number has been used"
         });
     } else {
         if (req.body.user_type == "T" || req.body.user_type == "I" || req.body.user_type == "C") {
