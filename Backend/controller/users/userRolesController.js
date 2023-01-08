@@ -8,8 +8,7 @@ const findAllRows = async (req, res) => {
             type: sequelize.QueryTypes.SELECT,
             model: models.user_roles,
             mapToModel: true
-        })
-        .then(result => {
+        }).then(result => {
             if (result == 0 || result == null) {
                 return res.status(404).send({
                     message: "Data not found"
@@ -20,14 +19,11 @@ const findAllRows = async (req, res) => {
                     results: result
                 });
             }
-        })
-        .catch(err => {
-            return res.status(500)
-                .send({
-                    error: err.name,
-                    status: err.status,
-                    message: err.message
-                });
+        }).catch(err => {
+            return res.status(500).send({
+                error: err.errors[0].message,
+                message: err.message
+            });
         });
 }
 
@@ -44,29 +40,27 @@ const findAllRowsById = async (req, res) => {
                 results: result
             });
         }
-    })
-        .catch(err => {
-            return res.status(500)
-                .send({
-                    error: err.name,
-                    message: err.message
-                });
+    }).catch(err => {
+        return res.status(500).send({
+            error: err.errors[0].message,
+            message: err.message
         });
+    });
 }
 
 const createUserRoles = async (req, res) => {
     if (req.body.usro_user_id == "") {
         return res.status(401).send({
-            message: "FAILED! usro_user_id is not null"
+            message: "FAILED! usro_user_id cannot be empty"
         });
     } else if (req.body.usro_role_id == "") {
         return res.status(401).send({
-            message: "FAILED! usro_role_id is not null"
+            message: "FAILED! usro_role_id cannot be empty"
         });
     } else {
         await models.user_roles.create({
-            usro_user_id: req.body.usro_user_id,
-            usro_role_id: req.body.usro_role_id
+            usro_user_id: req.body.user_id,
+            usro_role_id: req.body.role_id
         }).then(result => {
             return res.status(200).send({
                 message: "SUCCESS! Data inserted successfully",
@@ -74,7 +68,7 @@ const createUserRoles = async (req, res) => {
             });
         }).catch(err => {
             return res.status(500).send({
-                error: err.name,
+                error: err.errors[0].message,
                 message: err.message
             });
         });
@@ -82,28 +76,58 @@ const createUserRoles = async (req, res) => {
 }
 
 const updateUserRoles = async (req, res) => {
-    const result = await models.user_roles.update({
-        usro_user_id: req.body.usro_user_id,
-        usro_role_id: req.body.usro_role_id
-    }, {
-        returning: true,
-        where: { usro_user_id: req.params.id1 },
-        where: { usro_role_id: req.params.id2 }
-    })
-
-    return res.send(result)
+    if (req.body.usro_user_id == "") {
+        return res.status(401).send({
+            message: "FAILED! usro_user_id cannot be empty"
+        });
+    } else if (req.body.usro_role_id == "") {
+        return res.status(401).send({
+            message: "FAILED! usro_role_id cannot be empty"
+        });
+    } else {
+        await models.user_roles.update({
+            usro_user_id: req.body.usro_user_id,
+            usro_role_id: req.body.usro_role_id
+        }, {
+            returning: true,
+            where: { usro_user_id: req.params.id1 },
+            where: { usro_role_id: req.params.id2 }
+        }).then(result => {
+            if (result[1][0].length === 0) {
+                return res.status(401)
+                    .send({ message: 'FAILED! No data changed' });
+            } else {
+                return res.status(200).send({
+                    message: "SUCCESS! Data updated successfully",
+                    results: result[1][0]
+                });
+            }
+        }).catch(err => {
+            return res.status(500).send({
+                error: err.errors[0].message,
+                message: err.message
+            });
+        });
+    }
 }
 
 const deleteUserRoles = async (req, res) => {
-    await models.user_roles.destroy({
-        where: { usro_user_id: req.params.id1 },
-        where: { usro_role_id: req.params.id2 }
-    }).then(result => {
-        return res.send({ message: "Data berhasil dihapus" })
-    }).catch(err => {
-        return res.send({ message: "Data gagal dihapus\n" + err })
-    });
-
+    const userID = await models.user_roles.findByPk(req.params.id);
+    if (userID) {
+        await models.user_roles.destroy({
+            where: { usro_user_id: req.params.id }
+        }).then(() => {
+            return res.status(200).send({
+                message: "SUCCESS! Data deleted successfully",
+                usro_user_id: req.params.id
+            });
+        }).catch(err => {
+            return res.status(500).send({
+                error: err.errors[0].message,
+                message: err.message
+            });
+        });
+    }
 }
 
 
