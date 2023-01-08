@@ -1,7 +1,7 @@
 import models, { sequelize } from "../../models/init-models"
 
 const findAllRows = async (req, res) => {
-    await models.roles.findAll()
+    await models.roles.findAll({ orderBy: [{ role_id: 'ASC' }] })
         .then(result => {
             if (result == 0 || result == null) {
                 return res.status(404).send({
