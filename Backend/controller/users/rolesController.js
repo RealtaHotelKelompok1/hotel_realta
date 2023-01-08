@@ -1,7 +1,5 @@
 import models, { sequelize } from "../../models/init-models"
 
-const dateTime = new Date()
-
 const findAllRows = async (req, res) => {
     const result = await models.roles.findAll();
     return res.send(result);
