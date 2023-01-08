@@ -59,8 +59,8 @@ const createUserRoles = async (req, res) => {
         });
     } else {
         await models.user_roles.create({
-            usro_user_id: req.body.user_id,
-            usro_role_id: req.body.role_id
+            usro_user_id: req.body.usro_user_id,
+            usro_role_id: req.body.usro_role_id
         }).then(result => {
             return res.status(200).send({
                 message: "SUCCESS! Data inserted successfully",
@@ -76,22 +76,16 @@ const createUserRoles = async (req, res) => {
 }
 
 const updateUserRoles = async (req, res) => {
-    if (req.body.usro_user_id == "") {
-        return res.status(401).send({
-            message: "FAILED! usro_user_id cannot be empty"
-        });
-    } else if (req.body.usro_role_id == "") {
+    if (req.body.usro_role_id == "") {
         return res.status(401).send({
             message: "FAILED! usro_role_id cannot be empty"
         });
     } else {
         await models.user_roles.update({
-            usro_user_id: req.body.usro_user_id,
             usro_role_id: req.body.usro_role_id
         }, {
             returning: true,
-            where: { usro_user_id: req.params.id1 },
-            where: { usro_role_id: req.params.id2 }
+            where: { usro_user_id: req.params.id }
         }).then(result => {
             if (result[1][0].length === 0) {
                 return res.status(401)
@@ -99,12 +93,13 @@ const updateUserRoles = async (req, res) => {
             } else {
                 return res.status(200).send({
                     message: "SUCCESS! Data updated successfully",
+                    role: "Guest",
                     results: result[1][0]
                 });
             }
         }).catch(err => {
             return res.status(500).send({
-                error: err.errors[0].message,
+                error: err,
                 message: err.message
             });
         });
