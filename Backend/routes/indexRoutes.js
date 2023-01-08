@@ -2,6 +2,7 @@ import { Router } from "express";
 import jobRoleController from "../controller/humanresource/jobRoleController"
 import rolesController from "../controller/users/rolesController";
 import usersController from "../controller/users/usersController";
+import userRolesController from "../controller/users/userRolesController";
 
 const router = new Router();
 /* JOB_ROLE */
@@ -24,6 +25,13 @@ router.get("/users/:id", usersController.findAllRowsById)
 router.post("/users/", usersController.createUsers)
 router.put("/users/:id", usersController.updateUsers)
 router.delete("/users/:id", usersController.deleteUsers)
+
+/* USERS.USER_ROLES */
+router.get("/userRoles", userRolesController.findAllRows)
+router.get("/userRoles/:id1/:id2", userRolesController.findAllRowsById)
+router.post("/userRoles/", userRolesController.createUserRoles)
+router.put("/userRoles/:id1/:id2", userRolesController.updateUserRoles)
+router.delete("/userRoles/:id1/:id2", userRolesController.deleteUserRoles)
 
 
 export default router

@@ -3,7 +3,7 @@ import models, { sequelize } from "../../models/init-models"
 const dateTime = new Date();
 
 const findAllRows = async (req, res) => {
-    const result = await models.users.findAll();
+    const result = await models.users.findAll({ orderBy: [{ user_id: 'ASC' }] });
     return res.send(result);
 }
 
@@ -41,7 +41,7 @@ const updateUsers = async (req, res) => {
         where: { user_id: req.params.id }
     })
 
-    return res.send(result)
+    return res.send(result[1][0])
 }
 
 const deleteUsers = async (req, res) => {
