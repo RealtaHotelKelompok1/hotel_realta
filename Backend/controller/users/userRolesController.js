@@ -27,7 +27,6 @@ const findAllRows = async (req, res) => {
         });
 }
 
-
 const findAllRowsById = async (req, res) => {
     await models.user_roles.findByPk(req.params.id).then(result => {
         if (result == 0 || result == null) {
@@ -124,7 +123,6 @@ const deleteUserRoles = async (req, res) => {
         });
     }
 }
-
 
 export default {
     findAllRows,
