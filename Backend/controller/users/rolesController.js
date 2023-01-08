@@ -1,8 +1,14 @@
 import models, { sequelize } from "../../models/init-models"
 
 const findAllRows = async (req, res) => {
-    await models.roles.findAll({ orderBy: [{ role_id: 'ASC' }] })
-        .then(result => {
+    await sequelize.query(
+        `SELECT * FROM users.roles
+        ORDER BY role_id DESC`,
+        {
+            type: sequelize.QueryTypes.SELECT,
+            model: models.roles,
+            mapToModel: true
+        }).then(result => {
             if (result == 0 || result == null) {
                 return res.status(404).send({
                     message: "Data not found"
@@ -13,8 +19,7 @@ const findAllRows = async (req, res) => {
                     results: result
                 });
             }
-        })
-        .catch(err => {
+        }).catch(err => {
             return res.status(500)
                 .send({
                     error: err.name,
@@ -51,7 +56,7 @@ const findAllRowsById = async (req, res) => {
 const createRoles = async (req, res) => {
     if (req.body.role_name == "") {
         return res.status(401).send({
-            message: "FAILED! role_name is not null"
+            message: "FAILED! role_name cannot be empty"
         });
     } else {
         await models.roles.create({
@@ -73,7 +78,7 @@ const createRoles = async (req, res) => {
 const updateRoles = async (req, res) => {
     if (req.body.role_name == "") {
         return res.status(401).send({
-            message: "FAILED! role_name is not null"
+            message: "FAILED! role_name cannot be empty"
         });
     } else {
         await models.roles.update({
