@@ -148,11 +148,10 @@ const updateUsers = async (req, res) => {
                     });
                 }
             }).catch(err => {
-                return res.status(500)
-                    .send({
-                        error: err.name,
-                        message: err.message
-                    });
+                return res.status(500).send({
+                    error: err.errors[0].message,
+                    message: err.message
+                });
             });
         } else {
             return res.status(401).send({
@@ -173,11 +172,10 @@ const deleteUsers = async (req, res) => {
                 user_id: req.params.id
             });
         }).catch(err => {
-            return res.status(500)
-                .send({
-                    error: err.name,
-                    message: err.message
-                });
+            return res.status(500).send({
+                error: err.errors[0].message,
+                message: err.message
+            });
         });
     } else {
         return res.status(404).send({
