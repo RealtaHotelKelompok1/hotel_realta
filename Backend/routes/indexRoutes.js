@@ -18,7 +18,7 @@ router.post("/roles/", rolesController.createRoles)
 router.put("/roles/:id", rolesController.updateRoles)
 router.delete("/roles/:id", rolesController.deleteRoles)
 
-/* USERS.users */
+/* USERS.USERS */
 router.get("/users", usersController.findAllRows)
 router.get("/users/:id", usersController.findAllRowsById)
 router.post("/users/", usersController.createUsers)
