@@ -3,8 +3,14 @@ import models, { sequelize } from "../../models/init-models"
 const dateTime = new Date();
 
 const findAllRows = async (req, res) => {
-    await models.users.findAll({ orderBy: [{ user_id: 'ASC' }] })
-        .then(result => {
+    await sequelize.query(
+        `SELECT * FROM users.users
+        ORDER BY user_id DESC`,
+        {
+            type: sequelize.QueryTypes.SELECT,
+            model: models.users,
+            mapToModel: true
+        }).then(result => {
             if (result == 0 || result == null) {
                 return res.status(404).send({
                     message: "Data not found"
@@ -15,8 +21,7 @@ const findAllRows = async (req, res) => {
                     results: result
                 });
             }
-        })
-        .catch(err => {
+        }).catch(err => {
             return res.status(500)
                 .send({
                     error: err.name,
@@ -53,23 +58,23 @@ const findAllRowsById = async (req, res) => {
 const createUsers = async (req, res) => {
     if (req.body.user_full_name == "") {
         return res.status(401).send({
-            message: "FAILED! user_full_name is not null"
+            message: "FAILED! user_full_name cannot be empty"
         });
     } else if (req.body.user_type == "") {
         return res.status(401).send({
-            message: "FAILED! user_type is not null"
+            message: "FAILED! user_type cannot be empty"
         });
     } else if (req.body.user_company_name == "") {
         return res.status(401).send({
-            message: "FAILED! user_company_name is not null"
+            message: "FAILED! user_company_name cannot be empty"
         });
     } else if (req.body.user_email == "") {
         return res.status(401).send({
-            message: "FAILED! user_email is not null" + req.body.user_type
+            message: "FAILED! user_email cannot be empty" + req.body.user_type
         });
     } else if (req.body.user_phone_number == "") {
         return res.status(401).send({
-            message: "FAILED! user_phone_number is not null"
+            message: "FAILED! user_phone_number cannot be empty"
         });
     } else {
         if (req.body.user_type == "T" || req.body.user_type == "I" || req.body.user_type == "C") {
@@ -103,24 +108,24 @@ const createUsers = async (req, res) => {
 const updateUsers = async (req, res) => {
     if (req.body.user_full_name == "") {
         return res.status(401).send({
-            message: "FAILED! user_full_name is not null"
+            message: "FAILED! user_full_name cannot be empty"
         });
     } else if (req.body.user_type == "") {
         return res.status(401).send({
-            message: "FAILED! user_type is not null"
+            message: "FAILED! user_type cannot be empty"
         });
     }
     else if (req.body.user_company_name == "") {
         return res.status(401).send({
-            message: "FAILED! user_company_name is not null"
+            message: "FAILED! user_company_name cannot be empty"
         });
     } else if (req.body.user_email == "") {
         return res.status(401).send({
-            message: "FAILED! user_email is not null" + req.body.user_type
+            message: "FAILED! user_email cannot be empty" + req.body.user_type
         });
     } else if (req.body.user_phone_number == "") {
         return res.status(401).send({
-            message: "FAILED! user_phone_number is not null"
+            message: "FAILED! user_phone_number cannot be empty"
         });
     } else {
         if (req.body.user_type == "T" || req.body.user_type == "I" || req.body.user_type == "C") {
