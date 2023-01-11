@@ -148,7 +148,7 @@ CREATE TABLE users.user_profiles(
 	uspro_birth DATE,
 	uspro_job_title VARCHAR(50),
 	uspro_marital_status CHAR(1),
-	uspro_gender_ CHAR(1),
+	uspro_gender CHAR(1),
 	uspro_addr_id INT,
 	uspro_user_id INT,
 	CONSTRAINT pk_uspro_id PRIMARY KEY (uspro_id),
@@ -181,6 +181,20 @@ CREATE TABLE users.user_password(
 	uspa_passwordSalt VARCHAR(10),
 	CONSTRAINT pk_uspa_user_id PRIMARY KEY (uspa_user_id),
 	CONSTRAINT fk_uspa_user_id FOREIGN KEY (uspa_user_id)
+		REFERENCES users.users(user_id)
+			ON DELETE CASCADE
+			ON UPDATE CASCADE
+);
+
+-- CREATE TABLE user_bonus_points
+CREATE TABLE users.user_bonus_points(
+	ubpo_id SERIAL,
+	ubpo_user_id INT,
+	ubpo_total_points INT,
+	ubpo_bonus_type CHAR(1),
+	ubpo_create_on TIMESTAMP,
+	CONSTRAINT pk_ubpo_id PRIMARY KEY (ubpo_id, ubpo_user_id),
+	CONSTRAINT fk_ubpo_user_id FOREIGN KEY (ubpo_user_id)
 		REFERENCES users.users(user_id)
 			ON DELETE CASCADE
 			ON UPDATE CASCADE
