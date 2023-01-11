@@ -12,15 +12,17 @@ Repository ini berisikan mini project dari Code X Academy
 8. Master
 
 ## Tech Stacks
-Database: PostgreSQL
+**Database:** PostgreSQL
+
+**Server:** Express
 
 ### To Do Lists
 - [x] Membuat database dari ERD yang sudah ditentukan
 - [] TBA . . .
 
 ### Contributors
-* Rifqi
-* Annisa
+* [Rifqi](https://github.com/rifqiramdhani)
+* [Annisa Nuri Nabila](https://github.com/annisann)
 * Zul
 * Eugene
 * Dimas
