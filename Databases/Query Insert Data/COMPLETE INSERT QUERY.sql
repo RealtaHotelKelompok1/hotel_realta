@@ -540,115 +540,62 @@ VALUES
 (24,'345678910111236','2000/10/30','Doctor','M','M',20,24);
 
 -- INSERT TABLE HOTEL
-INSERT INTO hotel.hotels(hotel_name, hotel_description,hotel_rating_star,hotel_phonenumber, hotel_modified_date)
-values
-('green watana1','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini
-berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km
-dari stasiun kereta Bogor.',3,'08788798123','1970-01-01 00:00:00'),
-('green watana2','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini
-berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km
-dari stasiun kereta Bogor.',4,'08788798765','1970-01-01 00:00:00'),
-('green watana3','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km
-dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana4','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km
-dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana5','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km
-dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana6','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km
-dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana7','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km
-dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana8','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km
-dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana9','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km
-dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana10','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3
-km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana11','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3
-km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana12','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3
-km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana13','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3
-km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana14','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3
-km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana15','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3
-km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana16','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3
-km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana17','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3
-km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana18','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3
-km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana19','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3
-km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00'),
-('green watana20','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3
-km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun
-kereta Bogor.',3,'08788798765','1990-01-01 00:00:00');
 
--- select * from hotel.hotels
+INSERT INTO hotel.hotels(hotel_name, hotel_description,hotel_rating_star,hotel_phonenumber, hotel_modified_date, hotel_addr_id) 
+values('green watana1','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun kereta Bogor.',4,'08788798765','1970-01-01 00:00:00',1),
+('green watana2','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun kereta Bogor.',3,'08788798765','1990-01-01 00:00:00',2),
+('green watana3','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun kereta Bogor.',3,'08788798765','1990-01-01 00:00:00',3),
+('green watana4','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun kereta Bogor.',3,'08788798765','1990-01-01 00:00:00',4),
+('green watana5','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun kereta Bogor.',3,'08788798765','1990-01-01 00:00:00',5);
 -- facilities
-INSERT INTO hotel.facilities (faci_name, faci_description, faci_max_number, faci_measure_unit, faci_room_number,
-faci_startdate, faci_endate, faci_low_price, faci_hight_price, faci_rate_price, faci_discount, faci_tax_rate,
-faci_modified_date, faci_hotel_id)
-VALUES ('Swimming Pool', 'Large outdoor swimming pool', 50, 'people', 'A11 ', '2021-01-01', '2021-12-31', 25, 45, 35, 5,
-0.1, '2021-01-01',1),
-('Fitness Center', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B11', '2021-01-01', '2021-12-31',
-15, 30, 20, 2, 0.1, '2021-01-01',2),
-('Swimming Pool2', 'Large outdoor swimming pool', 50, 'people', 'A12', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1,
-'2021-01-01',3),
-('Fitness Center2', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B12', '2021-01-01', '2021-12-31',
-15, 30, 20, 2, 0.1, '2021-01-01',4),
-('Swimming Pool3', 'Large outdoor swimming pool', 50, 'people', 'A13', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1,
-'2021-01-01',5),
-('Fitness Center3', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B13', '2021-01-01', '2021-12-31',
-15, 30, 20, 2, 0.1, '2021-01-01',6),
-('Swimming Pool4', 'Large outdoor swimming pool', 50, 'people', 'A14', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1,
-'2021-01-01',7),
-('Fitness Center4', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B14', '2021-01-01', '2021-12-31',
-15, 30, 20, 2, 0.1, '2021-01-01',8),
-('Swimming Pool5', 'Large outdoor swimming pool', 50, 'people', 'A15', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1,
-'2021-01-01',9),
-('Fitness Center5', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B15', '2021-01-01', '2021-12-31',
-15, 30, 20, 2, 0.1, '2021-01-01',10),
-('Swimming Pool6', 'Large outdoor swimming pool', 50, 'people', 'A16', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1,
-'2021-01-01',11),
-('Fitness Center6', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B16', '2021-01-01', '2021-12-31',
-15, 30, 20, 2, 0.1, '2021-01-01',12),
-('Swimming Pool7', 'Large outdoor swimming pool', 50, 'people', 'A17', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1,
-'2021-01-01',13),
-('Fitness Center7', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B17', '2021-01-01', '2021-12-31',
-15, 30, 20, 2, 0.1, '2021-01-01',14),
-('Swimming Pool8', 'Large outdoor swimming pool', 50, 'people', 'A18', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1,
-'2021-01-01',15),
-('Fitness Center8', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B18', '2021-01-01', '2021-12-31',
-15, 30, 20, 2, 0.1, '2021-01-01',16),
-('Swimming Pool9', 'Large outdoor swimming pool', 50, 'people', 'A19', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1,
-'2021-01-01',17),
-('Fitness Center9', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B19', '2021-01-01', '2021-12-31',
-15, 30, 20, 2, 0.1, '2021-01-01',18),
-('Swimming Pool10', 'Large outdoor swimming pool', 50, 'people', 'A20', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1,
-'2021-01-01',19),
-('Fitness Center10', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B20', '2021-01-01', '2021-12-31',
-15, 30, 20, 2, 0.1, '2021-01-01',20);
 
+INSERT INTO hotel.facilities (faci_name, faci_description, faci_max_number, faci_measure_unit, faci_room_number, faci_startdate, faci_endate, faci_low_price, faci_hight_price, faci_rate_price, faci_discount, faci_tax_rate, faci_modified_date, faci_hotel_id, faci_cagro_id)
+VALUES ('Restaurant barat', 'Lorem ', 50, 'people', 'A11A ', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,1),
+	   ('Restaurant tengah', 'Lorem ', 50, 'people', 'A11B ', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,1),
+	   ('Restaurant timur', 'Lorem ', 50, 'people', 'A11C ', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,1),
+       ('Restaurant timur', 'restorant center with state-of-the-art equipment', 25, 'people', 'B11A', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,1),
+	   ('Restaurant timur', ' restornt Large outdoor swimming pool', 50, 'people', 'A12A', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,1),
+       ('Restaurant timur', 'restoran center with state-of-the-art equipment', 25, 'people', 'B121', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,1),
+	   ('Restaurant timur', 'restoran outdoor swimming pool', 50, 'people', 'A13A', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,1),
+       ('Restaurant tengah', 'restorant center with state-of-the-art equipment', 25, 'people', 'B11B', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,1),
+	   ('Restaurant tengah', ' restornt Large outdoor swimming pool', 50, 'people', 'A12B', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,1),
+       ('Restaurant tengah', 'restoran center with state-of-the-art equipment', 25, 'people', 'B122', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,1),
+	   ('Restaurant tengah', 'restoran outdoor swimming pool', 50, 'people', 'A13B', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,1),
+	   
+       ('Restaurant barat', 'restorant center with state-of-the-art equipment', 25, 'people', 'B11Y', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,1),
+	   ('Restaurant barat', ' restornt Large outdoor swimming pool', 50, 'people', 'A12X', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,1),
+       ('Restaurant barat', 'restoran center with state-of-the-art equipment', 25, 'people', 'B12W', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,1),
+	   ('Restaurant barat', 'restoran outdoor swimming pool', 50, 'people', 'A13V', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,1),
+       ('Room1', 'room center with state-of-the-art equipment', 25, 'people', 'B13U', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,2),
+	   ('Room2', 'room outdoor swimming pool', 50, 'people', 'A14T', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',2,2),
+       ('Room3', 'room center with state-of-the-art equipment', 25, 'people', 'B14S', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,2),
+	   ('Room4', 'room outdoor swimming pool', 50, 'people', 'A15R', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',4,2),
+       ('Room5', 'room center with state-of-the-art equipment', 25, 'people', 'B15Q', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,2),
+	   ('meeting-room1', 'meeting room outdoor swimming pool', 50, 'people', 'A16P', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,3),
+       ('meeting-room2', 'meeting roomcenter with state-of-the-art equipment', 25, 'people', 'B16O', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,3),
+	   ('meeting-room3', 'meeting roomLarge outdoor swimming pool', 50, 'people', 'A17N', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,3),
+       ('meeting-room4', 'meeting room center with state-of-the-art equipment', 25, 'people', 'B17M', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,3),
+	   ('meeting-room5', 'meeting room outdoor swimming pool', 50, 'people', 'A18L', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,3),
+       ('GYM1', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B18K', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,4),
+	   ('GYM2', 'fitnes Large outdoor swimming pool', 50, 'people', 'A19J', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',2,4),
+       ('GYM3', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B19I', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,4),
+	   ('GYM4', 'fitnes Large outdoor swimming pool', 50, 'people', 'A20H', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',4,4),
+       ('GYM5', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B20G', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,4),
+	   ('Aula1', 'aula center with state-of-the-art equipment', 25, 'people', 'B20F', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,5),
+	   ('Aula2', 'aula center with state-of-the-art equipment', 25, 'people', 'B20E', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,5),
+	   ('Aula3', 'aula center with state-of-the-art equipment', 25, 'people', 'B20D', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,5),
+	   ('Aula4', 'aula center with state-of-the-art equipment', 25, 'people', 'B20C', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,5),
+	   ('Aula5', 'aula center with state-of-the-art equipment', 25, 'people', 'B20B', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,5),
+	   ('SwimingPool1', 'SwimingPoolcenter with state-of-the-art equipment', 25, 'people', 'B20A', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,6),
+	   ('SwimingPool2', 'SwimingPools center with state-of-the-art equipment', 25, 'people', 'B209', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,6),
+	   ('SwimingPool3', 'SwimingPool center with state-of-the-art equipment', 25, 'people', 'B208', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,6),
+	   ('SwimingPool4', 'SwimingPool center with state-of-the-art equipment', 25, 'people', 'B207', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,6),
+	   ('SwimingPool5', 'SwimingPool center with state-of-the-art equipment', 25, 'people', 'B206', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,6),
+	   ('Balroom1', 'Balroom with state-of-the-art equipment', 25, 'people', 'B205', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,7),
+	   ('Balroom2', 'Balroom with state-of-the-art equipment', 25, 'people', 'B204', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,7),
+	   ('Balroom3', 'Balroom with state-of-the-art equipment', 25, 'people', 'B203', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,7),
+	   ('Balroom4', 'Balroomcenter with state-of-the-art equipment', 25, 'people', 'B202', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,7),
+	   ('Balroom5', 'Balroom center with state-of-the-art equipment', 25, 'people', 'B201', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,7);
 -- facility_photo
 
 INSERT INTO hotel.facility_photos (fapho_faci_id, fapho_thumbnail_filename, fapho_photo_filename, fapho_primary,
@@ -705,21 +652,21 @@ VALUES ('Great hotel, friendly staff, and clean rooms', '1', '2021-01-01', 1),
 ('The breakfast was delicious and the staff was extremely helpful','0', '2021-01-03', 3),
 ('The room was clean and comfortable, the service was excellent', '1', '2021-01-04', 4),
 ('The hotel was in a great location, close to restaurants and shops', '0', '2021-01-05', 5),
-('The room was a bit small but overall it was a great stay', '1', '2021-01-06', 6),
-('The staff was friendly and helpful, the room was comfortable', '0', '2021-01-07', 7),
-('The hotel was clean and well-maintained, the staff was friendly', '1', '2021-01-08', 8),
-('The view from the room was amazing, the bed was comfortable', '0', '2021-01-09', 9),
-('The hotel was in a great location, close to restaurants and shops', '1', '2021-01-10', 10),
-('The room was clean and comfortable, the staff was friendly', '0', '2021-01-11',11),
-('Great hotel, friendly staff, and clean rooms', '1', '2021-01-01', 12),
-('The location was perfect and the views from the room were amazing', '0', '2021-01-02', 13),
-('The breakfast was delicious and the staff was extremely helpful', '1', '2021-01-03', 14),
-('The room was clean and comfortable, the service was excellent', '0', '2021-01-04', 15),
-('The hotel was in a great location, close to restaurants and shops', '1', '2021-01-05', 16),
-('The room was a bit small but overall it was a great stay', '0', '2021-01-06', 17),
-('The staff was friendly and helpful, the room was comfortable', '1', '2021-01-07', 18),
-('The hotel was clean and well-maintained, the staff was friendly', '0', '2021-01-08', 19),
-('The view from the room was amazing, the bed was comfortable', '1', '2021-01-09', 20);
+('The room was a bit small but overall it was a great stay', '1', '2021-01-06', 3),
+('The staff was friendly and helpful, the room was comfortable', '0', '2021-01-07', 4),
+('The hotel was clean and well-maintained, the staff was friendly', '1', '2021-01-08', 2),
+('The view from the room was amazing, the bed was comfortable', '0', '2021-01-09', 2),
+('The hotel was in a great location, close to restaurants and shops', '1', '2021-01-10', 4),
+('The room was clean and comfortable, the staff was friendly', '0', '2021-01-11',2),
+('Great hotel, friendly staff, and clean rooms', '1', '2021-01-01', 1),
+('The location was perfect and the views from the room were amazing', '0', '2021-01-02', 2),
+('The breakfast was delicious and the staff was extremely helpful', '1', '2021-01-03', 4),
+('The room was clean and comfortable, the service was excellent', '0', '2021-01-04', 4),
+('The hotel was in a great location, close to restaurants and shops', '1', '2021-01-05', 5),
+('The room was a bit small but overall it was a great stay', '0', '2021-01-06', 2),
+('The staff was friendly and helpful, the room was comfortable', '1', '2021-01-07', 3),
+('The hotel was clean and well-maintained, the staff was friendly', '0', '2021-01-08', 4),
+('The view from the room was amazing, the bed was comfortable', '1', '2021-01-09', 5);
 
 -- INSERT TABLE HUMANRESOURCE
 -- insert to job_role
