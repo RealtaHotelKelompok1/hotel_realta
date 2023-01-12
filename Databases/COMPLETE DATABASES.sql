@@ -551,8 +551,8 @@ create table booking.special_offers (
 );
 
 create table booking.booking_order_detail(
-	border_boor_id int unique,
-	borde_id serial unique,
+	border_boor_id int ,
+	borde_id serial ,
 	borde_checkin timestamp,
 	borde_checkout timestamp,
 	borde_adults int,
