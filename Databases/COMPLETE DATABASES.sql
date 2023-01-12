@@ -655,8 +655,7 @@ CREATE TABLE payment.user_accounts (
 	usac_type varchar(15), -- debet | cc | payment
 	usac_expmonth smallint,
 	usac_expyear smallint,
-	usac_modified_date timestamp DEFAULT now(),
-	CONSTRAINT user_accounts_pk PRIMARY KEY (usac_entity_id, usac_user_id),
+	usac_modified_date timestamp,
 	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT usac_user_id_fk FOREIGN KEY (usac_user_id) REFERENCES users.users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
