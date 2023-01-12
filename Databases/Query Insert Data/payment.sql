@@ -141,6 +141,29 @@ CALL payment.InsertPaymentGateaway('122', 'ShopeePay');
 -- 	Balance			int,
 -- 	ExpMonth		int,
 -- 	ExpYear			int
-CALL payment.InsertUserAccounts(1, 1, 'Debit Card', 1000000, 8, 25)
-CALL payment.InsertUserAccounts(25, 2, 'Payment', 182937)
-CALL payment.InsertUserAccounts(21, 2, 'Payment', 50000)
+CALL payment.InsertUserAccounts(1, 1, 'Debit Card', 1000000, 4, 25);
+CALL payment.InsertUserAccounts(3, 2, 'Debit Card', 3456, 8, 27);
+CALL payment.InsertUserAccounts(3, 3, 'Debit Card', 12425678, 3, 23);
+CALL payment.InsertUserAccounts(25, 4, 'Payment', 31245);
+CALL payment.InsertUserAccounts(21, 5, 'Payment', 875434);
+CALL payment.InsertUserAccounts(22, 6, 'Payment', 42363);
+CALL payment.InsertUserAccounts(21, 7, 'Payment', 9871324);
+CALL payment.InsertUserAccounts(23, 8, 'Payment', 432789);
+CALL payment.InsertUserAccounts(24, 9, 'Payment', 8430300);
+CALL payment.InsertUserAccounts(11, 10, 'Debit Card', 1500200, 8, 25);
+CALL payment.InsertUserAccounts(13, 11, 'Debit Card', 3456, 7, 26);
+CALL payment.InsertUserAccounts(13, 12, 'Debit Card', 12425678, 2, 22);
+CALL payment.InsertUserAccounts(15, 13, 'Debit Card', 1000000, 8, 25);
+CALL payment.InsertUserAccounts(20, 14, 'Debit Card', 3456, 5, 25);
+CALL payment.InsertUserAccounts(19, 15, 'Debit Card', 12425678, 11, 24);
+CALL payment.InsertUserAccounts(18, 16, 'Debit Card', 1000000, 6, 25);
+CALL payment.InsertUserAccounts(17, 17, 'Debit Card', 3456, 11, 23);
+CALL payment.InsertUserAccounts(16, 18, 'Debit Card', 12425678, 9, 21);
+CALL payment.InsertUserAccounts(15, 19, 'Debit Card', 3456, 12, 26);
+CALL payment.InsertUserAccounts(14, 20, 'Debit Card', 12425678, 1, 22);
+CALL payment.InsertUserAccounts(25, 21, 'Payment', 31245);
+CALL payment.InsertUserAccounts(24, 22, 'Payment', 875434);
+CALL payment.InsertUserAccounts(23, 23, 'Payment', 42363);
+CALL payment.InsertUserAccounts(22, 24, 'Payment', 9871324);
+CALL payment.InsertUserAccounts(21, 25, 'Payment', 432789);
+CALL payment.InsertUserAccounts(23, 26, 'Payment', 8430300);
