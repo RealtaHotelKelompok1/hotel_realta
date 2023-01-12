@@ -626,7 +626,7 @@ create table booking.booking_orders(
 -- ===========SCHEMA MODULE PAYMENT ==============
 CREATE SCHEMA payment;
 
-CREATE TABLE payment.entity (
+CREATE TABLE payment.entities (
 	entity_id serial PRIMARY KEY
 );
 
