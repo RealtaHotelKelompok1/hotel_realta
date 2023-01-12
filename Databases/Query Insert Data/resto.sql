@@ -37,8 +37,8 @@ VALUES
 ( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'B','2023-02-12', 20 );
 -- Resto_Menus --
 
--- 1 Restoran Sumatera
--- 2 Restoran Jawa
+-- 1 Restoran Barat
+-- 2 Restoran Tengah
 -- 3 Restoran Timur
 
 INSERT INTO resto.resto_menus(
