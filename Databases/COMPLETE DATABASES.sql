@@ -635,7 +635,7 @@ CREATE TABLE payment.bank (
 	bank_code varchar(10) UNIQUE,
 	bank_name varchar(55) UNIQUE,
 	bank_modified_date timestamp DEFAULT now(),
-	CONSTRAINT bank_entity_id_fk FOREIGN KEY (bank_entity_id) REFERENCES payment.entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
+	CONSTRAINT bank_entity_id_fk FOREIGN KEY (bank_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE payment.payment_gateaway (
@@ -643,7 +643,7 @@ CREATE TABLE payment.payment_gateaway (
 	paga_code varchar(10) UNIQUE,
 	paga_name varchar(55) UNIQUE,
 	paga_modified_date timestamp DEFAULT now(),
-	CONSTRAINT paga_entity_id FOREIGN KEY (paga_entity_id) REFERENCES payment.entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
+	CONSTRAINT paga_entity_id FOREIGN KEY (paga_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE payment.user_accounts (
@@ -654,9 +654,8 @@ CREATE TABLE payment.user_accounts (
 	usac_type varchar(15), -- debet | cc | payment
 	usac_expmonth smallint,
 	usac_expyear smallint,
-  usac_modified_date timestamp DEFAULT now(),
-	CONSTRAINT user_accounts_pk PRIMARY KEY (usac_entity_id, usac_user_id),
-	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	usac_modified_date timestamp,
+	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT usac_user_id_fk FOREIGN KEY (usac_user_id) REFERENCES users.users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
