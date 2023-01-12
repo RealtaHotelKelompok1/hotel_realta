@@ -551,8 +551,8 @@ create table booking.special_offers (
 );
 
 create table booking.booking_order_detail(
-	border_boor_id int unique,
-	borde_id serial unique,
+	border_boor_id int,
+	borde_id serial,
 	borde_checkin timestamp,
 	borde_checkout timestamp,
 	borde_adults int,
@@ -563,7 +563,9 @@ create table booking.booking_order_detail(
 	borde_tax money,
 	borde_subtotal money,
 	borde_faci_id int,
+	
 	constraint pk_boor_borde_id primary key (borde_id),
+	constraint fk_borde_boor_id foreign key (border_boor_id) references booking.booking_orders(boor_id)on delete cascade on update cascade,
 	constraint fk_borde_faci_id foreign key (borde_faci_id) references hotel.facilities(faci_id) on delete cascade on update cascade
 );
 
@@ -648,7 +650,7 @@ CREATE TABLE payment.payment_gateaway (
 );
 
 CREATE TABLE payment.user_accounts (
-	usac_entity_id serial PRIMARY KEY,
+	usac_entity_id serial,
 	usac_user_id int,
 	usac_account_number varchar(25) UNIQUE,
 	usac_saldo numeric,
@@ -657,7 +659,7 @@ CREATE TABLE payment.user_accounts (
 	usac_expyear smallint,
   	usac_modified_date timestamp DEFAULT now(),
 	CONSTRAINT user_accounts_pk PRIMARY KEY (usac_entity_id, usac_user_id),
-	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT usac_user_id_fk FOREIGN KEY (usac_user_id) REFERENCES users.users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
