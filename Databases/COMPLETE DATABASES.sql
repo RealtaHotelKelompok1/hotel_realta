@@ -213,7 +213,7 @@ create table hotel.hotels(
 );
 
 create table hotel.facilities(
-faci_id serial,
+	faci_id serial,
 	faci_name varchar(155),
 	faci_description varchar(255),
 	faci_max_number int,
@@ -345,13 +345,14 @@ CREATE TABLE resto.resto_menu_photos(
 CREATE SCHEMA humanresource;
 
 CREATE TABLE humanresource.job_role(
-	joro_id serial primary key,
+	joro_id serial,
 	joro_name varchar(55) unique,
-	joro_modified_date timestamp DEFAULT now()
+	joro_modified_date timestamp DEFAULT now(),
+	CONSTRAINT pk_joro_id PRIMARY KEY (joro_id)
 );
 
 CREATE TABLE humanresource.employee(
-	emp_id serial primary key,
+	emp_id serial,
 	emp_national_id varchar(25) unique,
 	emp_birth_date timestamp,
 	emp_marital_status char(1),
@@ -365,21 +366,24 @@ CREATE TABLE humanresource.employee(
 	emp_modified_date timestamp DEFAULT now(),
 	emp_emp_id integer,
 	emp_joro_id integer,
-	foreign key (emp_emp_id) references humanresource.employee(emp_id) on delete cascade on update cascade,
-	foreign key (emp_joro_id) references humanresource.job_role(joro_id) on delete cascade on update cascade
+	CONSTRAINT pk_emp_id PRIMARY KEY(emp_id),
+	CONSTRAINT fk_emp_emp_id FOREIGN KEY (emp_emp_id) references humanresource.employee(emp_id) on delete cascade on update cascade,
+	CONSTRAINT fk_emp_joro_id FOREIGN KEY (emp_joro_id) references humanresource.job_role(joro_id) on delete cascade on update cascade
 );
 
 CREATE TABLE humanresource.shift(
-	shift_id serial primary key,
+	shift_id serial,
 	shift_name varchar(25) unique,
 	shift_start_time timestamp unique,
-	shift_end_time timestamp unique
+	shift_end_time timestamp unique,
+	CONSTRAINT pk_shift_id PRIMARY KEY(shift_id)
 );
 
 CREATE TABLE humanresource.department(
-	dept_id serial primary key,
+	dept_id serial,
 	dept_name varchar(50),
-	dept_modified_date timestamp	DEFAULT now()
+	dept_modified_date timestamp DEFAULT now(),
+	CONSTRAINT pk_dept_id PRIMARY KEY(dept_id)
 );
 
 CREATE TABLE humanresource.employee_department_history(
@@ -390,12 +394,12 @@ CREATE TABLE humanresource.employee_department_history(
 	edhi_modified_date timestamp DEFAULT now(),
 	edhi_dept_id integer,
 	edhi_shift_id integer,
-	primary key(edhi_id),
-	foreign key (edhi_emp_id) references humanresource.employee (emp_id)
+	CONSTRAINT pk_edhi_id PRIMARY KEY(edhi_id),
+	CONSTRAINT fk_edhi_emp_id FOREIGN KEY (edhi_emp_id) references humanresource.employee (emp_id)
 	on delete cascade on update cascade,
-	foreign key (edhi_dept_id) references humanresource.department (dept_id)
+	CONSTRAINT fk_edhi_dept_id FOREIGN KEY (edhi_dept_id) references humanresource.department (dept_id)
 	on delete cascade on update cascade,
-	foreign key (edhi_shift_id) references humanresource.shift (shift_id)
+	CONSTRAINT fk_edhi_shift_id FOREIGN KEY (edhi_shift_id) references humanresource.shift (shift_id)
 	on delete cascade on update cascade
 );
 
@@ -407,8 +411,8 @@ CREATE TABLE humanresource.employee_pay_history(
 	ephi_rate_salary money,
 	ephi_pay_frequence smallint,
 	ephi_modified_date timestamp	DEFAULT now(),
-	primary key(ephi_rate_change_date),
-	foreign key (ephi_emp_id) references humanresource.employee(emp_id)
+	CONSTRAINT pk_ephi_rate_change_date PRIMARY KEY(ephi_rate_change_date),
+	CONSTRAINT fk_ephi_emp_id FOREIGN KEY (ephi_emp_id) references humanresource.employee(emp_id)
 	on delete cascade on update cascade
 );
 
@@ -417,7 +421,7 @@ CREATE TABLE humanresource.work_orders(
 	woro_start_date timestamp,
 	woro_status varchar(15),
 	woro_user_id integer,
-	foreign key (woro_user_id) references users.users(user_id) on delete cascade on update cascade
+	CONSTRAINT fk_woro_user_id FOREIGN KEY (woro_user_id) references users.users(user_id) on delete cascade on update cascade
 );
 
 CREATE TABLE humanresource.work_order_detail(
@@ -431,10 +435,10 @@ CREATE TABLE humanresource.work_order_detail(
 	wode_seta_id integer,
 	wode_faci_id integer,
 	wode_woro_id integer,
-	foreign key (wode_emp_id) references humanresource.employee(emp_id) on delete cascade on update cascade,
-	foreign key (wode_seta_id) references master.service_task(seta_id) on delete cascade on update cascade,
-	foreign key (wode_faci_id) references hotel.facilities(faci_id) on delete cascade on update cascade,
-	foreign key (wode_woro_id) references humanresource.work_orders(woro_id) on delete cascade on update cascade
+	CONSTRAINT fk_wode_emp_id FOREIGN KEY (wode_emp_id) references humanresource.employee(emp_id) on delete cascade on update cascade,
+	CONSTRAINT fk_wode_seta_id FOREIGN KEY (wode_seta_id) references master.service_task(seta_id) on delete cascade on update cascade,
+	CONSTRAINT fk_wode_faci_id FOREIGN KEY (wode_faci_id) references hotel.facilities(faci_id) on delete cascade on update cascade,
+	CONSTRAINT fk_wode_woro_id FOREIGN KEY (wode_woro_id) references humanresource.work_orders(woro_id) on delete cascade on update cascade
 );
 
 -- ===========SCHEMA MODULE PURCHASING ==============
@@ -447,8 +451,7 @@ create table purchasing.vendor(
 	vendor_priority integer,
 	vendor_register_date timestamp,
 	vendor_weburi varchar(1024),
-	vendor_modified_date timestamp DEFAULT now(),
-		
+	vendor_modified_date timestamp DEFAULT now(),	
 	constraint vendor_id_pk primary key (vendor_id)
 );
 
@@ -550,55 +553,6 @@ create table booking.special_offers (
 	constraint pk_spof_id primary key (spof_id)
 );
 
-create table booking.booking_order_detail(
-	border_boor_id int unique,
-	borde_id serial unique,
-	borde_checkin timestamp,
-	borde_checkout timestamp,
-	borde_adults int,
-	borde_kids int,
-	borde_price money,
-	borde_extra money,
-	borde_discount money,
-	borde_tax money,
-	borde_subtotal money,
-	borde_faci_id int,
-	constraint pk_boor_borde_id primary key (borde_id),
-	constraint fk_borde_faci_id foreign key (borde_faci_id) references hotel.facilities(faci_id) on delete cascade on update cascade
-);
-
-
-create table booking.special_offer_coupons(
-	soco_id serial,
-	soco_borde_id int,
-	soco_spof_id int,
-	constraint pk_soco_id primary key (soco_id),
-	constraint fk_soco_borde_id foreign key (soco_borde_id) references booking.booking_order_detail(borde_id) on delete cascade on update cascade, 
-	constraint fk_soco_spof_id foreign key (soco_spof_id) references booking.special_offers(spof_id) on delete cascade on update cascade
-);
-
-create table booking.user_breakfeast(
-	usbr_borde_id int,
-	usbr_modified_date timestamp DEFAULT now(),
-	usbr_total_vacant smallInt,
-	constraint pk_borde_modified_id primary key (usbr_modified_date),
-	constraint fk_usbr_borde_id foreign key (usbr_borde_id) references booking.booking_order_detail(borde_id) on delete cascade on update cascade
-);
-
-create table booking.booking_order_detail_extra(
-	boex_id serial,
-	boex_price money,
-	boex_qty smallInt,
-	boex_subtotal money,
-	boex_measure_unit varchar(50),
-	boex_borde_id int,
-	boex_prit_id int,
-	constraint pk_boex_id primary key (boex_id),
-	constraint fk_boex_borde_id foreign key (boex_borde_id) references booking.booking_order_detail(borde_id) on delete cascade on update cascade,
-	constraint fk_boex_prit_id foreign key (boex_prit_id) references master.price_items(prit_id) on delete cascade on update cascade
-);
-
-
 create table booking.booking_orders(
 	boor_id serial,
 	boor_order_number varchar(20) unique,
@@ -624,6 +578,54 @@ create table booking.booking_orders(
 	constraint fk_boor_hotel_id foreign key (boor_hotel_id) references hotel.hotels(hotel_id) on delete cascade on update cascade
 );
 
+create table booking.booking_order_detail(
+	border_boor_id int,
+	borde_id serial,
+	borde_checkin timestamp,
+	borde_checkout timestamp,
+	borde_adults int,
+	borde_kids int,
+	borde_price money,
+	borde_extra money,
+	borde_discount money,
+	borde_tax money,
+	borde_subtotal money,
+	borde_faci_id int,
+	
+	constraint pk_boor_borde_id primary key (borde_id),
+	constraint fk_borde_boor_id foreign key (border_boor_id) references booking.booking_orders(boor_id)on delete cascade on update cascade,
+	constraint fk_borde_faci_id foreign key (borde_faci_id) references hotel.facilities(faci_id) on delete cascade on update cascade
+);
+
+create table booking.user_breakfeast(
+	usbr_borde_id int,
+	usbr_modified_date timestamp DEFAULT now(),
+	usbr_total_vacant smallInt,
+	constraint pk_borde_modified_id primary key (usbr_modified_date),
+	constraint fk_usbr_borde_id foreign key (usbr_borde_id) references booking.booking_order_detail(borde_id) on delete cascade on update cascade
+);
+
+create table booking.booking_order_detail_extra(
+	boex_id serial,
+	boex_price money,
+	boex_qty smallInt,
+	boex_subtotal money,
+	boex_measure_unit varchar(50),
+	boex_borde_id int,
+	boex_prit_id int,
+	constraint pk_boex_id primary key (boex_id),
+	constraint fk_boex_borde_id foreign key (boex_borde_id) references booking.booking_order_detail(borde_id) on delete cascade on update cascade,
+	constraint fk_boex_prit_id foreign key (boex_prit_id) references master.price_items(prit_id) on delete cascade on update cascade
+);
+
+create table booking.special_offer_coupons(
+	soco_id serial,
+	soco_borde_id int,
+	soco_spof_id int,
+	constraint pk_soco_id primary key (soco_id),
+	constraint fk_soco_borde_id foreign key (soco_borde_id) references booking.booking_order_detail(borde_id) on delete cascade on update cascade, 
+	constraint fk_soco_spof_id foreign key (soco_spof_id) references booking.special_offers(spof_id) on delete cascade on update cascade
+);
 -- ===========SCHEMA MODULE PAYMENT ==============
 CREATE SCHEMA payment;
 
@@ -632,7 +634,7 @@ CREATE TABLE payment.entities (
 );
 
 CREATE TABLE payment.bank (
-	bank_entity_id serial PRIMARY KEY,
+	bank_entity_id int PRIMARY KEY,
 	bank_code varchar(10) UNIQUE,
 	bank_name varchar(55) UNIQUE,
 	bank_modified_date timestamp DEFAULT now(),
@@ -640,7 +642,7 @@ CREATE TABLE payment.bank (
 );
 
 CREATE TABLE payment.payment_gateaway (
-	paga_entity_id serial PRIMARY KEY,
+	paga_entity_id int PRIMARY KEY,
 	paga_code varchar(10) UNIQUE,
 	paga_name varchar(55) UNIQUE,
 	paga_modified_date timestamp DEFAULT now(),
@@ -648,7 +650,7 @@ CREATE TABLE payment.payment_gateaway (
 );
 
 CREATE TABLE payment.user_accounts (
-	usac_entity_id serial PRIMARY KEY,
+	usac_entity_id int,
 	usac_user_id int,
 	usac_account_number varchar(25) UNIQUE,
 	usac_saldo numeric,
@@ -657,7 +659,7 @@ CREATE TABLE payment.user_accounts (
 	usac_expyear smallint,
   	usac_modified_date timestamp DEFAULT now(),
 	CONSTRAINT user_accounts_pk PRIMARY KEY (usac_entity_id, usac_user_id),
-	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT usac_user_id_fk FOREIGN KEY (usac_user_id) REFERENCES users.users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
