@@ -61,7 +61,7 @@ create table master.policy(
 -- policy_category_group
 
 create table master.policy_category_group(
-	poca_poli_id serial,
+	poca_poli_id serial PRIMARY KEY,
 	poca_cagro_id int,
 	constraint poca_poli_id_fk foreign key (poca_poli_id) references master.policy (poli_id),
 	constraint poca_cagro_id_fk foreign key (poca_cagro_id) references master.category_group (cagro_id)
@@ -101,7 +101,6 @@ CREATE SCHEMA users;
 
 -- RUN 1
 
-
 -- CREATE TABLE roles
 CREATE TABLE users.roles(
 	role_id SERIAL,
@@ -125,7 +124,7 @@ CREATE TABLE users.users(
 -- RUN 2
 -- CREATE TABLE user_members
 CREATE TABLE users.user_members(
-	usme_user_id INT,
+	usme_user_id INT PRIMARY KEY,
 	usme_memb_name VARCHAR(15),
 	usme_promote_date TIMESTAMP,
 	usme_points INT,
@@ -161,6 +160,7 @@ CREATE TABLE users.user_profiles(
 CREATE TABLE users.user_roles(
 	usro_user_id INT,
 	usro_role_id INT,
+	PRIMARY KEY (usro_user_id),
 	CONSTRAINT fk_usro_user_id FOREIGN KEY (usro_user_id)
 		REFERENCES users.users(user_id)
 			ON DELETE CASCADE
@@ -174,9 +174,10 @@ CREATE TABLE users.user_roles(
 
 -- CREATE TABLE user_password
 CREATE TABLE users.user_password(
-	uspa_user_id SERIAL,
+	uspa_user_id SERIAL PRIMARY KEY,
 	uspa_passwordHash VARCHAR(128),
 	uspa_passwordSalt VARCHAR(10),
+
 	CONSTRAINT fk_uspa_user_id FOREIGN KEY (uspa_user_id)
 		REFERENCES users.users(user_id)
 			ON DELETE CASCADE
@@ -185,7 +186,7 @@ CREATE TABLE users.user_password(
 
 -- CREATE TABLE user_bonus_points
 CREATE TABLE users.user_bonus_points(
-	ubpo_id SERIAL,
+	ubpo_id SERIAL PRIMARY KEY,
 	ubpo_user_id INT,
 	ubpo_total_points INT,
 	ubpo_bonus_type CHAR(1),
@@ -378,7 +379,7 @@ CREATE TABLE humanresource.shift(
 CREATE TABLE humanresource.department(
 	dept_id serial primary key,
 	dept_name varchar(50),
-	dept_modified_date timestamp	
+	dept_modified_date timestamp	DEFAULT now()
 );
 
 CREATE TABLE humanresource.employee_department_history(
@@ -405,7 +406,7 @@ CREATE TABLE humanresource.employee_pay_history(
 	ephi_rate_change_date date,
 	ephi_rate_salary money,
 	ephi_pay_frequence smallint,
-	ephi_modified_date timestamp,
+	ephi_modified_date timestamp	DEFAULT now(),
 	primary key(ephi_rate_change_date),
 	foreign key (ephi_emp_id) references humanresource.employee(emp_id)
 	on delete cascade on update cascade
@@ -463,7 +464,7 @@ create table purchasing.stocks(
 	stock_standar_cost money,
 	stock_size varchar(25),
 	stock_color varchar(15),
-	stock_modified_date timestamp,
+	stock_modified_date timestamp DEFAULT now(),
 	
 	constraint stock_id_pk primary key (stock_id)
 );
@@ -626,36 +627,35 @@ create table booking.booking_orders(
 -- ===========SCHEMA MODULE PAYMENT ==============
 CREATE SCHEMA payment;
 
-CREATE TABLE payment.entity (
+CREATE TABLE payment.entities (
 	entity_id serial PRIMARY KEY
 );
 
 CREATE TABLE payment.bank (
-	bank_entity_id int,
+	bank_entity_id serial PRIMARY KEY,
 	bank_code varchar(10) UNIQUE,
 	bank_name varchar(55) UNIQUE,
 	bank_modified_date timestamp DEFAULT now(),
-	CONSTRAINT bank_entity_id_fk
-	FOREIGN KEY (bank_entity_id) REFERENCES payment.entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
+	CONSTRAINT bank_entity_id_fk FOREIGN KEY (bank_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE payment.payment_gateaway (
-	paga_entity_id int,
+	paga_entity_id serial PRIMARY KEY,
 	paga_code varchar(10) UNIQUE,
 	paga_name varchar(55) UNIQUE,
 	paga_modified_date timestamp DEFAULT now(),
-	CONSTRAINT paga_entity_id FOREIGN KEY (paga_entity_id) REFERENCES payment.entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
+	CONSTRAINT paga_entity_id FOREIGN KEY (paga_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE payment.user_accounts (
-	usac_entity_id int,
+	usac_entity_id serial PRIMARY KEY,
 	usac_user_id int,
 	usac_account_number varchar(25) UNIQUE,
 	usac_saldo numeric,
 	usac_type varchar(15), -- debet | cc | payment
 	usac_expmonth smallint,
 	usac_expyear smallint,
-  usac_modified_date timestamp DEFAULT now(),
+  	usac_modified_date timestamp DEFAULT now(),
 	CONSTRAINT user_accounts_pk PRIMARY KEY (usac_entity_id, usac_user_id),
 	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT usac_user_id_fk FOREIGN KEY (usac_user_id) REFERENCES users.users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
