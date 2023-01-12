@@ -631,7 +631,7 @@ CREATE TABLE payment.entities (
 );
 
 CREATE TABLE payment.bank (
-	bank_entity_id int PRIMARY KEY,
+	bank_entity_id serial PRIMARY KEY,
 	bank_code varchar(10) UNIQUE,
 	bank_name varchar(55) UNIQUE,
 	bank_modified_date timestamp DEFAULT now(),
@@ -639,7 +639,7 @@ CREATE TABLE payment.bank (
 );
 
 CREATE TABLE payment.payment_gateaway (
-	paga_entity_id int PRIMARY KEY,
+	paga_entity_id serial PRIMARY KEY,
 	paga_code varchar(10) UNIQUE,
 	paga_name varchar(55) UNIQUE,
 	paga_modified_date timestamp DEFAULT now(),
@@ -647,7 +647,7 @@ CREATE TABLE payment.payment_gateaway (
 );
 
 CREATE TABLE payment.user_accounts (
-	usac_entity_id int,
+	usac_entity_id serial,
 	usac_user_id int,
 	usac_account_number varchar(25) UNIQUE,
 	usac_saldo numeric,
