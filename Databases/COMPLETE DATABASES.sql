@@ -648,7 +648,7 @@ CREATE TABLE payment.payment_gateaway (
 );
 
 CREATE TABLE payment.user_accounts (
-	usac_entity_id serial PRIMARY KEY,
+	usac_entity_id serial,
 	usac_user_id int,
 	usac_account_number varchar(25) UNIQUE,
 	usac_saldo numeric,
@@ -657,7 +657,7 @@ CREATE TABLE payment.user_accounts (
 	usac_expyear smallint,
   	usac_modified_date timestamp DEFAULT now(),
 	CONSTRAINT user_accounts_pk PRIMARY KEY (usac_entity_id, usac_user_id),
-	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT usac_user_id_fk FOREIGN KEY (usac_user_id) REFERENCES users.users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
