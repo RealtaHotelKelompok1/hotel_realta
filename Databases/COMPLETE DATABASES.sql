@@ -378,7 +378,7 @@ CREATE TABLE humanresource.shift(
 CREATE TABLE humanresource.department(
 	dept_id serial primary key,
 	dept_name varchar(50),
-	dept_modified_date timestamp	
+	dept_modified_date timestamp	DEFAULT now()
 );
 
 CREATE TABLE humanresource.employee_department_history(
@@ -405,7 +405,7 @@ CREATE TABLE humanresource.employee_pay_history(
 	ephi_rate_change_date date,
 	ephi_rate_salary money,
 	ephi_pay_frequence smallint,
-	ephi_modified_date timestamp,
+	ephi_modified_date timestamp	DEFAULT now(),
 	primary key(ephi_rate_change_date),
 	foreign key (ephi_emp_id) references humanresource.employee(emp_id)
 	on delete cascade on update cascade
@@ -463,7 +463,7 @@ create table purchasing.stocks(
 	stock_standar_cost money,
 	stock_size varchar(25),
 	stock_color varchar(15),
-	stock_modified_date timestamp,
+	stock_modified_date timestamp DEFAULT now(),
 	
 	constraint stock_id_pk primary key (stock_id)
 );
@@ -654,8 +654,9 @@ CREATE TABLE payment.user_accounts (
 	usac_type varchar(15), -- debet | cc | payment
 	usac_expmonth smallint,
 	usac_expyear smallint,
-	usac_modified_date timestamp,
-	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  	usac_modified_date timestamp DEFAULT now(),
+	CONSTRAINT user_accounts_pk PRIMARY KEY (usac_entity_id, usac_user_id),
+	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entity(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	CONSTRAINT usac_user_id_fk FOREIGN KEY (usac_user_id) REFERENCES users.users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
