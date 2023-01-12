@@ -434,8 +434,8 @@ create schema purchasing;
 create table purchasing.vendor(
 	vendor_id serial,
 	vendor_name varchar(55),
-	vendor_active bool,
-	vendor_priority bool,
+	vendor_active integer,
+	vendor_priority integer,
 	vendor_register_date timestamp,
 	vendor_weburi varchar(1024),
 	vendor_modified_date timestamp,
@@ -464,7 +464,7 @@ create table purchasing.stock_photo(
 	spho_id serial,
 	spho_thumbnail_filename varchar(50),
 	spho_photo_filename varchar(50),
-	spho_primary bool,
+	spho_primary integer,
 	spho_url varchar(255),
 	spho_stock_id integer,
 	
