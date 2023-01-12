@@ -551,8 +551,8 @@ create table booking.special_offers (
 );
 
 create table booking.booking_order_detail(
-	border_boor_id int ,
-	borde_id serial ,
+	border_boor_id int,
+	borde_id serial,
 	borde_checkin timestamp,
 	borde_checkout timestamp,
 	borde_adults int,
@@ -563,7 +563,9 @@ create table booking.booking_order_detail(
 	borde_tax money,
 	borde_subtotal money,
 	borde_faci_id int,
+	
 	constraint pk_boor_borde_id primary key (borde_id),
+	constraint fk_borde_boor_id foreign key (border_boor_id) references booking.booking_orders(boor_id)on delete cascade on update cascade,
 	constraint fk_borde_faci_id foreign key (borde_faci_id) references hotel.facilities(faci_id) on delete cascade on update cascade
 );
 
