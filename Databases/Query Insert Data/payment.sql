@@ -15,6 +15,16 @@ BEGIN
 END; $$
 LANGUAGE plpgsql;
 
+----
+
+CREATE OR REPLACE FUNCTION payment.getTransactionNumber(transactionID int, transactionType text, transactionDate text DEFAULT NOW())
+RETURNS text
+AS $$
+BEGIN
+	RETURN CONCAT(TransactionType, '#', TO_CHAR(transactionDate::date, 'YYYYMMDD'), '-', TO_CHAR(TransactionID, 'FM0000'));
+END; $$
+LANGUAGE plpgsql;
+
 -----------------------------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE payment.InsertPaymentGateaway (
@@ -104,6 +114,65 @@ LANGUAGE plpgsql;
 
 -----------------------------------------------------------------------------
 
+CREATE OR REPLACE PROCEDURE InsertPaymentTransaction (
+	UserID					int,
+	TransactionType			text,
+	Note					text,
+	OrderNumber				text,
+	SourceID				int,
+	TargetID				int,
+	Debit					int DEFAULT 0,	
+	Credit					int DEFAULT 0
+)
+AS $$
+
+DECLARE
+	TransactionID int;
+	TransactionNumber text;
+	Debit int := (CASE
+			  	WHEN TransactionType IN ('TP', 'RF') THEN Debit
+			  	ELSE 0
+			  END
+	);
+	Credit int := (CASE
+			  	WHEN TransactionType NOT IN ('TP', 'RF') THEN Credit
+			   	ELSE 0
+			  END
+	);
+	
+BEGIN
+	TransactionID := (SELECT COALESCE(MAX(patr_id), 1) FROM payment.payment_transaction);
+	TransactionNumber := getTransactionNumber(TransactionID, TransactionType, TransactionDate);
+	INSERT INTO payment.payment_transaction (
+		patr_user_id,
+		patr_id,
+		patr_trx_number,
+		patr_type,
+		patr_note,
+		patr_order_number,
+		patr_source_id,
+		patr_target_id,
+		patr_trx_number_ref,
+		patr_debet,
+		patr_credit
+	) VALUES (
+		UserID,
+		TransactionID,
+		TransactionNumber,
+		TransactionType,
+		Note,
+		OrderNumber,
+		SourceID,
+		TargetID,
+		FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text, -- TransactionNumberRef,
+		Debit,
+		Credit
+	);
+END; $$
+LANGUAGE plpgsql;
+
+-----------------------------------------------------------------------------
+
 ----------------------- Insert Bank -----------------------
 CALL payment.InsertBank('002', 'BRI');
 CALL payment.InsertBank('014', 'BCA');
@@ -141,6 +210,7 @@ CALL payment.InsertPaymentGateaway('122', 'ShopeePay');
 -- 	Balance			int,
 -- 	ExpMonth		int,
 -- 	ExpYear			int
+
 CALL payment.InsertUserAccounts(1, 1, 'Debit Card', 1000000, 4, 25);
 CALL payment.InsertUserAccounts(3, 2, 'Debit Card', 3456, 8, 27);
 CALL payment.InsertUserAccounts(3, 3, 'Debit Card', 12425678, 3, 23);
@@ -165,5 +235,36 @@ CALL payment.InsertUserAccounts(25, 21, 'Payment', 31245);
 CALL payment.InsertUserAccounts(24, 22, 'Payment', 875434);
 CALL payment.InsertUserAccounts(23, 23, 'Payment', 42363);
 CALL payment.InsertUserAccounts(22, 24, 'Payment', 9871324);
-CALL payment.InsertUserAccounts(21, 25, 'Payment', 432789);
-CALL payment.InsertUserAccounts(23, 26, 'Payment', 8430300);
+CALL payment.InsertUserAccounts(21, 2, 'Payment', 432789);
+CALL payment.InsertUserAccounts(23, 10, 'Payment', 8430300);
+
+----------------------- Insert Payment Transaction -----------------------
+-- UserID					int,
+-- TransactionType			text,
+-- Note					text,
+-- OrderNumber				text,
+-- SourceID				int,
+-- TargetID				int,
+-- Debit					int DEFAULT 0,	
+-- Credit					int DEFAULT 0
+
+-- User: 24
+-- Transaction Type = Top Up
+-- Debit
+CALL payment.InsertPaymentTransaction(1, 'TP')
+
+-- Transaction Type = Transfer Booking
+-- Credit
+CALL payment.InsertPaymentTransaction('TRB')
+
+-- Transaction Type = Repayment
+-- Credit
+CALL payment.InsertPaymentTransaction('RPY')
+
+-- Transaction Type = Refund
+-- Debit
+CALL payment.InsertPaymentTransaction('RF')
+
+-- Transaction Type = Order Menu
+-- Credit
+CALL payment.InsertPaymentTransaction('ORM')
