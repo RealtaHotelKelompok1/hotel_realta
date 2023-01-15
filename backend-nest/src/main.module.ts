@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GlobalModule } from './module/global.module';
+import { ShiftService } from './service/humanresource/shift/shift.service';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { GlobalModule } from './module/global.module';
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE,
       entities: ['dist/entities/**/*{.ts,.js}'],
-      autoLoadEntities: true,
+      // autoLoadEntities: true,
       synchronize: false,
     }),
     GlobalModule,

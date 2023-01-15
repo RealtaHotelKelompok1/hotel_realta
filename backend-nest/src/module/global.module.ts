@@ -8,19 +8,8 @@ import { DepartmentService } from 'src/service/humanresource/department/departme
 import { ShiftService } from 'src/service/humanresource/shift/shift.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([
-      Department,
-      Shift
-    ]),
-  ],
-  controllers: [
-    DepartmentController,
-    ShiftController
-  ],
-  providers: [
-    DepartmentService,
-    ShiftService
-  ],
+  imports: [TypeOrmModule.forFeature([Department, Shift])],
+  controllers: [DepartmentController, ShiftController],
+  providers: [DepartmentService, ShiftService],
 })
 export class GlobalModule {}

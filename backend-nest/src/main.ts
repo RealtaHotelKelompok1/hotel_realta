@@ -1,22 +1,29 @@
-import 'dotenv/config';
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { GlobalModule } from './module/global.module';
+import { NestFactory } from '@nestjs/core';
+import { MainModule } from './main.module';
+import { ValidationPipe } from '@nestjs/common';
+import { useContainer } from 'class-validator';
 
-@Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.HOST,
-      port: parseInt(process.env.HOST),
-      username: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
-      database: process.env.DATABASE,
-      entities: ['dist/entities/**/*{.ts,.js}'],
-      // autoLoadEntities: true,
-      synchronize: false,
+const port = process.env.PORT || 6000
+
+
+async function bootstrap() {
+  const app = await NestFactory.create(MainModule);
+
+  // enable validation globally
+  // this is from NestJS docs
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
     }),
-    GlobalModule,
-  ],
-})
-export class MainModule {}
+  );
+
+  // enable DI for class-validator
+  // this is an important step, for further steps in this article
+  useContainer(app.select(MainModule), { fallbackOnErrors: true });
+
+  await app.listen(port, () => {
+    console.log('Listen on port ' + port);
+  });
+}
+bootstrap();

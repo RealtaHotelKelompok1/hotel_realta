@@ -24,7 +24,6 @@ MainModule = __decorate([
                 password: process.env.DATABASE_PASSWORD,
                 database: process.env.DATABASE,
                 entities: ['dist/entities/**/*{.ts,.js}'],
-                autoLoadEntities: true,
                 synchronize: false,
             }),
             global_module_1.GlobalModule,
