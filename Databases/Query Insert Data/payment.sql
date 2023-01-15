@@ -103,7 +103,7 @@ BEGIN
 					WHERE bank_entity_id = EntityID)
 			END),
 			UserID,
-			FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 25))::text,
+			FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 9))::numeric::text,
 			AccountType,
 			Balance,
 			(CASE WHEN AccountType = 'Payment' THEN 0 ELSE ExpMonth END),
@@ -114,35 +114,40 @@ LANGUAGE plpgsql;
 
 -----------------------------------------------------------------------------
 
-CREATE OR REPLACE PROCEDURE InsertPaymentTransaction (
+CREATE OR REPLACE PROCEDURE payment.InsertPaymentTransaction (
 	UserID					int,
 	TransactionType			text,
 	Note					text,
 	OrderNumber				text,
 	SourceID				int,
 	TargetID				int,
-	Debit					int DEFAULT 0,	
-	Credit					int DEFAULT 0
+	Amount					int
 )
 AS $$
 
 DECLARE
 	TransactionID int;
 	TransactionNumber text;
-	Debit int := (CASE
-			  	WHEN TransactionType IN ('TP', 'RF') THEN Debit
+	TransactionNumberRef text;
+	TransactionDate text;
+	Debit int;
+	Credit int;
+	
+BEGIN
+	TransactionID := (SELECT COALESCE(MAX(patr_id) + 1, 1) FROM payment.payment_transaction);
+	TransactionDate := (SELECT SUBSTRING(OrderNumber, '#(.*)-'))::date; -- Extract order date from order number 'MENUS#..' or 'BO#..'
+	TransactionNumber := payment.getTransactionNumber(TransactionID, TransactionType, TransactionDate);
+	TransactionNumberRef := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
+	Debit := (CASE
+			  	WHEN TransactionType IN ('TP', 'RF') THEN Amount
 			  	ELSE 0
 			  END
 	);
-	Credit int := (CASE
-			  	WHEN TransactionType NOT IN ('TP', 'RF') THEN Credit
+	Credit := (CASE
+			  	WHEN TransactionType NOT IN ('TP', 'RF') THEN Amount
 			   	ELSE 0
 			  END
 	);
-	
-BEGIN
-	TransactionID := (SELECT COALESCE(MAX(patr_id), 1) FROM payment.payment_transaction);
-	TransactionNumber := getTransactionNumber(TransactionID, TransactionType, TransactionDate);
 	INSERT INTO payment.payment_transaction (
 		patr_user_id,
 		patr_id,
@@ -164,7 +169,7 @@ BEGIN
 		OrderNumber,
 		SourceID,
 		TargetID,
-		FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text, -- TransactionNumberRef,
+		TransactionNumberRef,
 		Debit,
 		Credit
 	);
@@ -211,6 +216,7 @@ CALL payment.InsertPaymentGateaway('122', 'ShopeePay');
 -- 	ExpMonth		int,
 -- 	ExpYear			int
 
+select  *from payment.user_accounts
 CALL payment.InsertUserAccounts(1, 1, 'Debit Card', 1000000, 4, 25);
 CALL payment.InsertUserAccounts(3, 2, 'Debit Card', 3456, 8, 27);
 CALL payment.InsertUserAccounts(3, 3, 'Debit Card', 12425678, 3, 23);
@@ -248,11 +254,22 @@ CALL payment.InsertUserAccounts(23, 10, 'Payment', 8430300);
 -- Debit					int DEFAULT 0,	
 -- Credit					int DEFAULT 0
 
+-- VA HOTEL: 326625809 --914993
 -- User: 24
 -- Transaction Type = Top Up
 -- Debit
-CALL payment.InsertPaymentTransaction(1, 'TP')
+CALL payment.InsertPaymentTransaction(1, 'ORM', 'Food Order', 'MENUS#20221127-0001', 452359774, 326625809,47200);
 
+
+select * from payment.payment_transaction
+
+
+select * from resto.order_menus
+
+select substring('MENUS#20221127-0001' from '#(.*)-')
+
+
+select * from payment.user_accounts
 -- Transaction Type = Transfer Booking
 -- Credit
 CALL payment.InsertPaymentTransaction('TRB')
