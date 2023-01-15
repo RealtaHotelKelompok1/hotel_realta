@@ -12,28 +12,36 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DepartmentController = void 0;
+exports.ShiftController = void 0;
 const common_1 = require("@nestjs/common");
-const department_service_1 = require("../../../service/humanresource/department/department.service");
-const department_dto_1 = require("./department.dto");
-let DepartmentController = class DepartmentController {
+const shift_dto_1 = require("./shift.dto");
+const shift_service_1 = require("../../../service/humanresource/shift/shift.service");
+const exceptions_1 = require("@nestjs/common/exceptions");
+const enums_1 = require("@nestjs/common/enums");
+let ShiftController = class ShiftController {
     constructor(departmentService) {
         this.departmentService = departmentService;
     }
-    findAllDepartment() {
-        return this.departmentService.findAllDepartment();
+    findAllShift() {
+        return this.departmentService.findAllShift();
     }
-    async findOneDepartment(param) {
-        return await this.departmentService.findOneDepartment(param.id);
+    async findOneShift(param) {
+        const result = await this.departmentService.findOneShift(param.id);
+        if (result) {
+            return result;
+        }
+        else {
+            throw new exceptions_1.HttpException('Shift not found', enums_1.HttpStatus.NOT_FOUND);
+        }
     }
-    async createDepartment(body) {
-        return await this.departmentService.createDepartment(body);
+    async createShift(body) {
+        const result = await this.departmentService.createShift(body);
     }
-    async updateDepartment(id, body) {
-        return await this.departmentService.updateDepartment(id, body);
+    updateShift(id, body) {
+        return this.departmentService.updateShift(id, body);
     }
-    deleteDepartment(id) {
-        return this.departmentService.deleteDepartment(id);
+    deleteShift(id) {
+        return this.departmentService.deleteShift(id);
     }
 };
 __decorate([
@@ -42,7 +50,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], DepartmentController.prototype, "findAllDepartment", null);
+], ShiftController.prototype, "findAllShift", null);
 __decorate([
     (0, common_1.Get)(':id'),
     (0, common_1.HttpCode)(200),
@@ -50,24 +58,24 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], DepartmentController.prototype, "findOneDepartment", null);
+], ShiftController.prototype, "findOneShift", null);
 __decorate([
     (0, common_1.Post)('insert'),
     (0, common_1.HttpCode)(201),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [department_dto_1.DepartmentDto]),
+    __metadata("design:paramtypes", [shift_dto_1.ShiftDto]),
     __metadata("design:returntype", Promise)
-], DepartmentController.prototype, "createDepartment", null);
+], ShiftController.prototype, "createShift", null);
 __decorate([
     (0, common_1.Put)('update/:id'),
     (0, common_1.HttpCode)(200),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, department_dto_1.DepartmentDto]),
-    __metadata("design:returntype", Promise)
-], DepartmentController.prototype, "updateDepartment", null);
+    __metadata("design:paramtypes", [Number, shift_dto_1.ShiftDto]),
+    __metadata("design:returntype", void 0)
+], ShiftController.prototype, "updateShift", null);
 __decorate([
     (0, common_1.Delete)('delete/:id'),
     (0, common_1.HttpCode)(200),
@@ -75,10 +83,10 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], DepartmentController.prototype, "deleteDepartment", null);
-DepartmentController = __decorate([
-    (0, common_1.Controller)('department'),
-    __metadata("design:paramtypes", [department_service_1.DepartmentService])
-], DepartmentController);
-exports.DepartmentController = DepartmentController;
-//# sourceMappingURL=department.controller.js.map
+], ShiftController.prototype, "deleteShift", null);
+ShiftController = __decorate([
+    (0, common_1.Controller)('shift'),
+    __metadata("design:paramtypes", [shift_service_1.ShiftService])
+], ShiftController);
+exports.ShiftController = ShiftController;
+//# sourceMappingURL=shift.controller.js.map
