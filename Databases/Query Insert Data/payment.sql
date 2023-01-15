@@ -8,7 +8,7 @@ AS $$
 BEGIN
 	RETURN (
 		SELECT setval('payment."entities_entity_id_seq"',
-					  (SELECT COALESCE(MAX(entity_id), 1) FROM payment.entities) + 1
+					  (SELECT COALESCE(MAX(entity_id), 0) FROM payment.entities) + 1
 		)
 	);
 
@@ -114,40 +114,52 @@ LANGUAGE plpgsql;
 
 -----------------------------------------------------------------------------
 
-CREATE OR REPLACE PROCEDURE payment.InsertPaymentTransaction (
-	UserID					int,
-	TransactionType			text,
-	Note					text,
-	OrderNumber				text,
-	SourceID				int,
-	TargetID				int,
-	Amount					int
+CREATE OR REPLACE PROCEDURE payment.InsertBookingPaymentTransaction (
+	OrderNumber		text,
+	Amount			int
 )
 AS $$
 
 DECLARE
 	TransactionID int;
+	OrderType text = SUBSTRING(OrderNumber, '(.*)#');
+	TransactionDate text;
+	TransactionType text;
 	TransactionNumber text;
 	TransactionNumberRef text;
-	TransactionDate text;
 	Debit int;
 	Credit int;
-	
+	Note text;
+	SourceID int;
+	TargetID int;
+	UserID int;
+
 BEGIN
 	TransactionID := (SELECT COALESCE(MAX(patr_id) + 1, 1) FROM payment.payment_transaction);
+	CASE
+		WHEN OrderType = 'MENUS'
+			THEN
+				TransactionType := 'ORM';
+				UserID := (SELECT orme_user_id FROM resto.order_menus WHERE orme_order_number = OrderNumber);
+				SourceID := (SELECT orme_cardnumber FROM resto.order_menus WHERE orme_order_number = OrderNumber)::int;
+				TargetID := 326625809; -- VA Hotel Realta
+				Credit := Amount;
+				Debit := 0;
+				Note := CONCAT('Resto payment ', OrderNumber);
+		WHEN OrderType = 'BO'
+			THEN
+				TransactionType := 'TRB';
+				UserID := (SELECT boor_user_id FROM booking.booking_orders WHERE boor_order_number = OrderNumber);
+				SourceID := (SELECT boor_cardnumber FROM booking.booking_orders WHERE boor_order_number = OrderNumber)::int;
+				TargetID := 326625809; -- VA Hotel Realta
+				Credit := Amount;
+				Debit := 0;
+				Note := CONCAT('Hotel payment ', OrderNumber);
+	END CASE;
 	TransactionDate := (SELECT SUBSTRING(OrderNumber, '#(.*)-'))::date; -- Extract order date from order number 'MENUS#..' or 'BO#..'
 	TransactionNumber := payment.getTransactionNumber(TransactionID, TransactionType, TransactionDate);
 	TransactionNumberRef := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
-	Debit := (CASE
-			  	WHEN TransactionType IN ('TP', 'RF') THEN Amount
-			  	ELSE 0
-			  END
-	);
-	Credit := (CASE
-			  	WHEN TransactionType NOT IN ('TP', 'RF') THEN Amount
-			   	ELSE 0
-			  END
-	);
+	
 	INSERT INTO payment.payment_transaction (
 		patr_user_id,
 		patr_id,
@@ -167,6 +179,83 @@ BEGIN
 		TransactionType,
 		Note,
 		OrderNumber,
+		SourceID,
+		TargetID,
+		TransactionNumberRef,
+		Debit,
+		Credit
+	);
+END; $$
+LANGUAGE plpgsql;
+
+--------------------------------------
+
+CREATE OR REPLACE PROCEDURE payment.InsertPaymentTransaction (
+	TransactionType			text,
+	Amount					int,
+	AccountNumber			text
+)
+AS $$
+
+DECLARE
+	TransactionID int;
+	TransactionNumber text;
+	TransactionNumberRef text;
+	Debit int;
+	Credit int;
+	SourceID int;
+	TargetID int;
+	Note text;
+	UserID int;
+
+BEGIN
+	TransactionID := (SELECT COALESCE(MAX(patr_id) + 1, 1) FROM payment.payment_transaction);
+	TransactionNumber := payment.getTransactionNumber(TransactionID, TransactionType);
+	TransactionNumberRef := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
+	UserID := (SELECT usac_user_id FROM payment.user_accounts WHERE usac_account_number = AccountNumber);
+	CASE
+		-- Top Up
+		WHEN TransactionType = 'TP' 
+			THEN
+				SourceID := (SELECT usac_entity_id FROM payment.user_accounts WHERE usac_account_number = AccountNumber);
+				TargetID := (SELECT usac_account_number FROM payment.user_accounts WHERE usac_account_number = AccountNumber);
+				Credit := 0;
+				Debit := Amount;
+				Note := CONCAT('Top up ', Amount, ' to', TargetID);
+		-- Refund
+		WHEN TransactionType = 'RF'
+			THEN
+				SourceID := 326625809; -- VA Hotel Realta
+				TargetID := (SELECT usac_account_number FROM payment.user_accounts WHERE usac_account_number = AccountNumber);
+				Credit := 0;
+				Debit := Amount;
+				Note := CONCAT('Refund ', Amount, ' to', TargetID);
+		WHEN TransactionType IN ('RPY')
+			THEN
+				SourceID := (SELECT usac_account_number FROM payment.user_accounts WHERE usac_account_number = AccountNumber)::int;
+				TargetID := 326625809; -- VA Hotel Realta
+				Credit := Amount;
+				Debit := 0;
+				Note := CONCAT('Repayment ', Amount, ' to', TargetID);
+	END CASE;		
+				
+	INSERT INTO payment.payment_transaction (
+		patr_user_id,
+		patr_id,
+		patr_trx_number,
+		patr_type,
+		patr_note,
+		patr_source_id,
+		patr_target_id,
+		patr_trx_number_ref,
+		patr_debet,
+		patr_credit
+	) VALUES (
+		UserID,
+		TransactionID,
+		TransactionNumber,
+		TransactionType,
+		Note,
 		SourceID,
 		TargetID,
 		TransactionNumberRef,
@@ -200,6 +289,7 @@ CALL payment.InsertBank('490', 'Bank Neo Commerce');
 CALL payment.InsertBank('542', 'Bank Jago');
 CALL payment.InsertBank('212', 'Bank Woori Saudara Indonesia 1906');
 
+-- select * from payment.bank
 ----------------------- Insert Payment Gateaway -----------------------
 
 CALL payment.InsertPaymentGateaway('39358', 'OVO');
@@ -208,6 +298,7 @@ CALL payment.InsertPaymentGateaway('3901', 'DANA');
 CALL payment.InsertPaymentGateaway('09110', 'LinkAja');
 CALL payment.InsertPaymentGateaway('122', 'ShopeePay');
 
+-- select * from payment.payment_gateaway
 ----------------------- Insert User Accounts --------------------------
 -- 	EntityID		int,
 -- 	UserID			int,
@@ -216,7 +307,7 @@ CALL payment.InsertPaymentGateaway('122', 'ShopeePay');
 -- 	ExpMonth		int,
 -- 	ExpYear			int
 
-select  *from payment.user_accounts
+-- select *from payment.user_accounts
 CALL payment.InsertUserAccounts(1, 1, 'Debit Card', 1000000, 4, 25);
 CALL payment.InsertUserAccounts(3, 2, 'Debit Card', 3456, 8, 27);
 CALL payment.InsertUserAccounts(3, 3, 'Debit Card', 12425678, 3, 23);
@@ -245,43 +336,41 @@ CALL payment.InsertUserAccounts(21, 2, 'Payment', 432789);
 CALL payment.InsertUserAccounts(23, 10, 'Payment', 8430300);
 
 ----------------------- Insert Payment Transaction -----------------------
--- UserID					int,
--- TransactionType			text,
--- Note					text,
--- OrderNumber				text,
--- SourceID				int,
--- TargetID				int,
--- Debit					int DEFAULT 0,	
--- Credit					int DEFAULT 0
+-- VA HOTEL: 326625809
 
--- VA HOTEL: 326625809 --914993
--- User: 24
--- Transaction Type = Top Up
--- Debit
-CALL payment.InsertPaymentTransaction(1, 'ORM', 'Food Order', 'MENUS#20221127-0001', 452359774, 326625809,47200);
+-- select * from payment.payment_transaction
+-- select * from resto.order_menus
+-- select * from payment.user_accounts
 
+--  Payment Transaction: Order Menu at Restaurant
+CALL payment.InsertBookingPaymentTransaction('MENUS#20221127-0001', 23000);
+CALL payment.InsertBookingPaymentTransaction('MENUS#20221127-0002', 100293);
+CALL payment.InsertBookingPaymentTransaction('MENUS#20221127-0003', 593029);
+CALL payment.InsertBookingPaymentTransaction('MENUS#20221127-0004', 34500);
+CALL payment.InsertBookingPaymentTransaction('MENUS#20221127-0005', 122200);
+CALL payment.InsertBookingPaymentTransaction('MENUS#20221127-0006', 350994);
+CALL payment.InsertBookingPaymentTransaction('MENUS#20221127-0007', 1285600);
+CALL payment.InsertBookingPaymentTransaction('MENUS#20221127-0008', 359282);
+CALL payment.InsertBookingPaymentTransaction('MENUS#20221127-0009', 46000);
+CALL payment.InsertBookingPaymentTransaction('MENUS#20221127-0010', 76864);
 
-select * from payment.payment_transaction
+-- Payment Transaction: Room Booking at Hotel
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
 
+-- Payment Transaction: Top Up
+CALL payment.InsertPaymentTransaction('TP', 300000, '751527261');
 
-select * from resto.order_menus
+-- Payment Transaction: Refund
+CALL payment.InsertPaymentTransaction('RF', 250000, '383667679');
 
-select substring('MENUS#20221127-0001' from '#(.*)-')
-
-
-select * from payment.user_accounts
--- Transaction Type = Transfer Booking
--- Credit
-CALL payment.InsertPaymentTransaction('TRB')
-
--- Transaction Type = Repayment
--- Credit
-CALL payment.InsertPaymentTransaction('RPY')
-
--- Transaction Type = Refund
--- Debit
-CALL payment.InsertPaymentTransaction('RF')
-
--- Transaction Type = Order Menu
--- Credit
-CALL payment.InsertPaymentTransaction('ORM')
+-- Payment Transaction: Repayment
+CALL payment.InsertPaymentTransaction('RPY', 50000, '264253607');
