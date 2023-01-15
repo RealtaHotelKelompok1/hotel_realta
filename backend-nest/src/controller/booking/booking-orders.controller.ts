@@ -2,8 +2,9 @@ import { Body, Get, Param, Controller, Post, Delete,Put } from '@nestjs/common';
 import { BookingOrders } from 'entities/BookingOrders';
 import { BookingOrdersService } from 'src/service/booking/booking-orders.service'; 
 
-@Controller('booking orders')
+@Controller('booking-orders')
 export class BookingOrdersController {
+
     constructor(private bokingorderService: BookingOrdersService){}
 
     @Get()
@@ -28,3 +29,5 @@ export class BookingOrdersController {
     }
 
 }
+
+
