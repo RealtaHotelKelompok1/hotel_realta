@@ -14,7 +14,7 @@ import { ShiftService } from './service/humanresource/shift/shift.service';
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE,
       entities: ['dist/entities/**/*{.ts,.js}'],
-      // autoLoadEntities: true,
+      autoLoadEntities: true,
       synchronize: false,
     }),
     GlobalModule,
