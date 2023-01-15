@@ -17,8 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
 const Department_1 = require("../../../../entities/Department");
-const exceptions_1 = require("@nestjs/common/exceptions");
-const enums_1 = require("@nestjs/common/enums");
+const date = new Date();
 let DepartmentService = class DepartmentService {
     constructor(departmentRepository) {
         this.departmentRepository = departmentRepository;
@@ -27,15 +26,27 @@ let DepartmentService = class DepartmentService {
         return await this.departmentRepository.find();
     }
     async findOneDepartment(deptId) {
-        const result = await this.departmentRepository.findOne({
-            where: {
-                deptId: deptId,
-            },
+        return await this.departmentRepository.findOne({
+            where: { deptId: deptId },
         });
-        if (result) {
-            return result;
-        }
-        throw new exceptions_1.HttpException('Categories not found', enums_1.HttpStatus.NOT_FOUND);
+    }
+    async createDepartment(data) {
+        return await this.departmentRepository.insert({
+            deptName: data.deptName,
+        });
+    }
+    async updateDepartment(deptId, data) {
+        return await this.departmentRepository.update({
+            deptId: deptId,
+        }, {
+            deptName: data.deptName,
+            deptModifiedDate: date,
+        });
+    }
+    async deleteDepartment(deptId) {
+        return await this.departmentRepository.delete({
+            deptId: deptId,
+        });
     }
 };
 DepartmentService = __decorate([

@@ -15,6 +15,8 @@ class DepartmentDto {
 }
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(3),
     __metadata("design:type", String)
 ], DepartmentDto.prototype, "deptName", void 0);
 exports.DepartmentDto = DepartmentDto;

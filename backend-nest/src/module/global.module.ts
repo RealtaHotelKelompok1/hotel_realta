@@ -1,5 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { BookingOrderDetail } from 'entities/BookingOrderDetail';
+import { BookingOrderDetailExtra } from 'entities/BookingOrderDetailExtra';
+import { BookingOrders } from 'entities/BookingOrders';
 import { Department } from 'entities/Department';
 import { Roles } from 'entities/Roles';
 import { Users } from 'entities/Users';
