@@ -646,27 +646,27 @@ VALUES (1, '2021-01-01', '2021-03-31', 25, 35, 10, 0.1, '2021-01-01'),
 (20, '2021-04-01', '2021-06-30', 25, 35, 10, 0.1, '2021-01-01');
 
 -- hotel review
-INSERT INTO hotel.hotel_reviews (hore_user_review, hore_rating, hore_created_on, hore_hotel_id)
-VALUES ('Great hotel, friendly staff, and clean rooms', '1', '2021-01-01', 1),
-('The location was perfect and the views from the room were amazing', '1', '2021-01-02', 2),
-('The breakfast was delicious and the staff was extremely helpful','0', '2021-01-03', 3),
-('The room was clean and comfortable, the service was excellent', '1', '2021-01-04', 4),
-('The hotel was in a great location, close to restaurants and shops', '0', '2021-01-05', 5),
-('The room was a bit small but overall it was a great stay', '1', '2021-01-06', 3),
-('The staff was friendly and helpful, the room was comfortable', '0', '2021-01-07', 4),
-('The hotel was clean and well-maintained, the staff was friendly', '1', '2021-01-08', 2),
-('The view from the room was amazing, the bed was comfortable', '0', '2021-01-09', 2),
-('The hotel was in a great location, close to restaurants and shops', '1', '2021-01-10', 4),
-('The room was clean and comfortable, the staff was friendly', '0', '2021-01-11',2),
-('Great hotel, friendly staff, and clean rooms', '1', '2021-01-01', 1),
-('The location was perfect and the views from the room were amazing', '0', '2021-01-02', 2),
-('The breakfast was delicious and the staff was extremely helpful', '1', '2021-01-03', 4),
-('The room was clean and comfortable, the service was excellent', '0', '2021-01-04', 4),
-('The hotel was in a great location, close to restaurants and shops', '1', '2021-01-05', 5),
-('The room was a bit small but overall it was a great stay', '0', '2021-01-06', 2),
-('The staff was friendly and helpful, the room was comfortable', '1', '2021-01-07', 3),
-('The hotel was clean and well-maintained, the staff was friendly', '0', '2021-01-08', 4),
-('The view from the room was amazing, the bed was comfortable', '1', '2021-01-09', 5);
+INSERT INTO hotel.hotel_reviews (hore_user_review, hore_rating, hore_created_on, hore_hotel_id, hore_user_id)
+VALUES ('Great hotel, friendly staff, and clean rooms', '1', '2021-01-01', 1,1),
+('The location was perfect and the views from the room were amazing', '1', '2021-01-02', 2,2),
+('The breakfast was delicious and the staff was extremely helpful','0', '2021-01-03', 3,3),
+('The room was clean and comfortable, the service was excellent', '1', '2021-01-04', 4,4),
+('The hotel was in a great location, close to restaurants and shops', '0', '2021-01-05', 5,5),
+('The room was a bit small but overall it was a great stay', '1', '2021-01-06', 3,6),
+('The staff was friendly and helpful, the room was comfortable', '0', '2021-01-07', 4,7),
+('The hotel was clean and well-maintained, the staff was friendly', '1', '2021-01-08', 2,8),
+('The view from the room was amazing, the bed was comfortable', '0', '2021-01-09', 2,9),
+('The hotel was in a great location, close to restaurants and shops', '1', '2021-01-10', 4,10),
+('The room was clean and comfortable, the staff was friendly', '0', '2021-01-11',2,11),
+('Great hotel, friendly staff, and clean rooms', '1', '2021-01-01', 1,12),
+('The location was perfect and the views from the room were amazing', '0', '2021-01-02', 2,13),
+('The breakfast was delicious and the staff was extremely helpful', '1', '2021-01-03', 4,14),
+('The room was clean and comfortable, the service was excellent', '0', '2021-01-04', 4,15),
+('The hotel was in a great location, close to restaurants and shops', '1', '2021-01-05', 5,16),
+('The room was a bit small but overall it was a great stay', '0', '2021-01-06', 2,17),
+('The staff was friendly and helpful, the room was comfortable', '1', '2021-01-07', 3,18),
+('The hotel was clean and well-maintained, the staff was friendly', '0', '2021-01-08', 4,19),
+('The view from the room was amazing, the bed was comfortable', '1', '2021-01-09', 5,20);
 
 -- INSERT TABLE HUMANRESOURCE
 -- insert to job_role

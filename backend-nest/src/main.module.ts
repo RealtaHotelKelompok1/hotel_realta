@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GlobalModule } from './module/global.module';
 
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -18,6 +19,7 @@ import { GlobalModule } from './module/global.module';
     }),
     GlobalModule,
   ],
+
   
 })
 export class MainModule {}
