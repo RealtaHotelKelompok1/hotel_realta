@@ -2,8 +2,8 @@
 .env
 /node_modules
 package.json
-# /src/module/global.module.ts
-# /src/main.ts
+/src/module/global.module.ts
+/src/main.ts
 
 
 # Logs
