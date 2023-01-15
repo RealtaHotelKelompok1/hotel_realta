@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GlobalModule } from './module/global.module';
+import { ShiftService } from './service/humanresource/shift/shift.service';
 
 @Module({
   imports: [
@@ -18,6 +19,5 @@ import { GlobalModule } from './module/global.module';
     }),
     GlobalModule,
   ],
-  
 })
 export class MainModule {}
