@@ -95,7 +95,18 @@ let RolesService = class RolesService {
         });
     }
     async updateRoles(id, data) {
-        return await this.rolesRepository.update(id, {});
+        return await this.rolesRepository.update(id, {
+            roleName: data.roleName
+        }).then((result) => {
+            if (!result) {
+                throw new common_1.BadRequestException('Data update failed');
+            }
+            return {
+                message: 'Data updated successfully',
+                results: result
+            };
+        }).catch((err) => {
+        });
     }
 };
 RolesService = __decorate([

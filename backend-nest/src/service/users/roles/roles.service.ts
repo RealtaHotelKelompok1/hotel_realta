@@ -89,8 +89,17 @@ export class RolesService {
 
     async updateRoles(id:number,data: Roles): Promise<any>{
         return await this.rolesRepository.update(id, {
+            roleName : data.roleName
+        }).then((result) => {
+            if (!result) {
+                throw new BadRequestException('Data update failed');
+            }
+            return {
+                message: 'Data updated successfully',
+                results: result
+            }
+        }).catch((err) => {
             
-
         })
     }
     
