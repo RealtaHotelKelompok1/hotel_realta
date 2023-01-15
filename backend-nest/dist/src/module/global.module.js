@@ -10,8 +10,11 @@ exports.GlobalModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const Department_1 = require("../../entities/Department");
+const Shift_1 = require("../../entities/Shift");
 const department_controller_1 = require("../controller/humanresource/department/department.controller");
+const shift_controller_1 = require("../controller/humanresource/shift/shift.controller");
 const department_service_1 = require("../service/humanresource/department/department.service");
+const shift_service_1 = require("../service/humanresource/shift/shift.service");
 let GlobalModule = class GlobalModule {
 };
 GlobalModule = __decorate([

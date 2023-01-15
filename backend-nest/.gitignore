@@ -3,8 +3,8 @@
 /node_modules
 package.json
 /src/module/global.module.ts
+/dist/*
 /src/main.ts
-
 
 # Logs
 logs
