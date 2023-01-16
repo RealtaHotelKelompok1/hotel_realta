@@ -31,22 +31,18 @@ export class BankService {
     }
   }
 
-  async update(id: number, bankData: BankDto) {
+  async update(id: number, dataToUpdate: BankDto) {
     return await this.BankRepository.update(
+      // Criteria
       {
-        // Criteria
         bankEntityId: id,
       },
-      {
-        // Data from body
-        bankCode: bankData.bankCode,
-        bankName: bankData.bankName,
-      },
+      dataToUpdate,
     );
   }
 
-  async insert(newBankData: BankDto) {
-    return await this.BankRepository.insert(newBankData);
+  async insert(newData: BankDto) {
+    return await this.BankRepository.insert(newData);
   }
 
   async delete(id: number) {
