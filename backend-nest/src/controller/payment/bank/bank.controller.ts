@@ -66,7 +66,7 @@ export class BankController {
      * */
   }
 
-  @Delete()
+  @Delete(':id')
   async deleteBank(@Param('id') id: number) {
     return await this.bankService
       .delete(id)
