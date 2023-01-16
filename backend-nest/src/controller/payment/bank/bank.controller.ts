@@ -10,6 +10,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { BankService } from 'src/service/payment/bank/bank.service';
+import { BankDto } from './bank.dto';
 
 @Controller('bank')
 export class BankController {
@@ -19,8 +20,8 @@ export class BankController {
    * TODO: Find Bank            [v] Get
    * TODO: Find Bank by ID      [v] Get
    * TODO: Update Bank by ID    [] Put =====> TODO: error handling catch()
-   * TODO: Insert New Bank      [] Post
-   * TODO: Delete Bank          [] Delete
+   * TODO: Insert New Bank      [] Post ====> TODO: error handling catch()
+   * TODO: Delete Bank          [] Delete ==> TODO: error handling catch()
    */
 
   // Find All Bank
@@ -46,7 +47,7 @@ export class BankController {
 
   // Update Bank
   @Put(':id')
-  async updateBank(@Param('id') id: number, @Body() body) {
+  async updateBank(@Param('id') id: number, @Body() body: BankDto) {
     return await this.bankService
       .update(id, body)
       .then(() => {
@@ -58,7 +59,7 @@ export class BankController {
   }
 
   @Post()
-  async insertBank(@Body() body) {
+  async insertBank(@Body() body: BankDto) {
     return await this.bankService.insert(body);
     /**
      * TODO: insert exception to handle existing data (name and code must be unique)
