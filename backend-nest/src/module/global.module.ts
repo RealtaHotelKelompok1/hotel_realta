@@ -20,6 +20,7 @@ import { SpecialOfferCouponsService } from 'src/service/booking/special-offer-co
 import { SpecialOffersService } from 'src/service/booking/special_offers.service';
 import { UserBreakfeastService } from 'src/service/booking/user-breakfeast.service';
 import { DepartmentService } from 'src/service/humanresource/department/department.service';
+import { ShiftService } from 'src/service/humanresource/shift/shift.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Department,SpecialOffers,SpecialOfferCoupons,UserBreakfeast,BookingOrderDetail,BookingOrderDetailExtra,BookingOrders])],

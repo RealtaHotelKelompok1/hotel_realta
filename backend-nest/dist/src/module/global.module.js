@@ -30,6 +30,7 @@ const special_offer_coupons_service_1 = require("../service/booking/special-offe
 const special_offers_service_1 = require("../service/booking/special_offers.service");
 const user_breakfeast_service_1 = require("../service/booking/user-breakfeast.service");
 const department_service_1 = require("../service/humanresource/department/department.service");
+const shift_service_1 = require("../service/humanresource/shift/shift.service");
 let GlobalModule = class GlobalModule {
 };
 GlobalModule = __decorate([

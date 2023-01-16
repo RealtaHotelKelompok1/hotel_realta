@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Department } from 'entities/Department';
-import { HttpException } from '@nestjs/common/exceptions';
-import { HttpStatus } from '@nestjs/common/enums';
+import { DepartmentDto } from 'src/controller/humanresource/department/department.dto';
 
+const date = new Date();
 @Injectable()
 export class DepartmentService {
   constructor(
@@ -18,18 +18,38 @@ export class DepartmentService {
   }
 
   // Method untuk menampilkan semua data department by PK
-  async findOneDepartment(deptId: number): Promise<any> {
-    const result = await this.departmentRepository.findOne({
-      where: {
-        deptId: deptId,
-      },
+  async findOneDepartment(deptId: any): Promise<any> {
+    return await this.departmentRepository.findOne({
+      where: { deptId: deptId },
     });
-
-    if (result) {
-      return result;
-    }
-
-    throw new HttpException('Categories not found', HttpStatus.NOT_FOUND);
   }
 
+  //   method untuk menambahkan data Department ke database
+  async createDepartment(data: DepartmentDto) {
+    return await this.departmentRepository.insert({
+      deptName: data.deptName,
+    });
+  }
+
+  //   method untuk mengubah data department dari database
+  async updateDepartment(deptId: number, data: DepartmentDto) {
+    return await this.departmentRepository.update(
+      {
+        deptId: deptId,
+      },
+      {
+        deptName: data.deptName,
+        deptModifiedDate: date,
+      },
+    );
+
+  }
+
+  //   method untuk menghapus data Department
+  async deleteDepartment(deptId: number) {
+    return await this.departmentRepository.delete({
+      deptId: deptId,
+    });
+
+  }
 }

@@ -9,15 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DepartmentDto = void 0;
+exports.ShiftDto = void 0;
 const class_validator_1 = require("class-validator");
-class DepartmentDto {
+class ShiftDto {
 }
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.MinLength)(3),
     __metadata("design:type", String)
-], DepartmentDto.prototype, "deptName", void 0);
-exports.DepartmentDto = DepartmentDto;
-//# sourceMappingURL=department.dto.js.map
+], ShiftDto.prototype, "shiftName", void 0);
+exports.ShiftDto = ShiftDto;
+//# sourceMappingURL=shift.dto.js.map

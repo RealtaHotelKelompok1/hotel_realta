@@ -12,47 +12,49 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DepartmentService = void 0;
+exports.ShiftService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
-const Department_1 = require("../../../../entities/Department");
-const date = new Date();
-let DepartmentService = class DepartmentService {
-    constructor(departmentRepository) {
-        this.departmentRepository = departmentRepository;
+const Shift_1 = require("../../../../entities/Shift");
+let ShiftService = class ShiftService {
+    constructor(ShiftRepository) {
+        this.ShiftRepository = ShiftRepository;
     }
-    async findAllDepartment() {
-        return await this.departmentRepository.find();
+    async findAllShift() {
+        return await this.ShiftRepository.find();
     }
-    async findOneDepartment(deptId) {
-        return await this.departmentRepository.findOne({
-            where: { deptId: deptId },
+    async findOneShift(shiftId) {
+        return await this.ShiftRepository.findOne({
+            where: { shiftId: shiftId },
         });
     }
-    async createDepartment(data) {
-        return await this.departmentRepository.insert({
-            deptName: data.deptName,
+    async createShift(data) {
+        return await this.ShiftRepository.insert({
+            shiftName: data.shiftName,
+            shiftStartTime: data.shiftStartTime,
+            shiftEndTime: data.shiftEndTime,
         });
     }
-    async updateDepartment(deptId, data) {
-        return await this.departmentRepository.update({
-            deptId: deptId,
+    async updateShift(shiftId, data) {
+        return await this.ShiftRepository.update({
+            shiftId: shiftId,
         }, {
-            deptName: data.deptName,
-            deptModifiedDate: date,
+            shiftName: data.shiftName,
+            shiftStartTime: data.shiftStartTime,
+            shiftEndTime: data.shiftEndTime,
         });
     }
-    async deleteDepartment(deptId) {
-        return await this.departmentRepository.delete({
-            deptId: deptId,
+    async deleteShift(shiftId) {
+        return await this.ShiftRepository.delete({
+            shiftId: shiftId,
         });
     }
 };
-DepartmentService = __decorate([
+ShiftService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_2.InjectRepository)(Department_1.Department)),
+    __param(0, (0, typeorm_2.InjectRepository)(Shift_1.Shift)),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], DepartmentService);
-exports.DepartmentService = DepartmentService;
-//# sourceMappingURL=department.service.js.map
+], ShiftService);
+exports.ShiftService = ShiftService;
+//# sourceMappingURL=shift.service.js.map
