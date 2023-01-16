@@ -1,4 +1,4 @@
-import { Entities } from "./Entities";
+import { Entities } from './Entities';
 export declare class PaymentGateaway {
     pagaEntityId: number;
     pagaCode: string | null;
