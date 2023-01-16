@@ -18,7 +18,7 @@ export class BankController {
   /** CRUD on Bank Entity
    * TODO: Find Bank            [v] Get
    * TODO: Find Bank by ID      [v] Get
-   * TODO: Update Bank by ID    [] Put
+   * TODO: Update Bank by ID    [] Put =====> TODO: error handling catch()
    * TODO: Insert New Bank      [] Post
    * TODO: Delete Bank          [] Delete
    */
@@ -32,21 +32,16 @@ export class BankController {
   // Find Bank by ID
   @Get(':id')
   async findBankById(@Param('id') id: number) {
-    return await this.bankService
-      .find(id)
-      .then((result) => {
-        return result;
-      })
-      .catch((error) => {
-        return new HttpException(
-          // Response: Custom message
-          { error: `Bank with ID ${id} is not found!` },
-          // Status: Http status
-          HttpStatus.NOT_FOUND,
-          // Cause
-          { cause: error },
-        );
-      });
+    return await this.bankService.find(id).catch((error) => {
+      return new HttpException(
+        // Response: Custom message
+        { error: `Bank with ID ${id} is not found!` },
+        // Status: Http status
+        HttpStatus.NOT_FOUND,
+        // Cause
+        { cause: error },
+      );
+    });
   }
 
   // Update Bank
@@ -57,16 +52,29 @@ export class BankController {
       .then(() => {
         return this.findBankById(id);
       })
+      /**
+       * TODO: Error handling if failed updating bank */
       .catch();
   }
 
   @Post()
   async insertBank(@Body() body) {
     return await this.bankService.insert(body);
+    /**
+     * TODO: insert exception to handle existing data (name and code must be unique)
+     * */
   }
 
   @Delete()
   async deleteBank(@Param('id') id: number) {
-    return await this.bankService.delete(id);
+    return await this.bankService
+      .delete(id)
+      .then(() => {
+        return `Bank with ID ${id} has been deleted!`;
+      })
+      /**
+       * TODO: insert exception to handle failed deleting data
+       */
+      .catch();
   }
 }

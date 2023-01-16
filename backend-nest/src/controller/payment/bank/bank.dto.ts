@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class BankDto {
@@ -7,7 +8,7 @@ export class BankDto {
     message: 'Bank code is too long!',
   })
   bankCode: string;
-
+  
   @IsNotEmpty()
   @IsString()
   @MaxLength(55, {
