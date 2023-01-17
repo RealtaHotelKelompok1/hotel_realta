@@ -12,4 +12,4 @@ import { PaymentGateawayService } from 'src/service/payment/payment_gateaway/pay
   controllers: [BankController, PaymentGateawayController],
   providers: [BankService, PaymentGateawayService],
 })
-export class BankModule {}
+export class PaymentModule {}
