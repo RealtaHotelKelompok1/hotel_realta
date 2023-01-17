@@ -19,7 +19,6 @@ let GlobalModule = class GlobalModule {
 };
 GlobalModule = __decorate([
     (0, common_1.Module)({
-
         imports: [typeorm_1.TypeOrmModule.forFeature([Department_1.Department, Shift_1.Shift])],
         controllers: [department_controller_1.DepartmentController, shift_controller_1.ShiftController],
         providers: [department_service_1.DepartmentService, shift_service_1.ShiftService],
