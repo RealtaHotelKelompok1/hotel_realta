@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req ,Res, Next} from '@nestjs/common';
 import { HotelService } from 'src/service/hotel/hotel.service';
 import { Hotels } from 'entities/Hotels';
 @Controller('hotel')
@@ -33,5 +33,9 @@ export class HotelController {
         } else {
             return "customer updated"
         }
+    }
+    @Delete('delete/:id')
+    async deleteHotel(@Param('id') id: any){
+        return this.hotelService.deleteHotels(id)
     }
 }
