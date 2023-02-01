@@ -1,12 +1,14 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
 import { DepartmentService } from 'src/service/humanresource/department/department.service';
 import { DepartmentDto } from './department.dto';
-
+ 
 @Controller('department')
+
 export class DepartmentController {
   constructor(private readonly departmentService: DepartmentService) {}
 
   @Get()
+
   @HttpCode(200)
   findAllDepartment(): Promise<any> {
     return this.departmentService.findAllDepartment();
@@ -24,9 +26,23 @@ export class DepartmentController {
     return await this.departmentService.createDepartment(body);
   }
 
+  // @Post('insert')
+  // @HttpCode(201)
+  // async createDepartment(@Body() body: any): Promise<any> {
+  //   return await this.departmentService.createDepartment(body);
+  // }
+
+  // @Put('update/:id')
+  // @HttpCode(200)
+  // async updateDepartment(@Param('id') id: number, @Body() body: DepartmentDto): Promise<any> {
+  //   return await this.departmentService.updateDepartment(id, body);
+  // }
+
+
   @Put('update/:id')
+
   @HttpCode(200)
-  async updateDepartment(@Param('id') id: number, @Body() body: DepartmentDto): Promise<any> {
+  async updateDepartment(@Param('id') id: number, @Body() body: any): Promise<any> {
     return await this.departmentService.updateDepartment(id, body);
   }
 

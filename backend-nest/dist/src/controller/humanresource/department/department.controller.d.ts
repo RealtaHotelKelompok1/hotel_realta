@@ -6,6 +6,6 @@ export declare class DepartmentController {
     findAllDepartment(): Promise<any>;
     findOneDepartment(param: any): Promise<any>;
     createDepartment(body: DepartmentDto): Promise<any>;
-    updateDepartment(id: number, body: DepartmentDto): Promise<any>;
+    updateDepartment(id: number, body: any): Promise<any>;
     deleteDepartment(id: number): Promise<import("typeorm").DeleteResult>;
 }

@@ -25,7 +25,14 @@ export class DepartmentService {
   }
 
   //   method untuk menambahkan data Department ke database
-  async createDepartment(data: DepartmentDto) {
+  // async createDepartment(data: DepartmentDto) {
+  //   return await this.departmentRepository.insert({
+  //     deptName: data.deptName,
+  //   });
+  // }
+
+
+  async createDepartment(data: any) {
     return await this.departmentRepository.insert({
       deptName: data.deptName,
     });
@@ -42,7 +49,6 @@ export class DepartmentService {
         deptModifiedDate: date,
       },
     );
-
   }
 
   //   method untuk menghapus data Department
@@ -50,6 +56,5 @@ export class DepartmentService {
     return await this.departmentRepository.delete({
       deptId: deptId,
     });
-
   }
 }
