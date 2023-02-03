@@ -1,6 +1,9 @@
-# compiled output
-/dist
+# 
+.env
 /node_modules
+package.json
+/src/module/global.module.ts
+/dist
 
 # Logs
 logs

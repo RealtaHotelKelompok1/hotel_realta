@@ -2,6 +2,7 @@ import 'dotenv/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GlobalModule } from './module/global.module';
+import { PaymentModule } from './module/payment.module';
 
 
 @Module({
@@ -18,8 +19,7 @@ import { GlobalModule } from './module/global.module';
       synchronize: false,
     }),
     GlobalModule,
+    PaymentModule,
   ],
-
-  
 })
 export class MainModule {}
