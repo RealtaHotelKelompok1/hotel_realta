@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GlobalModule } from './module/global.module';
 import { PaymentModule } from './module/payment.module';
 
+
 @Module({
   imports: [
     TypeOrmModule.forRoot({
