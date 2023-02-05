@@ -5,10 +5,9 @@ import { useContainer } from 'class-validator';
 
 const port = process.env.PORT || 6000
 
-
 async function bootstrap() {
   const app = await NestFactory.create(MainModule);
-
+  app.enableCors();   
   // enable validation globally
   // this is from NestJS docs
   app.useGlobalPipes(

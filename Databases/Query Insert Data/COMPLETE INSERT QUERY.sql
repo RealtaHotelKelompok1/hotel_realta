@@ -155,17 +155,16 @@ VALUES
 
 -- INSERT TABLE USERS
 -- INSERT TO TABLE users.roles
-INSERT INTO users.roles(role_id,role_name)
-VALUES (1,'Guest'),
-(2,'Manager'),
-(3,'Office Boy'),
-(4,'Admin'),
-(5,'User');
+INSERT INTO users.roles(role_name)
+VALUES ('Guest'),
+('Manager'),
+('Office Boy'),
+('Admin'),
+('User');
 
 
 -- INSERT TO TABLE users.users
 INSERT INTO users.users(
-user_id,
 user_full_name,
 user_type,
 user_company_name,
@@ -173,7 +172,7 @@ user_email,
 user_phone_number,
 user_modified_date
 ) VALUES 
-(1,
+(
 'Faqih Pratama Muhti',
 'T', --Travel Agent
 'muhtiTravel',
@@ -181,7 +180,7 @@ user_modified_date
 '+6281212499837',
 '2023/01/08 03:00:00'
 ), 
-(2,
+(
 'Fadli Pratama Muhti',
 'C', --Corporate
 'MuhtiCorporate',
@@ -189,7 +188,7 @@ user_modified_date
 '+6289342968303',
 '2023/01/08 02:00:00'
 ), 
-(3,
+(
 'Firly Isnaeni Muhti',
 'I', --Individual
 'muhtiIndividual',
@@ -197,7 +196,7 @@ user_modified_date
 '+6283920429405',
 '2023/01/07 01:00:00'
 ), 
-(4,
+(
 'Fitrya Muhti',
 'T', --Travel Agent
 'muhtiTravel',
@@ -205,7 +204,7 @@ user_modified_date
 '+6285830596205',
 '2023/01/06 00:00:00'
 ), 
-(5,
+(
 'Uzumaki Naruto',
 'C', --Corporate
 'shinobiCorporate',
@@ -213,7 +212,7 @@ user_modified_date
 '+6284320985945',
 '2023/01/05 23:00:00'
 ), 
-(6,
+(
 'Uchiha Sasuke',
 'I', --Individual
 'shinobiIndividual',
@@ -221,7 +220,7 @@ user_modified_date
 '+6286565748375',
 '2023/01/04 22:00:00'
 ), 
-(7,
+(
 'Orochimaru',
 'T', --Travel Agent
 'shinobiTravel',
@@ -229,7 +228,7 @@ user_modified_date
 '+6281029384756',
 '2023/01/03 21:00:00'
 ), 
-(8,
+(
 'Kakashi Hatake',
 'C', --Corporate
 'shinobiCorporate',
@@ -237,7 +236,7 @@ user_modified_date
 '+6288745095382',
 '2023/01/02 20:00:00'
 ), 
-(9,
+(
 'Uchiha Itachi',
 'I', --Individual
 'shinobiIndividual',
@@ -245,7 +244,7 @@ user_modified_date
 '+6288473994839',
 '2023/01/01 19:00:00'
 ), 
-(10,
+(
 'Senju Tsunade',
 'T', --Travel Agent
 'shinobiTravel',
@@ -253,7 +252,7 @@ user_modified_date
 '+62846392058396',
 '2023/01/02 18:00:00'
 ), 
-(11,
+(
 'Uzumaki Nagato',
 'C', --Corporate
 'shinobiCorporate',
@@ -261,7 +260,7 @@ user_modified_date
 '+6284590567834',
 '2023/01/03 17:00:00'
 ), 
-(12,
+(
 'Uchiha Obito',
 'I', --Individual
 'shinobiIndividual',
@@ -269,7 +268,7 @@ user_modified_date
 '+6281212495467',
 '2023/01/04 16:00:00'
 ), 
-(13,
+(
 'Sai',
 'T', --Travel Agent
 'shinobiTravel',
@@ -277,7 +276,7 @@ user_modified_date
 '+6281211234837',
 '2023/01/05 15:00:00'
 ), 
-(14,
+(
 'Yahiko',
 'C', --Corporate
 'shinobiCorporate',
@@ -285,7 +284,7 @@ user_modified_date
 '+6281234499837',
 '2023/01/06 14:00:00'
 ), 
-(15,
+(
 'Hoshigaki Kisame',
 'I', --Individual
 'shinobiIndividual',
@@ -293,7 +292,7 @@ user_modified_date
 '+6281214321837',
 '2023/01/07 13:00:00'
 ), 
-(16,
+(
 'Jiraiya',
 'T', --Travel Agent
 'shinobiTravel',
@@ -301,7 +300,7 @@ user_modified_date
 '+6281212497654',
 '2023/01/08 12:00:00'
 ), 
-(17,
+(
 'Senju Tobirama',
 'C', --Corporate
 'shinobiCorporate',
@@ -309,7 +308,7 @@ user_modified_date
 '+6284538798967',
 '2023/01/07 11:00:00'
 ), 
-(18,
+(
 'Uchiha Shisui',
 'I', --Individual
 'shinobiIndividual',
@@ -317,7 +316,7 @@ user_modified_date
 '+6281456799837',
 '2023/01/06 10:00:00'
 ), 
-(19,
+(
 'Yakushi Kabuto',
 'T', --Travel Agent
 'shinobiTravel',
@@ -325,7 +324,7 @@ user_modified_date
 '+6285634344526',
 '2023/01/05 09:00:00'
 ), 
-(20,
+(
 'Namikaze Minato',
 'C', --Corporate
 'shinobiCorporate',
@@ -333,15 +332,15 @@ user_modified_date
 '+62812124934627',
 '2023/01/04 08:00:00'
 ), 
-(21,
-'Hyuuga Neji',
+(
+'Rock Lee',
 'I', --Individual
 'shinobiIndividual',
-'hyuuganeji@gmail.com',
+'lee@gmail.com',
 '+62835462897685',
 '2023/01/03 07:00:00'
 ), 
-(22,
+(
 'Momochi Zabuza',
 'T', --Travel Agent
 'shinobiTravel',
@@ -349,7 +348,7 @@ user_modified_date
 '+6285634123456',
 '2023/01/05 09:00:00'
 ), 
-(23,
+(
 'Senju Hashirama',
 'C', --Corporate
 'shinobiCorporate',
@@ -357,7 +356,7 @@ user_modified_date
 '+62812124912345',
 '2023/01/04 08:00:00'
 ), 
-(24,
+(
 'Hyuuga Neji',
 'I', --Individual
 'shinobiIndividual',
@@ -406,30 +405,30 @@ uspa_passwordHash,
 uspa_passwordSalt
 )
 VALUES
-(1,md5('password'),'md5'),
-(2,md5('password'),'md5'),
-(3,md5('password'),'md5'),
-(4,md5('password'),'md5'),
-(5,md5('password'),'md5'),
-(6,md5('password'),'md5'),
-(7,md5('password'),'md5'),
-(8,md5('password'),'md5'),
-(9,md5('password'),'md5'),
-(10,md5('password'),'md5'),
-(11,md5('password'),'md5'),
-(12,md5('password'),'md5'),
-(13,md5('password'),'md5'),
-(14,md5('password'),'md5'),
-(15,md5('password'),'md5'),
-(16,md5('password'),'md5'),
-(17,md5('password'),'md5'),
-(18,md5('password'),'md5'),
-(19,md5('password'),'md5'),
-(20,md5('password'),'md5'),
-(21,md5('password'),'md5'),
-(22,md5('password'),'md5'),
-(23,md5('password'),'md5'),
-(24,md5('password'),'md5');
+(1, md5('password'),'md5'),
+(2, md5('password'),'md5'),
+(3, md5('password'),'md5'),
+(4, md5('password'),'md5'),
+(5, md5('password'),'md5'),
+(6, md5('password'),'md5'),
+(7, md5('password'),'md5'),
+(8, md5('password'),'md5'),
+(9, md5('password'),'md5'),
+(10, md5('password'),'md5'),
+(11, md5('password'),'md5'),
+(12, md5('password'),'md5'),
+(13, md5('password'),'md5'),
+(14, md5('password'),'md5'),
+(15, md5('password'),'md5'),
+(16, md5('password'),'md5'),
+(17, md5('password'),'md5'),
+(18, md5('password'),'md5'),
+(19, md5('password'),'md5'),
+(20, md5('password'),'md5'),
+(21, md5('password'),'md5'),
+(22, md5('password'),'md5'),
+(23, md5('password'),'md5'),
+(24, md5('password'),'md5');
 
 -- INSERT TO TABLE users.user_members
 INSERT INTO users.user_members
