@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import {
   Column,
   Entity,
@@ -8,21 +7,13 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Entities } from "./Entities";
-=======
-import { Column, Entity, Index, JoinColumn, OneToOne } from 'typeorm';
-import { Entities } from './Entities';
->>>>>>> main
 
 @Index('payment_gateaway_paga_code_key', ['pagaCode'], { unique: true })
 @Index('payment_gateaway_pkey', ['pagaEntityId'], { unique: true })
 @Index('payment_gateaway_paga_name_key', ['pagaName'], { unique: true })
 @Entity('payment_gateaway', { schema: 'payment' })
 export class PaymentGateaway {
-<<<<<<< HEAD
-  @PrimaryGeneratedColumn({ type: "integer", name: "paga_entity_id" })
-=======
   @Column('integer', { primary: true, name: 'paga_entity_id' })
->>>>>>> main
   pagaEntityId: number;
 
   @Column('character varying', {

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Department } from 'entities/Department';
-import { DepartmentDto } from 'src/controller/humanresource/department/department.dto';
+import { DepartmentDto } from 'src/controller/humanresource/department/department.dto'; 
 
 const date = new Date();
 @Injectable()

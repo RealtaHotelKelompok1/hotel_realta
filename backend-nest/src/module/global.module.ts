@@ -59,7 +59,7 @@ import { DepartmentController } from 'src/controller/humanresource/department/de
 import { EmployeeController } from 'src/controller/humanresource/employee/employee.controller';
 import { EmployeeDepartmentHistoryController } from 'src/controller/humanresource/employee_department_history/employee_department_history.controller';
 import { EmployeePayHistoryController } from 'src/controller/humanresource/employee_pay_history/employee_pay_history.controller';
-import { JobRoleController } from 'src/controller/humanresource/job_role/job_role.controller';
+import { JobroleController } from 'src/controller/humanresource/job_role/job_role.controller';
 import { ShiftController } from 'src/controller/humanresource/shift/shift.controller';
 import { WorkOrderDetailController } from 'src/controller/humanresource/work_order_detail/work_order_detail.controller';
 import { WorkOrdersController } from 'src/controller/humanresource/work_orders/work_orders.controller';
@@ -151,7 +151,7 @@ import { UsersService } from 'src/service/users/users/users.service';
   controllers: [
     DepartmentController,
     ShiftController,
-    JobRoleController,
+    JobroleController,
     EmployeeController,
     EmployeeDepartmentHistoryController,
     EmployeePayHistoryController,

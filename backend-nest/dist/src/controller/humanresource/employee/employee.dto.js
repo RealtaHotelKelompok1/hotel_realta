@@ -17,5 +17,41 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], EmployeeDto.prototype, "empNationalId", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], EmployeeDto.prototype, "empBirthDate", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], EmployeeDto.prototype, "empMaritalStatus", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], EmployeeDto.prototype, "empGender", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], EmployeeDto.prototype, "empHireDate", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], EmployeeDto.prototype, "empSalariedFlag", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], EmployeeDto.prototype, "empVacationHours", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], EmployeeDto.prototype, "empSickleaveHours", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], EmployeeDto.prototype, "empCurrentFlag", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], EmployeeDto.prototype, "empPhoto", void 0);
 exports.EmployeeDto = EmployeeDto;
 //# sourceMappingURL=employee.dto.js.map
