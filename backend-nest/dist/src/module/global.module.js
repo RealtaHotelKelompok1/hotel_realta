@@ -59,6 +59,11 @@ const Users_1 = require("../../entities/Users");
 const Vendor_1 = require("../../entities/Vendor");
 const WorkOrderDetail_1 = require("../../entities/WorkOrderDetail");
 const WorkOrders_1 = require("../../entities/WorkOrders");
+const facility_controller_1 = require("../controller/hotel/facility.controller");
+const facility_photos_controller_1 = require("../controller/hotel/facility_photos.controller");
+const facility_price_history_controller_1 = require("../controller/hotel/facility_price_history.controller");
+const hotel_controller_1 = require("../controller/hotel/hotel.controller");
+const hotel_review_controller_1 = require("../controller/hotel/hotel_review.controller");
 const department_controller_1 = require("../controller/humanresource/department/department.controller");
 const employee_controller_1 = require("../controller/humanresource/employee/employee.controller");
 const employee_department_history_controller_1 = require("../controller/humanresource/employee_department_history/employee_department_history.controller");
@@ -67,6 +72,11 @@ const job_role_controller_1 = require("../controller/humanresource/job_role/job_
 const shift_controller_1 = require("../controller/humanresource/shift/shift.controller");
 const work_order_detail_controller_1 = require("../controller/humanresource/work_order_detail/work_order_detail.controller");
 const work_orders_controller_1 = require("../controller/humanresource/work_orders/work_orders.controller");
+const facility_service_1 = require("../service/hotel/facility.service");
+const facility_photos_service_1 = require("../service/hotel/facility_photos.service");
+const facility_price_history_service_1 = require("../service/hotel/facility_price_history.service");
+const hotel_service_1 = require("../service/hotel/hotel.service");
+const hotel_review_service_1 = require("../service/hotel/hotel_review.service");
 const department_service_1 = require("../service/humanresource/department/department.service");
 const employee_service_1 = require("../service/humanresource/employee/employee.service");
 const employee_department_history_service_1 = require("../service/humanresource/employee_department_history/employee_department_history.service");
@@ -142,6 +152,7 @@ GlobalModule = __decorate([
             employee_pay_history_controller_1.EmployeePayHistoryController,
             work_order_detail_controller_1.WorkOrderDetailController,
             work_orders_controller_1.WorkOrdersController,
+            hotel_controller_1.HotelController, hotel_review_controller_1.HotelReviewController, facility_price_history_controller_1.FacilityPriceHistoryController, facility_controller_1.FacilityController, facility_photos_controller_1.FacilityPhotosController
         ],
         providers: [
             department_service_1.DepartmentService,
@@ -152,6 +163,7 @@ GlobalModule = __decorate([
             work_order_detail_service_1.WorkOrderDetailService,
             employee_department_history_service_1.EmployeeDepartmentHistoryService,
             work_orders_service_1.WorkOrdersService,
+            hotel_service_1.HotelService, hotel_review_service_1.HotelReviewService, facility_price_history_service_1.FacilityPriceHistoryService, facility_service_1.FacilityService, facility_photos_service_1.FacilityPhotosService
         ],
     })
 ], GlobalModule);
