@@ -19,6 +19,5 @@ import { GlobalModule } from './module/global.module';
     }),
     GlobalModule,
   ],
- 
 })
 export class MainModule {}

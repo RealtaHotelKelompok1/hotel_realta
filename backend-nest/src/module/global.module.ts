@@ -63,6 +63,14 @@ import { JobRoleController } from 'src/controller/humanresource/job_role/job_rol
 import { ShiftController } from 'src/controller/humanresource/shift/shift.controller';
 import { WorkOrderDetailController } from 'src/controller/humanresource/work_order_detail/work_order_detail.controller';
 import { WorkOrdersController } from 'src/controller/humanresource/work_orders/work_orders.controller';
+import { AuthController } from 'src/controller/users/auth/auth.controller';
+import { RolesController } from 'src/controller/users/roles/roles.controller';
+import { UserbonuspointsController } from 'src/controller/users/userbonuspoints/userbonuspoints.controller';
+import { UsermembersController } from 'src/controller/users/usermembers/usermembers.controller';
+import { UserpasswordController } from 'src/controller/users/userpassword/userpassword.controller';
+import { UserprofilesController } from 'src/controller/users/userprofiles/userprofiles.controller';
+import { UserrolesController } from 'src/controller/users/userroles/userroles.controller';
+import { UsersController } from 'src/controller/users/users/users.controller';
 import { FacilityService } from 'src/service/hotel/facility.service';
 import { FacilityPhotosService } from 'src/service/hotel/facility_photos.service';
 import { FacilityPriceHistoryService } from 'src/service/hotel/facility_price_history.service';
@@ -76,6 +84,14 @@ import { JobRoleService } from 'src/service/humanresource/job_role/job_role.serv
 import { ShiftService } from 'src/service/humanresource/shift/shift.service';
 import { WorkOrderDetailService } from 'src/service/humanresource/work_order_detail/work_order_detail.service';
 import { WorkOrdersService } from 'src/service/humanresource/work_orders/work_orders.service';
+import { AuthService } from 'src/service/users/auth/auth.service';
+import { RolesService } from 'src/service/users/roles/roles.service';
+import { UserbonuspointsService } from 'src/service/users/userbonuspoints/userbonuspoints.service';
+import { UsermembersService } from 'src/service/users/usermembers/usermembers.service';
+import { UserpasswordService } from 'src/service/users/userpassword/userpassword.service';
+import { UserprofilesService } from 'src/service/users/userprofiles/userprofiles.service';
+import { UserrolesService } from 'src/service/users/userroles/userroles.service';
+import { UsersService } from 'src/service/users/users/users.service';
 
 @Module({
   imports: [
@@ -150,7 +166,7 @@ import { WorkOrdersService } from 'src/service/humanresource/work_orders/work_or
     FacilityPhotosController,
 
     /* USERS */
-
+    UsersController, RolesController, UserrolesController, UserpasswordController, AuthController, UserbonuspointsController, UsermembersController, UserprofilesController
     /* BOOKING */
     /* RESTO */
     /* PAYMENT */
@@ -175,7 +191,7 @@ import { WorkOrdersService } from 'src/service/humanresource/work_orders/work_or
     FacilityPhotosService,
 
     /* USERS */
-
+    UsersService, RolesService, UserrolesService, UserpasswordService, AuthService, UserbonuspointsService, UsermembersService, UserprofilesService
     /* BOOKING */
     /* RESTO */
     /* PAYMENT */

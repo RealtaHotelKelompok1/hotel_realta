@@ -57,6 +57,7 @@ __decorate([
     (0, typeorm_1.Column)("character varying", {
         name: "user_email",
         nullable: true,
+        unique: true,
         length: 256,
     }),
     __metadata("design:type", String)
@@ -70,6 +71,10 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Users.prototype, "userPhoneNumber", void 0);
+__decorate([
+    (0, typeorm_1.Column)("integer", { name: "user_isverified", nullable: true }),
+    __metadata("design:type", Number)
+], Users.prototype, "userIsverified", void 0);
 __decorate([
     (0, typeorm_1.Column)("timestamp without time zone", {
         name: "user_modified_date",
@@ -127,6 +132,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Users.prototype, "workOrders", void 0);
 Users = __decorate([
+    (0, typeorm_1.Index)("u_user_email", ["userEmail"], { unique: true }),
     (0, typeorm_1.Index)("pk_user_id", ["userId"], { unique: true }),
     (0, typeorm_1.Index)("u_user_phone_number", ["userPhoneNumber"], { unique: true }),
     (0, typeorm_1.Entity)("users", { schema: "users" })

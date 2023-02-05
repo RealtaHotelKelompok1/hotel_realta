@@ -72,6 +72,14 @@ const job_role_controller_1 = require("../controller/humanresource/job_role/job_
 const shift_controller_1 = require("../controller/humanresource/shift/shift.controller");
 const work_order_detail_controller_1 = require("../controller/humanresource/work_order_detail/work_order_detail.controller");
 const work_orders_controller_1 = require("../controller/humanresource/work_orders/work_orders.controller");
+const auth_controller_1 = require("../controller/users/auth/auth.controller");
+const roles_controller_1 = require("../controller/users/roles/roles.controller");
+const userbonuspoints_controller_1 = require("../controller/users/userbonuspoints/userbonuspoints.controller");
+const usermembers_controller_1 = require("../controller/users/usermembers/usermembers.controller");
+const userpassword_controller_1 = require("../controller/users/userpassword/userpassword.controller");
+const userprofiles_controller_1 = require("../controller/users/userprofiles/userprofiles.controller");
+const userroles_controller_1 = require("../controller/users/userroles/userroles.controller");
+const users_controller_1 = require("../controller/users/users/users.controller");
 const facility_service_1 = require("../service/hotel/facility.service");
 const facility_photos_service_1 = require("../service/hotel/facility_photos.service");
 const facility_price_history_service_1 = require("../service/hotel/facility_price_history.service");
@@ -85,6 +93,14 @@ const job_role_service_1 = require("../service/humanresource/job_role/job_role.s
 const shift_service_1 = require("../service/humanresource/shift/shift.service");
 const work_order_detail_service_1 = require("../service/humanresource/work_order_detail/work_order_detail.service");
 const work_orders_service_1 = require("../service/humanresource/work_orders/work_orders.service");
+const auth_service_1 = require("../service/users/auth/auth.service");
+const roles_service_1 = require("../service/users/roles/roles.service");
+const userbonuspoints_service_1 = require("../service/users/userbonuspoints/userbonuspoints.service");
+const usermembers_service_1 = require("../service/users/usermembers/usermembers.service");
+const userpassword_service_1 = require("../service/users/userpassword/userpassword.service");
+const userprofiles_service_1 = require("../service/users/userprofiles/userprofiles.service");
+const userroles_service_1 = require("../service/users/userroles/userroles.service");
+const users_service_1 = require("../service/users/users/users.service");
 let GlobalModule = class GlobalModule {
 };
 GlobalModule = __decorate([
@@ -157,6 +173,7 @@ GlobalModule = __decorate([
             facility_price_history_controller_1.FacilityPriceHistoryController,
             facility_controller_1.FacilityController,
             facility_photos_controller_1.FacilityPhotosController,
+            users_controller_1.UsersController, roles_controller_1.RolesController, userroles_controller_1.UserrolesController, userpassword_controller_1.UserpasswordController, auth_controller_1.AuthController, userbonuspoints_controller_1.UserbonuspointsController, usermembers_controller_1.UsermembersController, userprofiles_controller_1.UserprofilesController
         ],
         providers: [
             department_service_1.DepartmentService,
@@ -172,6 +189,7 @@ GlobalModule = __decorate([
             facility_price_history_service_1.FacilityPriceHistoryService,
             facility_service_1.FacilityService,
             facility_photos_service_1.FacilityPhotosService,
+            users_service_1.UsersService, roles_service_1.RolesService, userroles_service_1.UserrolesService, userpassword_service_1.UserpasswordService, auth_service_1.AuthService, userbonuspoints_service_1.UserbonuspointsService, usermembers_service_1.UsermembersService, userprofiles_service_1.UserprofilesService
         ],
     })
 ], GlobalModule);

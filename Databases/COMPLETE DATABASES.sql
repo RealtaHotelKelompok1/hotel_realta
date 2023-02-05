@@ -118,7 +118,8 @@ CREATE TABLE users.users(
 	user_phone_number VARCHAR(25),
 	user_modified_date TIMESTAMP DEFAULT now(),
 	CONSTRAINT pk_user_id PRIMARY KEY (user_id),
-	CONSTRAINT u_user_phone_number UNIQUE (user_phone_number)
+	CONSTRAINT u_user_phone_number UNIQUE (user_phone_number),
+	CONSTRAINT u_user_email UNIQUE (user_email)
 );
 
 -- RUN 2
@@ -174,10 +175,9 @@ CREATE TABLE users.user_roles(
 
 -- CREATE TABLE user_password
 CREATE TABLE users.user_password(
-	uspa_user_id SERIAL PRIMARY KEY,
+	uspa_user_id INT PRIMARY KEY,
 	uspa_passwordHash VARCHAR(128),
 	uspa_passwordSalt VARCHAR(10),
-
 	CONSTRAINT fk_uspa_user_id FOREIGN KEY (uspa_user_id)
 		REFERENCES users.users(user_id)
 			ON DELETE CASCADE
