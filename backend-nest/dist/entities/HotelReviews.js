@@ -16,41 +16,41 @@ const Users_1 = require("./Users");
 let HotelReviews = class HotelReviews {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ type: "integer", name: "hore_id" }),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ type: 'integer', name: 'hore_id' }),
     __metadata("design:type", Number)
 ], HotelReviews.prototype, "horeId", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", {
-        name: "hore_user_review",
+    (0, typeorm_1.Column)('character varying', {
+        name: 'hore_user_review',
         nullable: true,
         length: 125,
     }),
     __metadata("design:type", String)
 ], HotelReviews.prototype, "horeUserReview", void 0);
 __decorate([
-    (0, typeorm_1.Column)("bit", { name: "hore_rating", nullable: true }),
+    (0, typeorm_1.Column)('bit varying', { name: 'hore_rating', nullable: true }),
     __metadata("design:type", String)
 ], HotelReviews.prototype, "horeRating", void 0);
 __decorate([
-    (0, typeorm_1.Column)("timestamp without time zone", {
-        name: "hore_created_on",
+    (0, typeorm_1.Column)('timestamp without time zone', {
+        name: 'hore_created_on',
         nullable: true,
     }),
     __metadata("design:type", Date)
 ], HotelReviews.prototype, "horeCreatedOn", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Hotels_1.Hotels, (hotels) => hotels.hotelReviews),
-    (0, typeorm_1.JoinColumn)([{ name: "hore_hotel_id", referencedColumnName: "hotelId" }]),
+    (0, typeorm_1.JoinColumn)([{ name: 'hore_hotel_id', referencedColumnName: 'hotelId' }]),
     __metadata("design:type", Hotels_1.Hotels)
 ], HotelReviews.prototype, "horeHotel", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Users_1.Users, (users) => users.hotelReviews),
-    (0, typeorm_1.JoinColumn)([{ name: "hore_user_id", referencedColumnName: "userId" }]),
+    (0, typeorm_1.JoinColumn)([{ name: 'hore_user_id', referencedColumnName: 'userId' }]),
     __metadata("design:type", Users_1.Users)
 ], HotelReviews.prototype, "horeUser", void 0);
 HotelReviews = __decorate([
-    (0, typeorm_1.Index)("hore_id_pk", ["horeId"], { unique: true }),
-    (0, typeorm_1.Entity)("hotel_reviews", { schema: "hotel" })
+    (0, typeorm_1.Index)('hore_id_pk', ['horeId'], { unique: true }),
+    (0, typeorm_1.Entity)('hotel_reviews', { schema: 'hotel' })
 ], HotelReviews);
 exports.HotelReviews = HotelReviews;
 //# sourceMappingURL=HotelReviews.js.map
