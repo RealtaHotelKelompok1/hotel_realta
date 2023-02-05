@@ -5,7 +5,7 @@ export default function LayoutSignIn({ children }) {
   return (
     <>
       <div className="bgLayout">
-        <div class="mx-auto sm:mx-0">
+        <div className="mx-auto sm:mx-0">
           <div className={styles.logoLayout}></div>
           <Card responsi className={styles.cardLogin}>
             <div className="form-auth">
@@ -15,7 +15,7 @@ export default function LayoutSignIn({ children }) {
             </div>
           </Card>
         </div>
-        <div class="hidden md:block">
+        <div className="hidden md:block">
           <div className={styles.bgImg} />
           <div className={styles.cardInCardLogin}>
             <div className={styles.textTitlaInCardLogin1}>
