@@ -19,14 +19,14 @@ const shift_service_1 = require("../../../service/humanresource/shift/shift.serv
 const exceptions_1 = require("@nestjs/common/exceptions");
 const enums_1 = require("@nestjs/common/enums");
 let ShiftController = class ShiftController {
-    constructor(departmentService) {
-        this.departmentService = departmentService;
+    constructor(shiftService) {
+        this.shiftService = shiftService;
     }
     findAllShift() {
-        return this.departmentService.findAllShift();
+        return this.shiftService.findAllShift();
     }
     async findOneShift(param) {
-        const result = await this.departmentService.findOneShift(param.id);
+        const result = await this.shiftService.findOneShift(param.id);
         if (result) {
             return result;
         }
@@ -35,13 +35,43 @@ let ShiftController = class ShiftController {
         }
     }
     async createShift(body) {
-        const result = await this.departmentService.createShift(body);
+        const result = await this.shiftService.createShift(body);
+        if (result) {
+            return { message: 'Shift created successfully' };
+        }
+        else {
+            throw new exceptions_1.HttpException('Shift created failed', enums_1.HttpStatus.EXPECTATION_FAILED);
+        }
     }
-    updateShift(id, body) {
-        return this.departmentService.updateShift(id, body);
+    async updateShift(id, body) {
+        const getOneData = await this.shiftService.findOneShift(id);
+        if (getOneData) {
+            const result = await this.shiftService.updateShift(id, body);
+            if (result) {
+                throw new exceptions_1.HttpException('Shift updated successfully', enums_1.HttpStatus.ACCEPTED);
+            }
+            else {
+                throw new exceptions_1.HttpException('Shift updated failed', enums_1.HttpStatus.EXPECTATION_FAILED);
+            }
+        }
+        else {
+            throw new exceptions_1.HttpException('Shift not found', enums_1.HttpStatus.NOT_FOUND);
+        }
     }
-    deleteShift(id) {
-        return this.departmentService.deleteShift(id);
+    async deleteShift(id) {
+        const getOneData = await this.shiftService.findOneShift(id);
+        if (getOneData) {
+            const result = this.shiftService.deleteShift(id);
+            if (result) {
+                throw new exceptions_1.HttpException('Shift deleted successfully', enums_1.HttpStatus.ACCEPTED);
+            }
+            else {
+                throw new exceptions_1.HttpException('Shift deleted failed', enums_1.HttpStatus.EXPECTATION_FAILED);
+            }
+        }
+        else {
+            throw new exceptions_1.HttpException('Shift not found', enums_1.HttpStatus.NOT_FOUND);
+        }
     }
 };
 __decorate([
@@ -74,7 +104,7 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, shift_dto_1.ShiftDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ShiftController.prototype, "updateShift", null);
 __decorate([
     (0, common_1.Delete)('delete/:id'),
@@ -82,7 +112,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], ShiftController.prototype, "deleteShift", null);
 ShiftController = __decorate([
     (0, common_1.Controller)('shift'),

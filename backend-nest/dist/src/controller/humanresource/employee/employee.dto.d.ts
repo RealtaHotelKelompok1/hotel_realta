@@ -4,11 +4,9 @@ export declare class EmployeeDto {
     empMaritalStatus: string;
     empGender: string;
     empHireDate: string;
-    empSalariedFlag: number;
+    empSalariedFlag: string;
     empVacationHours: number;
     empSickleaveHours: number;
     empCurrentFlag: number;
     empPhoto: string;
-    empEmpId: number;
-    EmpJoroId: number;
 }

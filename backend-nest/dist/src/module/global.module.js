@@ -162,7 +162,7 @@ GlobalModule = __decorate([
         controllers: [
             department_controller_1.DepartmentController,
             shift_controller_1.ShiftController,
-            job_role_controller_1.JobRoleController,
+            job_role_controller_1.JobroleController,
             employee_controller_1.EmployeeController,
             employee_department_history_controller_1.EmployeeDepartmentHistoryController,
             employee_pay_history_controller_1.EmployeePayHistoryController,
