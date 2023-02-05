@@ -1,2 +1,3 @@
 backend-nest/dist/tsconfig.build.tsbuildinfo
 *.tsbuildinfo
+backend-nest/.env

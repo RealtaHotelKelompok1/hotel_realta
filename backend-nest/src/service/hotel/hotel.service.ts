@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Hotels } from 'entities/Hotels';
