@@ -47,21 +47,16 @@ let SpecialOffersService = class SpecialOffersService {
         });
     }
     async updateSpecialOffers(spof_id, data) {
-        if (data.spofType === special_offers[data.spofType]) {
-            return await this.specialOffersRepository.update({ spofId: spof_id }, data).then(result => {
-                return 'Data berhasil Di Update';
-            }).catch(error => {
-                return error;
-            });
-        }
-        else {
-            return "spof type tidak ditemukan ";
-        }
+        return await this.specialOffersRepository.update({ spofId: spof_id }, data).then(() => {
+            return 'Data berhasil Di Update';
+        }).catch(error => {
+            return error;
+        });
     }
     async deleteSpecialOffers(spofId) {
         return await this.specialOffersRepository.delete({
             spofId: spofId,
-        }).then(result => {
+        }).then(() => {
             return 'Berhasil dihapus';
         }).catch(error => {
             return error;

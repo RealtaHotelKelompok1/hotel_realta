@@ -24,7 +24,7 @@ export class RolesService {
         }).catch((err: any) => {
             return {
                 message: err.message,
-                error: err.error
+                error: err.name
             }
         });
     }
@@ -44,7 +44,7 @@ export class RolesService {
         }).catch((err: any) => {
             return {
                 message: err.message,
-                error: err.error
+                error: err.name
             }
         })
     }
@@ -63,7 +63,7 @@ export class RolesService {
         }).catch((err: any) => {
             return {
                 message: err.message,
-                error: err.error
+                error: err.name
             }
         })
     }
@@ -72,7 +72,7 @@ export class RolesService {
         return await this.rolesRepository.save({
             roleName: data.roleName
         }).then((result: any) => {
-            if (!result) {
+            if (!result || result == '') {
                 throw new BadRequestException('Data insert failed');
             }
             return {
@@ -82,26 +82,46 @@ export class RolesService {
         }).catch((err: any) => {
             return {
                 message: err.message,
-                error: err.error
+                error: err.name
             }
         });
     }
 
     async updateRoles(id:number,data: Roles): Promise<any>{
         return await this.rolesRepository.update(id, {
-            roleName : data.roleName
-        }).then((result) => {
-            if (!result) {
+            roleName: data.roleName
+        }).then(async(result:any) => {
+            if (!result.affected) {
                 throw new BadRequestException('Data update failed');
             }
+
+            let dataUpdated = await this.rolesRepository.findOneBy({roleId:id})
             return {
                 message: 'Data updated successfully',
-                results: result
+                results: dataUpdated
             }
         }).catch((err) => {
-            
-        })
+            return {
+                message: err.message,
+                error: err.name
+            }
+        });
     }
-    
-    
+
+    async deleteRoles(id: number): Promise<any>{
+        return await this.rolesRepository.delete(id)
+        .then((result:any) => {
+            if (!result.affected) {
+                throw new NotFoundException('Data not found');
+            }
+            return {
+                message: `Data deleted with ID : ${id} successfully`
+            }
+        }).catch((err: any) => {
+            return {
+                message: err.message,
+                error: err.name
+            }
+        })
+    }   
 }

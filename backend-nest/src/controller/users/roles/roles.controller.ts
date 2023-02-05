@@ -1,8 +1,11 @@
 import { Controller, Get, UsePipes, ValidationPipe } from '@nestjs/common';
-import { Body, Param, Post } from '@nestjs/common/decorators';
+import { Body, Delete, Param, Post, Put } from '@nestjs/common/decorators';
 import { RolesService } from 'src/service/users/roles/roles.service';
 import { bodyRolesDto } from './roles.dto';
+import { UseGuards } from '@nestjs/common/decorators';
+import { AuthService } from 'src/service/users/auth/auth.service';
 
+// @UseGuards(AuthService)
 @UsePipes(new ValidationPipe())
 @Controller('roles')
 export class RolesController {
@@ -30,4 +33,13 @@ export class RolesController {
         return this.rolesService.createRoles(body)
     }
 
+    @Put(':id')
+    updateRoles(@Param() params, @Body() body: bodyRolesDto) {
+        return this.rolesService.updateRoles(params.id, body)
+    }
+
+    @Delete(':id')
+    deleteRoles(@Param() params) {
+        return this.rolesService.deleteRoles(params.id);
+    }
 }

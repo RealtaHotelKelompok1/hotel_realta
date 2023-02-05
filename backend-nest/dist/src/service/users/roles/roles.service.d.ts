@@ -8,4 +8,5 @@ export declare class RolesService {
     findOneRoles(id: number): Promise<any>;
     createRoles(data: Roles): Promise<any>;
     updateRoles(id: number, data: Roles): Promise<any>;
+    deleteRoles(id: number): Promise<any>;
 }

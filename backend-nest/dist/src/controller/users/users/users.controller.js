@@ -27,20 +27,32 @@ let UsersController = class UsersController {
     findAllJoinUsers() {
         return this.usersService.findAllJoinUsers();
     }
-    findAllJoinUsersMaster() {
-        return this.usersService.findAllJoinUsersMaster();
-    }
     findOneUser(params) {
         return this.usersService.findOneUser(params.id);
     }
     createUsers(body) {
         return this.usersService.createUsers(body);
     }
+    createUserWithPassword(body1, body2) {
+        return this.usersService.createUserWithPassword(body1, body2);
+    }
+    updateUserWithPassword(params, body1, body2) {
+        return this.usersService.updateUserWithPassword(params.id, body1, body2);
+    }
+    createAllJoinToUsers(body1, body2, body3, body4, body5, body6) {
+        return this.usersService.createAllJoinToUsers(body1, body2, body3, body4, body5, body6);
+    }
     updateUsers(params, body) {
         return this.usersService.updateUsers(params.id, body);
     }
+    updateAllJoinToUsers(params, body1, body2, body3, body4, body5, body6) {
+        return this.usersService.updateAllJoinToUsers(params.id, body1, body2, body3, body4, body5, body6);
+    }
     deleteUsers(params) {
         return this.usersService.deleteUsers(params.id);
+    }
+    deleteAllJoinToUsers(params) {
+        return this.usersService.deleteAllJoinToUsers(params.id);
     }
 };
 __decorate([
@@ -50,17 +62,11 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAllUsers", null);
 __decorate([
-    (0, common_1.Get)('join-all-users'),
+    (0, common_1.Get)('findAllJoinUsers'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAllJoinUsers", null);
-__decorate([
-    (0, common_1.Get)('join-all-users-master'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], UsersController.prototype, "findAllJoinUsersMaster", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)()),
@@ -72,24 +78,73 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [users_dto_1.bodyUsersDto]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "createUsers", null);
+__decorate([
+    (0, common_1.Post)('createUserWithPassword'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "createUserWithPassword", null);
+__decorate([
+    (0, common_1.Put)('updateUserWithPassword/:id'),
+    __param(0, (0, common_1.Param)()),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateUserWithPassword", null);
+__decorate([
+    (0, common_1.Post)('createAllJoinToUsers'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Body)()),
+    __param(3, (0, common_1.Body)()),
+    __param(4, (0, common_1.Body)()),
+    __param(5, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object, Object, Object, Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "createAllJoinToUsers", null);
 __decorate([
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, users_dto_1.bodyUsersDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Object, users_dto_1.bodyUpdateUsersDto]),
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "updateUsers", null);
+__decorate([
+    (0, common_1.Put)('updateAllJoinToUsers/:id'),
+    __param(0, (0, common_1.Param)()),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Body)()),
+    __param(3, (0, common_1.Body)()),
+    __param(4, (0, common_1.Body)()),
+    __param(5, (0, common_1.Body)()),
+    __param(6, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object, Object, Object, Object, Object, Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateAllJoinToUsers", null);
+__decorate([
+    (0, common_1.Delete)('deleteAllJoinToUsers/:id'),
+    __param(0, (0, common_1.Param)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "deleteUsers", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
-], UsersController.prototype, "deleteUsers", null);
+], UsersController.prototype, "deleteAllJoinToUsers", null);
 UsersController = __decorate([
     (0, common_1.UsePipes)(new common_2.ValidationPipe()),
     (0, common_1.Controller)('users'),

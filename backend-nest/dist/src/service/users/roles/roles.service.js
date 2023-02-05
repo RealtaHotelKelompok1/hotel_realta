@@ -35,7 +35,7 @@ let RolesService = class RolesService {
         }).catch((err) => {
             return {
                 message: err.message,
-                error: err.error
+                error: err.name
             };
         });
     }
@@ -54,7 +54,7 @@ let RolesService = class RolesService {
         }).catch((err) => {
             return {
                 message: err.message,
-                error: err.error
+                error: err.name
             };
         });
     }
@@ -72,7 +72,7 @@ let RolesService = class RolesService {
         }).catch((err) => {
             return {
                 message: err.message,
-                error: err.error
+                error: err.name
             };
         });
     }
@@ -80,7 +80,7 @@ let RolesService = class RolesService {
         return await this.rolesRepository.save({
             roleName: data.roleName
         }).then((result) => {
-            if (!result) {
+            if (!result || result == '') {
                 throw new common_1.BadRequestException('Data insert failed');
             }
             return {
@@ -90,22 +90,43 @@ let RolesService = class RolesService {
         }).catch((err) => {
             return {
                 message: err.message,
-                error: err.error
+                error: err.name
             };
         });
     }
     async updateRoles(id, data) {
         return await this.rolesRepository.update(id, {
             roleName: data.roleName
-        }).then((result) => {
-            if (!result) {
+        }).then(async (result) => {
+            if (!result.affected) {
                 throw new common_1.BadRequestException('Data update failed');
             }
+            let dataUpdated = await this.rolesRepository.findOneBy({ roleId: id });
             return {
                 message: 'Data updated successfully',
-                results: result
+                results: dataUpdated
             };
         }).catch((err) => {
+            return {
+                message: err.message,
+                error: err.name
+            };
+        });
+    }
+    async deleteRoles(id) {
+        return await this.rolesRepository.delete(id)
+            .then((result) => {
+            if (!result.affected) {
+                throw new common_1.NotFoundException('Data not found');
+            }
+            return {
+                message: `Data deleted with ID : ${id} successfully`
+            };
+        }).catch((err) => {
+            return {
+                message: err.message,
+                error: err.name
+            };
         });
     }
 };

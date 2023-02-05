@@ -7,4 +7,6 @@ export declare class RolesController {
     findAllJoinRoles(): Promise<any>;
     findOneRoles(params: any): Promise<any>;
     createRoles(body: bodyRolesDto): Promise<any>;
+    updateRoles(params: any, body: bodyRolesDto): Promise<any>;
+    deleteRoles(params: any): Promise<any>;
 }
