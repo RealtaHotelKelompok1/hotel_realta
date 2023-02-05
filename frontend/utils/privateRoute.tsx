@@ -23,7 +23,7 @@ const PrivateRoute: React.FC<Props> = ({ children }) => {
   }, []);
 
   // if logged in, display the private route page
-  return <>
+  return <Box>
     {
       token
         ? (children)
@@ -34,7 +34,7 @@ const PrivateRoute: React.FC<Props> = ({ children }) => {
               Page Not Found
           </FormLabel>
         </Box>)
-  }</>;
+  }</Box>;
 };
 
 export default PrivateRoute;
