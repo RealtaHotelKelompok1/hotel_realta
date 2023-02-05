@@ -25,12 +25,6 @@ export class DepartmentService {
   }
 
   //   method untuk menambahkan data Department ke database
-  // async createDepartment(data: DepartmentDto) {
-  //   return await this.departmentRepository.insert({
-  //     deptName: data.deptName,
-  //   });
-  // }
-
 
   async createDepartment(data: any) {
     return await this.departmentRepository.insert({

@@ -8,7 +8,6 @@ export class DepartmentController {
   constructor(private readonly departmentService: DepartmentService) {}
 
   @Get()
-
   @HttpCode(200)
   findAllDepartment(): Promise<any> {
     return this.departmentService.findAllDepartment();
@@ -40,7 +39,6 @@ export class DepartmentController {
 
 
   @Put('update/:id')
-
   @HttpCode(200)
   async updateDepartment(@Param('id') id: number, @Body() body: any): Promise<any> {
     return await this.departmentService.updateDepartment(id, body);
