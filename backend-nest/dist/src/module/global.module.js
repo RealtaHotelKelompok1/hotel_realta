@@ -152,7 +152,11 @@ GlobalModule = __decorate([
             employee_pay_history_controller_1.EmployeePayHistoryController,
             work_order_detail_controller_1.WorkOrderDetailController,
             work_orders_controller_1.WorkOrdersController,
-            hotel_controller_1.HotelController, hotel_review_controller_1.HotelReviewController, facility_price_history_controller_1.FacilityPriceHistoryController, facility_controller_1.FacilityController, facility_photos_controller_1.FacilityPhotosController
+            hotel_controller_1.HotelController,
+            hotel_review_controller_1.HotelReviewController,
+            facility_price_history_controller_1.FacilityPriceHistoryController,
+            facility_controller_1.FacilityController,
+            facility_photos_controller_1.FacilityPhotosController,
         ],
         providers: [
             department_service_1.DepartmentService,
@@ -163,7 +167,11 @@ GlobalModule = __decorate([
             work_order_detail_service_1.WorkOrderDetailService,
             employee_department_history_service_1.EmployeeDepartmentHistoryService,
             work_orders_service_1.WorkOrdersService,
-            hotel_service_1.HotelService, hotel_review_service_1.HotelReviewService, facility_price_history_service_1.FacilityPriceHistoryService, facility_service_1.FacilityService, facility_photos_service_1.FacilityPhotosService
+            hotel_service_1.HotelService,
+            hotel_review_service_1.HotelReviewService,
+            facility_price_history_service_1.FacilityPriceHistoryService,
+            facility_service_1.FacilityService,
+            facility_photos_service_1.FacilityPhotosService,
         ],
     })
 ], GlobalModule);

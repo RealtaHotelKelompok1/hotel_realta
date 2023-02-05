@@ -141,8 +141,21 @@ import { WorkOrdersService } from 'src/service/humanresource/work_orders/work_or
     EmployeePayHistoryController,
     WorkOrderDetailController,
     WorkOrdersController,
+    
+    /* HOTEL */
+    HotelController,
+    HotelReviewController,
+    FacilityPriceHistoryController,
+    FacilityController,
+    FacilityPhotosController,
 
-    HotelController,HotelReviewController, FacilityPriceHistoryController,FacilityController,FacilityPhotosController
+    /* USERS */
+
+    /* BOOKING */
+    /* RESTO */
+    /* PAYMENT */
+    /* PURCHASING */
+    /* MASTER */
   ],
   providers: [
     /* HUMANRESOURCE */
@@ -155,10 +168,19 @@ import { WorkOrdersService } from 'src/service/humanresource/work_orders/work_or
     EmployeeDepartmentHistoryService,
     WorkOrdersService,
     /* HOTEL */
+    HotelService,
+    HotelReviewService,
+    FacilityPriceHistoryService,
+    FacilityService,
+    FacilityPhotosService,
 
+    /* USERS */
 
-    HotelService, HotelReviewService, FacilityPriceHistoryService,FacilityService,FacilityPhotosService
+    /* BOOKING */
+    /* RESTO */
+    /* PAYMENT */
+    /* PURCHASING */
+    /* MASTER */
   ],
-
 })
 export class GlobalModule {}
