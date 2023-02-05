@@ -41,8 +41,6 @@ export class RestoService {
       remePrice: data.remePrice,
       remeStatus: data.remeStatus,
       remeModifiedDate: now,
-      orderMenuDetails: data.orderMenuDetails,
-      restoMenuPhotos: data.restoMenuPhotos,
     });
     return result;
   }
@@ -65,8 +63,6 @@ export class RestoService {
         remePrice: data.remePrice,
         remeStatus: data.remeStatus,
         remeModifiedDate: now,
-        orderMenuDetails: data.orderMenuDetails,
-        restoMenuPhotos: data.restoMenuPhotos,
       },
     );
     return result + ' Sukses Mengupdate';
