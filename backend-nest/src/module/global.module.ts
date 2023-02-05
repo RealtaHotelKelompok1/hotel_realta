@@ -8,6 +8,15 @@ import { BookingOrders } from 'entities/BookingOrders';
 import { CategoryGroup } from 'entities/CategoryGroup';
 import { Country } from 'entities/Country';
 import { Department } from 'entities/Department';
+import { orderMenusController } from 'src/controller/resto/orderMenus.controller';
+import { OrderMenuDetailController } from 'src/controller/resto/restoMenuDetail_controller';
+import { RestoMenuPhotosContoller } from 'src/controller/resto/restoMenuPhotos.controller';
+import { RestoController } from 'src/controller/resto/restoMenus.controller';
+import { orderMenusService } from 'src/service/resto/orderMenus.service';
+import { OrderMenuDetailService } from 'src/service/resto/restoMenuDetail.service';
+import { restoMenuPhotoService } from 'src/service/resto/restoMenuPhotos.service';
+import { RestoService } from 'src/service/resto/restoMenus.service';
+import { ShiftService } from 'src/service/humanresource/shift/shift.service';
 import { Employee } from 'entities/Employee';
 import { EmployeeDepartmentHistory } from 'entities/EmployeeDepartmentHistory';
 import { EmployeePayHistory } from 'entities/EmployeePayHistory';
@@ -81,7 +90,6 @@ import { EmployeeService } from 'src/service/humanresource/employee/employee.ser
 import { EmployeeDepartmentHistoryService } from 'src/service/humanresource/employee_department_history/employee_department_history.service';
 import { EmployeePayHistoryService } from 'src/service/humanresource/employee_pay_history/employee_pay_history.service';
 import { JobRoleService } from 'src/service/humanresource/job_role/job_role.service';
-import { ShiftService } from 'src/service/humanresource/shift/shift.service';
 import { WorkOrderDetailService } from 'src/service/humanresource/work_order_detail/work_order_detail.service';
 import { WorkOrdersService } from 'src/service/humanresource/work_orders/work_orders.service';
 import { AuthService } from 'src/service/users/auth/auth.service';
@@ -104,13 +112,6 @@ import { UsersService } from 'src/service/users/users/users.service';
       CategoryGroup,
       Country,
       Department,
-      Employee,
-      EmployeeDepartmentHistory,
-      EmployeePayHistory,
-      Facilities,
-      FacilityPhotos,
-      FacilityPriceHistory,
-      HotelReviews,
       Hotels,
       JobRole,
       Members,
@@ -157,8 +158,9 @@ import { UsersService } from 'src/service/users/users/users.service';
     EmployeePayHistoryController,
     WorkOrderDetailController,
     WorkOrdersController,
-    
+
     /* HOTEL */
+
     HotelController,
     HotelReviewController,
     FacilityPriceHistoryController,
@@ -166,9 +168,20 @@ import { UsersService } from 'src/service/users/users/users.service';
     FacilityPhotosController,
 
     /* USERS */
-    UsersController, RolesController, UserrolesController, UserpasswordController, AuthController, UserbonuspointsController, UsermembersController, UserprofilesController
+    UsersController,
+    RolesController,
+    UserrolesController,
+    UserpasswordController,
+    AuthController,
+    UserbonuspointsController,
+    UsermembersController,
+    UserprofilesController,
     /* BOOKING */
     /* RESTO */
+    RestoController,
+    OrderMenuDetailController,
+    RestoMenuPhotosContoller,
+    orderMenusController,
     /* PAYMENT */
     /* PURCHASING */
     /* MASTER */
@@ -191,9 +204,20 @@ import { UsersService } from 'src/service/users/users/users.service';
     FacilityPhotosService,
 
     /* USERS */
-    UsersService, RolesService, UserrolesService, UserpasswordService, AuthService, UserbonuspointsService, UsermembersService, UserprofilesService
+    UsersService,
+    RolesService,
+    UserrolesService,
+    UserpasswordService,
+    AuthService,
+    UserbonuspointsService,
+    UsermembersService,
+    UserprofilesService,
     /* BOOKING */
     /* RESTO */
+    RestoService,
+    OrderMenuDetailService,
+    restoMenuPhotoService,
+    orderMenusService,
     /* PAYMENT */
     /* PURCHASING */
     /* MASTER */
