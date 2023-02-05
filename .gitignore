@@ -1,2 +1,2 @@
-
 backend-nest/dist/tsconfig.build.tsbuildinfo
+*.tsbuildinfo

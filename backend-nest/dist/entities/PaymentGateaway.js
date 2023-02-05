@@ -19,8 +19,8 @@ __decorate([
     __metadata("design:type", Number)
 ], PaymentGateaway.prototype, "pagaEntityId", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", {
-        name: "paga_code",
+    (0, typeorm_1.Column)('character varying', {
+        name: 'paga_code',
         nullable: true,
         unique: true,
         length: 10,
@@ -28,8 +28,8 @@ __decorate([
     __metadata("design:type", String)
 ], PaymentGateaway.prototype, "pagaCode", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", {
-        name: "paga_name",
+    (0, typeorm_1.Column)('character varying', {
+        name: 'paga_name',
         nullable: true,
         unique: true,
         length: 55,
@@ -37,26 +37,26 @@ __decorate([
     __metadata("design:type", String)
 ], PaymentGateaway.prototype, "pagaName", void 0);
 __decorate([
-    (0, typeorm_1.Column)("timestamp without time zone", {
-        name: "paga_modified_date",
+    (0, typeorm_1.Column)('timestamp without time zone', {
+        name: 'paga_modified_date',
         nullable: true,
-        default: () => "now()",
+        default: () => 'now()',
     }),
     __metadata("design:type", Date)
 ], PaymentGateaway.prototype, "pagaModifiedDate", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => Entities_1.Entities, (entities) => entities.paymentGateaway, {
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
     }),
-    (0, typeorm_1.JoinColumn)([{ name: "paga_entity_id", referencedColumnName: "entityId" }]),
+    (0, typeorm_1.JoinColumn)([{ name: 'paga_entity_id', referencedColumnName: 'entityId' }]),
     __metadata("design:type", Entities_1.Entities)
 ], PaymentGateaway.prototype, "pagaEntity", void 0);
 PaymentGateaway = __decorate([
-    (0, typeorm_1.Index)("payment_gateaway_paga_code_key", ["pagaCode"], { unique: true }),
-    (0, typeorm_1.Index)("payment_gateaway_pkey", ["pagaEntityId"], { unique: true }),
-    (0, typeorm_1.Index)("payment_gateaway_paga_name_key", ["pagaName"], { unique: true }),
-    (0, typeorm_1.Entity)("payment_gateaway", { schema: "payment" })
+    (0, typeorm_1.Index)('payment_gateaway_paga_code_key', ['pagaCode'], { unique: true }),
+    (0, typeorm_1.Index)('payment_gateaway_pkey', ['pagaEntityId'], { unique: true }),
+    (0, typeorm_1.Index)('payment_gateaway_paga_name_key', ['pagaName'], { unique: true }),
+    (0, typeorm_1.Entity)('payment_gateaway', { schema: 'payment' })
 ], PaymentGateaway);
 exports.PaymentGateaway = PaymentGateaway;
 //# sourceMappingURL=PaymentGateaway.js.map

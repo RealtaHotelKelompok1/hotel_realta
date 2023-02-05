@@ -15,22 +15,22 @@ const EmployeeDepartmentHistory_1 = require("./EmployeeDepartmentHistory");
 let Department = class Department {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ type: "integer", name: "dept_id" }),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ type: 'integer', name: 'dept_id' }),
     __metadata("design:type", Number)
 ], Department.prototype, "deptId", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", {
-        name: "dept_name",
+    (0, typeorm_1.Column)('character varying', {
+        name: 'dept_name',
         nullable: true,
         length: 50,
     }),
     __metadata("design:type", String)
 ], Department.prototype, "deptName", void 0);
 __decorate([
-    (0, typeorm_1.Column)("timestamp without time zone", {
-        name: "dept_modified_date",
+    (0, typeorm_1.Column)('timestamp without time zone', {
+        name: 'dept_modified_date',
         nullable: true,
-        default: () => "now()",
+        default: () => 'now()',
     }),
     __metadata("design:type", Date)
 ], Department.prototype, "deptModifiedDate", void 0);
@@ -39,8 +39,8 @@ __decorate([
     __metadata("design:type", Array)
 ], Department.prototype, "employeeDepartmentHistories", void 0);
 Department = __decorate([
-    (0, typeorm_1.Index)("pk_dept_id", ["deptId"], { unique: true }),
-    (0, typeorm_1.Entity)("department", { schema: "humanresource" })
+    (0, typeorm_1.Index)('pk_dept_id', ['deptId'], { unique: true }),
+    (0, typeorm_1.Entity)('department', { schema: 'humanresource' })
 ], Department);
 exports.Department = Department;
 //# sourceMappingURL=Department.js.map

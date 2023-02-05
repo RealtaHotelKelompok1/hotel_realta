@@ -4,6 +4,7 @@
 package.json
 /src/module/global.module.ts
 /src/main.ts
+/dist
 
 # Logs
 logs

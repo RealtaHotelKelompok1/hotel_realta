@@ -5,6 +5,6 @@ export class DepartmentDto {
   @IsString()
   @MinLength(3)
   deptName: string;
-
-
 }
+
+
