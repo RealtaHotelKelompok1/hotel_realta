@@ -11,6 +11,7 @@ require("dotenv/config");
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const global_module_1 = require("./module/global.module");
+const payment_module_1 = require("./module/payment.module");
 let MainModule = class MainModule {
 };
 MainModule = __decorate([
@@ -27,6 +28,7 @@ MainModule = __decorate([
                 synchronize: false,
             }),
             global_module_1.GlobalModule,
+            payment_module_1.BankModule,
         ],
     })
 ], MainModule);

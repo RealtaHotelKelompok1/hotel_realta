@@ -50,6 +50,11 @@ import { Users } from 'entities/Users';
 import { Vendor } from 'entities/Vendor';
 import { WorkOrderDetail } from 'entities/WorkOrderDetail';
 import { WorkOrders } from 'entities/WorkOrders';
+import { FacilityController } from 'src/controller/hotel/facility.controller';
+import { FacilityPhotosController } from 'src/controller/hotel/facility_photos.controller';
+import { FacilityPriceHistoryController } from 'src/controller/hotel/facility_price_history.controller';
+import { HotelController } from 'src/controller/hotel/hotel.controller';
+import { HotelReviewController } from 'src/controller/hotel/hotel_review.controller';
 import { DepartmentController } from 'src/controller/humanresource/department/department.controller';
 import { EmployeeController } from 'src/controller/humanresource/employee/employee.controller';
 import { EmployeeDepartmentHistoryController } from 'src/controller/humanresource/employee_department_history/employee_department_history.controller';
@@ -58,6 +63,11 @@ import { JobRoleController } from 'src/controller/humanresource/job_role/job_rol
 import { ShiftController } from 'src/controller/humanresource/shift/shift.controller';
 import { WorkOrderDetailController } from 'src/controller/humanresource/work_order_detail/work_order_detail.controller';
 import { WorkOrdersController } from 'src/controller/humanresource/work_orders/work_orders.controller';
+import { FacilityService } from 'src/service/hotel/facility.service';
+import { FacilityPhotosService } from 'src/service/hotel/facility_photos.service';
+import { FacilityPriceHistoryService } from 'src/service/hotel/facility_price_history.service';
+import { HotelService } from 'src/service/hotel/hotel.service';
+import { HotelReviewService } from 'src/service/hotel/hotel_review.service';
 import { DepartmentService } from 'src/service/humanresource/department/department.service';
 import { EmployeeService } from 'src/service/humanresource/employee/employee.service';
 import { EmployeeDepartmentHistoryService } from 'src/service/humanresource/employee_department_history/employee_department_history.service';
@@ -131,8 +141,11 @@ import { WorkOrdersService } from 'src/service/humanresource/work_orders/work_or
     EmployeePayHistoryController,
     WorkOrderDetailController,
     WorkOrdersController,
+
+    HotelController,HotelReviewController, FacilityPriceHistoryController,FacilityController,FacilityPhotosController
   ],
   providers: [
+    /* HUMANRESOURCE */
     DepartmentService,
     ShiftService,
     JobRoleService,
@@ -141,6 +154,11 @@ import { WorkOrdersService } from 'src/service/humanresource/work_orders/work_or
     WorkOrderDetailService,
     EmployeeDepartmentHistoryService,
     WorkOrdersService,
+    /* HOTEL */
+
+
+    HotelService, HotelReviewService, FacilityPriceHistoryService,FacilityService,FacilityPhotosService
   ],
+
 })
 export class GlobalModule {}

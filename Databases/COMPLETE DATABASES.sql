@@ -267,7 +267,7 @@ create table hotel.facility_price_history(
 create table hotel.hotel_reviews(
 	hore_id serial,
 	hore_user_review varchar(125),
-	hore_rating bit,
+	hore_rating int,
 	hore_created_on timestamp,
 	hore_user_id int,
 	hore_hotel_id int,
