@@ -15,12 +15,12 @@ const Entities_1 = require("./Entities");
 let Bank = class Bank {
 };
 __decorate([
-    (0, typeorm_1.Column)("integer", { primary: true, name: "bank_entity_id" }),
+    (0, typeorm_1.Column)('integer', { primary: true, name: 'bank_entity_id' }),
     __metadata("design:type", Number)
 ], Bank.prototype, "bankEntityId", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", {
-        name: "bank_code",
+    (0, typeorm_1.Column)('character varying', {
+        name: 'bank_code',
         nullable: true,
         unique: true,
         length: 10,
@@ -28,8 +28,8 @@ __decorate([
     __metadata("design:type", String)
 ], Bank.prototype, "bankCode", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", {
-        name: "bank_name",
+    (0, typeorm_1.Column)('character varying', {
+        name: 'bank_name',
         nullable: true,
         unique: true,
         length: 55,
@@ -37,26 +37,26 @@ __decorate([
     __metadata("design:type", String)
 ], Bank.prototype, "bankName", void 0);
 __decorate([
-    (0, typeorm_1.Column)("timestamp without time zone", {
-        name: "bank_modified_date",
+    (0, typeorm_1.Column)('timestamp without time zone', {
+        name: 'bank_modified_date',
         nullable: true,
-        default: () => "now()",
+        default: () => 'now()',
     }),
     __metadata("design:type", Date)
 ], Bank.prototype, "bankModifiedDate", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => Entities_1.Entities, (entities) => entities.bank, {
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
     }),
-    (0, typeorm_1.JoinColumn)([{ name: "bank_entity_id", referencedColumnName: "entityId" }]),
+    (0, typeorm_1.JoinColumn)([{ name: 'bank_entity_id', referencedColumnName: 'entityId' }]),
     __metadata("design:type", Entities_1.Entities)
 ], Bank.prototype, "bankEntity", void 0);
 Bank = __decorate([
-    (0, typeorm_1.Index)("bank_bank_code_key", ["bankCode"], { unique: true }),
-    (0, typeorm_1.Index)("bank_pkey", ["bankEntityId"], { unique: true }),
-    (0, typeorm_1.Index)("bank_bank_name_key", ["bankName"], { unique: true }),
-    (0, typeorm_1.Entity)("bank", { schema: "payment" })
+    (0, typeorm_1.Index)('bank_bank_code_key', ['bankCode'], { unique: true }),
+    (0, typeorm_1.Index)('bank_pkey', ['bankEntityId'], { unique: true }),
+    (0, typeorm_1.Index)('bank_bank_name_key', ['bankName'], { unique: true }),
+    (0, typeorm_1.Entity)('bank', { schema: 'payment' })
 ], Bank);
 exports.Bank = Bank;
 //# sourceMappingURL=Bank.js.map

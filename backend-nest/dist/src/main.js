@@ -7,6 +7,7 @@ const class_validator_1 = require("class-validator");
 const port = process.env.PORT || 6000;
 async function bootstrap() {
     const app = await core_1.NestFactory.create(main_module_1.MainModule);
+    app.enableCors();
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,
         transform: true,
