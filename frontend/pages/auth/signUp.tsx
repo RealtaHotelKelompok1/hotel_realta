@@ -79,6 +79,10 @@ export default function SignUp() {
     event.preventDefault();
   };
 
+    const handletoLogin = () => {
+    router.push('/auth/login');
+  };
+
   return (
     <Box>
       <Head>
@@ -174,10 +178,14 @@ export default function SignUp() {
                     <KeyIcon width={15} height={15} /><span className='text-transparent'>-</span>{"Sign Up"}
                 </Button>
                 <InputLabel
-                  className='text-center text-gray-700 text-sm'
+                  className='text-center text-gray-700 normal-case font-normal'
                   sx={{ gridColumn: "span 4" }}
                 >
-                  do have an account yet?<Link href={'/auth/login'} className='text-gray-700'><span className='text-transparent'>-</span><b className='text-blue-400 hover:text-blue-500'>Sign In</b></Link>
+                  do have an account yet?<Button
+                    className="bg-transparent text-blue-400 hover:text-blue-500 normal-case font-normal hover:bg-transparent"
+                    onClick={handletoLogin}>
+                    <b>Sign In</b>
+                  </Button>
                 </InputLabel>
               </Box>
             </Form>
