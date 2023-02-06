@@ -11,12 +11,16 @@ import { Menu, Transition, Popover } from "@headlessui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { Button } from "@mui/material";
 
 export default function TopBar({ showNav, setShowNav }) {
   const router = useRouter();
   const handleLogout = () => {
     localStorage.removeItem('token');
     router.push('/auth/login');
+  };
+  const handleEditUserPhoto = () => {
+    router.push('/admin/editUserPhoto');
   };
   return (
     <div
@@ -134,46 +138,21 @@ export default function TopBar({ showNav, setShowNav }) {
             leaveFrom="transform scale-100"
             leaveTo="transform scale-95"
           >
-            <Menu.Items className="absolute right-0 w-56 z-50 mt-2 origin-top-right bg-white rounded shadow-sm">
-              <div className="p-1">
+            <Menu.Items className="absolute right-0 w-auto z-50 mt-2 origin-top-right bg-white rounded shadow-lg">
+              <div className="p-1 flex flex-col-left">
                 <Menu.Item>
-                  <Link
-                    href="/admin/editUserPhoto"
-                    className={`flex hover:bg-orange-500 hover:text-white text-gray-700 rounded p-2 text-sm group transition-colors items-center ${router.pathname == "/editUserPhoto"}`}
-                  >
-                    <PencilIcon className="h-4 w-4 mr-2" />
-                    Edit
-                  </Link>
+                  <Button
+                    className="hover:bg-orange-500 hover:text-white text-gray-700 rounded p-2 normal-case font-normal group transition-colors"
+                    onClick={handleEditUserPhoto}>
+                    <PencilIcon className="h-4 w-4 mr-2" /> Edit
+                  </Button>
                 </Menu.Item>
                 <Menu.Item>
-                  <Link
-                    href="#"
-                    className="flex hover:bg-orange-500 hover:text-white text-gray-700 rounded p-2 text-sm group transition-colors items-center"
-                  >
-                    <CreditCardIcon className="h-4 w-4 mr-2" />
-                    Billing
-                  </Link>
-                </Menu.Item>
-                <Menu.Item>
-                  <Link
-                    href="#"
-                    className="flex hover:bg-orange-500 hover:text-white text-gray-700 rounded p-2 text-sm group transition-colors items-center"
-                  >
-                    <Cog8ToothIcon className="h-4 w-4 mr-2" />
-                    Settings
-                  </Link>
-                </Menu.Item>
-                <Menu.Item>
-                  <Link
-                    href='#'
-                    className="flex hover:bg-orange-500 hover:text-white text-gray-700 rounded p-2 text-sm group transition-colors items-center"
-                  >
-                    <LogoutIcon className="h-4 w-4 mr-2" />
-                    <button onClick={handleLogout}>
-                      Logout
-
-                    </button>
-                  </Link>
+                  <Button
+                    className="hover:bg-orange-500 hover:text-white text-gray-700 rounded p-2 normal-case font-normal group transition-colors"
+                    onClick={handleLogout}>
+                    <LogoutIcon className="h-4 w-4 mr-2" /> Logout
+                  </Button>
                 </Menu.Item>
               </div>
             </Menu.Items>
