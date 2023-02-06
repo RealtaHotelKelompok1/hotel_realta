@@ -57,3 +57,29 @@ CREATE TABLE payment.payment_transaction (
   CONSTRAINT patr_user_id_fk
 		FOREIGN KEY (patr_user_id) REFERENCES users.users(user_id) ON UPDATE CASCADE
 );
+
+
+------------------------------ VIEW ------------------------------
+CREATE VIEW payment.user_payment_methods
+AS (
+	SELECT
+		acc.usac_user_id 	userID,
+		u.user_full_name 	fullName,
+		acc.usac_type		paymentType,
+		(
+			CASE
+				WHEN acc.usac_type <> 'Dompet Realta'
+				THEN b.bank_name
+			ELSE
+				dr.paga_name
+			END
+		) AS "paymentName",
+		acc.usac_account_number		accountNumber,
+		acc.usac_saldo				balance,
+		acc.usac_expmonth			expMonth,
+		acc.usac_expyear			expYear
+	FROM payment.user_accounts acc
+	LEFT JOIN payment.payment_gateaway dr on acc.usac_entity_id = dr.paga_entity_id
+	LEFT JOIN payment.bank b on acc.usac_entity_id = b.bank_entity_id
+	LEFT JOIN users.users u on acc.usac_user_id = u.user_id
+)
