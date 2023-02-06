@@ -83,6 +83,10 @@ export default function SignIn() {
     event.preventDefault();
   };
 
+  const handletoRegister = () => {
+    router.push('/auth/register');
+  };
+
   return (
     <Box>
       <Head>
@@ -164,10 +168,14 @@ export default function SignIn() {
                     <LoginIcon width={5} height={5} /><span className='text-transparent'>-</span>{"Sign In"}
                 </Button>
                 <InputLabel
-                  className='text-center text-gray-700 text-sm'
+                  className='text-center text-gray-700 normal-case font-normal'
                   sx={{ gridColumn: "span 4" }}
                 >
-                  don't have an account yet?<Link href={'/auth/register'} className='text-gray-700'><span className='text-transparent'>-</span><b className='text-blue-400 hover:text-blue-500'>Sign Up</b></Link>
+                  don't have an account yet?<Button
+                    className="bg-transparent text-blue-400 hover:text-blue-500 normal-case font-normal hover:bg-transparent"
+                    onClick={handletoRegister}>
+                    <b>Sign Up</b>
+                  </Button>
                 </InputLabel>
               </Box>
             </Form>
