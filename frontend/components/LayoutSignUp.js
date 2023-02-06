@@ -1,4 +1,4 @@
-import styles from '../styles/LayoutSignIn.module.css';
+import styles from '../styles/LayoutSignUp.module.css';
 import { Card } from '@mui/material';
 
 export default function LayoutSignUp({ children }) {
