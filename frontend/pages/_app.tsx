@@ -30,130 +30,132 @@ import LayoutSignIn from "../components/LayoutSignIn";
 import LayoutSignUp from "../components/LayoutSignUp";
 import SignIn from "./auth/signIn";
 import SignUp from "./auth/signUp";
+import { Box, FormLabel } from "@mui/material";
 
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
+    return (
+      <SessionProvider session={pageProps.session}>
+        <Provider store={store}>
+          {router.pathname === '/' && (
+            <LayoutAuth>
+              <Index {...pageProps}/>       
+            </LayoutAuth>
+          )}
+          {router.pathname === '/auth/login' && (
+            <LayoutSignIn>
+                <SignIn {...pageProps}/>
+            </LayoutSignIn>
+          )}
+          {router.pathname === '/auth/register' && (
+            <LayoutSignUp>
+                <SignUp {...pageProps}/>
+            </LayoutSignUp>
+          )}
+          {router.pathname === '/manager' && (
+            <PrivateRoute>
+              <LayoutManager>
+                <DashboardManager {...pageProps}/>       
+              </LayoutManager>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/ob' && (
+            <PrivateRoute>
+              <LayoutOB>
+                <OB {...pageProps}/>       
+              </LayoutOB>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/ob/hotel' && (
+            <PrivateRoute>
+              <LayoutOB>
+                <HotelOB {...pageProps}/>
+              </LayoutOB>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/admin' && (
+            <PrivateRoute>
+              <Layout>
+                <DashboardAdmin {...pageProps}/>       
+              </Layout>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/admin/master' && (
+            <PrivateRoute>
+              <Layout>
+                <Master {...pageProps}/>
+              </Layout>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/admin/booking' && (
+            <PrivateRoute>
+              <Layout>
+                <Booking {...pageProps}/>
+              </Layout>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/admin/users' && (
+            <PrivateRoute>
+              <Layout>
+                <Users/>
+              </Layout>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/admin/hotel' && (
+            <PrivateRoute>
+              <Layout>
+                <Hotel {...pageProps}/>
+              </Layout>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/admin/humanResources' && (
+            <PrivateRoute>
+              <Layout>
+                <HumanResources {...pageProps}/>
+              </Layout>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/admin/payment' && (
+            <PrivateRoute>
+              <Layout>
+                <Payment {...pageProps}/>
+              </Layout>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/admin/purchasing' && (
+            <PrivateRoute>
+              <Layout>
+                <Purchasing {...pageProps}/>
+              </Layout>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/admin/resto' && (
+            <PrivateRoute>
+              <Layout>
+                <Resto {...pageProps}/>
+              </Layout>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/admin/editUserPhoto' && (
+            <PrivateRoute>
+              <Layout>
+                <EditUserPhoto {...pageProps} />
+              </Layout>
+            </PrivateRoute>
+          )}
+          {router.pathname === '/users' && (
+            <PrivateRoute>
+              <LayoutUsers>
+                <User {...pageProps}/>       
+              </LayoutUsers>
+            </PrivateRoute>
+          )}
+        </Provider>
+      </SessionProvider>
+    )
+  
 
-  return (
-    <SessionProvider session={pageProps.session}>
-      <Provider store={store}>
-        {router.pathname === '/' && (
-          <LayoutAuth>
-            <Index {...pageProps}/>       
-          </LayoutAuth>
-        )}
-        {router.pathname === '/auth/login' && (
-          <LayoutSignIn>
-              <SignIn {...pageProps}/>
-          </LayoutSignIn>
-        )}
-        {router.pathname === '/auth/register' && (
-          <LayoutSignUp>
-              <SignUp {...pageProps}/>
-          </LayoutSignUp>
-        )}
-        {router.pathname === '/manager' && (
-          <PrivateRoute>
-            <LayoutManager>
-              <DashboardManager {...pageProps}/>       
-            </LayoutManager>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/ob' && (
-          <PrivateRoute>
-            <LayoutOB>
-              <OB {...pageProps}/>       
-            </LayoutOB>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/ob/hotel' && (
-          <PrivateRoute>
-            <LayoutOB>
-              <HotelOB {...pageProps}/>
-            </LayoutOB>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/admin' && (
-          <PrivateRoute>
-            <Layout>
-              <DashboardAdmin {...pageProps}/>       
-            </Layout>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/admin/master' && (
-          <PrivateRoute>
-            <Layout>
-              <Master {...pageProps}/>
-            </Layout>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/admin/booking' && (
-          <PrivateRoute>
-            <Layout>
-              <Booking {...pageProps}/>
-            </Layout>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/admin/users' && (
-          <PrivateRoute>
-            <Layout>
-              <Users/>
-            </Layout>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/admin/hotel' && (
-          <PrivateRoute>
-            <Layout>
-              <Hotel {...pageProps}/>
-            </Layout>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/admin/humanResources' && (
-          <PrivateRoute>
-            <Layout>
-              <HumanResources {...pageProps}/>
-            </Layout>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/admin/payment' && (
-          <PrivateRoute>
-            <Layout>
-              <Payment {...pageProps}/>
-            </Layout>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/admin/purchasing' && (
-          <PrivateRoute>
-            <Layout>
-              <Purchasing {...pageProps}/>
-            </Layout>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/admin/resto' && (
-          <PrivateRoute>
-            <Layout>
-              <Resto {...pageProps}/>
-            </Layout>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/admin/editUserPhoto' && (
-          <PrivateRoute>
-            <Layout>
-              <EditUserPhoto {...pageProps} />
-            </Layout>
-          </PrivateRoute>
-        )}
-        {router.pathname === '/users' && (
-          <PrivateRoute>
-            <LayoutUsers>
-              <User {...pageProps}/>       
-            </LayoutUsers>
-          </PrivateRoute>
-        )}
-      </Provider>
-    </SessionProvider>
-  )
 };
 
 export default App;
