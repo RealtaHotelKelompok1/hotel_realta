@@ -12,16 +12,25 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { doLogin } from "@/Redux/Actions/reduceActions";
 
 export default function TopBar({ showNav, setShowNav }) {
   const router = useRouter();
+
+  // useDispatch
+  const dispatch = useDispatch();
+
   const handleLogout = () => {
+    dispatch(doLogin());
     localStorage.removeItem('token');
     router.push('/auth/login');
   };
+
   const handleEditUserPhoto = () => {
     router.push('/admin/editUserPhoto');
   };
+
   return (
     <div
       className={`fixed w-full h-16 flex justify-between items-center transition-all duration-[400ms] ${showNav ? "pl-56" : ""
