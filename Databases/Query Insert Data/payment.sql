@@ -69,46 +69,65 @@ LANGUAGE plpgsql;
 
 -----------------------------------------------------------------------------
 
-CREATE OR REPLACE PROCEDURE payment.InsertUserAccounts(
-	EntityID		int,
+CREATE OR REPLACE PROCEDURE payment.InsertUserAccount (
 	UserID			int,
 	AccountType		text,
-	Balance			int,
-	ExpMonth		int DEFAULT 0,
-	ExpYear			int DEFAULT 0
+	CardHolderName	text,
+	SecuredKey		text,
+	EntityName		text DEFAULT NULL,
+	AccountNumber	text DEFAULT NULL,
+	ExpMonth		int DEFAULT NULL,
+	ExpYear			int DEFAULT NULL
 )
 AS $$
 
+DECLARE
+	EntityID 	int;
+	Balance		int;
+
 BEGIN
-	INSERT INTO payment.user_accounts(
-		usac_entity_id,
-		usac_user_id,
-		usac_account_number,
-		usac_type,
-		usac_saldo,
-		usac_expmonth,
-		usac_expyear
-	)
-		VALUES (
-			(CASE 
-				WHEN AccountType = 'Payment'
-					THEN (
-						SELECT paga_entity_id 
-						FROM payment.payment_gateaway
-						WHERE paga_entity_id = EntityID
-					)
-				ELSE (
-					SELECT bank_entity_id 
-					FROM payment.bank 
-					WHERE bank_entity_id = EntityID)
-			END),
-			UserID,
-			FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 9))::numeric::text,
-			AccountType,
-			Balance,
-			(CASE WHEN AccountType = 'Payment' THEN 0 ELSE ExpMonth END),
-			(CASE WHEN AccountType = 'Payment' THEN 0 ELSE ExpYear END)
+	IF LOWER(AccountType) NOT LIKE 'dompet realta' THEN 
+		EntityID := (
+			SELECT bank_entity_id
+			FROM payment.bank
+			WHERE bank_name = EntityName
 		);
+		Balance := NULL;
+	ELSE
+		EntityID := (
+			SELECT paga_entity_id
+			FROM payment.payment_gateaway
+		);
+		AccountNumber := CONCAT(225, (
+			SELECT user_phone_number
+			FROM users.users
+			WHERE user_id = UserID
+		))::text;
+		Balance := 0;
+
+	END IF;
+
+	INSERT INTO payment.user_accounts(
+		usac_user_id,
+		usac_entity_id,
+		usac_account_number,
+		usac_expmonth,
+		usac_expyear,
+		usac_saldo,
+		usac_type,
+		usac_card_holder_name,
+		usac_secured_key
+	) VALUES (
+		UserID,
+		EntityID,
+		AccountNumber,
+		ExpMonth,
+		ExpYear,
+		Balance,
+		AccountType,
+		CardHolderName,
+		SecuredKey
+	);
 END; $$
 LANGUAGE plpgsql;
 
@@ -182,13 +201,90 @@ BEGIN
 		SourceID,
 		TargetID,
 		TransactionNumberRef,
-		Debit,
-		Credit
+		Debit, 
+		Credit 
+	); 
+END; $$ 
+LANGUAGE plpgsql; 
+ 
+--------------------------------------
+
+CREATE OR REPLACE PROCEDURE payment.InsertPaymentTransaction(
+	UserID				int,
+	TransactionType		text,
+	Amount				int,
+	SourceNumber		numeric,
+	TargetNumber		numeric DEFAULT 0
+)
+AS $$
+
+DECLARE
+	TransactionID int := (SELECT COALESCE(MAX(patr_id) + 1, 1) FROM payment.payment_transaction);
+	TransactionNumber text := payment.getTransactionNumber(TransactionID, TransactionType);
+	PaymentName text := (
+		SELECT paymentName FROM payment.user_payment_methods WHERE accountnumber = SourceNumber
 	);
+	TransactionNumberRef text := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
+	Credit int := 0;
+	Debit int := 0;
+	OrderNumber text;
+	Note text;
+
+BEGIN
+	-- Top up
+	IF TransactionType = 'TP' THEN
+		TargetNumber := (SELECT accountnumber FROM payment.user_payment_methods WHERE paymenttype = 'Dompet Realta' and userid = UserID);
+		Debit := Amount;
+		OrderNumber := CONCAT(PaymentName, '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
+		Note := CONCAT('Dompet Realta top up From ', PaymentName, ', ', SourceNumber); 
+		UPDATE payment.user_accounts SET usac_saldo = usac_saldo + Amount;
+
+	-- Refund
+	ELSEIF TransactionType = 'RF' THEN
+		TargetNumber := (SELECT accountnumber FROM payment.user_payment_methods WHERE paymenttype = 'Dompet Realta' and userid = UserID);
+		Debit := Amount;
+		OrderNumber := CONCAT('RFND', '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
+		Note := CONCAT('Refund to ', TargetNumber);
+		UPDATE payment.user_accounts SET usac_saldo = usac_saldo + Amount;
+		
+	-- Repayment
+	ELSE
+		Credit := Amount;
+		OrderNumber := CONCAT('RPYM', '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
+		Note := CONCAT('Repayment from ', PaymentName, SourceNumber);
+		UPDATE payment.user_accounts SET usac_saldo = usac_saldo - Amount;
+	END IF;
+	
+	INSERT INTO payment.payment_transaction (
+		patr_user_id,
+		patr_id,
+		patr_trx_number,
+		patr_type,
+		patr_note,
+		patr_source_id,
+		patr_target_id,
+		patr_trx_number_ref,
+		patr_debet,
+		patr_credit,
+		patr_order_number
+	) VALUES (
+		UserID,
+		TransactionID,
+		TransactionNumber,
+		TransactionType,
+		Note,
+		SourceNumber,
+		TargetNumber,
+		TransactionNumberRef,
+		Debit,
+		Credit,
+		OrderNumber
+	);
+
 END; $$
 LANGUAGE plpgsql;
 
---------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE payment.InsertPaymentTransaction (
 	TransactionType			text,
@@ -341,6 +437,10 @@ CALL payment.InsertUserAccounts(23, 10, 'Payment', 8430300);
 -- select * from payment.payment_transaction
 -- select * from resto.order_menus
 -- select * from payment.user_accounts
+
+select * from payment.user_accounts order by usac_user_id
+CALL payment.InsertUserAccount(2, 'Debit Card', 'BCA', '7515272613', 8, 24)
+CALL payment.InsertUserAccount(1, 'Dompet Realta')
 
 --  Payment Transaction: Order Menu at Restaurant
 CALL payment.InsertBookingPaymentTransaction('MENUS#20221127-0001', 23000);
