@@ -3,7 +3,7 @@ import express from "express";
 import models, {sequelize} from "./models/init-models"
 import routes from "./routes/indexRoutes";
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(express.json());

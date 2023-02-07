@@ -1,5 +1,11 @@
-/* eslint-disable prettier/prettier */
-import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Entities } from './Entities';
 import { Users } from './Users';
 
