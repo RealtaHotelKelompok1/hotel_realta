@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Bank } from 'entities/Bank';
 import { BankDto } from 'src/dto/bank.dto';
@@ -22,7 +22,11 @@ export class BankService {
           return result;
         })
         .catch((err) => {
-          return err;
+          return new HttpException(
+            { error: `Bank with ID ${id} is not found!` },
+            HttpStatus.NOT_FOUND,
+            { cause: err },
+          );
         });
     } else {
       // Return all bank record
@@ -48,7 +52,10 @@ export class BankService {
         return result;
       })
       .then((err) => {
-        return err;
+        return new HttpException(
+          { error: `Bank with ID ${id} is not found!` + err },
+          HttpStatus.NOT_FOUND,
+        );
       });
   }
 

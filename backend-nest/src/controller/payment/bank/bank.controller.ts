@@ -4,14 +4,12 @@ import {
   Controller,
   Delete,
   Get,
-  HttpException,
-  HttpStatus,
   Param,
   Post,
   Put,
 } from '@nestjs/common';
 import { BankService } from 'src/service/payment/bank/bank.service';
-import { BankDto } from '../../../dto/bank.dto';
+import { BankDto } from 'src/dto/bank.dto';
 
 @Controller('bank')
 export class BankController {
