@@ -40,6 +40,18 @@ export class BankService {
     }
   }
 
+  async findByBankCode(code: string): Promise<any> {
+    return await this.BankRepository.findOneByOrFail({
+      bankCode: code,
+    })
+      .then((result) => {
+        return result;
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
   async update(id: number, dataToUpdate: BankDto) {
     return await this.BankRepository.update(
       // Criteria
@@ -60,22 +72,29 @@ export class BankService {
   }
 
   async insert(newData: BankDto) {
-    return await this.BankRepository.insert(newData)
-      .then((result) => {
-        return 'Successfully adding new Bank data, ' + result;
+    return await this.BankRepository.query(`CALL payment.InsertBank($1, $2)`, [
+      newData.bankCode.toString(),
+      newData.bankName,
+    ])
+      .then(() => {
+        return this.findByBankCode(newData.bankCode.toString());
       })
       .catch((err) => {
-        return "There's an error in adding new Bank data, " + err.message;
+        return "There's an error in adding new Bank data, " + err;
       });
   }
 
   async delete(id: number) {
-    return await this.BankRepository.delete(id)
-      .then((result) => {
-        return result;
+    // Check if bank exists.
+    const bankExists = await this.find(id);
+
+    // Return error if bank is not exists, else delete bank by ID
+    if (bankExists instanceof HttpException) {
+      return bankExists.getResponse();
+    } else {
+      return await this.BankRepository.delete(id).then(() => {
+        return `Bank with ID ${id} is successfully deleted!`;
       })
-      .catch((err) => {
-        return err;
-      });
+    }
   }
 }
