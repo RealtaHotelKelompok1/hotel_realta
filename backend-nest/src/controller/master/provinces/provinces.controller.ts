@@ -9,7 +9,7 @@ export class ProvincesController {
     async getAll(): Promise<any> {
         const hasil = await this.ProvincesRepository.getAll()
         console.log({
-            hasil : hasil
+            hasil: hasil
         })
         return hasil
     }
@@ -18,8 +18,8 @@ export class ProvincesController {
     @HttpCode(200)
     async getById(@Param() Param: any): Promise<any> {
         const hasil = await this.ProvincesRepository.getById(Param.id)
-        console.log({hasil : hasil})
-        return hasil 
+        console.log({ hasil: hasil })
+        return hasil
     }
 
     @Post('save')
@@ -32,14 +32,14 @@ export class ProvincesController {
     @Put('edit/:id')
     @HttpCode(200)
     async edit(@Param('id') id: any, @Body() Body: any): Promise<any> {
-        const hasil = await this.ProvincesRepository.edit(Body, id);
-        console.log('Berhasil')
-        return hasil
+        const hasil = await this.ProvincesRepository.edit(Body,id);
+        // console.log('Berhasil')
+        return hasil 
     }
 
     @Delete('delete/:id')
     @HttpCode(200)
-    async delete(@Param('id') Param:number){
+    async delete(@Param('id') Param: any) {
         const hasil = await this.ProvincesRepository.delete(Param)
         console.log('berhasil di hapus' + hasil)
         return hasil

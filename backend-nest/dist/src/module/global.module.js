@@ -7,16 +7,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GlobalModule = void 0;
+const members_controller_1 = require("../controller/master/members/members.controller");
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const Department_1 = require("../../entities/Department");
 const Shift_1 = require("../../entities/Shift");
 const Regions_1 = require("../../entities/Regions");
-const department_controller_1 = require("../controller/humanresource/department/department.controller");
-const shift_controller_1 = require("../controller/humanresource/shift/shift.controller");
 const region_controller_1 = require("../controller/master/region/region.controller");
-const department_service_1 = require("../service/humanresource/department/department.service");
-const shift_service_1 = require("../service/humanresource/shift/shift.service");
 const region_service_1 = require("../service/master/region/region.service");
 const Country_1 = require("../../entities/Country");
 const Policy_1 = require("../../entities/Policy");
@@ -36,6 +33,14 @@ const policy_category_group_controller_1 = require("../controller/master/policy_
 const price_items_controller_1 = require("../controller/master/price_items/price_items.controller");
 const service_task_controller_1 = require("../controller/master/service_task/service_task.controller");
 const countries_service_1 = require("../service/master/countries/countries.service");
+const members_service_1 = require("../service/master/members/members.service");
+const policy_service_1 = require("../service/master/policy/policy.service");
+const policy_category_group_service_1 = require("../service/master/policy_category_group/policy_category_group.service");
+const price_items_service_1 = require("../service/master/price_items/price_items.service");
+const provinces_service_1 = require("../service/master/provinces/provinces.service");
+const address_service_1 = require("../service/master/address/address.service");
+const category_group_service_1 = require("../service/master/category_group/category_group.service");
+const service_task_service_1 = require("../service/master/service_task/service_task.service");
 let GlobalModule = class GlobalModule {
 };
 GlobalModule = __decorate([
@@ -55,8 +60,6 @@ GlobalModule = __decorate([
                 Provinces_1.Provinces
             ])],
         controllers: [
-            department_controller_1.DepartmentController,
-            shift_controller_1.ShiftController,
             region_controller_1.RegionController,
             countries_controller_1.CountriesController,
             provinces_controller_1.ProvincesController,
@@ -65,13 +68,21 @@ GlobalModule = __decorate([
             policy_controller_1.PolicyController,
             policy_category_group_controller_1.PolicyCategoryGroupController,
             price_items_controller_1.PriceItemsController,
-            service_task_controller_1.ServiceTaskController
+            service_task_controller_1.ServiceTaskController,
+            members_controller_1.MembersController,
         ],
         providers: [
-            department_service_1.DepartmentService,
-            shift_service_1.ShiftService,
             region_service_1.RegionService,
             countries_service_1.CountriesService,
+            members_service_1.MembersService,
+            policy_service_1.PolicyService,
+            policy_category_group_service_1.PolicyCategoryGroupService,
+            price_items_service_1.PriceItemsService,
+            provinces_service_1.ProvincesService,
+            address_service_1.AddressService,
+            category_group_service_1.CategoryGroupService,
+            provinces_service_1.ProvincesService,
+            service_task_service_1.ServiceTaskService
         ],
     })
 ], GlobalModule);

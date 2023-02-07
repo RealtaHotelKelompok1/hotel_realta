@@ -35,7 +35,7 @@ export class PolicyService {
     }
     async edit(data: Policy, _poliId: number) {
         const editData = await this.PolicyRepository.update({
-            poliId: data.poliId
+            poliId: _poliId
         },
             {
                 poliName: data.poliName,
@@ -44,7 +44,7 @@ export class PolicyService {
         )
         console.log(editData)
         if (editData.affected) {
-            return { message: 'Data berhasil di edit' }
+            return { message: 'Data berhasil di edit',editData }
         }
         else {
             return { message: 'Data gagal di edit' }

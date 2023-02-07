@@ -34,7 +34,7 @@ export class CountriesService {
             return { message: 'Data gagal ditambahkan' }
         }
     }
-    async edit(data: Country, countryId: number) {
+    async edit(data: Country, countryId: any) {
         const editData = await this.countryRepository.update({
             countryId: countryId
         },
@@ -52,7 +52,7 @@ export class CountriesService {
         }
     }
 
-    async delete(countryId: number) {
+    async delete(countryId: any) {
         const deleteData = await this.countryRepository.delete({
             countryId: countryId
         })

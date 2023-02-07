@@ -33,7 +33,7 @@ export class PolicyController {
     async edit(@Param('id') id: any, @Body() Body: any): Promise<any> {
         const hasil = await this.PolicyRepository.edit(Body, id);
         console.log('Berhasil')
-        return hasil
+        return {hasil:hasil}
     }
 
     @Delete('delete/:id')

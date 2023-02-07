@@ -34,14 +34,15 @@ export class ProvincesService {
             return { message: 'Data gagal ditambahkan' }
         }
     }
-    async edit(data: Provinces, _provId: number) {
+    async edit(data: Provinces, id: any) {
         const editData = await this.ProvincesRepository.update({
-            provId: data.provId
+            provId: id
         },
-            {
-                provName: data.provName,
-                provCountry: data.provCountry
-            }
+        {
+            provCountry : data.provCountry,
+            provName : data.provName,
+
+        }
         )
         console.log(editData)
         if (editData.affected) {
@@ -52,10 +53,10 @@ export class ProvincesService {
         }
     }
 
-    async delete(provId: number) {
+    async delete(provId: any) {
         const deleteData = await this.ProvincesRepository.delete({
             provId: provId
         })
-        return deleteData
+        return deleteData + 'berhasil di hapus'
     }
 }

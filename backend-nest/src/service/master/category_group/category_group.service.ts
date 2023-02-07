@@ -40,7 +40,7 @@ export class CategoryGroupService {
     }
     async edit(data: CategoryGroup, _cagroId: number) {
         const editData = await this.CategoryGroupRepository.update({
-            cagroId: data.cagroId
+            cagroId: _cagroId
         },
             {
                 cagroName: data.cagroName,

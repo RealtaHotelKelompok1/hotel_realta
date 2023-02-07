@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Address } from 'entities/Address';
+import { json } from 'stream/consumers';
 @Injectable()
 export class AddressService {
     constructor(
@@ -22,13 +23,15 @@ export class AddressService {
         return ShowDataId
     }
     async create(data: Address): Promise<any> {
-        const addData = await this.AddressRepository.save({
-            addrLine1: data.addrLine1,
-            addrLine2: data.addrLine2,
-            addrPostalCode: data.addrPostalCode,
-            addrProv: data.addrProv,
-            addrSpatialLocation: data.addrSpatialLocation
-        })
+        const addData = await this.AddressRepository.save(
+            {
+                addrLine1: data.addrLine1,
+                addrLine2: data.addrLine2,
+                addrPostalCode: data.addrPostalCode,
+                addrProv: data.addrProv,
+                addrSpatialLocation: data.addrSpatialLocation,
+            }
+        )
         console.log(addData)
         if (addData) {
             return { message: 'Data berhasil ditambahkan', addData: addData }
@@ -39,7 +42,7 @@ export class AddressService {
     }
     async edit(data: Address, _addrId: number) {
         const editData = await this.AddressRepository.update({
-            addrId: data.addrId
+            addrId: _addrId
         },
             {
                 addrLine1: data.addrLine1,

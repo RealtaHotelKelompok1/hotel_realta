@@ -36,7 +36,7 @@ export class ServiceTaskService {
     async edit(data: ServiceTask, _setaId: any) {
         const editData = await this.ServiceTaskRepository.update(
             {
-                setaId: data.setaId
+                setaId: _setaId
             },
             {
                 setaName: data.setaName,

@@ -21,12 +21,14 @@ export class PriceItemsService {
         return ShowDataId
     }
     async create(data: PriceItems): Promise<any> {
+        
+        let currentDate = new Date();
         const addData = await this.PriceItemsRepository.save({
             pritName: data.pritName,
             pritPrice: data.pritPrice,
             pritDescription: data.pritDescription,
             pritType: data.pritType,
-            pritModifiedDate: data.pritModifiedDate
+            pritModifiedDate: currentDate
         })
         console.log(addData)
         if (addData) {
@@ -36,9 +38,9 @@ export class PriceItemsService {
             return { message: 'Data gagal ditambahkan' }
         }
     }
-    async edit(data: PriceItems, _pritId: number) {
+    async edit(data: PriceItems, _pritId: any) {
         const editData = await this.PriceItemsRepository.update({
-            pritId: data.pritId
+            pritId: _pritId
         },
             {
                 pritName: data.pritName,

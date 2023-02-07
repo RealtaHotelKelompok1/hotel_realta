@@ -17,28 +17,28 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "pg": "typeorm-model-generator -o model -h localhost -d hotel_realta -p 5432 -u postgres -x root -s booking,hotel,humanresource,master,payment,purchasing,resto,users -e postgres"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
-<<<<<<< Updated upstream
-=======
     "@nestjs/typeorm": "^9.0.1",
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
     "dotenv": "^16.0.3",
     "fastify": "^4.11.0",
     "g": "^2.0.1",
+    "moment": "^2.29.4",
     "nest": "^0.1.6",
     "pg": "^8.8.0",
->>>>>>> Stashed changes
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "typeorm-model-generator": "^0.4.6"
   },
   "devDependencies": {
-    "@nestjs/cli": "^9.1.9",
+    "@nestjs/cli": "^9.2.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
     "@types/express": "^4.17.13",

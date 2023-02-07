@@ -1,13 +1,14 @@
+import {MembersController} from '../controller/master/members/members.controller';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Department } from 'entities/Department';
 import { Shift } from 'entities/Shift';
 import { Regions } from 'entities/Regions';
-import { DepartmentController } from 'src/controller/humanresource/department/department.controller';
-import { ShiftController } from 'src/controller/humanresource/shift/shift.controller';
+// import { DepartmentController } from 'src/controller/humanresource/department/department.controller';
+// import { ShiftController } from 'src/controller/';
+// import { DepartmentService } from 'src/service/humanresource/department/department.service';
+// import { ShiftService } from 'src/service/humanresource/shift/shift.service';
 import { RegionController } from 'src/controller/master/region/region.controller';
-import { DepartmentService } from 'src/service/humanresource/department/department.service';
-import { ShiftService } from 'src/service/humanresource/shift/shift.service';
 import { RegionService } from 'src/service/master/region/region.service';
 import { Country } from 'entities/Country';
 import { Policy } from 'entities/Policy';
@@ -34,6 +35,7 @@ import { PriceItemsService } from 'src/service/master/price_items/price_items.se
 import { ProvincesService } from 'src/service/master/provinces/provinces.service';
 import { AddressService } from 'src/service/master/address/address.service';
 import { CategoryGroupService } from 'src/service/master/category_group/category_group.service';
+import { ServiceTaskService } from 'src/service/master/service_task/service_task.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature(
@@ -53,8 +55,6 @@ import { CategoryGroupService } from 'src/service/master/category_group/category
     ]
   )],
   controllers: [
-    DepartmentController,
-    ShiftController,
     RegionController,
     CountriesController,
     ProvincesController,
@@ -63,12 +63,11 @@ import { CategoryGroupService } from 'src/service/master/category_group/category
     PolicyController,
     PolicyCategoryGroupController,
     PriceItemsController,
-    ServiceTaskController
+    ServiceTaskController,
+    MembersController,
   ],
   providers: [
-    DepartmentService,
-    ShiftService,
-    
+
     RegionService,
     CountriesService,
     MembersService,
@@ -78,7 +77,8 @@ import { CategoryGroupService } from 'src/service/master/category_group/category
     ProvincesService,
     AddressService,
     CategoryGroupService,
-    ProvincesService
+    ProvincesService,
+    ServiceTaskService
 
   ],
 })

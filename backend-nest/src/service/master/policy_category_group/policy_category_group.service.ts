@@ -21,10 +21,7 @@ export class PolicyCategoryGroupService {
         return ShowDataId
     }
     async create(data: PolicyCategoryGroup): Promise<any> {
-        const addData = await this.PolicyCategoryGroupRepository.save({
-            pocaPoliId: data.pocaPoliId,
-            pocaCagro: data.pocaCagro
-        })
+        const addData = await this.PolicyCategoryGroupRepository.save(data)
         console.log(addData)
         if (addData) {
             return { message: 'Data berhasil ditambahkan', addData: addData }
@@ -33,14 +30,13 @@ export class PolicyCategoryGroupService {
             return { message: 'Data gagal ditambahkan' }
         }
     }
-    async edit(data: PolicyCategoryGroup, _pocaPoliId: number, _pocaCagro: number) {
+    async edit(data: PolicyCategoryGroup, _pocaPoliId: number) {
         const editData = await this.PolicyCategoryGroupRepository.update(
             {
-                pocaPoli: data.pocaPoli,
-                pocaCagro: data.pocaCagro
+                pocaPoliId: _pocaPoliId,
             },
             {
-                pocaPoliId: data.pocaPoliId,
+                // pocaPoliId: data.pocaPoliId,
                 pocaCagro: data.pocaCagro
             }
         )

@@ -26,4 +26,19 @@ export class CountriesController {
         console.log({ message: 'berhasil', hasil: hasil })
         return hasil
     }
+    @Put('edit/:id')
+    @HttpCode(200)
+    async edit(@Param('id') id: any, @Body() Body: any): Promise<any> {
+        const hasil = await this.CountryService.edit(Body, id);
+        console.log('Berhasil')
+        return hasil
+    }
+
+    @Delete('delete/:id')
+    @HttpCode(200)
+    async delete(@Param('id') Param: any) {
+        const hasil = await this.CountryService.delete(Param)
+        console.log('berhasil di hapus' + hasil)
+        return hasil
+    }
 }

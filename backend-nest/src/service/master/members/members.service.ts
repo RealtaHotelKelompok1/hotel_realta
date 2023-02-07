@@ -36,7 +36,7 @@ export class MembersService {
     }
     async edit(data: Members, _membName: any) {
         const editData = await this.MembersRepository.update({
-            membName: data.membName
+            membName: _membName
         },
             {
                 membName: data.membName,

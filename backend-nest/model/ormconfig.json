@@ -6,10 +6,8 @@
     "port": 5432,
     "username": "postgres",
     "password": "root",
-    "database": "hotel_realta",
+    "database": "",
     "synchronize": false,
-    "entities": [
-      "entities/*.js"
-    ]
+    "entities": ["entities/*.js"]
   }
 ]

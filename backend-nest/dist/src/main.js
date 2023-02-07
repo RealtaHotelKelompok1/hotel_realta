@@ -1,19 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+require("dotenv/config");
 const core_1 = require("@nestjs/core");
 const main_module_1 = require("./main.module");
-const common_1 = require("@nestjs/common");
-const class_validator_1 = require("class-validator");
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3003;
 async function bootstrap() {
     const app = await core_1.NestFactory.create(main_module_1.MainModule);
-    app.useGlobalPipes(new common_1.ValidationPipe({
-        whitelist: true,
-        transform: true,
-    }));
-    (0, class_validator_1.useContainer)(app.select(main_module_1.MainModule), { fallbackOnErrors: true });
-    await app.listen(port, () => {
-        console.log('Listen on port ' + port);
+    app.enableCors();
+    await app.listen(process.env.PORT, () => {
+        console.log("Listen on port " + port);
     });
 }
 bootstrap();

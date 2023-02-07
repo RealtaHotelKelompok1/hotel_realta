@@ -33,7 +33,7 @@ export class CategoryGroupController {
     async edit(@Param('id') id: any, @Body() Body: any): Promise<any> {
         const hasil = await this.CategoryGroupRepository.edit(Body, id);
         console.log('Berhasil')
-        return hasil
+        return hasil 
     }
 
     @Delete('delete/:id')
