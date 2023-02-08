@@ -16,7 +16,7 @@
 .cardLogin {
     margin: 0 auto;
     position: fixed;
-    width: 450px;
+    width:450px;
     height: auto;
     left: 5rem;
     top: 134px;
@@ -31,15 +31,15 @@
 }
 
 .cardInCardLogin {
-    position: fixed;
+    position:fixed;
     width: 450px;
     height: 418px;
     right: 5rem;
-    top: 134px;
+    top:134px;
     background: rgba(255, 255, 255, 0.34);
     backdrop-filter: blur(2px);
     border-radius: 28px;
-    overflow: hidden;
+    overflow:hidden;
 }
 
 .textTitlaInCardLogin {
