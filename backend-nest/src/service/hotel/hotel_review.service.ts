@@ -25,7 +25,7 @@ export class HotelReviewService {
       best = '5',
     }
     let bad1 = hore_Rating.bad;
-    let less1 = hore_Rating.less;
+    let less1 = hore_Rating.less; 
     let cool1 = hore_Rating.cool;
     let good1 = hore_Rating.good;
     let best1 = hore_Rating.best;

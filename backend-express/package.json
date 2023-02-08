@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node server.js",
-    "reverse:db": "sequelize-auto -o ./models -d hotel_realta -h localhost -u postgres -p 5432 -x root -e postgres"
+    "reverse:db": "sequelize-auto -o ./models -d hotel_realta -h localhost -u postgres -p 5432 -x admin -e postgres"
   },
   "repository": {
     "type": "git",

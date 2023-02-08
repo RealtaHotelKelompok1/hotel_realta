@@ -24,16 +24,52 @@ let DepartmentController = class DepartmentController {
         return this.departmentService.findAllDepartment();
     }
     async findOneDepartment(param) {
-        return await this.departmentService.findOneDepartment(param.id);
+        const result = await this.departmentService.findOneDepartment(param.id);
+        if (result) {
+            return result;
+        }
+        else {
+            throw new common_1.HttpException('Department not found', common_1.HttpStatus.NOT_FOUND);
+        }
     }
     async createDepartment(body) {
-        return await this.departmentService.createDepartment(body);
+        const result = await this.departmentService.createDepartment(body);
+        if (result) {
+            return { message: 'Department created successfully' };
+        }
+        else {
+            throw new common_1.HttpException('Department created failed', common_1.HttpStatus.EXPECTATION_FAILED);
+        }
     }
     async updateDepartment(id, body) {
-        return await this.departmentService.updateDepartment(id, body);
+        const getOneData = await this.departmentService.findOneDepartment(id);
+        if (getOneData) {
+            const result = await this.departmentService.updateDepartment(id, body);
+            if (result) {
+                throw new common_1.HttpException('Department updated successfully', common_1.HttpStatus.ACCEPTED);
+            }
+            else {
+                throw new common_1.HttpException('Department updated failed', common_1.HttpStatus.EXPECTATION_FAILED);
+            }
+        }
+        else {
+            throw new common_1.HttpException('Department not found', common_1.HttpStatus.NOT_FOUND);
+        }
     }
-    deleteDepartment(id) {
-        return this.departmentService.deleteDepartment(id);
+    async deleteDepartment(id) {
+        const getOneData = await this.departmentService.findOneDepartment(id);
+        if (getOneData) {
+            const result = this.departmentService.deleteDepartment(id);
+            if (result) {
+                throw new common_1.HttpException('Department deleted successfully', common_1.HttpStatus.ACCEPTED);
+            }
+            else {
+                throw new common_1.HttpException('Department deleted failed', common_1.HttpStatus.EXPECTATION_FAILED);
+            }
+        }
+        else {
+            throw new common_1.HttpException('Department not found', common_1.HttpStatus.NOT_FOUND);
+        }
     }
 };
 __decorate([
@@ -65,7 +101,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:paramtypes", [Number, department_dto_1.DepartmentDto]),
     __metadata("design:returntype", Promise)
 ], DepartmentController.prototype, "updateDepartment", null);
 __decorate([
@@ -74,7 +110,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], DepartmentController.prototype, "deleteDepartment", null);
 DepartmentController = __decorate([
     (0, common_1.Controller)('department'),
