@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Address } from 'entities/Address';
@@ -17,13 +18,6 @@ import { OrderMenuDetailService } from 'src/service/resto/restoMenuDetail.servic
 import { restoMenuPhotoService } from 'src/service/resto/restoMenuPhotos.service';
 import { RestoService } from 'src/service/resto/restoMenus.service';
 import { ShiftService } from 'src/service/humanresource/shift/shift.service';
-import { Employee } from 'entities/Employee';
-import { EmployeeDepartmentHistory } from 'entities/EmployeeDepartmentHistory';
-import { EmployeePayHistory } from 'entities/EmployeePayHistory';
-import { Facilities } from 'entities/Facilities';
-import { FacilityPhotos } from 'entities/FacilityPhotos';
-import { FacilityPriceHistory } from 'entities/FacilityPriceHistory';
-import { HotelReviews } from 'entities/HotelReviews';
 import { Hotels } from 'entities/Hotels';
 import { JobRole } from 'entities/JobRole';
 import { Members } from 'entities/Members';
@@ -100,6 +94,12 @@ import { UserpasswordService } from 'src/service/users/userpassword/userpassword
 import { UserprofilesService } from 'src/service/users/userprofiles/userprofiles.service';
 import { UserrolesService } from 'src/service/users/userroles/userroles.service';
 import { UsersService } from 'src/service/users/users/users.service';
+import { BankController } from 'src/controller/payment/bank/bank.controller';
+import { PaymentGateawayController } from 'src/controller/payment/payment_gateaway/payment_gateaway.controller';
+import { UserAccountsController } from 'src/controller/payment/user_accounts/user_accounts.controller';
+import { BankService } from 'src/service/payment/bank/bank.service';
+import { PaymentGateawayService } from 'src/service/payment/payment_gateaway/payment_gateaway.service';
+import { UserAccountsService } from 'src/service/payment/user_accounts/user_accounts.service';
 
 @Module({
   imports: [
@@ -182,7 +182,11 @@ import { UsersService } from 'src/service/users/users/users.service';
     OrderMenuDetailController,
     RestoMenuPhotosContoller,
     orderMenusController,
+
     /* PAYMENT */
+    BankController,
+    PaymentGateawayController,
+    UserAccountsController,
     /* PURCHASING */
     /* MASTER */
   ],
@@ -218,7 +222,11 @@ import { UsersService } from 'src/service/users/users/users.service';
     OrderMenuDetailService,
     restoMenuPhotoService,
     orderMenusService,
+
     /* PAYMENT */
+    BankService,
+    PaymentGateawayService,
+    UserAccountsService,
     /* PURCHASING */
     /* MASTER */
   ],
