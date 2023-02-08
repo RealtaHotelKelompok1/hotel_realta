@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Controller, Get, Query } from '@nestjs/common';
 import { UserAccountsService } from 'src/service/payment/user_accounts/user_accounts.service';
 
@@ -19,7 +20,12 @@ export class UserAccountsController {
   @Get('findByFilter')
   // Find by user ID
   async findByUserId(@Query('userId') usacUserId: number) {
-    return await this.userAccountsService.find({ usacUserId });
+    // return await this.userAccountsService.find({ usacUserId });
+    return await this.userAccountsService.findByQuery(
+      `
+      SELECT * FROM payment.user_accounts
+      WHERE usac_user_id = ${usacUserId}
+      `);
   }
 
   // Find by account number
@@ -35,9 +41,9 @@ export class UserAccountsController {
 
   // Find by Bank name
   /** TODO:  Find by Bank name using usac_entity_id */
-//   async findByBankName(@Query('bankName') bankName: string) {
-//     return await this.userAccountsService.find({ bankName });
-//   }
+  //   async findByBankName(@Query('bankName') bankName: string) {
+  //     return await this.userAccountsService.find({ bankName });
+  //   }
 
   // Find Dompet Realta accounts
 }

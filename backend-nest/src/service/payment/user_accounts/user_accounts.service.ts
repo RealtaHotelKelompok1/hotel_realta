@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserAccounts } from 'entities/UserAccounts';
@@ -30,6 +31,14 @@ export class UserAccountsService {
   }): Promise<any> {
     if (filter) {
       return await this.UserAccountsRepository.find({ where: filter });
+    }
+
+    return await this.UserAccountsRepository.find();
+  }
+
+  async findByQuery(query?: string) {
+    if (query) {
+      return await this.UserAccountsRepository.query(query);
     }
 
     return await this.UserAccountsRepository.find();
