@@ -1,50 +1,101 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserAccounts } from 'entities/UserAccounts';
 import { Repository } from 'typeorm';
 import { AccountType } from '../../../types/enums';
+import { UserAccountsDto } from 'src/dto/userAccounts.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserAccountsService {
-  constructor(
-    @InjectRepository(UserAccounts)
-    private UserAccountsRepository: Repository<UserAccounts>,
-  ) {}
+	constructor(
+		@InjectRepository(UserAccounts)
+		private UserAccountsRepository: Repository<UserAccounts>,
+	) { }
 
-  /** TODO
-   * [] Find all
-   * [] Find by UserID
-   * [] Find by Account Number
-   * [] Find by Entity ID/Bank name (BANK)
-   * [] Find all Dompet Realta accounts (DOMPET)
+  /** TODO:
+   * [V] Find all
+   * [V] Find by filter
    * [] Update user accounts
    * [] Create new account
-   * [?] Delete
+   * [] Delete (BANK ONLY)
    *
    */
-  async find(filter?: {
-    usacUserId?: number;
-    usacAccountNumber?: string;
-    // usacBankName?: string;
-    usacType?: string;
-  }): Promise<any> {
-    if (filter) {
-      return await this.UserAccountsRepository.find({ where: filter });
-    }
+	async find(query?: string) {
+		if (query) {
+			return await this.UserAccountsRepository.query(query)
+				.then((result) => {
+					return result;
+				})
+				.catch((err) => {
+					return new HttpException(
+						{ error: `Data with query ${query} is not found!` },
+						HttpStatus.NOT_FOUND,
+						{ cause: err }
+					)
+				});
+		}
 
-    return await this.UserAccountsRepository.find();
-  }
+		return await this.UserAccountsRepository.find()
+			.then((result) => {
+				return result
+			})
+			.catch((err) => {
+				return err
+			});
+	}
 
-  async findByQuery(query?: string) {
-    if (query) {
-      return await this.UserAccountsRepository.query(query);
-    }
+	async update() { }
 
-    return await this.UserAccountsRepository.find();
-  }
+	async create(newData: UserAccountsDto) {
+		console.log(newData)
+		// Hash PIN or CVV
+		const salt = bcrypt.genSaltSync(10);
+		const hashedKey = bcrypt.hashSync(newData.securedKey, salt);
 
-  async update() {}
-
-  async create() {}
+		// Insert into database using Stored Procedure
+		return await this.UserAccountsRepository.query(
+			`CALL payment.InsertUserAccount($1, $2, $3, $4, $5, $6, $7, $8)`,
+			[
+				newData.userId,
+				newData.accountType,
+				newData.cardHolderName,
+				hashedKey,
+				newData.entityName,
+				newData.accountNumber,
+				newData.expMonth,
+				newData.expYear
+			]
+		)
+			.then(() => {
+				// return this.UserAccountsRepository.findOneByOrFail(
+				// 	{ usacAccountNumber: newData.accountNumber }
+				// )
+				return this.UserAccountsRepository.query(
+					`SELECT * FROM payment.user_payment_methods WHERE userId = $1`, [newData.userId]
+				)
+			})
+			.catch((err) => {
+				return "There's an error in adding new account, " + err
+			})
+	}
+	
+	async delete(id: number) {
+		// Check if there's an account data with corresponding ID.
+		const accountExists = this.UserAccountsRepository.findOneByOrFail(
+			{ usacEntityId: id })
+		
+		if (accountExists) {
+			return await this.UserAccountsRepository.delete(id)
+				.then(() => {
+					return `Account with ID ${id} is successfully deleted!`
+			})
+		} else {
+			return new HttpException(
+				{ error: `Account with ID ${id} is not found!` },
+				HttpStatus.NOT_FOUND,
+			)
+		}
+	}
 }

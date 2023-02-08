@@ -1,49 +1,100 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Delete, Get, Post, Put, Query } from '@nestjs/common';
+import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
+import { UserAccountsDto } from 'src/dto/userAccounts.dto';
 import { UserAccountsService } from 'src/service/payment/user_accounts/user_accounts.service';
+import { AccountType } from 'src/types/enums';
 
 @Controller('user-accounts')
 export class UserAccountsController {
-  constructor(private userAccountsService: UserAccountsService) {}
+	constructor(private userAccountsService: UserAccountsService) { }
 
-  @Get()
-  async findAllAccounts() {
-    return await this.userAccountsService.find();
-  }
+	@Get()
+	async findAllAccounts() {
+		return await this.userAccountsService.find();
+	}
 
-  /** TODO
-   * [] Find by UserID
-   * [] Find by Account Number
+  /** TODO:
+   * [V] Find by UserID
+   * [V] Find by user name
+   * [V] Find by Account Number
    * [] Find by Entity ID/Bank name
    * [] Find all Dompet Realta accounts
+   * 
+   * [] Add new user accounts: insert bank
+   * [] Add new user accounts: activate Dompet Realta
+   * 
+   * [?] Update?
+   * 
+   * [] Delete: bank account
    * */
-  @Get('findByFilter')
-  // Find by user ID
-  async findByUserId(@Query('userId') usacUserId: number) {
-    // return await this.userAccountsService.find({ usacUserId });
-    return await this.userAccountsService.findByQuery(
-      `
-      SELECT * FROM payment.user_accounts
-      WHERE usac_user_id = ${usacUserId}
-      `);
-  }
+	
+	@Get('filter?')
+	// Find by user ID
+	async findByFilter(
+		@Query()
+		filter: {
+				userId?: number;
+				userName?: string;
+				accountNumber?: number;
+				accountType?: string;
+				// bankName?: string;
+		},
+	) {
+		switch (true) {
+			// Filter by user ID
+			case filter.userId != undefined:
+				return await this.userAccountsService.find(
+					`
+					SELECT *
+					FROM payment.user_payment_methods
+					WHERE userId = ${filter.userId}
+					`,
+				);
+			// Filter by user's full name
+			case filter.userName != undefined:
+				return await this.userAccountsService.find(
+					`
+					SELECT *
+					FROM payment.user_payment_methods
+					WHERE fullName ILIKE '%${filter.userName}%'
+					`
+				)
+			// Filter by user's account number
+			case filter.accountNumber != undefined:
+				return await this.userAccountsService.find(
+					`
+					SELECT *
+					FROM payment.user_payment_methods
+					WHERE accountNumber = '${filter.accountNumber}'
+					`,
+				);
+			// // Filter by 
+			// case filter.bankName != undefined:
+			// 	return await this.userAccountsService.findByQuery(
+			// 		`
+			// 		SELECT *
+			// 		FROM payment.user_payment_methods
+			// 		WHERE paymentType <> '${AccountType.dompet}'
+			// 		`
+			// 	)
+		}
+	}
 
-  // Find by account number
-  async findByAccountNumber(@Query('accountNumber') accountNumber: string) {
-    return await this.userAccountsService.find({
-      usacAccountNumber: accountNumber,
-    });
-  }
+	@Post('add')
+	async addAccount(@Body() body: UserAccountsDto) {
+		return await this.userAccountsService.create(body)
+		
+	}
 
-  async findDompetRealtaAccount(@Query('accountType') usacType: string) {
-    return await this.userAccountsService.find({ usacType });
-  }
+	@Put()
+	async updateAccount() {
+		
+	}
 
-  // Find by Bank name
-  /** TODO:  Find by Bank name using usac_entity_id */
-  //   async findByBankName(@Query('bankName') bankName: string) {
-  //     return await this.userAccountsService.find({ bankName });
-  //   }
+	@Delete()
+	async deleteAccouunt() {
 
-  // Find Dompet Realta accounts
+	}
+
 }
