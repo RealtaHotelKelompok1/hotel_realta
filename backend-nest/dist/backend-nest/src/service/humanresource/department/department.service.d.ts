@@ -6,7 +6,7 @@ export declare class DepartmentService {
     constructor(departmentRepository: Repository<Department>);
     findAllDepartment(): Promise<any>;
     findOneDepartment(deptId: any): Promise<any>;
-    createDepartment(data: DepartmentDto): Promise<import("typeorm").InsertResult>;
+    createDepartment(data: any): Promise<import("typeorm").InsertResult>;
     updateDepartment(deptId: number, data: DepartmentDto): Promise<import("typeorm").UpdateResult>;
     deleteDepartment(deptId: number): Promise<import("typeorm").DeleteResult>;
 }

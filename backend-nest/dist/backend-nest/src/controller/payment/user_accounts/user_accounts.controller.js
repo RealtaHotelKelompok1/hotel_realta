@@ -23,7 +23,10 @@ let UserAccountsController = class UserAccountsController {
         return await this.userAccountsService.find();
     }
     async findByUserId(usacUserId) {
-        return await this.userAccountsService.find({ usacUserId });
+        return await this.userAccountsService.findByQuery(`
+      SELECT * FROM payment.user_accounts
+      WHERE usac_user_id = ${usacUserId}
+      `);
     }
     async findByAccountNumber(accountNumber) {
         return await this.userAccountsService.find({

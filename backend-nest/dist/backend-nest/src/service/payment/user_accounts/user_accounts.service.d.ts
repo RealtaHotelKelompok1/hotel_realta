@@ -8,6 +8,7 @@ export declare class UserAccountsService {
         usacAccountNumber?: string;
         usacType?: string;
     }): Promise<any>;
+    findByQuery(query?: string): Promise<any>;
     update(): Promise<void>;
     create(): Promise<void>;
 }

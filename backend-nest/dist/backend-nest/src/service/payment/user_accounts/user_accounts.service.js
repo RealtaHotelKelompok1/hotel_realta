@@ -27,6 +27,12 @@ let UserAccountsService = class UserAccountsService {
         }
         return await this.UserAccountsRepository.find();
     }
+    async findByQuery(query) {
+        if (query) {
+            return await this.UserAccountsRepository.query(query);
+        }
+        return await this.UserAccountsRepository.find();
+    }
     async update() { }
     async create() { }
 };
