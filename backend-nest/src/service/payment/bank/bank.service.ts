@@ -60,13 +60,14 @@ export class BankService {
       },
       dataToUpdate,
     )
-      .then((result) => {
-        return result;
+      .then(() => {
+        return `Bank with ID ${id} is successfully updated!`;
       })
-      .then((err) => {
+      .catch((err) => {
         return new HttpException(
-          { error: `Bank with ID ${id} is not found!` + err },
+          { error: `Failed to update bank with ID ${id}` },
           HttpStatus.NOT_FOUND,
+          { cause: err}
         );
       });
   }
