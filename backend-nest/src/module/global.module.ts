@@ -153,7 +153,7 @@ import { UserAccountsService } from 'src/service/payment/user_accounts/user_acco
     DepartmentController,
     ShiftController,
     JobroleController,
-    EmployeeController,
+    // EmployeeController,
     EmployeeDepartmentHistoryController,
     EmployeePayHistoryController,
     WorkOrderDetailController,
@@ -162,10 +162,10 @@ import { UserAccountsService } from 'src/service/payment/user_accounts/user_acco
     /* HOTEL */
 
     HotelController,
-    HotelReviewController,
-    FacilityPriceHistoryController,
-    FacilityController,
-    FacilityPhotosController,
+    // HotelReviewController,
+    // FacilityPriceHistoryController,
+    // FacilityController,
+    // FacilityPhotosController,
 
     /* USERS */
     UsersController,
@@ -195,17 +195,17 @@ import { UserAccountsService } from 'src/service/payment/user_accounts/user_acco
     DepartmentService,
     ShiftService,
     JobRoleService,
-    EmployeeService,
+    // EmployeeService,
     EmployeePayHistoryService,
     WorkOrderDetailService,
     EmployeeDepartmentHistoryService,
     WorkOrdersService,
     /* HOTEL */
     HotelService,
-    HotelReviewService,
-    FacilityPriceHistoryService,
-    FacilityService,
-    FacilityPhotosService,
+    // HotelReviewService,
+    // FacilityPriceHistoryService,
+    // FacilityService,
+    // FacilityPhotosService,
 
     /* USERS */
     UsersService,
