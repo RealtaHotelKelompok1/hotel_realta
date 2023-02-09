@@ -46,7 +46,8 @@ export default function SignIn() {
       localStorage.setItem('roleId', isLogin.userdata[0].usro_role_id);
       localStorage.setItem('userId', isLogin.userdata[0].user_id);
       localStorage.setItem('userFullName', isLogin.userdata[0].user_full_name);
-      
+      localStorage.setItem('usprophoto', isLogin.userdata[0].uspro_photo);
+      console.info(isLogin);
       if (isLogin.userdata[0].usro_role_id == 1) {        // Guest
         router.push('/');
       } else if (isLogin.userdata[0].usro_role_id == 2) { // Manager

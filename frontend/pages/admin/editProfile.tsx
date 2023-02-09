@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import fs from "fs/promises";
 import path from "path";
-import { doUpdatePhotoUsers } from "@/redux/Actions/Users/reduceActions";
+import { doUpdatePhotoUsers, doUserRequest } from "@/redux/Actions/Users/reduceActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import LayoutAdmin from "@/components/Layout/LayoutAdmin";
@@ -15,29 +15,47 @@ interface Props {
   dirs: string[];
 }
 
-const EditProfile: NextPage<Props> = ({ dirs })=> {
+const EditProfile: NextPage<Props> = ({ dirs }) => {
   const router = useRouter();
   const [uploading, setUploading] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedFile, setSelectedFile] = useState<File>();
-  // // useDispatch API POST users
+  const [profilePhoto, setProfilePhoto] = useState("");
+  const user:any = useSelector((state: any) => state.usersReducers.user);
   const dispatchEditPhoto = useDispatch();
+  useEffect(() => {
+    let id: any = localStorage.getItem("userId");
+    const displayedPayload: any = dispatchEditPhoto(doUserRequest(id));
+    if (displayedPayload.payload == id) {
+      if (user) {
+        const displayedUser: any = user.results;
+        if (displayedUser) {
+          setProfilePhoto(displayedUser.userProfiles[0].usproPhoto);
+          console.info(displayedUser.userProfiles[0].usproPhoto);
+          localStorage.setItem('profilePhotoMe', profilePhoto);
+        }
+      }
+    }
+  }, []);
+
 
   const handleUpload = async () => {
+    let userId: any = localStorage.getItem("userId");
     setUploading(true);
     try {
-       
+
       if (!selectedFile) return;
       const formData = new FormData();
       formData.append("myImage", selectedFile);
       const { data } = await axios.post("/api/image", formData);
 
       const isDataUpload = {
-        usproId:24,
+        usproId:userId,
+        // usproPhoto: Date.now().toString() + "_" + selectedFile.name
         usproPhoto: selectedFile.name
       }
       console.info(isDataUpload)
-      dispatchEditPhoto(doUpdatePhotoUsers(24, isDataUpload));
+      dispatchEditPhoto(doUpdatePhotoUsers(userId, isDataUpload));
       router.reload()      
     } catch (error: any) {
       console.log(error.message);

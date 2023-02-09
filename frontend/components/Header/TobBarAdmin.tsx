@@ -15,13 +15,26 @@ import { useDispatch } from "react-redux";
 export default function TopBarAdmin({ showNav, setShowNav }:any) {
   const router = useRouter();
   const userFullName: any = localStorage.getItem("userFullName");
-
+  const usprophoto: any = localStorage.getItem("usprophoto");
+  const profilePhotoMe: any = localStorage.getItem("profilePhotoMe");
+  console.info("Edited : "+profilePhotoMe)
+  console.info("old : " + usprophoto);
+  let myPhoto: any; 
+  if (profilePhotoMe) {
+    myPhoto = profilePhotoMe;
+  } else {
+    myPhoto = usprophoto;
+  }
   // useDispatch
   const dispatch:any = useDispatch();
 
   const handleLogout = () => {
     dispatch(doLogin());
     localStorage.removeItem('token');
+    localStorage.removeItem('roleId');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userFullName');
+    localStorage.removeItem('usprophoto');
     router.push('/auth/signin');
   };
 
@@ -125,7 +138,7 @@ export default function TopBarAdmin({ showNav, setShowNav }:any) {
             <Menu.Button className="inline-flex w-full justify-center items-center">
               <picture>
                 <img
-                  src="/images/user.png"
+                  src={"/images/"+myPhoto}
                   className="rounded-full h-8 md:mr-4 border-2 border-white shadow-sm"
                   alt="profile picture"
                 />
