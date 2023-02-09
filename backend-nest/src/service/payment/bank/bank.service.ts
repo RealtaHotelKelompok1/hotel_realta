@@ -67,7 +67,7 @@ export class BankService {
         return new HttpException(
           { error: `Failed to update bank with ID ${id}` },
           HttpStatus.NOT_FOUND,
-          { cause: err}
+          { cause: err }
         );
       });
   }
