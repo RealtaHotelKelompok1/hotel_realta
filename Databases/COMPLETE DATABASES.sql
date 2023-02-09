@@ -116,6 +116,7 @@ CREATE TABLE users.users(
 	user_company_name VARCHAR(255),
 	user_email VARCHAR(256),
 	user_phone_number VARCHAR(25),
+	user_isverified INT DEFAULT NULL,
 	user_modified_date TIMESTAMP DEFAULT now(),
 	CONSTRAINT pk_user_id PRIMARY KEY (user_id),
 	CONSTRAINT u_user_phone_number UNIQUE (user_phone_number),
@@ -142,19 +143,23 @@ CREATE TABLE users.user_members(
 
 -- CREATE TABLE user_profiles
 CREATE TABLE users.user_profiles(
-	uspro_id SERIAL,
+	uspro_id SERIAL PRIMARY KEY,
 	uspro_national_id VARCHAR(20),
 	uspro_birth DATE,
+	uspro_photo TEXT DEFAULT 'user.png',
 	uspro_job_title VARCHAR(50),
 	uspro_marital_status CHAR(1),
 	uspro_gender CHAR(1),
 	uspro_addr_id INT,
 	uspro_user_id INT,
-	CONSTRAINT pk_uspro_id PRIMARY KEY (uspro_id),
-	CONSTRAINT fk_uspro_addr_id FOREIGN KEY (uspro_addr_id)
-		REFERENCES master.address(addr_id),
-	CONSTRAINT fk_uspro_user_id FOREIGN KEY (uspro_user_id)
+	FOREIGN KEY (uspro_addr_id)
+		REFERENCES master.address(addr_id)
+			ON DELETE CASCADE
+			ON UPDATE CASCADE,
+	FOREIGN KEY (uspro_user_id)
 		REFERENCES users.users(user_id)
+			ON DELETE CASCADE
+			ON UPDATE CASCADE
 );
 
 -- CREATE TABLE user_roles
@@ -191,7 +196,7 @@ CREATE TABLE users.user_bonus_points(
 	ubpo_total_points INT,
 	ubpo_bonus_type CHAR(1),
 	ubpo_create_on TIMESTAMP,
-	CONSTRAINT fk_ubpo_user_id FOREIGN KEY (ubpo_user_id)
+	FOREIGN KEY (ubpo_user_id)
 		REFERENCES users.users(user_id)
 			ON DELETE CASCADE
 			ON UPDATE CASCADE
@@ -515,6 +520,8 @@ create table purchasing.purchase_order_detail(
 	constraint pode_pohe_id_fk foreign key (pode_pohe_id) references purchasing.purchase_order_header(pohe_id) on delete cascade on update cascade
 
 );
+
+alter table purchasing.purchase_order_detail add column pode_stock_id integer
 
 create table purchasing.stock_detail(
 	stod_stock_id integer,
