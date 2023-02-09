@@ -25,10 +25,6 @@ export default function TopBarManager({ showNav, setShowNav }:any) {
     router.push('/auth/signin');
   };
 
-  // const handleEditProfile = () => {
-  //   router.push('/admin/editProfile');
-  // };
-
   return (
     <div
       className={`fixed w-full h-16 flex justify-between items-center transition-all duration-[400ms] ${showNav ? "pl-56" : ""
@@ -147,17 +143,9 @@ export default function TopBarManager({ showNav, setShowNav }:any) {
           >
             <Menu.Items className="absolute right-0 w-auto z-50 mt-2 origin-top-right bg-white rounded-md shadow-2xl">
               <div className="p-1 flex flex-col-left">
-                <Menu.Item>
-                  <Button
-                    className="shadow-lg pl-3 px-4 py-2 mx-auto rounded-md items-center bg-orange-100 text-left text-sm font-medium normal-case text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-75"
-                    // onClick={handleEditProfile}
-                    >
-                    <PencilIcon className="h-4 w-4 mr-2" />{"Profile"}
-                  </Button>
-                </Menu.Item>
                 <Menu.Item >
                   <Button
-                    className="shadow-lg pl-3 px-4 py-2 ml-1 mx-auto rounded-md items-center bg-orange-100 text-left text-sm font-medium normal-case text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-75"
+                    className="shadow-lg pl-3 px-4 py-2 mx-auto rounded-md items-center bg-orange-100 text-left text-sm font-medium normal-case text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-75"
                     onClick={handleLogout}>
                     <LogoutIcon className="h-4 w-4 mr-2" />{"Logout"}
                   </Button>
