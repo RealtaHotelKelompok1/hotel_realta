@@ -18,7 +18,7 @@ export class UserAccountsService {
    * [V] Find all
    * [V] Find by filter
    * [] Update user accounts
-   * [] Create new account
+   * [V] Create new account
    * [] Delete (BANK ONLY)
    *
    */
@@ -49,10 +49,24 @@ export class UserAccountsService {
 	async update() { }
 
 	async create(newData: UserAccountsDto) {
-		console.log(newData)
+		// Set data to null if no data inserted and became an empty string.
+		for (const data in newData) {
+			if (newData[data] == '') {
+				newData[data] = null
+			}
+		}
+
 		// Hash PIN or CVV
 		const salt = bcrypt.genSaltSync(10);
 		const hashedKey = bcrypt.hashSync(newData.securedKey, salt);
+
+		// Check account type
+		if (newData.accountType !== AccountType.dompet) {
+			// Return an error if bank expiry date is null
+			if (newData.expMonth == null || newData.expYear == null) {
+				return "Bank expiry date can't be null!"
+			} 
+		}
 
 		// Insert into database using Stored Procedure
 		return await this.UserAccountsRepository.query(
@@ -69,9 +83,6 @@ export class UserAccountsService {
 			]
 		)
 			.then(() => {
-				// return this.UserAccountsRepository.findOneByOrFail(
-				// 	{ usacAccountNumber: newData.accountNumber }
-				// )
 				return this.UserAccountsRepository.query(
 					`SELECT * FROM payment.user_payment_methods WHERE userId = $1`, [newData.userId]
 				)
