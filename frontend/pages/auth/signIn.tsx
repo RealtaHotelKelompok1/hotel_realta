@@ -44,6 +44,8 @@ export default function SignIn() {
     if (isLogin.message == 'Login successfully') {
       localStorage.setItem('token', isLogin.token);
       localStorage.setItem('roleId', isLogin.userdata[0].usro_role_id);
+      localStorage.setItem('userId', isLogin.userdata[0].user_id);
+      localStorage.setItem('userFullName', isLogin.userdata[0].user_full_name);
       
       if (isLogin.userdata[0].usro_role_id == 1) {        // Guest
         router.push('/');

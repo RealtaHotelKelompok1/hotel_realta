@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 
 export default function TopBarManager({ showNav, setShowNav }:any) {
   const router = useRouter();
+  const userFullName: any = localStorage.getItem("userFullName");
 
   // useDispatch
   const dispatch:any = useDispatch();
@@ -130,7 +131,7 @@ export default function TopBarManager({ showNav, setShowNav }:any) {
                 />
               </picture>
               <span className="hidden md:block font-medium text-gray-700">
-                Shinobi
+                {userFullName}
               </span>
               <ChevronDownIcon className="ml-2 h-4 w-4 text-gray-700" />
             </Menu.Button>
