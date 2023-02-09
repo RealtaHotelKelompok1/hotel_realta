@@ -86,8 +86,9 @@ export class UserAccountsController {
 		return await this.userAccountsService.create(body)
 	}
 
-	@Put()
-	async updateAccount() {
+	@Put('/:accountNumber')
+	async updateAccount(@Param('accountNumber') accountNumber: any, @Body() body) {
+		return await this.userAccountsService.update(accountNumber, body)
 		
 	}
 
