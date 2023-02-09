@@ -39,6 +39,20 @@ export class UserAccounts {
   })
   usacType: string | null;
 
+  @Column('character varying', {
+    name: 'usac_card_holder_name',
+    nullable: true,
+    length: 50
+  })
+  usacCardHolderName: string | null;
+
+  @Column('character varying', {
+    name: 'usac_secured_key',
+    nullable: false,
+    length: 255
+  })
+  usacSecuredKey: string;
+
   @Column('smallint', { name: 'usac_expmonth', nullable: true })
   usacExpmonth: number | null;
 

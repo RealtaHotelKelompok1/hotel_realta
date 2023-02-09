@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BankController = void 0;
 const common_1 = require("@nestjs/common");
 const bank_service_1 = require("../../../service/payment/bank/bank.service");
-const bank_dto_1 = require("./bank.dto");
+const bank_dto_1 = require("../../../dto/bank.dto");
 let BankController = class BankController {
     constructor(bankService) {
         this.bankService = bankService;
@@ -24,28 +24,16 @@ let BankController = class BankController {
         return await this.bankService.find();
     }
     async findBankById(id) {
-        return await this.bankService.find(id).catch((error) => {
-            return new common_1.HttpException({ error: `Bank with ID ${id} is not found!` }, common_1.HttpStatus.NOT_FOUND, { cause: error });
-        });
+        return await this.bankService.find(id);
     }
     async updateBank(id, body) {
-        return await this.bankService
-            .update(id, body)
-            .then(() => {
-            return this.findBankById(id);
-        })
-            .catch();
+        return await this.bankService.update(id, body);
     }
     async insertBank(body) {
         return await this.bankService.insert(body);
     }
     async deleteBank(id) {
-        return await this.bankService
-            .delete(id)
-            .then(() => {
-            return `Bank with ID ${id} has been deleted!`;
-        })
-            .catch();
+        return await this.bankService.delete(id);
     }
 };
 __decorate([
