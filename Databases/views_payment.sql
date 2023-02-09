@@ -13,6 +13,7 @@ AS (
 			END
 		) AS "paymentName",
 		acc.usac_account_number		accountNumber,
+		acc.usac_card_holder_name			cardHolderName,
 		acc.usac_saldo				balance,
 		acc.usac_expmonth			expMonth,
 		acc.usac_expyear			expYear
