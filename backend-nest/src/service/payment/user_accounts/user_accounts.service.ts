@@ -92,19 +92,23 @@ export class UserAccountsService {
 			})
 	}
 	
-	async delete(id: number) {
-		// Check if there's an account data with corresponding ID.
+	async delete(accountNumber: string) {
+		// Check if there's an account data with corresponding account number.
 		const accountExists = this.UserAccountsRepository.findOneByOrFail(
-			{ usacEntityId: id })
+			{ usacAccountNumber: accountNumber })
 		
 		if (accountExists) {
-			return await this.UserAccountsRepository.delete(id)
-				.then(() => {
-					return `Account with ID ${id} is successfully deleted!`
+			return await this.UserAccountsRepository.query(
+				`
+				DELETE FROM payment.user_accounts
+				WHERE usac_account_number = '${accountNumber}'
+				`
+			).then(() => {
+				return `Account ${accountNumber} is successfully deleted!`
 			})
 		} else {
 			return new HttpException(
-				{ error: `Account with ID ${id} is not found!` },
+				{ error: `Account ${accountNumber} is not found!` },
 				HttpStatus.NOT_FOUND,
 			)
 		}

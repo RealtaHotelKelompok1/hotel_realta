@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Controller, Delete, Get, Post, Put, Query } from '@nestjs/common';
-import { Body } from '@nestjs/common/decorators/http/route-params.decorator';
+import { Body, Param } from '@nestjs/common/decorators/http/route-params.decorator';
 import { UserAccountsDto } from 'src/dto/userAccounts.dto';
 import { UserAccountsService } from 'src/service/payment/user_accounts/user_accounts.service';
 import { AccountType } from 'src/types/enums';
@@ -21,8 +21,8 @@ export class UserAccountsController {
    * [] Find by Entity ID/Bank name
    * [] Find all Dompet Realta accounts
    * 
-   * [] Add new user accounts: insert bank
-   * [] Add new user accounts: activate Dompet Realta
+   * [V] Add new user accounts: insert bank
+   * [V] Add new user accounts: activate Dompet Realta
    * 
    * [?] Update?
    * 
@@ -84,7 +84,6 @@ export class UserAccountsController {
 	@Post('add')
 	async addAccount(@Body() body: UserAccountsDto) {
 		return await this.userAccountsService.create(body)
-		
 	}
 
 	@Put()
@@ -92,9 +91,9 @@ export class UserAccountsController {
 		
 	}
 
-	@Delete()
-	async deleteAccouunt() {
-
+	@Delete('/:accountNumber')
+	async deleteAccouunt(@Param('accountNumber') accountNumber: any) {
+		return await this.userAccountsService.delete(accountNumber)
 	}
 
 }
