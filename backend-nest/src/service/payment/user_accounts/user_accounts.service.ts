@@ -46,7 +46,25 @@ export class UserAccountsService {
 			});
 	}
 
-	async update() { }
+	async update(accountNumber: string, dataToUpdate: UserAccountsDto) {
+		const salt = bcrypt.genSaltSync(10);
+		const hashedKey = bcrypt.hashSync(dataToUpdate.securedKey, salt);
+
+		return await this.UserAccountsRepository.update(
+			{ usacAccountNumber: accountNumber },
+			{ usacSecuredKey: hashedKey }
+		)
+			.then(() => {
+				return `Account ${accountNumber} is successfully updated!`
+			})
+			.catch((err) => {
+				return new HttpException(
+					{ error: `Failed to update account ${accountNumber}` },
+					HttpStatus.BAD_REQUEST,
+					{ cause: err }
+				)
+			})
+	 }
 
 	async create(newData: UserAccountsDto) {
 		// Set data to null if no data inserted and became an empty string.
