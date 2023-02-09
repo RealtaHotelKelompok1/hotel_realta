@@ -1,12 +1,5 @@
-import {
-  Column,
-  Entity,
-  Index,
-  JoinColumn,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
-import { Entities } from "./Entities";
+import { Column, Entity, Index, JoinColumn, OneToOne } from 'typeorm';
+import { Entities } from './Entities';
 
 @Index('payment_gateaway_paga_code_key', ['pagaCode'], { unique: true })
 @Index('payment_gateaway_pkey', ['pagaEntityId'], { unique: true })

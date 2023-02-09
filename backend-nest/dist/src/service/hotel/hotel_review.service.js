@@ -59,9 +59,6 @@ let HotelReviewService = class HotelReviewService {
             .where('horeId = :id', { id })
             .execute();
     }
-    async findByUser(horeUser) {
-        return await this.repositoryHotelReview.findOneBy({ horeUser: horeUser });
-    }
 };
 HotelReviewService = __decorate([
     (0, common_1.Injectable)(),

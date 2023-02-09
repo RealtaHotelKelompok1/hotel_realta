@@ -6,5 +6,4 @@ export declare class HotelReviewController {
     findAllHotelReview(): Promise<any>;
     createHotel(data: HotelReviews): Promise<"failed insert to hotels" | "success insert to hotel">;
     updateHotel(id: string, body: any): Promise<"dont updated" | "updated">;
-    findByname(Params: any): Promise<any>;
 }

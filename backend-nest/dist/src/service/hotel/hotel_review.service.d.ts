@@ -6,5 +6,4 @@ export declare class HotelReviewService {
     findAllHotelReview(): Promise<any>;
     createHotelReview(data: HotelReviews): Promise<HotelReviews>;
     updateHotelReview(id: string, data: HotelReviews): Promise<any>;
-    findByUser(horeUser: any): Promise<any>;
 }

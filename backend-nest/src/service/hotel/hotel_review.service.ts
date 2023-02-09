@@ -25,7 +25,7 @@ export class HotelReviewService {
       best = '5',
     }
     let bad1 = hore_Rating.bad;
-    let less1 = hore_Rating.less; 
+    let less1 = hore_Rating.less;
     let cool1 = hore_Rating.cool;
     let good1 = hore_Rating.good;
     let best1 = hore_Rating.best;
@@ -58,7 +58,7 @@ export class HotelReviewService {
   }
 
   //view by userid
-  async findByUser(horeUser: any): Promise<any> {
-    return await this.repositoryHotelReview.findOneBy({ horeUser: horeUser });
-  }
+  // async findByUser(id: any): Promise<any> {
+  //   return await this.repositoryHotelReview.findOne({ horeId: id });
+  // }
 }

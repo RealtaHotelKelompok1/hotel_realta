@@ -22,7 +22,6 @@ import { EmployeeDepartmentHistory } from 'entities/EmployeeDepartmentHistory';
 import { EmployeePayHistory } from 'entities/EmployeePayHistory';
 import { Facilities } from 'entities/Facilities';
 import { FacilityPhotos } from 'entities/FacilityPhotos';
-import { FacilityPriceHistory } from 'entities/FacilityPriceHistory';
 import { HotelReviews } from 'entities/HotelReviews';
 import { Hotels } from 'entities/Hotels';
 import { JobRole } from 'entities/JobRole';
@@ -100,6 +99,7 @@ import { UserpasswordService } from 'src/service/users/userpassword/userpassword
 import { UserprofilesService } from 'src/service/users/userprofiles/userprofiles.service';
 import { UserrolesService } from 'src/service/users/userroles/userroles.service';
 import { UsersService } from 'src/service/users/users/users.service';
+import { FacilityPriceHistory } from 'entities/FacilityPriceHistory';
 
 @Module({
   imports: [
@@ -110,6 +110,8 @@ import { UsersService } from 'src/service/users/users/users.service';
       BookingOrderDetailExtra,
       BookingOrders,
       CategoryGroup,
+      FacilityPriceHistory,
+      HotelReviews,
       Country,
       Department,
       Hotels,
@@ -117,6 +119,9 @@ import { UsersService } from 'src/service/users/users/users.service';
       Members,
       OrderMenuDetail,
       OrderMenus,
+      Employee,
+      Facilities,
+      FacilityPhotos,
       PaymentGateaway,
       PaymentTransaction,
       Policy,

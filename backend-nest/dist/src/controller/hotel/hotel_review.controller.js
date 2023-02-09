@@ -35,14 +35,11 @@ let HotelReviewController = class HotelReviewController {
     async updateHotel(id, body) {
         const newData = await this.hotelReviewService.updateHotelReview(id, body);
         if (!newData) {
-            return "dont updated";
+            return 'dont updated';
         }
         else {
-            return "updated";
+            return 'updated';
         }
-    }
-    findByname(Params) {
-        return this.hotelReviewService.findByUser(Params);
     }
 };
 __decorate([
@@ -66,13 +63,6 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], HotelReviewController.prototype, "updateHotel", null);
-__decorate([
-    (0, common_1.Get)('viewByUser'),
-    __param(0, (0, common_1.Param)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
-], HotelReviewController.prototype, "findByname", null);
 HotelReviewController = __decorate([
     (0, common_1.Controller)('hotelreview'),
     __metadata("design:paramtypes", [hotel_review_service_1.HotelReviewService])

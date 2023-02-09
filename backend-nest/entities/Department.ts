@@ -8,7 +8,6 @@ import {
 import { EmployeeDepartmentHistory } from "./EmployeeDepartmentHistory";
 import { IsNotEmpty, IsString, MinLength } from 'class-validator';
 
-
 @Index('pk_dept_id', ['deptId'], { unique: true })
 @Entity('department', { schema: 'humanresource' })
 export class Department {

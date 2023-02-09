@@ -1,6 +1,6 @@
-import { OrderMenuDetail } from "./OrderMenuDetail";
-import { RestoMenuPhotos } from "./RestoMenuPhotos";
-import { Facilities } from "./Facilities";
+import { OrderMenuDetail } from './OrderMenuDetail';
+import { RestoMenuPhotos } from './RestoMenuPhotos';
+import { Facilities } from './Facilities';
 export declare class RestoMenus {
     remeId: number;
     remeName: string | null;
