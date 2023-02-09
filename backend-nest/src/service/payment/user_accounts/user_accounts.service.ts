@@ -3,9 +3,13 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserAccounts } from 'entities/UserAccounts';
 import { Repository } from 'typeorm';
+<<<<<<< HEAD
+// import { AccountType } from '../../../../';
+=======
 import { AccountType } from '../../../types/enums';
 import { UserAccountsDto } from 'src/dto/userAccounts.dto';
 import * as bcrypt from 'bcrypt';
+>>>>>>> main
 
 @Injectable()
 export class UserAccountsService {
