@@ -17,8 +17,8 @@ export default function TopBarAdmin({ showNav, setShowNav }:any) {
   const userFullName: any = localStorage.getItem("userFullName");
   const usprophoto: any = localStorage.getItem("usprophoto");
   const profilePhotoMe: any = localStorage.getItem("profilePhotoMe");
-  console.info("Edited : "+profilePhotoMe)
-  console.info("old : " + usprophoto);
+  console.info("Edited : " + profilePhotoMe);
+  console.info("Old : " + usprophoto);
   let myPhoto: any; 
   if (profilePhotoMe) {
     myPhoto = profilePhotoMe;

@@ -24,7 +24,7 @@ const EditProfile: NextPage<Props> = ({ dirs }) => {
   const user:any = useSelector((state: any) => state.usersReducers.user);
   const dispatchEditPhoto = useDispatch();
   useEffect(() => {
-    let id: any = localStorage.getItem("userId");
+    const id : any = localStorage.getItem("userId");
     const displayedPayload: any = dispatchEditPhoto(doUserRequest(id));
     if (displayedPayload.payload == id) {
       if (user) {
@@ -32,7 +32,7 @@ const EditProfile: NextPage<Props> = ({ dirs }) => {
         if (displayedUser) {
           setProfilePhoto(displayedUser.userProfiles[0].usproPhoto);
           console.info(displayedUser.userProfiles[0].usproPhoto);
-          localStorage.setItem('profilePhotoMe', profilePhoto);
+          
         }
       }
     }
@@ -40,7 +40,7 @@ const EditProfile: NextPage<Props> = ({ dirs }) => {
 
 
   const handleUpload = async () => {
-    let userId: any = localStorage.getItem("userId");
+    const userId: any = localStorage.getItem("userId");
     setUploading(true);
     try {
 
@@ -51,11 +51,12 @@ const EditProfile: NextPage<Props> = ({ dirs }) => {
 
       const isDataUpload = {
         usproId:userId,
-        // usproPhoto: Date.now().toString() + "_" + selectedFile.name
-        usproPhoto: selectedFile.name
+        usproPhoto: "Admin_" + selectedFile.name
       }
       console.info(isDataUpload)
+      
       dispatchEditPhoto(doUpdatePhotoUsers(userId, isDataUpload));
+      localStorage.setItem('profilePhotoMe', isDataUpload.usproPhoto);
       router.reload()      
     } catch (error: any) {
       console.log(error.message);
