@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserAccounts } from 'entities/UserAccounts';
 import { Repository } from 'typeorm';
-import { AccountType } from '../../../../../types/enums';
+// import { AccountType } from '../../../../';
 
 @Injectable()
 export class UserAccountsService {
