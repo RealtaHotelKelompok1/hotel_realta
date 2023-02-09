@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import LayoutAdmin from "@/components/Layout/LayoutAdmin";
 import { Box } from "@mui/material";
-import { ChevronUpIcon } from "@heroicons/react/24/solid";
-import { PhotoIcon } from "@heroicons/react/20/solid";
 
 interface Props {
   dirs: string[];
@@ -23,20 +21,6 @@ const EditProfile: NextPage<Props> = ({ dirs }) => {
   const [profilePhoto, setProfilePhoto] = useState("");
   const user:any = useSelector((state: any) => state.usersReducers.user);
   const dispatchEditPhoto = useDispatch();
-  useEffect(() => {
-    const id : any = localStorage.getItem("userId");
-    const displayedPayload: any = dispatchEditPhoto(doUserRequest(id));
-    if (displayedPayload.payload == id) {
-      if (user) {
-        const displayedUser: any = user.results;
-        if (displayedUser) {
-          setProfilePhoto(displayedUser.userProfiles[0].usproPhoto);
-          console.info(displayedUser.userProfiles[0].usproPhoto);
-          
-        }
-      }
-    }
-  }, []);
 
 
   const handleUpload = async () => {

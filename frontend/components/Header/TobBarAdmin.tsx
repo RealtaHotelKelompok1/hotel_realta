@@ -15,15 +15,13 @@ import { useDispatch } from "react-redux";
 export default function TopBarAdmin({ showNav, setShowNav }:any) {
   const router = useRouter();
   const userFullName: any = localStorage.getItem("userFullName");
-  const usprophoto: any = localStorage.getItem("usprophoto");
   const profilePhotoMe: any = localStorage.getItem("profilePhotoMe");
-  console.info("Edited : " + profilePhotoMe);
-  console.info("Old : " + usprophoto);
+  
   let myPhoto: any; 
   if (profilePhotoMe) {
     myPhoto = profilePhotoMe;
   } else {
-    myPhoto = usprophoto;
+    myPhoto = "user.png"
   }
   // useDispatch
   const dispatch:any = useDispatch();
@@ -34,7 +32,7 @@ export default function TopBarAdmin({ showNav, setShowNav }:any) {
     localStorage.removeItem('roleId');
     localStorage.removeItem('userId');
     localStorage.removeItem('userFullName');
-    localStorage.removeItem('usprophoto');
+    localStorage.removeItem('profilePhotoMe');
     router.push('/auth/signin');
   };
 
