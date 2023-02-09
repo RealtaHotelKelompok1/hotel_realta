@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Address } from 'entities/Address';
@@ -17,12 +18,15 @@ import { OrderMenuDetailService } from 'src/service/resto/restoMenuDetail.servic
 import { restoMenuPhotoService } from 'src/service/resto/restoMenuPhotos.service';
 import { RestoService } from 'src/service/resto/restoMenus.service';
 import { ShiftService } from 'src/service/humanresource/shift/shift.service';
+<<<<<<< HEAD
 import { Employee } from 'entities/Employee';
 import { EmployeeDepartmentHistory } from 'entities/EmployeeDepartmentHistory';
 import { EmployeePayHistory } from 'entities/EmployeePayHistory';
 import { Facilities } from 'entities/Facilities';
 import { FacilityPhotos } from 'entities/FacilityPhotos';
 import { HotelReviews } from 'entities/HotelReviews';
+=======
+>>>>>>> main
 import { Hotels } from 'entities/Hotels';
 import { JobRole } from 'entities/JobRole';
 import { Members } from 'entities/Members';
@@ -99,7 +103,16 @@ import { UserpasswordService } from 'src/service/users/userpassword/userpassword
 import { UserprofilesService } from 'src/service/users/userprofiles/userprofiles.service';
 import { UserrolesService } from 'src/service/users/userroles/userroles.service';
 import { UsersService } from 'src/service/users/users/users.service';
+<<<<<<< HEAD
 import { FacilityPriceHistory } from 'entities/FacilityPriceHistory';
+=======
+import { BankController } from 'src/controller/payment/bank/bank.controller';
+import { PaymentGateawayController } from 'src/controller/payment/payment_gateaway/payment_gateaway.controller';
+import { UserAccountsController } from 'src/controller/payment/user_accounts/user_accounts.controller';
+import { BankService } from 'src/service/payment/bank/bank.service';
+import { PaymentGateawayService } from 'src/service/payment/payment_gateaway/payment_gateaway.service';
+import { UserAccountsService } from 'src/service/payment/user_accounts/user_accounts.service';
+>>>>>>> main
 
 @Module({
   imports: [
@@ -158,7 +171,7 @@ import { FacilityPriceHistory } from 'entities/FacilityPriceHistory';
     DepartmentController,
     ShiftController,
     JobroleController,
-    EmployeeController,
+    // EmployeeController,
     EmployeeDepartmentHistoryController,
     EmployeePayHistoryController,
     WorkOrderDetailController,
@@ -167,10 +180,10 @@ import { FacilityPriceHistory } from 'entities/FacilityPriceHistory';
     /* HOTEL */
 
     HotelController,
-    HotelReviewController,
-    FacilityPriceHistoryController,
-    FacilityController,
-    FacilityPhotosController,
+    // HotelReviewController,
+    // FacilityPriceHistoryController,
+    // FacilityController,
+    // FacilityPhotosController,
 
     /* USERS */
     UsersController,
@@ -187,7 +200,11 @@ import { FacilityPriceHistory } from 'entities/FacilityPriceHistory';
     OrderMenuDetailController,
     RestoMenuPhotosContoller,
     orderMenusController,
+
     /* PAYMENT */
+    BankController,
+    PaymentGateawayController,
+    UserAccountsController,
     /* PURCHASING */
     /* MASTER */
   ],
@@ -196,17 +213,17 @@ import { FacilityPriceHistory } from 'entities/FacilityPriceHistory';
     DepartmentService,
     ShiftService,
     JobRoleService,
-    EmployeeService,
+    // EmployeeService,
     EmployeePayHistoryService,
     WorkOrderDetailService,
     EmployeeDepartmentHistoryService,
     WorkOrdersService,
     /* HOTEL */
     HotelService,
-    HotelReviewService,
-    FacilityPriceHistoryService,
-    FacilityService,
-    FacilityPhotosService,
+    // HotelReviewService,
+    // FacilityPriceHistoryService,
+    // FacilityService,
+    // FacilityPhotosService,
 
     /* USERS */
     UsersService,
@@ -223,7 +240,11 @@ import { FacilityPriceHistory } from 'entities/FacilityPriceHistory';
     OrderMenuDetailService,
     restoMenuPhotoService,
     orderMenusService,
+
     /* PAYMENT */
+    BankService,
+    PaymentGateawayService,
+    UserAccountsService,
     /* PURCHASING */
     /* MASTER */
   ],

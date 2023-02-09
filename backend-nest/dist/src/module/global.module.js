@@ -26,10 +26,13 @@ const restoMenuDetail_service_1 = require("../service/resto/restoMenuDetail.serv
 const restoMenuPhotos_service_1 = require("../service/resto/restoMenuPhotos.service");
 const restoMenus_service_1 = require("../service/resto/restoMenus.service");
 const shift_service_1 = require("../service/humanresource/shift/shift.service");
+<<<<<<< HEAD
 const Employee_1 = require("../../entities/Employee");
 const Facilities_1 = require("../../entities/Facilities");
 const FacilityPhotos_1 = require("../../entities/FacilityPhotos");
 const HotelReviews_1 = require("../../entities/HotelReviews");
+=======
+>>>>>>> main
 const Hotels_1 = require("../../entities/Hotels");
 const JobRole_1 = require("../../entities/JobRole");
 const Members_1 = require("../../entities/Members");
@@ -119,8 +122,11 @@ GlobalModule = __decorate([
                 BookingOrderDetailExtra_1.BookingOrderDetailExtra,
                 BookingOrders_1.BookingOrders,
                 CategoryGroup_1.CategoryGroup,
+<<<<<<< HEAD
                 FacilityPriceHistory_1.FacilityPriceHistory,
                 HotelReviews_1.HotelReviews,
+=======
+>>>>>>> main
                 Country_1.Country,
                 Department_1.Department,
                 Hotels_1.Hotels,

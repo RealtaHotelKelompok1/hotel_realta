@@ -1,5 +1,5 @@
-import { Entities } from "./Entities";
-import { Users } from "./Users";
+import { Entities } from './Entities';
+import { Users } from './Users';
 export declare class UserAccounts {
     usacEntityId: number;
     usacUserId: number;

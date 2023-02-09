@@ -1,8 +1,8 @@
+/* eslint-disable prettier/prettier */
 import 'dotenv/config';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GlobalModule } from './module/global.module';
-
 
 @Module({
   imports: [
