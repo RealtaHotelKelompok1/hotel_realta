@@ -112,7 +112,14 @@ export class UsersService {
 
     async findOneUser(id: number): Promise<any>{
         return await this.usersRepository.findOne({
-            where: { userId: id }
+            where: { userId: id },
+            relations: [
+                "userRoles",
+                "userPassword",
+                "userBonusPoints",
+                "userMembers",
+                "userProfiles",
+            ]
         }).then((result: any) => {
             if (!result) {
                 throw new NotFoundException('Data not found');

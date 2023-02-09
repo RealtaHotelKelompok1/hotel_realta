@@ -163,6 +163,16 @@ VALUES ('Guest'),
 ('User');
 
 
+-- INSERT TABLE USERS
+-- INSERT TO TABLE users.roles
+INSERT INTO users.roles(role_name)
+VALUES ('Guest'),
+('Manager'),
+('Office Boy'),
+('Admin'),
+('User');
+
+
 -- INSERT TO TABLE users.users
 INSERT INTO users.users(
 user_full_name,
@@ -170,6 +180,7 @@ user_type,
 user_company_name,
 user_email,
 user_phone_number,
+user_isverified,
 user_modified_date
 ) VALUES 
 (
@@ -178,6 +189,7 @@ user_modified_date
 'muhtiTravel',
 'faqihpratamamuhti@gmail.com',
 '+6281212499837',
+1,
 '2023/01/08 03:00:00'
 ), 
 (
@@ -186,6 +198,7 @@ user_modified_date
 'MuhtiCorporate',
 'fadlipratamamuhti@gmail.com',
 '+6289342968303',
+1,
 '2023/01/08 02:00:00'
 ), 
 (
@@ -194,6 +207,7 @@ user_modified_date
 'muhtiIndividual',
 'firlyisnaenimuhti@gmail.com',
 '+6283920429405',
+1,
 '2023/01/07 01:00:00'
 ), 
 (
@@ -202,6 +216,7 @@ user_modified_date
 'muhtiTravel',
 'fitryamuhti@gmail.com',
 '+6285830596205',
+1,
 '2023/01/06 00:00:00'
 ), 
 (
@@ -210,6 +225,7 @@ user_modified_date
 'shinobiCorporate',
 'uzumakinaruto@gmail.com',
 '+6284320985945',
+1,
 '2023/01/05 23:00:00'
 ), 
 (
@@ -218,6 +234,7 @@ user_modified_date
 'shinobiIndividual',
 'uchihasasuke@gmail.com',
 '+6286565748375',
+1,
 '2023/01/04 22:00:00'
 ), 
 (
@@ -226,6 +243,7 @@ user_modified_date
 'shinobiTravel',
 'orochimaru@gmail.com',
 '+6281029384756',
+1,
 '2023/01/03 21:00:00'
 ), 
 (
@@ -234,6 +252,7 @@ user_modified_date
 'shinobiCorporate',
 'kakashihatake@gmail.com',
 '+6288745095382',
+1,
 '2023/01/02 20:00:00'
 ), 
 (
@@ -242,6 +261,7 @@ user_modified_date
 'shinobiIndividual',
 'uchihaitachi@gmail.com',
 '+6288473994839',
+1,
 '2023/01/01 19:00:00'
 ), 
 (
@@ -250,6 +270,7 @@ user_modified_date
 'shinobiTravel',
 'senjutsunade@gmail.com',
 '+62846392058396',
+1,
 '2023/01/02 18:00:00'
 ), 
 (
@@ -258,6 +279,7 @@ user_modified_date
 'shinobiCorporate',
 'uzumakinagato@gmail.com',
 '+6284590567834',
+1,
 '2023/01/03 17:00:00'
 ), 
 (
@@ -266,6 +288,7 @@ user_modified_date
 'shinobiIndividual',
 'uchihaobito@gmail.com',
 '+6281212495467',
+1,
 '2023/01/04 16:00:00'
 ), 
 (
@@ -274,6 +297,7 @@ user_modified_date
 'shinobiTravel',
 'sai@gmail.com',
 '+6281211234837',
+1,
 '2023/01/05 15:00:00'
 ), 
 (
@@ -282,6 +306,7 @@ user_modified_date
 'shinobiCorporate',
 'yahiko@gmail.com',
 '+6281234499837',
+1,
 '2023/01/06 14:00:00'
 ), 
 (
@@ -290,6 +315,7 @@ user_modified_date
 'shinobiIndividual',
 'hoshigakikisame@gmail.com',
 '+6281214321837',
+1,
 '2023/01/07 13:00:00'
 ), 
 (
@@ -298,6 +324,7 @@ user_modified_date
 'shinobiTravel',
 'jiraiya@gmail.com',
 '+6281212497654',
+1,
 '2023/01/08 12:00:00'
 ), 
 (
@@ -306,6 +333,7 @@ user_modified_date
 'shinobiCorporate',
 'senjutobirama@gmail.com',
 '+6284538798967',
+1,
 '2023/01/07 11:00:00'
 ), 
 (
@@ -314,6 +342,7 @@ user_modified_date
 'shinobiIndividual',
 'uchihashisui@gmail.com',
 '+6281456799837',
+1,
 '2023/01/06 10:00:00'
 ), 
 (
@@ -322,6 +351,7 @@ user_modified_date
 'shinobiTravel',
 'yakushikabuto@gmail.com',
 '+6285634344526',
+1,
 '2023/01/05 09:00:00'
 ), 
 (
@@ -330,6 +360,7 @@ user_modified_date
 'shinobiCorporate',
 'namikazeminato@gmail.com',
 '+62812124934627',
+1,
 '2023/01/04 08:00:00'
 ), 
 (
@@ -338,6 +369,7 @@ user_modified_date
 'shinobiIndividual',
 'lee@gmail.com',
 '+62835462897685',
+1,
 '2023/01/03 07:00:00'
 ), 
 (
@@ -346,6 +378,7 @@ user_modified_date
 'shinobiTravel',
 'momochizabuza@gmail.com',
 '+6285634123456',
+1,
 '2023/01/05 09:00:00'
 ), 
 (
@@ -354,6 +387,7 @@ user_modified_date
 'shinobiCorporate',
 'senjuhashirama@gmail.com',
 '+62812124912345',
+1,
 '2023/01/04 08:00:00'
 ), 
 (
@@ -362,6 +396,7 @@ user_modified_date
 'shinobiIndividual',
 'hyuuganeji@gmail.com',
 '+62835462899837',
+1,
 '2023/01/03 07:00:00'
 );
 
@@ -404,31 +439,31 @@ uspa_user_id,
 uspa_passwordHash,
 uspa_passwordSalt
 )
-VALUES
-(1, md5('password'),'md5'),
-(2, md5('password'),'md5'),
-(3, md5('password'),'md5'),
-(4, md5('password'),'md5'),
-(5, md5('password'),'md5'),
-(6, md5('password'),'md5'),
-(7, md5('password'),'md5'),
-(8, md5('password'),'md5'),
-(9, md5('password'),'md5'),
-(10, md5('password'),'md5'),
-(11, md5('password'),'md5'),
-(12, md5('password'),'md5'),
-(13, md5('password'),'md5'),
-(14, md5('password'),'md5'),
-(15, md5('password'),'md5'),
-(16, md5('password'),'md5'),
-(17, md5('password'),'md5'),
-(18, md5('password'),'md5'),
-(19, md5('password'),'md5'),
-(20, md5('password'),'md5'),
-(21, md5('password'),'md5'),
-(22, md5('password'),'md5'),
-(23, md5('password'),'md5'),
-(24, md5('password'),'md5');
+VALUES -- P@ssword!12345
+(1, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(2, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(3, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(4, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(5, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(6, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(7, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(8, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(9, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(10, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(11, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(12, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(13, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(14, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(15, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(16, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(17, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(18, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(19, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(20, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(21, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(22, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(23, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
+(24, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt');
 
 -- INSERT TO TABLE users.user_members
 INSERT INTO users.user_members
@@ -503,7 +538,6 @@ VALUES
 
 -- INSERT TO TABLE user_profiles
 INSERT INTO users.user_profiles(
-uspro_id,
 uspro_national_id, -- NO. KTP
 uspro_birth,
 uspro_job_title,
@@ -513,30 +547,30 @@ uspro_addr_id,
 uspro_user_id
 )
 VALUES
-(1,'345678910111213','1995/01/12','Full-Stack Developer','S','M',1,1),
-(2,'345678910111214','195/01/12','Mechanical Engineer','M','M',1,2),
-(3,'345678910111215','2004/01/04','Accountant','S','F',1,3),
-(4,'345678910111216','2013/09/29','Chef','M','F',1,4),
-(5,'345678910111217','1996/01/11','UI/UX Designer','S','M',1,5),
-(6,'345678910111218','1997/02/12','Database Administrator','M','M',2,6),
-(7,'345678910111219','1998/03/13','IT Support','S','M',3,7),
-(8,'345678910111220','1999/04/14','Data Analyst','M','M',4,8),
-(9,'345678910111221','1995/05/15','Doctor','S','F',5,9),
-(10,'345678910111222','1996/06/16','Librarian','M','M',6,10),
-(11,'345678910111223','1997/01/17','Entrepreneur','M','M',7,11),
-(12,'345678910111224','1998/08/18','Public Relations','S','M',8,12),
-(13,'345678910111225','1999/09/19','Programmer','M','M',9,13),
-(14,'345678910111226','1995/10/20','Data Analyst','M','M',10,14),
-(15,'345678910111227','1991/01/21','Database Administrator','M','M',11,15),
-(16,'345678910111228','1992/02/22','Mechanical Engineer','S','M',12,16),
-(17,'345678910111229','1993/03/23','Electrical Engineer','M','M',13,17),
-(18,'345678910111230','1994/04/24','IT Support','S','M',14,18),
-(19,'345678910111231','1995/05/25','Software Engineer','M','M',15,19),
-(20,'345678910111232','1996/06/26','Data Analyst','M','M',16,20),
-(21,'345678910111233','1997/07/27','IT Suppurt','S','M',17,21),
-(22,'345678910111234','1998/08/28','Database Administrator','M','M',18,22),
-(23,'345678910111235','1999/09/29','Chef','S','M',19,23),
-(24,'345678910111236','2000/10/30','Doctor','M','M',20,24);
+('345678910111213','1995/01/12','Full-Stack Developer','S','M',1,1),
+('345678910111214','195/01/12','Mechanical Engineer','M','M',1,2),
+('345678910111215','2004/01/04','Accountant','S','F',1,3),
+('345678910111216','2013/09/29','Chef','M','F',1,4),
+('345678910111217','1996/01/11','UI/UX Designer','S','M',1,5),
+('345678910111218','1997/02/12','Database Administrator','M','M',2,6),
+('345678910111219','1998/03/13','IT Support','S','M',3,7),
+('345678910111220','1999/04/14','Data Analyst','M','M',4,8),
+('345678910111221','1995/05/15','Doctor','S','F',5,9),
+('345678910111222','1996/06/16','Librarian','M','M',6,10),
+('345678910111223','1997/01/17','Entrepreneur','M','M',7,11),
+('345678910111224','1998/08/18','Public Relations','S','M',8,12),
+('345678910111225','1999/09/19','Programmer','M','M',9,13),
+('345678910111226','1995/10/20','Data Analyst','M','M',10,14),
+('345678910111227','1991/01/21','Database Administrator','M','M',11,15),
+('345678910111228','1992/02/22','Mechanical Engineer','S','M',12,16),
+('345678910111229','1993/03/23','Electrical Engineer','M','M',13,17),
+('345678910111230','1994/04/24','IT Support','S','M',14,18),
+('345678910111231','1995/05/25','Software Engineer','M','M',15,19),
+('345678910111232','1996/06/26','Data Analyst','M','M',16,20),
+('345678910111233','1997/07/27','IT Suppurt','S','M',17,21),
+('345678910111234','1998/08/28','Database Administrator','M','M',18,22),
+('345678910111235','1999/09/29','Chef','S','M',19,23),
+('345678910111236','2000/10/30','Doctor','M','M',20,24);
 
 -- INSERT TABLE HOTEL
 
