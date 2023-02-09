@@ -53,22 +53,23 @@ export class BankService {
   }
 
   async update(id: number, dataToUpdate: BankDto) {
-    return await this.BankRepository.update(
-      // Criteria
-      {
-        bankEntityId: id,
-      },
-      dataToUpdate,
-    )
-      .then((result) => {
-        return result;
-      })
-      .then((err) => {
-        return new HttpException(
-          { error: `Bank with ID ${id} is not found!` + err },
-          HttpStatus.NOT_FOUND,
-        );
+    // Check if bank exists.
+    const bankExists = await this.find(id);
+
+    // Return error if bank is not exists, else delete bank by ID
+    if (bankExists instanceof HttpException) {
+      return bankExists.getResponse();
+    } else {
+      return await this.BankRepository.update(
+        // Criteria
+        {
+          bankEntityId: id,
+        },
+        dataToUpdate,
+      ).then(() => {
+        return `Bank with ID ${id} is successfully updated!`;
       });
+    }
   }
 
   async insert(newData: BankDto) {
@@ -94,7 +95,7 @@ export class BankService {
     } else {
       return await this.BankRepository.delete(id).then(() => {
         return `Bank with ID ${id} is successfully deleted!`;
-      })
+      });
     }
   }
 }
