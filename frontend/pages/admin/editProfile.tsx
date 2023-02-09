@@ -12,7 +12,7 @@ interface Props {
   dirs: string[];
 }
 
-const EditUserPhoto: NextPage<Props> = ({ dirs })=> {
+const EditProfile: NextPage<Props> = ({ dirs })=> {
   const router = useRouter();
   const [uploading, setUploading] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
@@ -103,4 +103,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 };
 
-export default EditUserPhoto;
+export default EditProfile;

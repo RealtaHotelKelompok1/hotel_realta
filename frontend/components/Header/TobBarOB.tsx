@@ -24,9 +24,9 @@ export default function TopBarOB({ showNav, setShowNav }:any) {
     router.push('/auth/signin');
   };
 
-  const handleEditUserPhoto = () => {
-    router.push('/admin/editProfile');
-  };
+  // const handleEditProfile = () => {
+  //   router.push('/admin/editProfile');
+  // };
 
   return (
     <div
@@ -149,7 +149,8 @@ export default function TopBarOB({ showNav, setShowNav }:any) {
                 <Menu.Item>
                   <Button
                     className="shadow-lg pl-3 px-4 py-2 mx-auto rounded-md items-center bg-orange-100 text-left text-sm font-medium normal-case text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-75"
-                    onClick={handleEditUserPhoto}>
+                    // onClick={handleEditProfile}
+                  >
                     <PencilIcon className="h-4 w-4 mr-2" />{"Profile"}
                   </Button>
                 </Menu.Item>
