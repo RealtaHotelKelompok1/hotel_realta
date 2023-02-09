@@ -516,6 +516,8 @@ create table purchasing.purchase_order_detail(
 
 );
 
+alter table purchasing.purchase_order_detail add column pode_stock_id integer
+
 create table purchasing.stock_detail(
 	stod_stock_id integer,
 	stod_id serial,
