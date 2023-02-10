@@ -19,6 +19,7 @@ import LayoutAdmin from '@/components/Layout/LayoutAdmin';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Visibility from '@mui/icons-material/Visibility';
 import moment from "moment";
+import { useRouter } from 'next/router';
 
 export default function UsersUsers() {
   // defaine themes
@@ -104,6 +105,9 @@ export default function UsersUsers() {
   function openModalAdd() {
     setIsOpenAdd(true)
   }
+
+  // useRouter 
+  const router = useRouter();
 
   // useDispatch API POST users
   const dispatchAdd = useDispatch();
