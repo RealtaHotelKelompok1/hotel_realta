@@ -207,6 +207,7 @@ const EditProfile: NextPage<Props> = ({ dirs }) => {
     dispatchEdit(doUpdateUsers(DataUserEdit.userId, values));
     setTimeout(() => {
       setIsOpenEdit(false);
+      router.reload()
     }, 500);
     setSubmitting(false);
   };
