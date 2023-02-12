@@ -244,7 +244,6 @@ export default function UsersUsers() {
 
   // function handler API PUT user
   const handleEdit = (id: number) => {
-    console.info(id)
     const displayedPayload:any = dispatchEdit(doUserRequest(id));
     if (displayedPayload.payload == id) {
       if (user) {
