@@ -19,22 +19,61 @@ import Input from '@mui/material/Input';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Visibility from '@mui/icons-material/Visibility';
 import moment from "moment";
+import Cookies from 'js-cookie';
 
 interface Props {
   dirs: string[];
 }
 
 const EditProfile: NextPage<Props> = ({ dirs }) => {
-  const [userIDProfile, setUserIDProfile] = useState(null);
+  const userId = Cookies.get("userId");
+  console.info(userId);
   const [uploading, setUploading] = useState(false);
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedFile, setSelectedFile] = useState<File>();
   const dispatchEditPhoto = useDispatch();
+  const [profile, setProfile] = useState({
+    user_id: null,
+    user_full_name: null,
+    user_company_name: null,
+    user_type: null,
+    user_email: null,
+    user_phone_number: null,
+    uspa_passwordhash: null,
+    ubpo_total_points: null,
+    ubpo_bonus_type: null,
+    usme_memb_name: null,
+    usme_points: null,
+    usme_type: null,
+    usro_role: null,
+    uspro_national_id: null,
+    uspro_birth: "",
+    uspro_job_title: null,
+    uspro_marital_status: null,
+    uspro_gender: null,
+    uspro_addr: null,
+    uspro_photo:null
+  });
 
+  useEffect(() => {
+    const id: any = userId;
+    const displayedPayload: any = dispatchEdit(doUserRequest(id));
+    if (displayedPayload.payload == id) {
+      if (user) {
+        if (user.results) {
+          const displayedUser: any = user.results[0];
+          if (displayedUser) {
+            if (displayedUser.user_id == id) {
+              setProfile(displayedUser);
+            }
+          }
+        }
+      }
+    }
+  });
 
   const handleUpload = async () => {
-    const userId: any = localStorage.getItem("userId");
-    setUserIDProfile(userId)
+    // const userId: any = localStorage.getItem("userId");
     setUploading(true);
     try {
 
@@ -154,8 +193,7 @@ const EditProfile: NextPage<Props> = ({ dirs }) => {
 
   // function handler API PUT user
   const handleEdit = () => {
-    const id: any = localStorage.getItem("userId");
-    setUserIDProfile(id);
+    const id: any = userId;
     const displayedPayload:any = dispatchEdit(doUserRequest(id));
     if (displayedPayload.payload == id) {
       if (user) {
@@ -205,7 +243,7 @@ const EditProfile: NextPage<Props> = ({ dirs }) => {
     setTimeout(() => {
       setIsOpenEdit(false);
       dispatchEdit(doUserRequest(DataUserEdit.userId));
-      setUserIDProfile(DataUserEdit.userId);
+      // setUserIDProfile(DataUserEdit.userId);
     }, 500);
     setSubmitting(false);
   };
@@ -214,49 +252,6 @@ const EditProfile: NextPage<Props> = ({ dirs }) => {
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-
-  let [profile, setProfile] = useState({
-    user_id: null,
-    user_full_name: null,
-    user_company_name: null,
-    user_type: null,
-    user_email: null,
-    user_phone_number: null,
-    uspa_passwordhash: null,
-    ubpo_total_points: null,
-    ubpo_bonus_type: null,
-    usme_memb_name: null,
-    usme_points: null,
-    usme_type: null,
-    usro_role: null,
-    uspro_national_id: null,
-    uspro_birth: "",
-    uspro_job_title: null,
-    uspro_marital_status: null,
-    uspro_gender: null,
-    uspro_addr: null,
-    uspro_photo:null
-  });
-
-  useEffect(() => {
-    const id: any = localStorage.getItem("userId");
-    setUserIDProfile(id);
-    const displayedPayload: any = dispatchEdit(doUserRequest(userIDProfile?userIDProfile:id));
-    if (displayedPayload.payload == userIDProfile?userIDProfile:id) {
-      if (user) {
-        if (user.results) {
-          const displayedUser: any = user.results[0];
-          if (displayedUser) {
-            if (displayedUser.user_id == userIDProfile?userIDProfile:id) {
-              setProfile(displayedUser);
-            }
-          }
-        }
-      }
-    }
-  }, []);
-
-  console.info(profile);
   
     return (
       <>

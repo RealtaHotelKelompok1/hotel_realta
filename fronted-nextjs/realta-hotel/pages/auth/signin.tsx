@@ -13,6 +13,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import styles from '../../styles/FormSignIn.module.css';
 import LayoutSignIn from '@/components/Layout/LayoutSignIn';
 import { doLogin } from '@/redux/Actions/Users/reduceActions';
+import Cookies from 'js-cookie';
 
 export default function SignIn() {
   
@@ -47,6 +48,8 @@ export default function SignIn() {
       localStorage.setItem('userId', isLogin.userdata[0].user_id);
       localStorage.setItem('userPhoto', isLogin.userdata[0].uspro_photo);
       localStorage.setItem('userFullName', isLogin.userdata[0].user_full_name);
+      Cookies.set('userId', isLogin.userdata[0].user_id);
+      sessionStorage.setItem('userId', isLogin.userdata[0].user_id);
       if (isLogin.userdata[0].usro_role_id == 1) {        // Guest
         router.push('/');
       } else if (isLogin.userdata[0].usro_role_id == 2) { // Manager
