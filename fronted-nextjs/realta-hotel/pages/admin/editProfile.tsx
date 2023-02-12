@@ -240,6 +240,7 @@ const EditProfile: NextPage<Props> = ({ dirs }) => {
 
   useEffect(() => {
     const id: any = localStorage.getItem("userId");
+    setUserIDProfile(id);
     const displayedPayload: any = dispatchEdit(doUserRequest(userIDProfile?userIDProfile:id));
     if (displayedPayload.payload == userIDProfile?userIDProfile:id) {
       if (user) {
