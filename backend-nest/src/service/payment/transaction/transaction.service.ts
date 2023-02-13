@@ -9,9 +9,8 @@ export class TransactionService {
     constructor(
         @InjectRepository(PaymentTransaction)
         private paymentTransactionRepository: Repository<PaymentTransaction>
-    ) { }
-    
-    // TODO: Find by filter (transaction ID, transaction type, user id, transaction number, source id)
+    ) {}
+
     async find(query?: string) {
         if (query) {
             return await this.paymentTransactionRepository.query(query)
