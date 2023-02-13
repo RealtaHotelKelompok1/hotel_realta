@@ -166,14 +166,14 @@ CREATE TABLE users.user_profiles(
 CREATE TABLE users.user_roles(
 	usro_user_id INT,
 	usro_role_id INT,
-	PRIMARY KEY (usro_user_id),
+	CONSTRAINT pk_usro_user_id PRIMARY KEY (usro_user_id),
 	CONSTRAINT fk_usro_user_id FOREIGN KEY (usro_user_id)
 		REFERENCES users.users(user_id)
 			ON DELETE CASCADE
 			ON UPDATE CASCADE,
 	CONSTRAINT fk_usro_role_id FOREIGN KEY (usro_role_id)
 		REFERENCES users.roles(role_id)
-			ON DELETE CASCADE
+			ON DELETE RESTRICT
 			ON UPDATE CASCADE
 );
 
@@ -521,7 +521,7 @@ create table purchasing.purchase_order_detail(
 
 );
 
-alter table purchasing.purchase_order_detail add column pode_stock_id integer
+alter table purchasing.purchase_order_detail add column pode_stock_id integer;
 
 create table purchasing.stock_detail(
 	stod_stock_id integer,

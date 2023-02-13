@@ -19,6 +19,7 @@ import LayoutAdmin from '@/components/Layout/LayoutAdmin';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Visibility from '@mui/icons-material/Visibility';
 import moment from "moment";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function UsersUsers() {
   // defaine themes
@@ -54,12 +55,12 @@ export default function UsersUsers() {
         <GridActionsCellItem
           icon={<EditIcon color='warning' />}
           label="Edit"
-          onClick={() => handleEdit(row.id)}
+          onClick={() => handleEdit(row.row.userId)}
         />,
         <GridActionsCellItem
           icon={<DeleteIcon color='warning' />}
           label="Delete"
-          onClick={() => handleDelete(row.id)}
+          onClick={() => handleDelete(row.row.userId)}
         />,
       ],
     },
@@ -290,6 +291,7 @@ export default function UsersUsers() {
     setSubmitting(true);
     dispatchEdit(doUpdateUsers(DataUserEdit.userId, values));
     setTimeout(() => {
+      localStorage.setItem('userFullNameNew', values.userFullName);
       dispatch(doUsersRequest());
       setIsOpenEdit(false);
     }, 500);
@@ -312,6 +314,12 @@ export default function UsersUsers() {
     event.preventDefault();
   };
 
+  const DataWithId = Data.map((row:any) => ({
+    ...row,
+    id: uuidv4(),
+    userId: row.userId
+  }));
+
   return (
     <Box>
       <Head>
@@ -319,7 +327,7 @@ export default function UsersUsers() {
       </Head>
       <LayoutAdmin>
 
-      <p className="text-gray-700 text-3xl mb-16 font-bold">Users / Users</p>
+      <p className="text-gray-700 text-3xl mb-8 font-bold">Users / Users</p>
       <ButtonGroup className="align-middle bg-gray">
         <Button
             type="button"
@@ -830,7 +838,7 @@ export default function UsersUsers() {
                               fullWidth
                               variant="filled"
                               type="text"
-                              label="First Name"
+                              label="Full Name"
                               onBlur={handleBlur}
                               onChange={(event) => {eventHandlerEdit('userFullName')(event); handleChange(event)}}
                               value={values.userFullName?values.userFullName:values.userFullName=DataUserEdit.userFullName}                            
@@ -848,7 +856,7 @@ export default function UsersUsers() {
                               type="date"
                               label="Birth"
                               onBlur={handleBlur}
-                              onChange={(event) => {eventHandlerAdd('usproBirth')(event); handleChange(event)}}
+                              onChange={(event) => {eventHandlerEdit('usproBirth')(event); handleChange(event)}}
                               value={values.usproBirth?values.usproBirth:values.usproBirth=DataUserEdit.usproBirth}
                               name="usproBirth"
                               error={!!touched.usproBirth && !!errors.usproBirth}
@@ -867,7 +875,7 @@ export default function UsersUsers() {
                                 className='form-control'
                                 label="Gender"
                                 onBlur={handleBlur}                             
-                                onChange={(event) => {eventHandlerAdd('usproGender')(event); handleChange(event)}}
+                                onChange={(event) => {eventHandlerEdit('usproGender')(event); handleChange(event)}}
                                 value={values.usproGender?values.usproGender:values.usproGender=DataUserEdit.usproGender}
                                 name="usproGender"
                                 error={!!touched.usproGender && !!errors.usproGender}
@@ -891,7 +899,7 @@ export default function UsersUsers() {
                                 className='form-control'
                                 label="Marital Status"
                                 onBlur={handleBlur}                             
-                                onChange={(event) => {eventHandlerAdd('usproMaritalStatus')(event); handleChange(event)}}
+                                onChange={(event) => {eventHandlerEdit('usproMaritalStatus')(event); handleChange(event)}}
                                 value={values.usproMaritalStatus?values.usproMaritalStatus:values.usproMaritalStatus=DataUserEdit.usproMaritalStatus}
                                 name="usproMaritalStatus"
                                 error={!!touched.usproMaritalStatus && !!errors.usproMaritalStatus}
@@ -964,7 +972,7 @@ export default function UsersUsers() {
                               }}
                               label="Password"
                               onBlur={handleBlur}
-                              onChange={(event) => {eventHandlerAdd('uspaPasswordhash')(event); handleChange(event)}}
+                              onChange={(event) => {eventHandlerEdit('uspaPasswordhash')(event); handleChange(event)}}
                               value={values.uspaPasswordhash}
                               name="uspaPasswordhash"
                               error={!!touched.uspaPasswordhash && !!errors.uspaPasswordhash}
@@ -996,7 +1004,7 @@ export default function UsersUsers() {
                               type="text"
                               label="National ID"
                               onBlur={handleBlur}
-                              onChange={(event) => {eventHandlerAdd('usproNationalId')(event); handleChange(event)}}
+                              onChange={(event) => {eventHandlerEdit('usproNationalId')(event); handleChange(event)}}
                               value={values.usproNationalId?values.usproNationalId:values.usproNationalId=DataUserEdit.usproNationalId}
                               name="usproNationalId"
                               error={!!touched.usproNationalId && !!errors.usproNationalId}
@@ -1030,7 +1038,7 @@ export default function UsersUsers() {
                               type="text"
                               label="Job Title"
                               onBlur={handleBlur}
-                              onChange={(event) => {eventHandlerAdd('usproJobTitle')(event); handleChange(event)}}
+                              onChange={(event) => {eventHandlerEdit('usproJobTitle')(event); handleChange(event)}}
                               value={values.usproJobTitle?values.usproJobTitle:values.usproJobTitle=DataUserEdit.usproJobTitle}
                               name="usproJobTitle"
                               error={!!touched.usproJobTitle && !!errors.usproJobTitle}
@@ -1049,7 +1057,7 @@ export default function UsersUsers() {
                                 className='form-control'
                                 label="Member Type"
                                 onBlur={handleBlur}                             
-                                onChange={(event) => {eventHandlerAdd('usmeType')(event); handleChange(event)}}
+                                onChange={(event) => {eventHandlerEdit('usmeType')(event); handleChange(event)}}
                                 value={values.usmeType?values.usmeType:values.usmeType=DataUserEdit.usmeType}
                                 name="usmeType"
                                 error={!!touched.usmeType && !!errors.usmeType}
@@ -1073,7 +1081,7 @@ export default function UsersUsers() {
                                 className='form-control'
                                 label="Member Name"
                                 onBlur={handleBlur}                             
-                                onChange={(event) => {eventHandlerAdd('usmeMembName')(event); handleChange(event)}}
+                                onChange={(event) => {eventHandlerEdit('usmeMembName')(event); handleChange(event)}}
                                 value={values.usmeMembName?values.usmeMembName:values.usmeMembName=DataUserEdit.usmeMembName}
                                 name="usmeMembName"
                                 error={!!touched.usmeMembName && !!errors.usmeMembName}
@@ -1096,7 +1104,7 @@ export default function UsersUsers() {
                               type="number"
                               label="Member Points"
                               onBlur={handleBlur}
-                              onChange={(event) => {eventHandlerAdd('usmePoints')(event); handleChange(event)}}
+                              onChange={(event) => {eventHandlerEdit('usmePoints')(event); handleChange(event)}}
                               value={values.usmePoints?values.usmePoints:values.usmePoints=DataUserEdit.usmePoints}
                               name="usmePoints"
                               error={!!touched.usmePoints && !!errors.usmePoints}
@@ -1115,7 +1123,7 @@ export default function UsersUsers() {
                                 className='form-control'
                                 label="Bonus Type"
                                 onBlur={handleBlur}                             
-                                onChange={(event) => {eventHandlerAdd('ubpoBonusType')(event); handleChange(event)}}
+                                onChange={(event) => {eventHandlerEdit('ubpoBonusType')(event); handleChange(event)}}
                                 value={values.ubpoBonusType?values.ubpoBonusType:values.ubpoBonusType=DataUserEdit.ubpoBonusType}
                                 name="ubpoBonusType"
                                 error={!!touched.ubpoBonusType && !!errors.ubpoBonusType}
@@ -1136,7 +1144,7 @@ export default function UsersUsers() {
                               type="number"
                               label="Total Bonus Points"
                               onBlur={handleBlur}
-                              onChange={(event) => {eventHandlerAdd('ubpoTotalPoints')(event); handleChange(event)}}
+                              onChange={(event) => {eventHandlerEdit('ubpoTotalPoints')(event); handleChange(event)}}
                               value={values.ubpoTotalPoints?values.ubpoTotalPoints:values.ubpoTotalPoints=DataUserEdit.ubpoTotalPoints}
                               name="ubpoTotalPoints"
                               error={!!touched.ubpoTotalPoints && !!errors.ubpoTotalPoints}
@@ -1155,7 +1163,7 @@ export default function UsersUsers() {
                                 className='form-control'
                                 label="Role"
                                 onBlur={handleBlur}                             
-                                onChange={(event) => {eventHandlerAdd('usroRole')(event); handleChange(event)}}
+                                onChange={(event) => {eventHandlerEdit('usroRole')(event); handleChange(event)}}
                                 value={values.usroRole?values.usroRole:values.usroRole=DataUserEdit.usroRole}
                                 name="usroRole"
                                 error={!!touched.usroRole && !!errors.usroRole}
@@ -1269,9 +1277,9 @@ export default function UsersUsers() {
             autoHeight
             pageSize={5}
             rowsPerPageOptions={[5, 10, 15, 20]}
-            rows={Data}
+            rows={DataWithId}
             columns={columns}
-            getRowId={(row: any) => row.userId}
+            getRowId={(rows:any) => rows.id}
             components={{ Toolbar: GridToolbar }} 
           />
         }
