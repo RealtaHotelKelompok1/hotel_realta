@@ -6,6 +6,8 @@ export declare class UserAccounts {
     usacAccountNumber: string | null;
     usacSaldo: string | null;
     usacType: string | null;
+    usacCardHolderName: string | null;
+    usacSecuredKey: string;
     usacExpmonth: number | null;
     usacExpyear: number | null;
     usacModifiedDate: Date | null;

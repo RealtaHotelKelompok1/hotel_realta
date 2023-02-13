@@ -14,6 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserAccountsController = void 0;
 const common_1 = require("@nestjs/common");
+const route_params_decorator_1 = require("@nestjs/common/decorators/http/route-params.decorator");
+const userAccounts_dto_1 = require("../../../dto/userAccounts.dto");
 const user_accounts_service_1 = require("../../../service/payment/user_accounts/user_accounts.service");
 let UserAccountsController = class UserAccountsController {
     constructor(userAccountsService) {
@@ -22,16 +24,36 @@ let UserAccountsController = class UserAccountsController {
     async findAllAccounts() {
         return await this.userAccountsService.find();
     }
-    async findByUserId(usacUserId) {
-        return await this.userAccountsService.find({ usacUserId });
+    async findByFilter(filter) {
+        switch (true) {
+            case filter.userId != undefined:
+                return await this.userAccountsService.find(`
+					SELECT *
+					FROM payment.user_payment_methods
+					WHERE userId = ${filter.userId}
+					`);
+            case filter.userName != undefined:
+                return await this.userAccountsService.find(`
+					SELECT *
+					FROM payment.user_payment_methods
+					WHERE fullName ILIKE '%${filter.userName}%'
+					`);
+            case filter.accountNumber != undefined:
+                return await this.userAccountsService.find(`
+					SELECT *
+					FROM payment.user_payment_methods
+					WHERE accountNumber = '${filter.accountNumber}'
+					`);
+        }
     }
-    async findByAccountNumber(accountNumber) {
-        return await this.userAccountsService.find({
-            usacAccountNumber: accountNumber,
-        });
+    async addAccount(body) {
+        return await this.userAccountsService.create(body);
     }
-    async findDompetRealtaAccount(usacType) {
-        return await this.userAccountsService.find({ usacType });
+    async updateAccount(accountNumber, body) {
+        return await this.userAccountsService.update(accountNumber, body);
+    }
+    async deleteAccouunt(accountNumber) {
+        return await this.userAccountsService.delete(accountNumber);
     }
 };
 __decorate([
@@ -41,24 +63,34 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserAccountsController.prototype, "findAllAccounts", null);
 __decorate([
-    (0, common_1.Get)('findByFilter'),
-    __param(0, (0, common_1.Query)('userId')),
+    (0, common_1.Get)('filter?'),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], UserAccountsController.prototype, "findByUserId", null);
+], UserAccountsController.prototype, "findByFilter", null);
 __decorate([
-    __param(0, (0, common_1.Query)('accountNumber')),
+    (0, common_1.Post)('add'),
+    __param(0, (0, route_params_decorator_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [userAccounts_dto_1.UserAccountsDto]),
     __metadata("design:returntype", Promise)
-], UserAccountsController.prototype, "findByAccountNumber", null);
+], UserAccountsController.prototype, "addAccount", null);
 __decorate([
-    __param(0, (0, common_1.Query)('accountType')),
+    (0, common_1.Put)('/:accountNumber'),
+    __param(0, (0, route_params_decorator_1.Param)('accountNumber')),
+    __param(1, (0, route_params_decorator_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
-], UserAccountsController.prototype, "findDompetRealtaAccount", null);
+], UserAccountsController.prototype, "updateAccount", null);
+__decorate([
+    (0, common_1.Delete)('/:accountNumber'),
+    __param(0, (0, route_params_decorator_1.Param)('accountNumber')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserAccountsController.prototype, "deleteAccouunt", null);
 UserAccountsController = __decorate([
     (0, common_1.Controller)('user-accounts'),
     __metadata("design:paramtypes", [user_accounts_service_1.UserAccountsService])

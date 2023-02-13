@@ -45,6 +45,22 @@ __decorate([
     __metadata("design:type", String)
 ], UserAccounts.prototype, "usacType", void 0);
 __decorate([
+    (0, typeorm_1.Column)('character varying', {
+        name: 'usac_card_holder_name',
+        nullable: true,
+        length: 50
+    }),
+    __metadata("design:type", String)
+], UserAccounts.prototype, "usacCardHolderName", void 0);
+__decorate([
+    (0, typeorm_1.Column)('character varying', {
+        name: 'usac_secured_key',
+        nullable: false,
+        length: 255
+    }),
+    __metadata("design:type", String)
+], UserAccounts.prototype, "usacSecuredKey", void 0);
+__decorate([
     (0, typeorm_1.Column)('smallint', { name: 'usac_expmonth', nullable: true }),
     __metadata("design:type", Number)
 ], UserAccounts.prototype, "usacExpmonth", void 0);
