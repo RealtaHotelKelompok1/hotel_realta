@@ -11,7 +11,7 @@ export class TransactionController {
         return await this.paymentTransactionService.find()
     }
 
-    @Get()
+    @Get('filter?')
     async findByFilter(@Query() filter: {
         transactionId?: number;
         userId?: number;
@@ -72,7 +72,7 @@ export class TransactionController {
 
     }
 
-    @Post()
+    @Post('new')
     async createTransaction(@Body() body: PaymentTransactionDto) {
         return await this.paymentTransactionService.create(body);
     }
