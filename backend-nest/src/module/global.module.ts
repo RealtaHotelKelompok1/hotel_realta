@@ -100,6 +100,8 @@ import { UserAccountsController } from 'src/controller/payment/user_accounts/use
 import { BankService } from 'src/service/payment/bank/bank.service';
 import { PaymentGateawayService } from 'src/service/payment/payment_gateaway/payment_gateaway.service';
 import { UserAccountsService } from 'src/service/payment/user_accounts/user_accounts.service';
+import { TransactionController } from 'src/controller/payment/transaction/transaction.controller';
+import { TransactionService } from 'src/service/payment/transaction/transaction.service';
 
 @Module({
   imports: [
@@ -187,6 +189,8 @@ import { UserAccountsService } from 'src/service/payment/user_accounts/user_acco
     BankController,
     PaymentGateawayController,
     UserAccountsController,
+    TransactionController,
+
     /* PURCHASING */
     /* MASTER */
   ],
@@ -227,6 +231,8 @@ import { UserAccountsService } from 'src/service/payment/user_accounts/user_acco
     BankService,
     PaymentGateawayService,
     UserAccountsService,
+    TransactionService,
+    
     /* PURCHASING */
     /* MASTER */
   ],

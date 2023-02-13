@@ -55,15 +55,17 @@ let BankService = class BankService {
         });
     }
     async update(id, dataToUpdate) {
-        return await this.BankRepository.update({
-            bankEntityId: id,
-        }, dataToUpdate)
-            .then((result) => {
-            return result;
-        })
-            .then((err) => {
-            return new common_1.HttpException({ error: `Bank with ID ${id} is not found!` + err }, common_1.HttpStatus.NOT_FOUND);
-        });
+        const bankExists = await this.find(id);
+        if (bankExists instanceof common_1.HttpException) {
+            return bankExists.getResponse();
+        }
+        else {
+            return await this.BankRepository.update({
+                bankEntityId: id,
+            }, dataToUpdate).then(() => {
+                return `Bank with ID ${id} is successfully updated!`;
+            });
+        }
     }
     async insert(newData) {
         return await this.BankRepository.query(`CALL payment.InsertBank($1, $2)`, [

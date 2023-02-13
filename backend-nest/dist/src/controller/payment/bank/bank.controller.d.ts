@@ -5,7 +5,7 @@ export declare class BankController {
     constructor(bankService: BankService);
     findAllBank(): Promise<any>;
     findBankById(id: number): Promise<any>;
-    updateBank(id: number, body: BankDto): Promise<import("@nestjs/common").HttpException>;
+    updateBank(id: number, body: BankDto): Promise<string | object>;
     insertBank(body: BankDto): Promise<any>;
     deleteBank(id: number): Promise<string | object>;
 }
