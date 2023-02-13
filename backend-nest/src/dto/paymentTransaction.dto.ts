@@ -1,8 +1,17 @@
+import { IsOptional } from 'class-validator';
+
 export class PaymentTransactionDto {
     userId: number;
-    amount: number;
-    note: string;
+    
+    @IsOptional()
     orderNumber: string;
+
+    paymentType: string;
+
+    @IsOptional()
+    transactionType: string;
+    
+    amount: number;
     sourceNumber: string;
     targetNumber: string;
 }
