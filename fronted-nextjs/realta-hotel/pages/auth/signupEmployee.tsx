@@ -196,7 +196,7 @@ export default function SignUpEmployee() {
     uspaPasswordhash: "",
     uspaConfirmPasswordhash: "",
     userPhoneNumber: "",
-    countryCode: "",
+    countryCode: "+62",
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -385,6 +385,7 @@ export default function SignUpEmployee() {
                     className="border border-gray-700"
                     variant="outlined"
                     type="number"
+                    placeholder="Phone Number"
                     onBlur={handleBlur}
                     onChange={(event) => {eventHandlerAdd('userPhoneNumber')(event); handleChange(event);}}
                     value={values.userPhoneNumber}
