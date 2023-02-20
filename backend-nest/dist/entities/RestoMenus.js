@@ -17,40 +17,40 @@ const Facilities_1 = require("./Facilities");
 let RestoMenus = class RestoMenus {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ type: "integer", name: "reme_id" }),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ type: 'integer', name: 'reme_id' }),
     __metadata("design:type", Number)
 ], RestoMenus.prototype, "remeId", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", {
-        name: "reme_name",
+    (0, typeorm_1.Column)('character varying', {
+        name: 'reme_name',
         nullable: true,
         length: 55,
     }),
     __metadata("design:type", String)
 ], RestoMenus.prototype, "remeName", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", {
-        name: "reme_description",
+    (0, typeorm_1.Column)('character varying', {
+        name: 'reme_description',
         nullable: true,
         length: 255,
     }),
     __metadata("design:type", String)
 ], RestoMenus.prototype, "remeDescription", void 0);
 __decorate([
-    (0, typeorm_1.Column)("money", { name: "reme_price", nullable: true }),
+    (0, typeorm_1.Column)('money', { name: 'reme_price', nullable: true }),
     __metadata("design:type", String)
 ], RestoMenus.prototype, "remePrice", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", {
-        name: "reme_status",
+    (0, typeorm_1.Column)('character varying', {
+        name: 'reme_status',
         nullable: true,
         length: 15,
     }),
     __metadata("design:type", String)
 ], RestoMenus.prototype, "remeStatus", void 0);
 __decorate([
-    (0, typeorm_1.Column)("timestamp without time zone", {
-        name: "reme_modified_date",
+    (0, typeorm_1.Column)('timestamp without time zone', {
+        name: 'reme_modified_date',
         nullable: true,
     }),
     __metadata("design:type", Date)
@@ -65,15 +65,15 @@ __decorate([
 ], RestoMenus.prototype, "restoMenuPhotos", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Facilities_1.Facilities, (facilities) => facilities.restoMenus, {
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
     }),
-    (0, typeorm_1.JoinColumn)([{ name: "reme_faci_id", referencedColumnName: "faciId" }]),
+    (0, typeorm_1.JoinColumn)([{ name: 'reme_faci_id', referencedColumnName: 'faciId' }]),
     __metadata("design:type", Facilities_1.Facilities)
 ], RestoMenus.prototype, "remeFaci", void 0);
 RestoMenus = __decorate([
-    (0, typeorm_1.Index)("pk_resto_menus", ["remeId"], { unique: true }),
-    (0, typeorm_1.Entity)("resto_menus", { schema: "resto" })
+    (0, typeorm_1.Index)('pk_resto_menus', ['remeId'], { unique: true }),
+    (0, typeorm_1.Entity)('resto_menus', { schema: 'resto' })
 ], RestoMenus);
 exports.RestoMenus = RestoMenus;
 //# sourceMappingURL=RestoMenus.js.map

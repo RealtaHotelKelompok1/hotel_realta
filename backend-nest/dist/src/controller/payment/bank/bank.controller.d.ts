@@ -1,12 +1,11 @@
-import { HttpException } from '@nestjs/common';
 import { BankService } from 'src/service/payment/bank/bank.service';
-import { BankDto } from './bank.dto';
+import { BankDto } from 'src/dto/bank.dto';
 export declare class BankController {
     private bankService;
     constructor(bankService: BankService);
-    findAllBank(): Promise<import("../../../../entities/Bank").Bank | import("../../../../entities/Bank").Bank[]>;
-    findBankById(id: number): Promise<import("../../../../entities/Bank").Bank | HttpException | import("../../../../entities/Bank").Bank[]>;
-    updateBank(id: number, body: BankDto): Promise<import("../../../../entities/Bank").Bank | HttpException | import("../../../../entities/Bank").Bank[]>;
-    insertBank(body: BankDto): Promise<import("typeorm").InsertResult>;
-    deleteBank(id: number): Promise<string>;
+    findAllBank(): Promise<any>;
+    findBankById(id: number): Promise<any>;
+    updateBank(id: number, body: BankDto): Promise<string | object>;
+    insertBank(body: BankDto): Promise<any>;
+    deleteBank(id: number): Promise<string | object>;
 }

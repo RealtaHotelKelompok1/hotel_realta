@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymentGateawayController = void 0;
 const common_1 = require("@nestjs/common");
 const payment_gateaway_service_1 = require("../../../service/payment/payment_gateaway/payment_gateaway.service");
-const payment_gateaway_dto_1 = require("./payment_gateaway.dto");
 let PaymentGateawayController = class PaymentGateawayController {
     constructor(paymentGateawayService) {
         this.paymentGateawayService = paymentGateawayService;
@@ -23,17 +22,8 @@ let PaymentGateawayController = class PaymentGateawayController {
     async findAllPaymentGateaway() {
         return await this.paymentGateawayService.find();
     }
-    async findAllPaymentGateawayById(id) {
+    async findPaymentGateawayById(id) {
         return await this.paymentGateawayService.find(id);
-    }
-    async updatePaymentGateaway(id, body) {
-        return await this.paymentGateawayService.update(id, body);
-    }
-    async insertPaymentGateaway(body) {
-        return await this.paymentGateawayService.insert(body);
-    }
-    async deletePaymentGateaway(id) {
-        return await this.paymentGateawayService.delete(id);
     }
 };
 __decorate([
@@ -48,29 +38,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-], PaymentGateawayController.prototype, "findAllPaymentGateawayById", null);
-__decorate([
-    (0, common_1.Put)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, payment_gateaway_dto_1.PaymentGateawayDto]),
-    __metadata("design:returntype", Promise)
-], PaymentGateawayController.prototype, "updatePaymentGateaway", null);
-__decorate([
-    (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [payment_gateaway_dto_1.PaymentGateawayDto]),
-    __metadata("design:returntype", Promise)
-], PaymentGateawayController.prototype, "insertPaymentGateaway", null);
-__decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], PaymentGateawayController.prototype, "deletePaymentGateaway", null);
+], PaymentGateawayController.prototype, "findPaymentGateawayById", null);
 PaymentGateawayController = __decorate([
     (0, common_1.Controller)('payment-gateaway'),
     __metadata("design:paramtypes", [payment_gateaway_service_1.PaymentGateawayService])

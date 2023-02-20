@@ -25,28 +25,23 @@ let PaymentGateawayService = class PaymentGateawayService {
         if (id) {
             return await this.PaymentGateawayRepository.findOneByOrFail({
                 pagaEntityId: id,
+            })
+                .then((result) => {
+                return result;
+            })
+                .catch((err) => {
+                return err;
             });
         }
         else {
-            return await this.PaymentGateawayRepository.find();
+            return await this.PaymentGateawayRepository.find()
+                .then((result) => {
+                return result;
+            })
+                .catch((err) => {
+                return err;
+            });
         }
-    }
-    async update(id, dataToUpdate) {
-        return await this.PaymentGateawayRepository.update({
-            pagaEntityId: id,
-        }, {
-            pagaCode: dataToUpdate.paymentGateawayCode,
-            pagaName: dataToUpdate.paymentGateawayName,
-        });
-    }
-    async insert(newData) {
-        return await this.PaymentGateawayRepository.insert({
-            pagaCode: newData.paymentGateawayCode,
-            pagaName: newData.paymentGateawayName,
-        });
-    }
-    async delete(id) {
-        return await this.PaymentGateawayRepository.delete(id);
     }
 };
 PaymentGateawayService = __decorate([

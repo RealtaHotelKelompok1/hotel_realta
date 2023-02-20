@@ -16,16 +16,16 @@ const Users_1 = require("./Users");
 let UserAccounts = class UserAccounts {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ type: "integer", name: "usac_entity_id" }),
+    (0, typeorm_1.Column)('integer', { primary: true, name: 'usac_entity_id' }),
     __metadata("design:type", Number)
 ], UserAccounts.prototype, "usacEntityId", void 0);
 __decorate([
-    (0, typeorm_1.Column)("integer", { primary: true, name: "usac_user_id" }),
+    (0, typeorm_1.Column)('integer', { primary: true, name: 'usac_user_id' }),
     __metadata("design:type", Number)
 ], UserAccounts.prototype, "usacUserId", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", {
-        name: "usac_account_number",
+    (0, typeorm_1.Column)('character varying', {
+        name: 'usac_account_number',
         nullable: true,
         unique: true,
         length: 25,
@@ -33,55 +33,71 @@ __decorate([
     __metadata("design:type", String)
 ], UserAccounts.prototype, "usacAccountNumber", void 0);
 __decorate([
-    (0, typeorm_1.Column)("numeric", { name: "usac_saldo", nullable: true }),
+    (0, typeorm_1.Column)('numeric', { name: 'usac_saldo', nullable: true }),
     __metadata("design:type", String)
 ], UserAccounts.prototype, "usacSaldo", void 0);
 __decorate([
-    (0, typeorm_1.Column)("character varying", {
-        name: "usac_type",
+    (0, typeorm_1.Column)('character varying', {
+        name: 'usac_type',
         nullable: true,
         length: 15,
     }),
     __metadata("design:type", String)
 ], UserAccounts.prototype, "usacType", void 0);
 __decorate([
-    (0, typeorm_1.Column)("smallint", { name: "usac_expmonth", nullable: true }),
+    (0, typeorm_1.Column)('character varying', {
+        name: 'usac_card_holder_name',
+        nullable: true,
+        length: 50
+    }),
+    __metadata("design:type", String)
+], UserAccounts.prototype, "usacCardHolderName", void 0);
+__decorate([
+    (0, typeorm_1.Column)('character varying', {
+        name: 'usac_secured_key',
+        nullable: false,
+        length: 255
+    }),
+    __metadata("design:type", String)
+], UserAccounts.prototype, "usacSecuredKey", void 0);
+__decorate([
+    (0, typeorm_1.Column)('smallint', { name: 'usac_expmonth', nullable: true }),
     __metadata("design:type", Number)
 ], UserAccounts.prototype, "usacExpmonth", void 0);
 __decorate([
-    (0, typeorm_1.Column)("smallint", { name: "usac_expyear", nullable: true }),
+    (0, typeorm_1.Column)('smallint', { name: 'usac_expyear', nullable: true }),
     __metadata("design:type", Number)
 ], UserAccounts.prototype, "usacExpyear", void 0);
 __decorate([
-    (0, typeorm_1.Column)("timestamp without time zone", {
-        name: "usac_modified_date",
+    (0, typeorm_1.Column)('timestamp without time zone', {
+        name: 'usac_modified_date',
         nullable: true,
-        default: () => "now()",
+        default: () => 'now()',
     }),
     __metadata("design:type", Date)
 ], UserAccounts.prototype, "usacModifiedDate", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Entities_1.Entities, (entities) => entities.userAccounts, {
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
     }),
-    (0, typeorm_1.JoinColumn)([{ name: "usac_entity_id", referencedColumnName: "entityId" }]),
+    (0, typeorm_1.JoinColumn)([{ name: 'usac_entity_id', referencedColumnName: 'entityId' }]),
     __metadata("design:type", Entities_1.Entities)
 ], UserAccounts.prototype, "usacEntity", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => Users_1.Users, (users) => users.userAccounts, {
-        onDelete: "CASCADE",
-        onUpdate: "CASCADE",
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
     }),
-    (0, typeorm_1.JoinColumn)([{ name: "usac_user_id", referencedColumnName: "userId" }]),
+    (0, typeorm_1.JoinColumn)([{ name: 'usac_user_id', referencedColumnName: 'userId' }]),
     __metadata("design:type", Users_1.Users)
 ], UserAccounts.prototype, "usacUser", void 0);
 UserAccounts = __decorate([
-    (0, typeorm_1.Index)("user_accounts_usac_account_number_key", ["usacAccountNumber"], {
+    (0, typeorm_1.Index)('user_accounts_usac_account_number_key', ['usacAccountNumber'], {
         unique: true,
     }),
-    (0, typeorm_1.Index)("user_accounts_pk", ["usacEntityId", "usacUserId"], { unique: true }),
-    (0, typeorm_1.Entity)("user_accounts", { schema: "payment" })
+    (0, typeorm_1.Index)('user_accounts_pk', ['usacEntityId', 'usacUserId'], { unique: true }),
+    (0, typeorm_1.Entity)('user_accounts', { schema: 'payment' })
 ], UserAccounts);
 exports.UserAccounts = UserAccounts;
 //# sourceMappingURL=UserAccounts.js.map
