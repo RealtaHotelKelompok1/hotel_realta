@@ -172,6 +172,7 @@ const purchaseOrderVendor = () => {
       <Button onClick={showModal1} className="m-4">
         New Purchase Order Header
       </Button>
+      <Button>Add New Detail</Button>
       <Table
         columns={columns}
         dataSource={data}
