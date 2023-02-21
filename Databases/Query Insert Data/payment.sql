@@ -188,7 +188,7 @@ BEGIN
 	TransactionNumberRef := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
 	
 	IF PaymentType = 'Dompet Realta' THEN
-		UPDATE payment.user_accounts SET usac_saldo = usac_saldo - Amount WHERE usac_user_id = UserID;
+		UPDATE payment.user_accounts SET usac_saldo = usac_saldo - Amount WHERE usac_account_number = TargetNumber;
 	END IF;
 	
 	INSERT INTO payment.payment_transaction (
@@ -218,7 +218,7 @@ BEGIN
 	); 
 
 END; $$ 
-LANGUAGE plpgsql; 
+LANGUAGE plpgsql;
  
 --------------------------------------
 
@@ -250,7 +250,7 @@ BEGIN
 		Debit := Amount;
 		OrderNumber := CONCAT(PaymentName, '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
 		Note := CONCAT('Dompet Realta top up From ', PaymentName, ', ', SourceNumber); 
-		UPDATE payment.user_accounts SET usac_saldo = usac_saldo + Amount WHERE usac_user_id = TrxUserId;
+		UPDATE payment.user_accounts SET usac_saldo = usac_saldo + Amount WHERE usac_account_number = TargetNumber;
 
 	-- Refund
 	ELSEIF TransactionType = 'RF' THEN
@@ -258,14 +258,14 @@ BEGIN
 		Debit := Amount;
 		OrderNumber := CONCAT('RFND', '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
 		Note := CONCAT('Refund to ', TargetNumber);
-		UPDATE payment.user_accounts SET usac_saldo = usac_saldo + Amount WHERE usac_user_id = TrxUserId;
+		UPDATE payment.user_accounts SET usac_saldo = usac_saldo + Amount WHERE usac_account_number = TargetNumber;
 		
 	-- Repayment
 	ELSE
 		Credit := Amount;
 		OrderNumber := CONCAT('RPYM', '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
 		Note := CONCAT('Repayment from ', PaymentName, SourceNumber);
-		UPDATE payment.user_accounts SET usac_saldo = usac_saldo - Amount WHERE usac_user_id = TrxUserId;
+		UPDATE payment.user_accounts SET usac_saldo = usac_saldo - Amount WHERE usac_account_number = TargetNumber;
 	END IF;
 	
 	INSERT INTO payment.payment_transaction (
