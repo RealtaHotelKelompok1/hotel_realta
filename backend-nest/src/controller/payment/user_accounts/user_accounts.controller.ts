@@ -40,15 +40,15 @@ export class UserAccountsController {
 				accountType?: string;
 				// bankName?: string;
 		},
-	) {
+		) {
 		switch (true) {
 			// Filter by user ID
-			case filter.userId != undefined:
+			case filter.userId !== undefined:
 				return await this.userAccountsService.find(
 					`
 					SELECT *
 					FROM payment.user_payment_methods
-					WHERE userId = ${filter.userId}
+					WHERE "userId" = ${filter.userId}
 					`,
 				);
 			// Filter by user's full name
@@ -57,7 +57,7 @@ export class UserAccountsController {
 					`
 					SELECT *
 					FROM payment.user_payment_methods
-					WHERE fullName ILIKE '%${filter.userName}%'
+					WHERE "fullName" ILIKE '%${filter.userName}%'
 					`
 				)
 			// Filter by user's account number
@@ -66,7 +66,7 @@ export class UserAccountsController {
 					`
 					SELECT *
 					FROM payment.user_payment_methods
-					WHERE accountNumber = '${filter.accountNumber}'
+					WHERE "accountNumber" = '${filter.accountNumber}'
 					`,
 				);
 			// // Filter by 
@@ -83,6 +83,7 @@ export class UserAccountsController {
 
 	@Post('add')
 	async addAccount(@Body() body: UserAccountsDto) {
+		console.log('data di controller', body)
 		return await this.userAccountsService.create(body)
 	}
 

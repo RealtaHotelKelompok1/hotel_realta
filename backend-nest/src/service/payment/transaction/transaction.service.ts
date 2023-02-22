@@ -22,7 +22,10 @@ export class TransactionService {
                 })
         } else {
             return await this.paymentTransactionRepository
-                .find().then((result) => {
+                .query(
+                    `SELECT * FROM payment.user_transactions`
+                )
+                .then((result) => {
                     return result
                 })
                 .catch((err) => {
@@ -40,7 +43,7 @@ export class TransactionService {
         }
 
         // Non-booking
-        if (newTransaction.orderNumber != null) {
+        if (newTransaction.orderNumber == null) {
             return await this.paymentTransactionRepository.query(
                 `CALL payment.InsertPaymentTransaction($1, $2, $3, $4, $5)`,
                 [
@@ -50,7 +53,12 @@ export class TransactionService {
                     newTransaction.sourceNumber,
                     newTransaction.targetNumber,
                 ]
-            )
+            ).then(() => {
+                return this.paymentTransactionRepository.find()
+            })
+            .catch((err) => {
+                return "There's an error in adding new payment transaction, " + err
+            })
         
         // Booking
         } else {
@@ -68,7 +76,7 @@ export class TransactionService {
                     return this.paymentTransactionRepository.find()
                 })
                 .catch((err) => {
-                    return "There's an error in adding new payment transaction, " + err
+                    return "There's an error in adding new booking payment transaction, " + err
                 })
         }
     }

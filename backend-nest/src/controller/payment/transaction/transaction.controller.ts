@@ -25,7 +25,7 @@ export class TransactionController {
                 return await this.paymentTransactionService.find(
                     `
                     SELECT *
-                    FROM payment.payment_transaction
+                    FROM payment.user_transactions
                     WHERE patr_id = ${filter.transactionId}
                     `
                 )
@@ -34,7 +34,7 @@ export class TransactionController {
                 return await this.paymentTransactionService.find(
                     `
                     SELECT *
-                    FROM payment.payment_transaction
+                    FROM payment.user_transactions
                     WHERE patr_type = '${filter.transactionType}'
                     `
                 )
@@ -44,7 +44,7 @@ export class TransactionController {
                 return await this.paymentTransactionService.find(
                     `
                     SELECT *
-                    FROM payment.payment_transaction
+                    FROM payment.user_transactions
                     WHERE patr_user_id = ${filter.userId}
                     `
                 )
@@ -54,7 +54,7 @@ export class TransactionController {
                 return await this.paymentTransactionService.find(
                     `
                     SELECT *
-                    FROM payment.payment_transaction
+                    FROM payment.user_transactions
                     WHERE patr_trx_number = '${filter.transactionNumber}'
                     `
                 )
@@ -64,7 +64,7 @@ export class TransactionController {
                 return await this.paymentTransactionService.find(
                     `
                     SELECT *
-                    FROM payment.payment_transaction
+                    FROM payment.user_transactions
                     WHERE patr_source_id = '${filter.sourceNumber}'
                     `
                 )
