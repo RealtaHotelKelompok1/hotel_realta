@@ -74,7 +74,8 @@ CREATE OR REPLACE PROCEDURE payment.InsertUserAccount (
 	AccountType		text,
 	CardHolderName	text,
 	SecuredKey		text,
-	EntityName		text DEFAULT NULL,
+	Balance			numeric,
+	EntityName		text,
 	AccountNumber	text DEFAULT NULL,
 	ExpMonth		int DEFAULT NULL,
 	ExpYear			int DEFAULT NULL
@@ -83,20 +84,32 @@ AS $$
 
 DECLARE
 	EntityID 	int;
-	Balance		int;
 
 BEGIN
-	IF LOWER(AccountType) NOT LIKE 'dompet realta' THEN 
+	IF LOWER(AccountType) NOT LIKE 'fintech' THEN 
 		EntityID := (
 			SELECT bank_entity_id
 			FROM payment.bank
 			WHERE bank_name = EntityName
 		);
-		Balance := NULL;
-	ELSE
+		
+	ELSEIF LOWER(EntityName) = 'goto' THEN
 		EntityID := (
 			SELECT paga_entity_id
 			FROM payment.payment_gateaway
+			WHERE paga_code = '256'
+		);
+		AccountNumber := CONCAT(522, (
+			SELECT user_phone_number
+			FROM users.users
+			WHERE user_id = UserID
+		))::text;
+		
+	ELSEIF LOWER(EntityName) = 'dompet realta' THEN
+		EntityID := (
+			SELECT paga_entity_id
+			FROM payment.payment_gateaway
+			WHERE paga_code = '255'
 		);
 		AccountNumber := CONCAT(225, (
 			SELECT user_phone_number
@@ -135,7 +148,7 @@ LANGUAGE plpgsql;
 
 CREATE OR REPLACE PROCEDURE payment.InsertBookingPaymentTransaction (
 	UserID			int, 
-	OrderNumber		text,
+	OrderID			text,
 	PaymentType		text,
 	Amount			int,
 	SourceNumber	numeric,
@@ -145,7 +158,7 @@ AS $$
 
 DECLARE
 	TransactionID int := (SELECT COALESCE(MAX(patr_id) + 1, 1) FROM payment.payment_transaction);
-	OrderType text = SUBSTRING(OrderNumber, '(.*)#');
+	OrderType text = SUBSTRING(OrderID, '(.*)#');
 	TransactionType text;
 	TransactionDate text;
 	TransactionNumber text;
@@ -154,7 +167,7 @@ DECLARE
 	Credit int := 0;
 	Note text;
 
-	FacilityName text;
+	HotelFacilityName text;
 	HotelName text;
 
 BEGIN
@@ -163,24 +176,27 @@ BEGIN
 			THEN
 				TransactionType := 'ORM';
 				Credit := Amount;
-				FacilityName := (
-					SELECT facilityName FROM hotel.order_per_faci_and_hotel
+				HotelFacilityName := (
+					SELECT DISTINCT facilityName FROM hotel.order_per_faci_and_hotel WHERE orderNumber = OrderID
 				);
 				HotelName := (
-					SELECT hotelName FROM hotel.order_per_faci_and_hotel
-				)
-				Note := CONCAT('Resto payment ', OrderNumber, ' at ', FacilityName, ', ', HotelName);
+					SELECT DISTINCT hotelName FROM hotel.order_per_faci_and_hotel WHERE orderNumber = OrderID
+				);
+				Note := CONCAT('Resto payment ', OrderID, ' at ', HotelFacilityName, ', ', HotelName);
 		WHEN OrderType = 'BO'
 			THEN
 				TransactionType := 'TRB';
 				Credit := Amount;
 				HotelName := (
-					SELECT hotel_name FROM booking.booking_orders bo JOIN hotel.hotels h ON bo.boor_hotel_id = h.hotel_id
-				)
-				Note := CONCAT('Room booking ', OrderNumber, ' at ', HotelName);
+					SELECT hotel_name
+					FROM booking.booking_orders bo
+					JOIN hotel.hotels h ON bo.boor_hotel_id = h.hotel_id
+					WHERE boor_order_number = OrderID
+				);
+				Note := CONCAT('Room booking ', OrderID, ' at ', HotelName);
 	END CASE;
 	
-	TransactionDate := (SELECT SUBSTRING(OrderNumber, '#(.*)-'))::date; -- Extract order date from order number 'MENUS#..' or 'BO#..'
+	TransactionDate := (SELECT SUBSTRING(OrderID, '#(.*)-'))::date; -- Extract order date from order number 'MENUS#..' or 'BO#..'
 	TransactionNumber := payment.getTransactionNumber(TransactionID, TransactionType, TransactionDate);
 	TransactionNumberRef := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
 	
@@ -206,7 +222,7 @@ BEGIN
 		TransactionNumber,
 		TransactionType,
 		Note,
-		OrderNumber,
+		OrderID,
 		SourceNumber,
 		TargetNumber,
 		TransactionNumberRef,
@@ -220,11 +236,11 @@ LANGUAGE plpgsql;
 --------------------------------------
 
 CREATE OR REPLACE PROCEDURE payment.InsertPaymentTransaction(
-	UserID				int,
+	TrxUserID			int,
 	TransactionType		text,
 	Amount				int,
-	SourceNumber		numeric,
-	TargetNumber		numeric DEFAULT 0
+	SourceNumber		text,
+	TargetNumber		text DEFAULT 0
 )
 AS $$
 
@@ -232,7 +248,7 @@ DECLARE
 	TransactionID int := (SELECT COALESCE(MAX(patr_id) + 1, 1) FROM payment.payment_transaction);
 	TransactionNumber text := payment.getTransactionNumber(TransactionID, TransactionType);
 	PaymentName text := (
-		SELECT paymentName FROM payment.user_payment_methods WHERE accountnumber = SourceNumber
+		SELECT "paymentName" FROM payment.user_payment_methods WHERE accountnumber = SourceNumber
 	);
 	TransactionNumberRef text := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
 	Credit int := 0;
@@ -243,7 +259,7 @@ DECLARE
 BEGIN
 	-- Top up
 	IF TransactionType = 'TP' THEN
-		TargetNumber := (SELECT accountnumber FROM payment.user_payment_methods WHERE paymenttype = 'Dompet Realta' and userid = UserID);
+		TargetNumber := (SELECT upm.accountnumber FROM payment.user_payment_methods upm WHERE upm.paymenttype = 'Dompet Realta' and upm.userid = TrxUserID);
 		Debit := Amount;
 		OrderNumber := CONCAT(PaymentName, '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
 		Note := CONCAT('Dompet Realta top up From ', PaymentName, ', ', SourceNumber); 
@@ -251,7 +267,7 @@ BEGIN
 
 	-- Refund
 	ELSEIF TransactionType = 'RF' THEN
-		TargetNumber := (SELECT accountnumber FROM payment.user_payment_methods WHERE paymenttype = 'Dompet Realta' and userid = UserID);
+		TargetNumber := (SELECT upm.accountnumber FROM payment.user_payment_methods upm WHERE upm.paymenttype = 'Dompet Realta' and upm.userid = TrxUserID);
 		Debit := Amount;
 		OrderNumber := CONCAT('RFND', '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
 		Note := CONCAT('Refund to ', TargetNumber);
@@ -278,13 +294,13 @@ BEGIN
 		patr_credit,
 		patr_order_number
 	) VALUES (
-		UserID,
+		TrxUserID,
 		TransactionID,
 		TransactionNumber,
 		TransactionType,
 		Note,
-		SourceNumber,
-		TargetNumber,
+		SourceNumber::numeric,
+		TargetNumber::numeric,
 		TransactionNumberRef,
 		Debit,
 		Credit,
@@ -321,11 +337,7 @@ CALL payment.InsertBank('212', 'Bank Woori Saudara Indonesia 1906');
 -- select * from payment.bank
 ----------------------- Insert Payment Gateaway -----------------------
 
-CALL payment.InsertPaymentGateaway('39358', 'OVO');
-CALL payment.InsertPaymentGateaway('70001', 'GOPAY');
-CALL payment.InsertPaymentGateaway('3901', 'DANA');
-CALL payment.InsertPaymentGateaway('09110', 'LinkAja');
-CALL payment.InsertPaymentGateaway('122', 'ShopeePay');
+CALL payment.InsertPaymentGateaway('256', 'GoTo');
 
 -- select * from payment.payment_gateaway
 ----------------------- Insert User Accounts --------------------------
