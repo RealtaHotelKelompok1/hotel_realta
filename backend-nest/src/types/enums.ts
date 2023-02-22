@@ -1,8 +1,7 @@
-export const enum AccountType {
-  debit = 'Debit Card',
-  credit = 'Credit Card',
-  dompet = 'Dompet Realta',
-}
+export const AccountType = {
+  card: ['Debit Card', 'Credit Card'],
+  fintech: ['Dompet Realta', 'GoTo'],
+};
 
 export const enum TransactionType {
   TP = 'TP',
