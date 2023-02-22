@@ -37,7 +37,12 @@ export class UserAccountsService {
 				});
 		}
 
-		return await this.UserAccountsRepository.find()
+		return await this.UserAccountsRepository
+			.query(
+				`
+				SELECT * FROM payment.user_payment_methods
+				`
+			)
 			.then((result) => {
 				return result
 			})
@@ -77,9 +82,9 @@ export class UserAccountsService {
 		// Hash PIN or CVV
 		const salt = bcrypt.genSaltSync(10);
 		const hashedKey = bcrypt.hashSync(newData.securedKey, salt);
-
+		
 		// Check account type
-		if (newData.accountType !== AccountType.dompet) {
+		if (!AccountType.fintech.includes(newData.paymentName)) {
 			// Return an error if bank expiry date is null
 			if (newData.expMonth == null || newData.expYear == null) {
 				return "Bank expiry date can't be null!"
@@ -88,13 +93,14 @@ export class UserAccountsService {
 
 		// Insert into database using Stored Procedure
 		return await this.UserAccountsRepository.query(
-			`CALL payment.InsertUserAccount($1, $2, $3, $4, $5, $6, $7, $8)`,
+			`CALL payment.InsertUserAccount($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
 			[
 				newData.userId,
-				newData.accountType,
+				newData.paymentType,
 				newData.cardHolderName,
 				hashedKey,
-				newData.entityName,
+				newData.balance,
+				newData.paymentName,
 				newData.accountNumber,
 				newData.expMonth,
 				newData.expYear
@@ -102,7 +108,7 @@ export class UserAccountsService {
 		)
 			.then(() => {
 				return this.UserAccountsRepository.query(
-					`SELECT * FROM payment.user_payment_methods WHERE userId = $1`, [newData.userId]
+					`SELECT * FROM payment.user_payment_methods WHERE "userId" = $1`, [newData.userId]
 				)
 			})
 			.catch((err) => {
@@ -112,10 +118,14 @@ export class UserAccountsService {
 	
 	async delete(accountNumber: string) {
 		// Check if there's an account data with corresponding account number.
-		const accountExists = this.UserAccountsRepository.findOneByOrFail(
-			{ usacAccountNumber: accountNumber })
+		const accountExists = await this.UserAccountsRepository.query(
+			`
+			SELECT * FROM payment.user_accounts
+			WHERE usac_account_number = '${accountNumber}'
+			`
+		)
 		
-		if (accountExists) {
+		if (accountExists.length > 0) {
 			return await this.UserAccountsRepository.query(
 				`
 				DELETE FROM payment.user_accounts
