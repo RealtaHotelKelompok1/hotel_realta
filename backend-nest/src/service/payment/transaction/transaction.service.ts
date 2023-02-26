@@ -35,6 +35,7 @@ export class TransactionService {
     }
 
     async create(newTransaction: PaymentTransactionDto) {
+        console.log(newTransaction)
         // Set data to null if no data inserted and became an empty string.
 		for (const data in newTransaction) {
 			if (newTransaction[data] == '') {

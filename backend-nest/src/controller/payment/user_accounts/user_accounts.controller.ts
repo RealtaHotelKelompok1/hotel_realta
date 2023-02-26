@@ -13,21 +13,6 @@ export class UserAccountsController {
 	async findAllAccounts() {
 		return await this.userAccountsService.find();
 	}
-
-  /** TODO:
-   * [V] Find by UserID
-   * [V] Find by user name
-   * [V] Find by Account Number
-   * [] Find by Entity ID/Bank name
-   * [] Find all Dompet Realta accounts
-   * 
-   * [V] Add new user accounts: insert bank
-   * [V] Add new user accounts: activate Dompet Realta
-   * 
-   * [?] Update?
-   * 
-   * [] Delete: bank account
-   * */
 	
 	@Get('filter?')
 	// Find by user ID

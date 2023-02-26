@@ -26,7 +26,7 @@ export class TransactionController {
                     `
                     SELECT *
                     FROM payment.user_transactions
-                    WHERE patr_id = ${filter.transactionId}
+                    WHERE "transactionId" = ${filter.transactionId}
                     `
                 )
             // Find by transaction type
@@ -35,7 +35,7 @@ export class TransactionController {
                     `
                     SELECT *
                     FROM payment.user_transactions
-                    WHERE patr_type = '${filter.transactionType}'
+                    WHERE "transactionType" = '${filter.transactionType}'
                     `
                 )
     
@@ -45,7 +45,7 @@ export class TransactionController {
                     `
                     SELECT *
                     FROM payment.user_transactions
-                    WHERE patr_user_id = ${filter.userId}
+                    WHERE "userId" = ${filter.userId}
                     `
                 )
                 
@@ -55,7 +55,7 @@ export class TransactionController {
                     `
                     SELECT *
                     FROM payment.user_transactions
-                    WHERE patr_trx_number = '${filter.transactionNumber}'
+                    WHERE "transactionNumber" = '${filter.transactionNumber}'
                     `
                 )
                 
@@ -65,7 +65,7 @@ export class TransactionController {
                     `
                     SELECT *
                     FROM payment.user_transactions
-                    WHERE patr_source_id = '${filter.sourceNumber}'
+                    WHERE "sourceNumber" = '${filter.sourceNumber}'
                     `
                 )
         }
