@@ -29,5 +29,9 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], BankDto.prototype, "bankName", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], BankDto.prototype, "bankModifiedDate", void 0);
 exports.BankDto = BankDto;
 //# sourceMappingURL=bank.dto.js.map

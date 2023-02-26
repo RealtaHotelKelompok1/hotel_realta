@@ -26,27 +26,28 @@ let UserAccountsController = class UserAccountsController {
     }
     async findByFilter(filter) {
         switch (true) {
-            case filter.userId != undefined:
+            case filter.userId !== undefined:
                 return await this.userAccountsService.find(`
 					SELECT *
 					FROM payment.user_payment_methods
-					WHERE userId = ${filter.userId}
+					WHERE "userId" = ${filter.userId}
 					`);
             case filter.userName != undefined:
                 return await this.userAccountsService.find(`
 					SELECT *
 					FROM payment.user_payment_methods
-					WHERE fullName ILIKE '%${filter.userName}%'
+					WHERE "fullName" ILIKE '%${filter.userName}%'
 					`);
             case filter.accountNumber != undefined:
                 return await this.userAccountsService.find(`
 					SELECT *
 					FROM payment.user_payment_methods
-					WHERE accountNumber = '${filter.accountNumber}'
+					WHERE "accountNumber" = '${filter.accountNumber}'
 					`);
         }
     }
     async addAccount(body) {
+        console.log('data di controller', body);
         return await this.userAccountsService.create(body);
     }
     async updateAccount(accountNumber, body) {
