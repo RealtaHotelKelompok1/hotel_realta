@@ -147,10 +147,10 @@ LANGUAGE plpgsql;
 -----------------------------------------------------------------------------
 
 CREATE OR REPLACE PROCEDURE payment.InsertBookingPaymentTransaction (
-	UserID			int, 
-	OrderID			text,
+	UserID			  int, 
+	OrderID			  text,
 	PaymentType		text,
-	Amount			int,
+	Amount			  int,
 	SourceNumber	numeric,
 	TargetNumber	numeric
 )

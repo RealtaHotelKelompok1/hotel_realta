@@ -162,17 +162,6 @@ VALUES ('Guest'),
 ('Admin'),
 ('User');
 
-
--- INSERT TABLE USERS
--- INSERT TO TABLE users.roles
-INSERT INTO users.roles(role_name)
-VALUES ('Guest'),
-('Manager'),
-('Office Boy'),
-('Admin'),
-('User');
-
-
 -- INSERT TO TABLE users.users
 INSERT INTO users.users(
 user_full_name,
