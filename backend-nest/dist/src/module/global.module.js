@@ -100,6 +100,8 @@ const payment_gateaway_service_1 = require("../service/payment/payment_gateaway/
 const user_accounts_service_1 = require("../service/payment/user_accounts/user_accounts.service");
 const transaction_controller_1 = require("../controller/payment/transaction/transaction.controller");
 const transaction_service_1 = require("../service/payment/transaction/transaction.service");
+const auth_controller_2 = require("../controller/payment/auth/auth.controller");
+const auth_service_2 = require("../service/payment/auth/auth.service");
 let GlobalModule = class GlobalModule {
 };
 GlobalModule = __decorate([
@@ -176,6 +178,7 @@ GlobalModule = __decorate([
             payment_gateaway_controller_1.PaymentGateawayController,
             user_accounts_controller_1.UserAccountsController,
             transaction_controller_1.TransactionController,
+            auth_controller_2.UserAccountAuthController,
         ],
         providers: [
             department_service_1.DepartmentService,
@@ -202,6 +205,7 @@ GlobalModule = __decorate([
             payment_gateaway_service_1.PaymentGateawayService,
             user_accounts_service_1.UserAccountsService,
             transaction_service_1.TransactionService,
+            auth_service_2.UserAccountAuthService,
         ],
     })
 ], GlobalModule);

@@ -13,21 +13,6 @@ export class UserAccountsController {
 	async findAllAccounts() {
 		return await this.userAccountsService.find();
 	}
-
-  /** TODO:
-   * [V] Find by UserID
-   * [V] Find by user name
-   * [V] Find by Account Number
-   * [] Find by Entity ID/Bank name
-   * [] Find all Dompet Realta accounts
-   * 
-   * [V] Add new user accounts: insert bank
-   * [V] Add new user accounts: activate Dompet Realta
-   * 
-   * [?] Update?
-   * 
-   * [] Delete: bank account
-   * */
 	
 	@Get('filter?')
 	// Find by user ID
@@ -40,15 +25,15 @@ export class UserAccountsController {
 				accountType?: string;
 				// bankName?: string;
 		},
-	) {
+		) {
 		switch (true) {
 			// Filter by user ID
-			case filter.userId != undefined:
+			case filter.userId !== undefined:
 				return await this.userAccountsService.find(
 					`
 					SELECT *
 					FROM payment.user_payment_methods
-					WHERE userId = ${filter.userId}
+					WHERE "userId" = ${filter.userId}
 					`,
 				);
 			// Filter by user's full name
@@ -57,7 +42,7 @@ export class UserAccountsController {
 					`
 					SELECT *
 					FROM payment.user_payment_methods
-					WHERE fullName ILIKE '%${filter.userName}%'
+					WHERE "fullName" ILIKE '%${filter.userName}%'
 					`
 				)
 			// Filter by user's account number
@@ -66,7 +51,7 @@ export class UserAccountsController {
 					`
 					SELECT *
 					FROM payment.user_payment_methods
-					WHERE accountNumber = '${filter.accountNumber}'
+					WHERE "accountNumber" = '${filter.accountNumber}'
 					`,
 				);
 			// // Filter by 
@@ -83,6 +68,7 @@ export class UserAccountsController {
 
 	@Post('add')
 	async addAccount(@Body() body: UserAccountsDto) {
+		console.log('data di controller', body)
 		return await this.userAccountsService.create(body)
 	}
 

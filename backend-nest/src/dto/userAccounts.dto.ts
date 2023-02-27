@@ -1,28 +1,30 @@
 import { IsNotEmpty, IsString, IsOptional, MaxLength } from 'class-validator';
 
 export class UserAccountsDto {
-    
-    @IsNotEmpty()
-    userId: number;
+  @IsNotEmpty()
+  userId: number;
 
-    @IsNotEmpty()
-    accountType: string;
-    
-    @IsNotEmpty()
-    securedKey: string;
+  @IsNotEmpty()
+  paymentType: string;
 
-    @IsOptional()
-    cardHolderName: string;
+  @IsNotEmpty()
+  securedKey: string;
 
-    @IsOptional()
-    entityName: string;
+  @IsNotEmpty()
+  paymentName: string;
 
-    @IsOptional()
-    accountNumber: string;
+  @IsOptional()
+  cardHolderName: string;
 
-    @IsOptional()
-    expMonth: number;
+  @IsOptional()
+  accountNumber: string;
 
-    @IsOptional()
-    expYear: number;
+  @IsOptional()
+  expMonth: number;
+
+  @IsOptional()
+  expYear: number;
+
+  @IsOptional()
+  balance: number;
 }

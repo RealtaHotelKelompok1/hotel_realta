@@ -102,6 +102,8 @@ import { PaymentGateawayService } from 'src/service/payment/payment_gateaway/pay
 import { UserAccountsService } from 'src/service/payment/user_accounts/user_accounts.service';
 import { TransactionController } from 'src/controller/payment/transaction/transaction.controller';
 import { TransactionService } from 'src/service/payment/transaction/transaction.service';
+import { UserAccountAuthController } from 'src/controller/payment/auth/auth.controller';
+import { UserAccountAuthService } from 'src/service/payment/auth/auth.service';
 
 @Module({
   imports: [
@@ -190,6 +192,7 @@ import { TransactionService } from 'src/service/payment/transaction/transaction.
     PaymentGateawayController,
     UserAccountsController,
     TransactionController,
+    UserAccountAuthController,
 
     /* PURCHASING */
     /* MASTER */
@@ -232,6 +235,7 @@ import { TransactionService } from 'src/service/payment/transaction/transaction.
     PaymentGateawayService,
     UserAccountsService,
     TransactionService,
+    UserAccountAuthService,
     
     /* PURCHASING */
     /* MASTER */

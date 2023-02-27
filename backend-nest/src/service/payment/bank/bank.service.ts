@@ -66,15 +66,19 @@ export class BankService {
           bankEntityId: id,
         },
         dataToUpdate,
-      ).then(() => {
+      )
+        .then(() => {
         return `Bank with ID ${id} is successfully updated!`;
-      });
+        })
+        .catch((err: any) => {
+          return `There's an error in updating bank data, ` + err
+        });
     }
   }
 
   async insert(newData: BankDto) {
     return await this.BankRepository.query(`CALL payment.InsertBank($1, $2)`, [
-      newData.bankCode.toString(),
+      newData.bankCode,
       newData.bankName,
     ])
       .then(() => {

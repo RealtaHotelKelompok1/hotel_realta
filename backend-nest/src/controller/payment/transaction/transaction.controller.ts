@@ -25,8 +25,8 @@ export class TransactionController {
                 return await this.paymentTransactionService.find(
                     `
                     SELECT *
-                    FROM payment.payment_transaction
-                    WHERE patr_id = ${filter.transactionId}
+                    FROM payment.user_transactions
+                    WHERE "transactionId" = ${filter.transactionId}
                     `
                 )
             // Find by transaction type
@@ -34,8 +34,8 @@ export class TransactionController {
                 return await this.paymentTransactionService.find(
                     `
                     SELECT *
-                    FROM payment.payment_transaction
-                    WHERE patr_type = '${filter.transactionType}'
+                    FROM payment.user_transactions
+                    WHERE "transactionType" = '${filter.transactionType}'
                     `
                 )
     
@@ -44,8 +44,8 @@ export class TransactionController {
                 return await this.paymentTransactionService.find(
                     `
                     SELECT *
-                    FROM payment.payment_transaction
-                    WHERE patr_user_id = ${filter.userId}
+                    FROM payment.user_transactions
+                    WHERE "userId" = ${filter.userId}
                     `
                 )
                 
@@ -54,8 +54,8 @@ export class TransactionController {
                 return await this.paymentTransactionService.find(
                     `
                     SELECT *
-                    FROM payment.payment_transaction
-                    WHERE patr_trx_number = '${filter.transactionNumber}'
+                    FROM payment.user_transactions
+                    WHERE "transactionNumber" = '${filter.transactionNumber}'
                     `
                 )
                 
@@ -64,8 +64,8 @@ export class TransactionController {
                 return await this.paymentTransactionService.find(
                     `
                     SELECT *
-                    FROM payment.payment_transaction
-                    WHERE patr_source_id = '${filter.sourceNumber}'
+                    FROM payment.user_transactions
+                    WHERE "sourceNumber" = '${filter.sourceNumber}'
                     `
                 )
         }
