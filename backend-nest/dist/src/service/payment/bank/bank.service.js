@@ -62,14 +62,18 @@ let BankService = class BankService {
         else {
             return await this.BankRepository.update({
                 bankEntityId: id,
-            }, dataToUpdate).then(() => {
+            }, dataToUpdate)
+                .then(() => {
                 return `Bank with ID ${id} is successfully updated!`;
+            })
+                .catch((err) => {
+                return `There's an error in updating bank data, ` + err;
             });
         }
     }
     async insert(newData) {
         return await this.BankRepository.query(`CALL payment.InsertBank($1, $2)`, [
-            newData.bankCode.toString(),
+            newData.bankCode,
             newData.bankName,
         ])
             .then(() => {
