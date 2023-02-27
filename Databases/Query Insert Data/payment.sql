@@ -183,6 +183,7 @@ BEGIN
 					SELECT DISTINCT hotelName FROM hotel.order_per_faci_and_hotel WHERE orderNumber = OrderID
 				);
 				Note := CONCAT('Resto payment ', OrderID, ' at ', HotelFacilityName, ', ', HotelName);
+				UPDATE resto.order_menus SET orme_is_paid = 'P' WHERE orme_order_number = OrderID;
 		WHEN OrderType = 'BO'
 			THEN
 				TransactionType := 'TRB';
@@ -194,15 +195,16 @@ BEGIN
 					WHERE boor_order_number = OrderID
 				);
 				Note := CONCAT('Room booking ', OrderID, ' at ', HotelName);
+				UPDATE booking.booking_orders SET boor_is_paid = 'P' WHERE boor_order_number = OrderID;
 	END CASE;
 	
 	TransactionDate := (SELECT SUBSTRING(OrderID, '#(.*)-'))::date; -- Extract order date from order number 'MENUS#..' or 'BO#..'
 	TransactionNumber := payment.getTransactionNumber(TransactionID, TransactionType, TransactionDate);
 	TransactionNumberRef := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
 	
-	IF PaymentType = 'Dompet Realta' THEN
-		UPDATE payment.user_accounts SET usac_saldo = usac_saldo - Amount;
-	END IF;
+-- 	IF PaymentType = 'Dompet Realta' THEN
+		UPDATE payment.user_accounts SET usac_saldo = usac_saldo - Amount WHERE usac_account_number = SourceNumber;
+-- 	END IF;
 	
 	INSERT INTO payment.payment_transaction (
 		patr_user_id,
@@ -231,16 +233,16 @@ BEGIN
 	); 
 
 END; $$ 
-LANGUAGE plpgsql; 
+LANGUAGE plpgsql;
  
 --------------------------------------
 
 CREATE OR REPLACE PROCEDURE payment.InsertPaymentTransaction(
 	TrxUserID			int,
 	TransactionType		text,
-	Amount				int,
+	Amount				numeric,
 	SourceNumber		text,
-	TargetNumber		text DEFAULT 0
+	TargetNumber		text
 )
 AS $$
 
@@ -248,7 +250,7 @@ DECLARE
 	TransactionID int := (SELECT COALESCE(MAX(patr_id) + 1, 1) FROM payment.payment_transaction);
 	TransactionNumber text := payment.getTransactionNumber(TransactionID, TransactionType);
 	PaymentName text := (
-		SELECT "paymentName" FROM payment.user_payment_methods WHERE accountnumber = SourceNumber
+		SELECT "paymentName" FROM payment.user_payment_methods WHERE "accountNumber" = SourceNumber
 	);
 	TransactionNumberRef text := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
 	Credit int := 0;
@@ -259,26 +261,25 @@ DECLARE
 BEGIN
 	-- Top up
 	IF TransactionType = 'TP' THEN
-		TargetNumber := (SELECT upm.accountnumber FROM payment.user_payment_methods upm WHERE upm.paymenttype = 'Dompet Realta' and upm.userid = TrxUserID);
 		Debit := Amount;
 		OrderNumber := CONCAT(PaymentName, '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
 		Note := CONCAT('Dompet Realta top up From ', PaymentName, ', ', SourceNumber); 
-		UPDATE payment.user_accounts SET usac_saldo = usac_saldo + Amount;
-
+		UPDATE payment.user_accounts SET usac_saldo = (usac_saldo::numeric - Amount) WHERE usac_account_number = SourceNumber;
+		UPDATE payment.user_accounts SET usac_saldo = (usac_saldo::numeric + Amount) WHERE usac_account_number = TargetNumber;
+		
 	-- Refund
 	ELSEIF TransactionType = 'RF' THEN
-		TargetNumber := (SELECT upm.accountnumber FROM payment.user_payment_methods upm WHERE upm.paymenttype = 'Dompet Realta' and upm.userid = TrxUserID);
 		Debit := Amount;
 		OrderNumber := CONCAT('RFND', '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
 		Note := CONCAT('Refund to ', TargetNumber);
-		UPDATE payment.user_accounts SET usac_saldo = usac_saldo + Amount;
+		UPDATE payment.user_accounts SET usac_saldo = (usac_saldo::numeric + Amount) WHERE usac_account_number = TargetNumber;
 		
 	-- Repayment
 	ELSE
 		Credit := Amount;
 		OrderNumber := CONCAT('RPYM', '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
 		Note := CONCAT('Repayment from ', PaymentName, SourceNumber);
-		UPDATE payment.user_accounts SET usac_saldo = usac_saldo - Amount;
+		UPDATE payment.user_accounts SET usac_saldo = (usac_saldo::numeric - Amount) WHERE usac_account_number = TargetNumber;
 	END IF;
 	
 	INSERT INTO payment.payment_transaction (
@@ -419,3 +420,61 @@ CALL payment.InsertPaymentTransaction('RF', 250000, '383667679');
 
 -- Payment Transaction: Repayment
 CALL payment.InsertPaymentTransaction('RPY', 50000, '264253607');
+
+select * from payment.user_transactions
+
+select * from hotel.order_per_faci_and_hotel
+
+select * from payment.user_accounts
+
+select * from payment.payment_transaction
+
+select * from payment.user_payment_methods
+
+CREATE OR REPLACE VIEW payment.user_transactions AS (
+	SELECT 
+		p.patr_id 				"transactionId",
+		p.patr_trx_number 		"transactionNumber",
+		TO_CHAR(patr_modified_date, 'DD Mon YYYY') "trxDate",
+		TO_CHAR(patr_modified_date, 'HH12:MI AM') "trxTime",
+		(
+			CASE
+				WHEN p.patr_type = 'ORM'
+				THEN (
+					SELECT orme_is_paid
+					FROM resto.order_menus
+					WHERE orme_order_number = p.patr_order_number
+				)
+				WHEN p.patr_type = 'BO'
+				THEN (
+					SELECT boor_is_paid
+					FROM booking.booking_orders
+					WHERE boor_order_number = p.patr_order_number
+				)
+				ELSE 'Completed'
+			END
+		) AS "status",
+		p.patr_debet			"debit",
+		p.patr_credit			"credit",	
+		p.patr_type				"transactionType",
+		p.patr_note				"transactionNote",
+		p.patr_order_number		"orderNumber",
+		p.patr_source_id		"sourceNumber",
+		p.patr_target_id		"targetNumber",
+		(
+			SELECT "paymentName" 
+			FROM payment.user_payment_methods
+			WHERE "accountNumber" = p.patr_target_id::text
+		) "targetPaymentName",
+		p.patr_trx_number_ref	"transactionRef",
+		p.patr_user_id			"userId",
+		u.user_full_name		"userFullName"
+	FROM payment.payment_transaction p
+	JOIN users.users u ON u.user_id = p.patr_user_id
+)
+
+ALTER TABLE payment.payment_transaction
+ALTER COLUMN patr_source_id type numeric;
+
+ALTER TABLE payment.payment_transaction
+ALTER COLUMN patr_target_id type numeric;
