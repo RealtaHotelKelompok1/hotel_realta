@@ -28,9 +28,9 @@ export class UserAccountAuthService {
                     { cause: error },
                   )
             })
-        console.log(data.securedKey)
+        
         const match = await bcrypt.compare(data.securedKey, accountData.securedKey)
-        console.log(match)
+
         if (match) {
             return new HttpException(
                 {
