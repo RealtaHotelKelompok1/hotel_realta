@@ -9,37 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BankDto = void 0;
+exports.UserAccountsDto = void 0;
 const class_validator_1 = require("class-validator");
-class BankDto {
+class UserAccountsDto {
 }
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-<<<<<<< Updated upstream
-=======
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MaxLength)(10, {
-        message: 'Bank code is too long!',
-    }),
->>>>>>> Stashed changes
-    __metadata("design:type", String)
-], BankDto.prototype, "bankCode", void 0);
+    __metadata("design:type", Number)
+], UserAccountsDto.prototype, "userId", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-<<<<<<< Updated upstream
     __metadata("design:type", String)
-], BankDto.prototype, "bankName", void 0);
+], UserAccountsDto.prototype, "accountType", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], UserAccountsDto.prototype, "securedKey", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], BankDto.prototype, "bankModifiedDate", void 0);
-=======
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MaxLength)(55, {
-        message: 'Bank name is too long!',
-    }),
+], UserAccountsDto.prototype, "cardHolderName", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], BankDto.prototype, "bankName", void 0);
->>>>>>> Stashed changes
-exports.BankDto = BankDto;
-//# sourceMappingURL=bank.dto.js.map
+], UserAccountsDto.prototype, "entityName", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], UserAccountsDto.prototype, "accountNumber", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UserAccountsDto.prototype, "expMonth", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UserAccountsDto.prototype, "expYear", void 0);
+exports.UserAccountsDto = UserAccountsDto;
+//# sourceMappingURL=userAccounts.dto.js.map
