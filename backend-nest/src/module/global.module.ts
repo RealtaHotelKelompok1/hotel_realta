@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Module } from '@nestjs/common';
+import { Controller, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Address } from 'entities/Address';
 import { Bank } from 'entities/Bank';
@@ -55,6 +55,7 @@ import { WorkOrderDetail } from 'entities/WorkOrderDetail';
 import { WorkOrders } from 'entities/WorkOrders';
 import { FacilityController } from 'src/controller/hotel/facility.controller';
 import { FacilityPhotosController } from 'src/controller/hotel/facility_photos.controller';
+import { BookingOrdersController } from 'src/controller/booking/booking-orders.controller';
 import { FacilityPriceHistoryController } from 'src/controller/hotel/facility_price_history.controller';
 import { HotelController } from 'src/controller/hotel/hotel.controller';
 import { HotelReviewController } from 'src/controller/hotel/hotel_review.controller';
@@ -180,6 +181,7 @@ import { UserAccountAuthService } from 'src/service/payment/auth/auth.service';
     UserbonuspointsController,
     UsermembersController,
     UserprofilesController,
+    
     /* BOOKING */
     /* RESTO */
     RestoController,
@@ -195,8 +197,7 @@ import { UserAccountAuthService } from 'src/service/payment/auth/auth.service';
     UserAccountAuthController,
 
     /* PURCHASING */
-    /* MASTER */
-  ],
+    /* MASTER */],
   providers: [
     /* HUMANRESOURCE */
     DepartmentService,

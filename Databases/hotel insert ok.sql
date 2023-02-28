@@ -155,237 +155,214 @@ VALUES
 
 -- INSERT TABLE USERS
 -- INSERT TO TABLE users.roles
-INSERT INTO users.roles(role_name)
-VALUES ('Guest'),
-('Manager'),
-('Office Boy'),
-('Admin'),
-('User');
+INSERT INTO users.roles(role_id,role_name)
+VALUES (1,'Guest'),
+(2,'Manager'),
+(3,'Office Boy'),
+(4,'Admin'),
+(5,'User');
+
 
 -- INSERT TO TABLE users.users
 INSERT INTO users.users(
+user_id,
 user_full_name,
 user_type,
 user_company_name,
 user_email,
 user_phone_number,
-user_isverified,
 user_modified_date
 ) VALUES 
-(
+(1,
 'Faqih Pratama Muhti',
 'T', --Travel Agent
 'muhtiTravel',
 'faqihpratamamuhti@gmail.com',
 '+6281212499837',
-1,
 '2023/01/08 03:00:00'
 ), 
-(
+(2,
 'Fadli Pratama Muhti',
 'C', --Corporate
 'MuhtiCorporate',
 'fadlipratamamuhti@gmail.com',
 '+6289342968303',
-1,
 '2023/01/08 02:00:00'
 ), 
-(
+(3,
 'Firly Isnaeni Muhti',
 'I', --Individual
 'muhtiIndividual',
 'firlyisnaenimuhti@gmail.com',
 '+6283920429405',
-1,
 '2023/01/07 01:00:00'
 ), 
-(
+(4,
 'Fitrya Muhti',
 'T', --Travel Agent
 'muhtiTravel',
 'fitryamuhti@gmail.com',
 '+6285830596205',
-1,
 '2023/01/06 00:00:00'
 ), 
-(
+(5,
 'Uzumaki Naruto',
 'C', --Corporate
 'shinobiCorporate',
 'uzumakinaruto@gmail.com',
 '+6284320985945',
-1,
 '2023/01/05 23:00:00'
 ), 
-(
+(6,
 'Uchiha Sasuke',
 'I', --Individual
 'shinobiIndividual',
 'uchihasasuke@gmail.com',
 '+6286565748375',
-1,
 '2023/01/04 22:00:00'
 ), 
-(
+(7,
 'Orochimaru',
 'T', --Travel Agent
 'shinobiTravel',
 'orochimaru@gmail.com',
 '+6281029384756',
-1,
 '2023/01/03 21:00:00'
 ), 
-(
+(8,
 'Kakashi Hatake',
 'C', --Corporate
 'shinobiCorporate',
 'kakashihatake@gmail.com',
 '+6288745095382',
-1,
 '2023/01/02 20:00:00'
 ), 
-(
+(9,
 'Uchiha Itachi',
 'I', --Individual
 'shinobiIndividual',
 'uchihaitachi@gmail.com',
 '+6288473994839',
-1,
 '2023/01/01 19:00:00'
 ), 
-(
+(10,
 'Senju Tsunade',
 'T', --Travel Agent
 'shinobiTravel',
 'senjutsunade@gmail.com',
 '+62846392058396',
-1,
 '2023/01/02 18:00:00'
 ), 
-(
+(11,
 'Uzumaki Nagato',
 'C', --Corporate
 'shinobiCorporate',
 'uzumakinagato@gmail.com',
 '+6284590567834',
-1,
 '2023/01/03 17:00:00'
 ), 
-(
+(12,
 'Uchiha Obito',
 'I', --Individual
 'shinobiIndividual',
 'uchihaobito@gmail.com',
 '+6281212495467',
-1,
 '2023/01/04 16:00:00'
 ), 
-(
+(13,
 'Sai',
 'T', --Travel Agent
 'shinobiTravel',
 'sai@gmail.com',
 '+6281211234837',
-1,
 '2023/01/05 15:00:00'
 ), 
-(
+(14,
 'Yahiko',
 'C', --Corporate
 'shinobiCorporate',
 'yahiko@gmail.com',
 '+6281234499837',
-1,
 '2023/01/06 14:00:00'
 ), 
-(
+(15,
 'Hoshigaki Kisame',
 'I', --Individual
 'shinobiIndividual',
 'hoshigakikisame@gmail.com',
 '+6281214321837',
-1,
 '2023/01/07 13:00:00'
 ), 
-(
+(16,
 'Jiraiya',
 'T', --Travel Agent
 'shinobiTravel',
 'jiraiya@gmail.com',
 '+6281212497654',
-1,
 '2023/01/08 12:00:00'
 ), 
-(
+(17,
 'Senju Tobirama',
 'C', --Corporate
 'shinobiCorporate',
 'senjutobirama@gmail.com',
 '+6284538798967',
-1,
 '2023/01/07 11:00:00'
 ), 
-(
+(18,
 'Uchiha Shisui',
 'I', --Individual
 'shinobiIndividual',
 'uchihashisui@gmail.com',
 '+6281456799837',
-1,
 '2023/01/06 10:00:00'
 ), 
-(
+(19,
 'Yakushi Kabuto',
 'T', --Travel Agent
 'shinobiTravel',
 'yakushikabuto@gmail.com',
 '+6285634344526',
-1,
 '2023/01/05 09:00:00'
 ), 
-(
+(20,
 'Namikaze Minato',
 'C', --Corporate
 'shinobiCorporate',
 'namikazeminato@gmail.com',
 '+62812124934627',
-1,
 '2023/01/04 08:00:00'
 ), 
-(
-'Rock Lee',
+(21,
+'Hyuuga Neji',
 'I', --Individual
 'shinobiIndividual',
-'lee@gmail.com',
+'hyuuganeji@gmail.com',
 '+62835462897685',
-1,
 '2023/01/03 07:00:00'
 ), 
-(
+(22,
 'Momochi Zabuza',
 'T', --Travel Agent
 'shinobiTravel',
 'momochizabuza@gmail.com',
 '+6285634123456',
-1,
 '2023/01/05 09:00:00'
 ), 
-(
+(23,
 'Senju Hashirama',
 'C', --Corporate
 'shinobiCorporate',
 'senjuhashirama@gmail.com',
 '+62812124912345',
-1,
 '2023/01/04 08:00:00'
 ), 
-(
+(24,
 'Hyuuga Neji',
 'I', --Individual
 'shinobiIndividual',
 'hyuuganeji@gmail.com',
 '+62835462899837',
-1,
 '2023/01/03 07:00:00'
 );
 
@@ -428,31 +405,31 @@ uspa_user_id,
 uspa_passwordHash,
 uspa_passwordSalt
 )
-VALUES -- P@ssword!12345
-(1, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(2, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(3, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(4, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(5, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(6, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(7, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(8, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(9, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(10, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(11, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(12, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(13, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(14, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(15, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(16, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(17, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(18, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(19, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(20, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(21, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(22, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(23, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt'),
-(24, '$2b$10$UX4ETs6/ojMv2CP.IZQlz.B79ZMtQHdFVbNgktC95Pn.ZKxk3KUPi','bcrypt');
+VALUES
+(1,md5('password'),'md5'),
+(2,md5('password'),'md5'),
+(3,md5('password'),'md5'),
+(4,md5('password'),'md5'),
+(5,md5('password'),'md5'),
+(6,md5('password'),'md5'),
+(7,md5('password'),'md5'),
+(8,md5('password'),'md5'),
+(9,md5('password'),'md5'),
+(10,md5('password'),'md5'),
+(11,md5('password'),'md5'),
+(12,md5('password'),'md5'),
+(13,md5('password'),'md5'),
+(14,md5('password'),'md5'),
+(15,md5('password'),'md5'),
+(16,md5('password'),'md5'),
+(17,md5('password'),'md5'),
+(18,md5('password'),'md5'),
+(19,md5('password'),'md5'),
+(20,md5('password'),'md5'),
+(21,md5('password'),'md5'),
+(22,md5('password'),'md5'),
+(23,md5('password'),'md5'),
+(24,md5('password'),'md5');
 
 -- INSERT TO TABLE users.user_members
 INSERT INTO users.user_members
@@ -527,6 +504,7 @@ VALUES
 
 -- INSERT TO TABLE user_profiles
 INSERT INTO users.user_profiles(
+uspro_id,
 uspro_national_id, -- NO. KTP
 uspro_birth,
 uspro_job_title,
@@ -536,112 +514,219 @@ uspro_addr_id,
 uspro_user_id
 )
 VALUES
-('345678910111213','1995/01/12','Full-Stack Developer','S','M',1,1),
-('345678910111214','195/01/12','Mechanical Engineer','M','M',1,2),
-('345678910111215','2004/01/04','Accountant','S','F',1,3),
-('345678910111216','2013/09/29','Chef','M','F',1,4),
-('345678910111217','1996/01/11','UI/UX Designer','S','M',1,5),
-('345678910111218','1997/02/12','Database Administrator','M','M',2,6),
-('345678910111219','1998/03/13','IT Support','S','M',3,7),
-('345678910111220','1999/04/14','Data Analyst','M','M',4,8),
-('345678910111221','1995/05/15','Doctor','S','F',5,9),
-('345678910111222','1996/06/16','Librarian','M','M',6,10),
-('345678910111223','1997/01/17','Entrepreneur','M','M',7,11),
-('345678910111224','1998/08/18','Public Relations','S','M',8,12),
-('345678910111225','1999/09/19','Programmer','M','M',9,13),
-('345678910111226','1995/10/20','Data Analyst','M','M',10,14),
-('345678910111227','1991/01/21','Database Administrator','M','M',11,15),
-('345678910111228','1992/02/22','Mechanical Engineer','S','M',12,16),
-('345678910111229','1993/03/23','Electrical Engineer','M','M',13,17),
-('345678910111230','1994/04/24','IT Support','S','M',14,18),
-('345678910111231','1995/05/25','Software Engineer','M','M',15,19),
-('345678910111232','1996/06/26','Data Analyst','M','M',16,20),
-('345678910111233','1997/07/27','IT Suppurt','S','M',17,21),
-('345678910111234','1998/08/28','Database Administrator','M','M',18,22),
-('345678910111235','1999/09/29','Chef','S','M',19,23),
-('345678910111236','2000/10/30','Doctor','M','M',20,24);
+(1,'345678910111213','1995/01/12','Full-Stack Developer','S','M',1,1),
+(2,'345678910111214','195/01/12','Mechanical Engineer','M','M',1,2),
+(3,'345678910111215','2004/01/04','Accountant','S','F',1,3),
+(4,'345678910111216','2013/09/29','Chef','M','F',1,4),
+(5,'345678910111217','1996/01/11','UI/UX Designer','S','M',1,5),
+(6,'345678910111218','1997/02/12','Database Administrator','M','M',2,6),
+(7,'345678910111219','1998/03/13','IT Support','S','M',3,7),
+(8,'345678910111220','1999/04/14','Data Analyst','M','M',4,8),
+(9,'345678910111221','1995/05/15','Doctor','S','F',5,9),
+(10,'345678910111222','1996/06/16','Librarian','M','M',6,10),
+(11,'345678910111223','1997/01/17','Entrepreneur','M','M',7,11),
+(12,'345678910111224','1998/08/18','Public Relations','S','M',8,12),
+(13,'345678910111225','1999/09/19','Programmer','M','M',9,13),
+(14,'345678910111226','1995/10/20','Data Analyst','M','M',10,14),
+(15,'345678910111227','1991/01/21','Database Administrator','M','M',11,15),
+(16,'345678910111228','1992/02/22','Mechanical Engineer','S','M',12,16),
+(17,'345678910111229','1993/03/23','Electrical Engineer','M','M',13,17),
+(18,'345678910111230','1994/04/24','IT Support','S','M',14,18),
+(19,'345678910111231','1995/05/25','Software Engineer','M','M',15,19),
+(20,'345678910111232','1996/06/26','Data Analyst','M','M',16,20),
+(21,'345678910111233','1997/07/27','IT Suppurt','S','M',17,21),
+(22,'345678910111234','1998/08/28','Database Administrator','M','M',18,22),
+(23,'345678910111235','1999/09/29','Chef','S','M',19,23),
+(24,'345678910111236','2000/10/30','Doctor','M','M',20,24);
 
 -- INSERT TABLE HOTEL
 
 INSERT INTO hotel.hotels(hotel_name, hotel_description,hotel_rating_star,hotel_phonenumber, hotel_modified_date, hotel_addr_id) 
-values('green watana1','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun kereta Bogor.',4,'08788798765','1970-01-01 00:00:00',1),
-('green watana2','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun kereta Bogor.',3,'08788798765','1990-01-01 00:00:00',2),
-('green watana3','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun kereta Bogor.',3,'08788798765','1990-01-01 00:00:00',3),
-('green watana4','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun kereta Bogor.',3,'08788798765','1990-01-01 00:00:00',4),
-('green watana5','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain di Gumati Water Park, 11 km dari Istana Bogor yang megah, dan 13 km dari stasiun kereta Bogor.',3,'08788798765','1990-01-01 00:00:00',5);
+values('Hotel Realta 1','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain.',4,'08788798761','1970-01-01 00:00:00',1),
+('Hotel Realta 2','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain.',3,'08788798762','1990-01-01 00:00:00',2),
+('Hotel Realta 3','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain.',3,'08788798763','1990-01-01 00:00:00',3),
+('Hotel Realta 4','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain.',3,'08788798764','1990-01-01 00:00:00',4),
+('Hotel Realta 5','Hotel santai yang terletak di tengah taman yang rimbun dengan panorama Gunung Pancar ini berjarak 3 km dari kolam renang dan taman bermain.',3,'08788798765','1990-01-01 00:00:00',5);
 -- facilities
 
-INSERT INTO hotel.facilities (faci_name, faci_description, faci_max_number, faci_measure_unit, faci_room_number, faci_startdate, faci_endate, faci_low_price, faci_hight_price, faci_rate_price, faci_discount, faci_tax_rate, faci_modified_date, faci_hotel_id, faci_cagro_id)
-VALUES ('Restaurant barat', 'Lorem ', 50, 'people', 'A11A ', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,1),
-	   ('Restaurant tengah', 'Lorem ', 50, 'people', 'A11B ', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,1),
-	   ('Restaurant timur', 'Lorem ', 50, 'people', 'A11C ', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,1),
-       ('Restaurant timur', 'restorant center with state-of-the-art equipment', 25, 'people', 'B11A', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,1),
-	   ('Restaurant timur', ' restornt Large outdoor swimming pool', 50, 'people', 'A12A', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,1),
-       ('Restaurant timur', 'restoran center with state-of-the-art equipment', 25, 'people', 'B121', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,1),
-	   ('Restaurant timur', 'restoran outdoor swimming pool', 50, 'people', 'A13A', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,1),
-       ('Restaurant tengah', 'restorant center with state-of-the-art equipment', 25, 'people', 'B11B', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,1),
-	   ('Restaurant tengah', ' restornt Large outdoor swimming pool', 50, 'people', 'A12B', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,1),
-       ('Restaurant tengah', 'restoran center with state-of-the-art equipment', 25, 'people', 'B122', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,1),
-	   ('Restaurant tengah', 'restoran outdoor swimming pool', 50, 'people', 'A13B', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,1),
-	   
-       ('Restaurant barat', 'restorant center with state-of-the-art equipment', 25, 'people', 'B11Y', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,1),
-	   ('Restaurant barat', ' restornt Large outdoor swimming pool', 50, 'people', 'A12X', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,1),
-       ('Restaurant barat', 'restoran center with state-of-the-art equipment', 25, 'people', 'B12W', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,1),
-	   ('Restaurant barat', 'restoran outdoor swimming pool', 50, 'people', 'A13V', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,1),
-       ('Room1', 'room center with state-of-the-art equipment', 25, 'people', 'B13U', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,2),
-	   ('Room2', 'room outdoor swimming pool', 50, 'people', 'A14T', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',2,2),
-       ('Room3', 'room center with state-of-the-art equipment', 25, 'people', 'B14S', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,2),
-	   ('Room4', 'room outdoor swimming pool', 50, 'people', 'A15R', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',4,2),
-       ('Room5', 'room center with state-of-the-art equipment', 25, 'people', 'B15Q', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,2),
-	   ('meeting-room1', 'meeting room outdoor swimming pool', 50, 'people', 'A16P', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,3),
-       ('meeting-room2', 'meeting roomcenter with state-of-the-art equipment', 25, 'people', 'B16O', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,3),
-	   ('meeting-room3', 'meeting roomLarge outdoor swimming pool', 50, 'people', 'A17N', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,3),
-       ('meeting-room4', 'meeting room center with state-of-the-art equipment', 25, 'people', 'B17M', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,3),
-	   ('meeting-room5', 'meeting room outdoor swimming pool', 50, 'people', 'A18L', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,3),
-       ('GYM1', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B18K', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,4),
-	   ('GYM2', 'fitnes Large outdoor swimming pool', 50, 'people', 'A19J', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',2,4),
-       ('GYM3', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B19I', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,4),
-	   ('GYM4', 'fitnes Large outdoor swimming pool', 50, 'people', 'A20H', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',4,4),
-       ('GYM5', 'Fitness center with state-of-the-art equipment', 25, 'people', 'B20G', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,4),
-	   ('Aula1', 'aula center with state-of-the-art equipment', 25, 'people', 'B20F', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,5),
-	   ('Aula2', 'aula center with state-of-the-art equipment', 25, 'people', 'B20E', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,5),
-	   ('Aula3', 'aula center with state-of-the-art equipment', 25, 'people', 'B20D', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,5),
-	   ('Aula4', 'aula center with state-of-the-art equipment', 25, 'people', 'B20C', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,5),
-	   ('Aula5', 'aula center with state-of-the-art equipment', 25, 'people', 'B20B', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,5),
-	   ('SwimingPool1', 'SwimingPoolcenter with state-of-the-art equipment', 25, 'people', 'B20A', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,6),
-	   ('SwimingPool2', 'SwimingPools center with state-of-the-art equipment', 25, 'people', 'B209', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,6),
-	   ('SwimingPool3', 'SwimingPool center with state-of-the-art equipment', 25, 'people', 'B208', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,6),
-	   ('SwimingPool4', 'SwimingPool center with state-of-the-art equipment', 25, 'people', 'B207', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,6),
-	   ('SwimingPool5', 'SwimingPool center with state-of-the-art equipment', 25, 'people', 'B206', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,6),
-	   ('Balroom1', 'Balroom with state-of-the-art equipment', 25, 'people', 'B205', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,7),
-	   ('Balroom2', 'Balroom with state-of-the-art equipment', 25, 'people', 'B204', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,7),
-	   ('Balroom3', 'Balroom with state-of-the-art equipment', 25, 'people', 'B203', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,7),
-	   ('Balroom4', 'Balroomcenter with state-of-the-art equipment', 25, 'people', 'B202', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,7),
-	   ('Balroom5', 'Balroom center with state-of-the-art equipment', 25, 'people', 'B201', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,7);
+INSERT INTO hotel.facilities (faci_name, faci_description, faci_max_number, faci_measure_unit, faci_room_number, faci_startdate, faci_endate, faci_low_price, faci_hight_price, 
+faci_rate_price, faci_discount, faci_tax_rate, faci_modified_date, faci_hotel_id, faci_cagro_id)
+VALUES 
+	
+	 ('Restaurant timur1', 'Lorem ', 50, 'people', 'RT0001 ', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,1),
+     ('Restaurant timur2', 'restorant center with state-of-the-art equipment', 25, 'people', 'RT0002', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,1),
+	 ('Restaurant timur3', ' restornt Large outdoor swimming pool', 50, 'people', 'RT0003', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,1),
+     ('Restaurant timur4', 'restoran center with state-of-the-art equipment', 25, 'people', 'RT0004', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,1),
+	 ('Restaurant timur5', 'restoran outdoor swimming pool', 50, 'people', 'RT0005', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,1),
+     ('Restaurant tengah1', 'Lorem ', 50, 'people', 'RT0006 ', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,1),
+	 ('Restaurant tengah2', 'restorant center with state-of-the-art equipment', 25, 'people', 'RT0007', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,1),
+	 ('Restaurant tengah3', ' restornt Large outdoor swimming pool', 50, 'people', 'RT0008', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,1),
+     ('Restaurant tengah4', 'restoran center with state-of-the-art equipment', 25, 'people', 'RT0009', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,1),
+	 ('Restaurant tengah5', 'restoran outdoor swimming pool', 50, 'people', 'RT0010', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,1),
+	 ('Restaurant barat1', 'Lorem ', 50, 'people', 'RT0011 ', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,1),
+     ('Restaurant barat2', 'restorant center with state-of-the-art equipment', 25, 'people', 'RT0012', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,1),
+	 ('Restaurant barat3', ' restornt Large outdoor swimming pool', 50, 'people', 'RT0013', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,1),
+     ('Restaurant barat4', 'restoran center with state-of-the-art equipment', 25, 'people', 'RT0014', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,1),
+	 ('Restaurant barat5', 'restoran outdoor swimming pool', 50, 'people', 'RT0015', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,1),
+      ('Ubud Hideaway', 'room center with state-of-the-art equipment', 25, 'beds', 'R0001', '2021-01-01', '2021-12-31', 350000, 700000, 500000, 50000, 0.1, '2021-01-01',1,2),
+	 ('Puncak Highland Lodge', 'room outdoor swimming pool', 50, 'beds', 'R0002', '2021-01-01', '2021-12-31',  550000, 700000, 500000, 75000, 0.1, '2021-01-01',2,2),
+     ('Bunaken Breeze3', 'room center with state-of-the-art equipment', 25, 'beds', 'R0003', '2021-01-01', '2021-12-31', 850000, 900000, 70000, 75000, 0.1, '2021-01-01',3,2),
+	 ('Sumba Safari Tent', 'room outdoor swimming pool', 50, 'beds', 'R0004', '2021-01-01', '2021-12-31', 550000, 700000, 500000, 75000, 0.1, '2021-01-01',4,2),
+     ('Batik Deluxe Room', 'room center with state-of-the-art equipment', 25, 'beds', 'R0005', '2021-01-01', '2021-12-31', 650000, 800000, 700000, 75000, 0.1, '2021-01-01',5,2),
+	 ('meeting-room1', 'meeting room outdoor swimming pool', 50, 'people', 'MR0001', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',1,3),
+     ('meeting-room2', 'meeting roomcenter with state-of-the-art equipment', 25, 'people', 'MR0002', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,3),
+	 ('meeting-room3', 'meeting roomLarge outdoor swimming pool', 50, 'people', 'MR0003', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',3,3),
+     ('meeting-room4', 'meeting room center with state-of-the-art equipment', 25, 'people', 'MR0004', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,3),
+	 ('meeting-room5', 'meeting room outdoor swimming pool', 50, 'people', 'MR0005', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',5,3),
+     ('GYM1', 'Fitness center with state-of-the-art equipment', 25, 'people', 'G0001', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,4),
+	 ('GYM2', 'fitnes Large outdoor swimming pool', 50, 'people', 'G0002', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',2,4),
+     ('GYM3', 'Fitness center with state-of-the-art equipment', 25, 'people', 'G0003', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,4),
+	 ('GYM4', 'fitnes Large outdoor swimming pool', 50, 'people', 'G0004', '2021-01-01', '2021-12-31', 25, 45, 35, 5, 0.1, '2021-01-01',4,4),
+     ('GYM5', 'Fitness center with state-of-the-art equipment', 25, 'people', 'G0005', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,4),
+	 ('Aula1', 'aula center with state-of-the-art equipment', 25, 'people', 'AU0001', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,5),
+	 ('Aula2', 'aula center with state-of-the-art equipment', 25, 'people', 'AU0002', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,5),
+	 ('Aula3', 'aula center with state-of-the-art equipment', 25, 'people', 'AU0003', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,5),
+	 ('Aula4', 'aula center with state-of-the-art equipment', 25, 'people', 'AU0004', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,5),
+	 ('Aula5', 'aula center with state-of-the-art equipment', 25, 'people', 'AU0005', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,5),
+	 ('SwimingPool1', 'SwimingPoolcenter with state-of-the-art equipment', 25, 'people', 'SP0001', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,6),
+	 ('SwimingPool2', 'SwimingPools center with state-of-the-art equipment', 25, 'people', 'SP0002', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,6),
+	 ('SwimingPool3', 'SwimingPool center with state-of-the-art equipment', 25, 'people', 'SP0003', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,6),
+	 ('SwimingPool4', 'SwimingPool center with state-of-the-art equipment', 25, 'people', 'SP0004', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,6),
+	 ('SwimingPool5', 'SwimingPool center with state-of-the-art equipment', 25, 'people', 'SP0005', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,6),
+	 ('Balroom1', 'Balroom with state-of-the-art equipment', 25, 'people', 'BR0001', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',1,7),
+	 ('Balroom2', 'Balroom with state-of-the-art equipment', 25, 'people', 'BR0002', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',2,7),
+	 ('Balroom3', 'Balroom with state-of-the-art equipment', 25, 'people', 'BR0003', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',3,7),
+	 ('Balroom4', 'Balroomcenter with state-of-the-art equipment', 25, 'people', 'BR0004', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',4,7),
+	 ('Balroom5', 'Balroom center with state-of-the-art equipment', 25, 'people', 'BR0005', '2021-01-01', '2021-12-31', 15, 30, 20, 2, 0.1, '2021-01-01',5,7),
+	('Raja Ampat Room', 'room center with state-of-the-art equipment', 5, 'beds', 'R0006', '2021-01-01', '2021-12-31', 350000, 450000, 400000, 50000, 0.1, '2021-01-01',1,2),
+	('Merbabu Suite', 'room center with state-of-the-art equipment', 4, 'beds', 'R0007', '2021-01-01', '2021-12-31', 450000, 550000, 500000, 75000, 0.1, '2021-01-01',1,2),
+	('Borobudur Chamber', 'room center with state-of-the-art equipment', 5, 'beds', 'R0008', '2021-01-01', '2021-12-31', 350000, 450000, 400000, 50000, 0.1, '2021-01-01',2,2),
+	('Komodo Retreat', 'room center with state-of-the-art equipment', 5, 'beds', 'R0009', '2021-01-01', '2021-12-31', 400000, 550000, 470000, 75000, 0.1, '2021-01-01',2,2),
+	('Bali Cliff Villa', 'room center with state-of-the-art equipment', 5, 'beds', 'R0010', '2021-01-01', '2021-12-31', 450000, 550000, 400000, 50000, 0.1, '2021-01-01',3,2),
+	('Bromo Lodge', 'room center with state-of-the-art equipment', 5, 'beds', 'R0011', '2021-01-01', '2021-12-31', 550000, 750000, 600000, 50000, 0.1, '2021-01-01',3,2),
+	('Tana Toraja Suite', 'room center with state-of-the-art equipment', 5, 'beds', 'R0012', '2021-01-01', '2021-12-31', 650000, 750000, 500000, 50000, 0.1, '2021-01-01',4,2),
+	('Gili Island Bungalow', 'room center with state-of-the-art equipment', 5, 'beds', 'R0013', '2021-01-01', '2021-12-31', 450000, 550000, 400000, 50000, 0.1, '2021-01-01',4,2),
+	('Mentawai Hut', 'room center with state-of-the-art equipment', 5, 'beds', 'R0014', '2021-01-01', '2021-12-31', 150000, 300000, 2000000, 50000, 0.1, '2021-01-01',5,2),
+	('Wayang Kulit Room', 'room center with state-of-the-art equipment', 5, 'beds', 'R0015', '2021-01-01', '2021-12-31', 250000, 350000, 250000, 75000, 0.1, '2021-01-01',5,2);
+
 -- facility_photo
 
 INSERT INTO hotel.facility_photos (fapho_faci_id, fapho_thumbnail_filename, fapho_photo_filename, fapho_primary,
 fapho_url, fapho_modifield_date)
-VALUES (1, 'pool_thumb11.jpg', 'pool1.jpg', '1', 'www.example.com/pool1', '2022-01-01'),
-(2, 'pool_thumb22.jpg', 'pool2.jpg', '0', 'www.example.com/pool2', '2022-01-01'),
-(3, 'gym_thumb13.jpg', 'gym1.jpg', '1', 'www.example.com/gym1', '2022-01-01'),
-(4, 'gym_thumb24.jpg', 'gym2.jpg', '0', 'www.example.com/gym2', '2022-01-01'),
-(5, 'pool_thumb15.jpg', 'pool1.jpg', '1', 'www.example.com/pool1', '2022-01-01'),
-(6, 'pool_thumb26.jpg', 'pool2.jpg', '0', 'www.example.com/pool2', '2022-01-01'),
-(7, 'gym_thumb17.jpg', 'gym1.jpg', '1', 'www.example.com/gym1', '2022-01-01'),
-(8, 'gym_thumb28.jpg', 'gym2.jpg', '0', 'www.example.com/gym2', '2022-01-01'),
-(9, 'pool_thumb19.jpg', 'pool1.jpg', '1', 'www.example.com/pool1', '2022-01-01'),
-(10, 'pool_thumb20.jpg', 'pool2.jpg', '0', 'www.example.com/pool2', '2022-01-01'),
-(11, 'gym_thumb1a.jpg', 'gym1.jpg', '1', 'www.example.com/gym1', '2022-01-01'),
-(12, 'gym_thumb2b.jpg', 'gym2.jpg', '0', 'www.example.com/gym2', '2022-01-01'),
-(13, 'pool_thumb1c.jpg', 'pool1.jpg', '1', 'www.example.com/pool1', '2022-01-01'),
-(14, 'pool_thumb2d.jpg', 'pool2.jpg', '0', 'www.example.com/pool2', '2022-01-01'),
-(15, 'gym_thumb1e.jpg', 'gym1.jpg', '1', 'www.example.com/gym1', '2022-01-01'),
-(16, 'gym_thumb2f.jpg', 'gym2.jpg', '0', 'www.example.com/gym2', '2022-01-01'),
-(17, 'pool_thumbg.jpg', 'pool1.jpg', '1', 'www.example.com/pool1', '2022-01-01'),
-(18, 'pool_thumb2h.jpg', 'pool2.jpg', '0', 'www.example.com/pool2', '2022-01-01'),
-(19, 'gym_thumb1i.jpg', 'gym1.jpg', '1', 'www.example.com/gym1', '2022-01-01'),
-(20, 'gym_thumb2j.jpg', 'gym2.jpg', '0', 'www.example.com/gym2', '2022-01-01');
+VALUES 
+(16, 'RoomHotel1', 'RoomHotel1.png', '1', './img/room1.png', '2022-01-01'),
+(17, 'RoomHotel2', 'RoomHotel2.png', '1', './img/room2.png', '2022-01-01'),
+(18, 'RoomHotel3', 'RoomHotel3.png', '1', './img/room3.png', '2022-01-01'),
+(19, 'RoomHotel4', 'RoomHotel4.png', '1', './img/room4.png', '2022-01-01'),
+(20, 'RoomHotel5', 'RoomHotel5.png', '1', './img/room5.png', '2022-01-01'),
+(1, 'Restaurant timur1', 'Restauranttimur1.png', '0', './img/Restauranttimur1.png', '2022-01-01'),
+(2, 'Restaurant timur2', 'Restauranttimur2.png', '0', './img/Restauranttimur2.png', '2022-01-01'),
+(3, 'Restaurant timur3', 'Restauranttimur3.png', '0', './img/Restauranttimur3.png', '2022-01-01'),
+(4, 'Restaurant timur4', 'Restauranttimur4.png', '0', './img/Restauranttimur4.png', '2022-01-01'),
+(5, 'Restaurant timur5', 'Restauranttimur5.png', '0', './img/Restauranttimur5.png', '2022-01-01'),
+(6, 'Restaurant tengah1', 'Restaurant tengah1.png', '0', './img/Restaurant tengah1.png', '2022-01-01'),
+(7, 'Restaurant tengah2', 'Restaurant tengah2.png', '0', './img/Restaurant tengah2.png', '2022-01-01'),
+(8, 'Restaurant tengah3', 'Restaurant tengah3.png', '0', './img/Restaurant tengah3.png', '2022-01-01'),
+(9, 'Restaurant tengah4', 'Restaurant tengah4.png', '0', './img/Restaurant tengah4.png', '2022-01-01'),
+(10,'Restaurant tengah5', 'Restaurant tengah5.png', '0', './img/Restaurant tengah5.png', '2022-01-01'),
+(11, 'Restaurant barat1', 'Restaurant barat1.png', '0', './img/Restaurant barat1.png', '2022-01-01'),
+(12, 'Restaurant barat2', 'Restaurant barat2.png', '0', './img/Restaurant barat2.png', '2022-01-01'),
+(13, 'Restaurant barat3', 'Restaurant barat3.png', '0', './img/Restaurant barat3.png', '2022-01-01'),
+(14, 'Restaurant barat4', 'Restaurant barat4.png', '0', './img/Restaurant barat4.png', '2022-01-01'),
+(15, 'Restaurant barat5', 'Restaurant barat5.png', '0', './img/Restaurant barat5.png', '2022-01-01'),
+(21, 'meeting room1', 'meetingRoom1.png', '0', './img/meetingRoom1.png', '2022-01-01'),
+(22, 'meeting room2', 'meetingRoom2.png', '0', './img/meetingRoom2.png', '2022-01-01'),
+(23, 'meeting room3', 'meetingRoom3.png', '0', './img/meetingRoom3.png', '2022-01-01'),
+(24, 'meeting room4', 'meetingRoom4.png', '0', './img/meetingRoom4.png', '2022-01-01'),
+(25, 'meeting room5', 'meetingRoom5.png', '0', './img/meetingRoom5.png', '2022-01-01'),
+(26, 'Gym1', 'Gym1.png', '0', './img/Gym1.png', '2022-01-01'),
+(27, 'Gym2', 'Gym2.png', '0', './img/Gym2.png', '2022-01-01'),
+(28, 'Gym3', 'Gym3.png', '0', './img/Gym3.png', '2022-01-01'),
+(29, 'Gym4', 'Gym4.png', '0', './img/Gym4.png', '2022-01-01'),
+(30,'Gym5', 'Gym5.png', '0', './img/Gym5.png', '2022-01-01'),
+(31, 'Aula1', 'Aula1.png', '0', './img/Aula1.png', '2022-01-01'),
+(32, 'Aula2', 'Aula2.png', '0', './img/Aula2.png', '2022-01-01'),
+(33, 'Aula3', 'Aula3.png', '0', './img/Aula3.png', '2022-01-01'),
+(34, 'Aula4', 'Aula4.png', '0', './img/Aula4.png', '2022-01-01'),
+(35,'Aula5', 'Aula5.png', '0', './img/Aula5.png', '2022-01-01'),
+(36, 'SwimingPool1', 'SwimingPool1.png', '0', './img/SwimingPool1.png', '2022-01-01'),
+(37, 'SwimingPool2', 'SwimingPool2.png', '0', './img/SwimingPool2.png', '2022-01-01'),
+(38, 'SwimingPool3', 'SwimingPool3.png', '0', './img/SwimingPool3.png', '2022-01-01'),
+(39, 'SwimingPool4', 'SwimingPool4.png', '0', './img/SwimingPool4.png', '2022-01-01'),
+(40,'SwimingPool5', 'SwimingPool5.png', '0', './img/SwimingPool5.png', '2022-01-01'),
+(41, 'BallRoom1', 'BallRoom1.png', '0', './img/BallRoom1.png', '2022-01-01'),
+(42, 'BallRoom2', 'BallRoom2.png', '0', './img/BallRoom2.png', '2022-01-01'),
+(43, 'BallRoom3', 'BallRoom3.png', '0', './img/BallRoom3.png', '2022-01-01'),
+(44, 'BallRoom4', 'BallRoom4.png', '0', './img/BallRoom4.png', '2022-01-01'),
+(45,'BallRoom5', 'BallRoom5.png', '0', './img/BallRoom5.png', '2022-01-01'),
+(46, 'RoomHotel1A', 'RoomHotel1A.png', '0', './img/room1A.png', '2022-01-01'),
+(47, 'RoomHotel1B', 'RoomHotel1B.png', '0', './img/room1B.png', '2022-01-01'),
+(48, 'RoomHotel2A', 'RoomHotel2A.png', '0', './img/room2A.png', '2022-01-01'),
+(49, 'RoomHotel2B', 'RoomHotel2B.png', '0', './img/room2B.png', '2022-01-01'),
+(50, 'RoomHotel3A', 'RoomHotel3A.png', '0', './img/room3A.png', '2022-01-01'),
+(51, 'RoomHotel3B', 'RoomHotel3B.png', '0', './img/room3B.png', '2022-01-01'),
+(52, 'RoomHotel4A', 'RoomHotel4A.png', '0', './img/room4A.png', '2022-01-01'),
+(53, 'RoomHotel4B', 'RoomHotel4B.png', '0', './img/room4B.png', '2022-01-01'),
+(54, 'RoomHotel5A', 'RoomHotel5A.png', '0', './img/room5A.png', '2022-01-01'),
+(55, 'RoomHotel5B', 'RoomHotel5B.png', '0', './img/room5B.png', '2022-01-01'),
+(46, 'RoomHotel1AP', 'RoomHotel1AP.png', '1', './img/room1AP.png', '2022-01-01'),
+(47, 'RoomHotel1BP', 'RoomHotel1BP.png', '1', './img/room1BP.png', '2022-01-01'),
+(48, 'RoomHotel2AP', 'RoomHotel2AP.png', '1', './img/room2AP.png', '2022-01-01'),
+(49, 'RoomHotel2BP', 'RoomHotel2BP.png', '1', './img/room2BP.png', '2022-01-01'),
+(50, 'RoomHotel3AP', 'RoomHotel3AP.png', '1', './img/room3AP.png', '2022-01-01'),
+(51, 'RoomHotel3BP', 'RoomHotel3BP.png', '1', './img/room3BP.png', '2022-01-01'),
+(52, 'RoomHotel4AP', 'RoomHotel4AP.png', '1', './img/room4AP.png', '2022-01-01'),
+(53, 'RoomHotel4BP', 'RoomHotel4BP.png', '1', './img/room4BP.png', '2022-01-01'),
+(54, 'RoomHotel5AP', 'RoomHotel5AP.png', '1', './img/room5AP.png', '2022-01-01'),
+(55, 'RoomHotel5BP', 'RoomHotel5BP.png', '1', './img/room5BP.png', '2022-01-01'),
+(16, 'RoomHotel1NP', 'RoomHotel1NP.png', '0', './img/room1NP.png', '2022-01-01'),
+(17, 'RoomHotel2NP', 'RoomHotel2NP.png', '0', './img/room2NP.png', '2022-01-01'),
+(18, 'RoomHotel3NP', 'RoomHotel3NP.png', '0', './img/room3NP.png', '2022-01-01'),
+(19, 'RoomHotel4NP', 'RoomHotel4NP.png', '0', './img/room4NP.png', '2022-01-01'),
+(20, 'RoomHotel5NP', 'RoomHotel5NP.png', '0', './img/room5NP.png', '2022-01-01'),
+(1, 'Restaurant timur1P', 'Restauranttimur1P.png', '1', './img/Restauranttimur1P.png', '2022-01-01'),
+(2, 'Restaurant timur2P', 'Restauranttimur2P.png', '1', './img/Restauranttimur2P.png', '2022-01-01'),
+(3, 'Restaurant timur3P', 'Restauranttimur3P.png', '1', './img/Restauranttimur3P.png', '2022-01-01'),
+(4, 'Restaurant timur4P', 'Restauranttimur4P.png', '1', './img/Restauranttimur4P.png', '2022-01-01'),
+(5, 'Restaurant timur5P', 'Restauranttimur5P.png', '1', './img/Restauranttimur5P.png', '2022-01-01'),
+(6, 'Restaurant tengah1P', 'Restaurant tengah1P.png', '1', './img/Restaurant tengah1P.png', '2022-01-01'),
+(7, 'Restaurant tengah2P', 'Restaurant tengah2P.png', '1', './img/Restaurant tengah2P.png', '2022-01-01'),
+(8, 'Restaurant tengah3P', 'Restaurant tengah3P.png', '1', './img/Restaurant tengah3P.png', '2022-01-01'),
+(9, 'Restaurant tengah4P', 'Restaurant tengah4P.png', '1', './img/Restaurant tengah4P.png', '2022-01-01'),
+(10,'Restaurant tengah5P', 'Restaurant tengah5P.png', '1', './img/Restaurant tengah5P.png', '2022-01-01'),
+(11, 'Restaurant barat1P', 'Restaurant barat1P.png', '1', './img/Restaurant barat1P.png', '2022-01-01'),
+(12, 'Restaurant barat2P', 'Restaurant barat2P.png', '1', './img/Restaurant barat2P.png', '2022-01-01'),
+(13, 'Restaurant barat3P', 'Restaurant barat3P.png', '1', './img/Restaurant barat3P.png', '2022-01-01'),
+(14, 'Restaurant barat4P', 'Restaurant barat4P.png', '1', './img/Restaurant barat4P.png', '2022-01-01'),
+(15, 'Restaurant barat5P', 'Restaurant barat5P.png', '1', './img/Restaurant barat5P.png', '2022-01-01'),
+(21, 'meeting room1P', 'meetingRoom1P.png', '1', './img/meetingRoom1P.png', '2022-01-01'),
+(22, 'meeting room2P', 'meetingRoom2P.png', '1', './img/meetingRoom2P.png', '2022-01-01'),
+(23, 'meeting room3P', 'meetingRoom3P.png', '1', './img/meetingRoom3P.png', '2022-01-01'),
+(24, 'meeting room4P', 'meetingRoom4P.png', '1', './img/meetingRoom4P.png', '2022-01-01'),
+(25, 'meeting room5P', 'meetingRoom5P.png', '1', './img/meetingRoom5P.png', '2022-01-01'),
+(26, 'Gym1P', 'Gym1P.png', '1', './img/Gym1P.png', '2022-01-01'),
+(27, 'Gym2P', 'Gym2P.png', '1', './img/Gym2P.png', '2022-01-01'),
+(28, 'Gym3P', 'Gym3P.png', '1', './img/Gym3P.png', '2022-01-01'),
+(29, 'Gym4P', 'Gym4P.png', '1', './img/Gym4P.png', '2022-01-01'),
+(30,'Gym5P', 'Gym5P.png', '1', './img/Gym5P.png', '2022-01-01'),
+(31, 'Aula1P', 'Aula1P.png', '1', './img/Aula1P.png', '2022-01-01'),
+(32, 'Aula2P', 'Aula2P.png', '1', './img/Aula2P.png', '2022-01-01'),
+(33, 'Aula3P', 'Aula3P.png', '1', './img/Aula3P.png', '2022-01-01'),
+(34, 'Aula4P', 'Aula4P.png', '1', './img/Aula4P.png', '2022-01-01'),
+(35,'Aula5P', 'Aula5P.png', '1', './img/Aula5P.png', '2022-01-01'),
+(36, 'SwimingPool1P', 'SwimingPool1P.png', '1', './img/SwimingPool1P.png', '2022-01-01'),
+(37, 'SwimingPool2P', 'SwimingPool2P.png', '1', './img/SwimingPool2P.png', '2022-01-01'),
+(38, 'SwimingPool3P', 'SwimingPool3P.png', '1', './img/SwimingPool3P.png', '2022-01-01'),
+(39, 'SwimingPool4P', 'SwimingPool4P.png', '1', './img/SwimingPool4P.png', '2022-01-01'),
+(40,'SwimingPool5P', 'SwimingPool5P.png', '1', './img/SwimingPool5P.png', '2022-01-01'),
+(41, 'BallRoom1P', 'BallRoom1P.png', '1', './img/BallRoom1P.png', '2022-01-01'),
+(42, 'BallRoom2P', 'BallRoom2P.png', '1', './img/BallRoom2P.png', '2022-01-01'),
+(43, 'BallRoom3P', 'BallRoom3P.png', '1', './img/BallRoom3P.png', '2022-01-01'),
+(44, 'BallRoom4P', 'BallRoom4P.png', '1', './img/BallRoom4P.png', '2022-01-01'),
+(45,'BallRoom5P', 'BallRoom5P.png', '1', './img/BallRoom5P.png', '2022-01-01');
+
+
+
 
 -- faci_preice
 INSERT INTO hotel.facility_price_history (faph_faci_id, faph_startdate, faph_enddate, faph_low_price, faph_high_price,
@@ -669,26 +754,26 @@ VALUES (1, '2021-01-01', '2021-03-31', 25, 35, 10, 0.1, '2021-01-01',1),
 
 -- hotel review
 INSERT INTO hotel.hotel_reviews (hore_user_review, hore_rating, hore_created_on, hore_hotel_id, hore_user_id)
-VALUES ('Great hotel, friendly staff, and clean rooms', '1', '2021-01-01', 1,1),
-('The location was perfect and the views from the room were amazing', '1', '2021-01-02', 2,2),
-('The breakfast was delicious and the staff was extremely helpful','0', '2021-01-03', 3,3),
-('The room was clean and comfortable, the service was excellent', '1', '2021-01-04', 4,4),
-('The hotel was in a great location, close to restaurants and shops', '0', '2021-01-05', 5,5),
-('The room was a bit small but overall it was a great stay', '1', '2021-01-06', 3,6),
-('The staff was friendly and helpful, the room was comfortable', '0', '2021-01-07', 4,7),
-('The hotel was clean and well-maintained, the staff was friendly', '1', '2021-01-08', 2,8),
-('The view from the room was amazing, the bed was comfortable', '0', '2021-01-09', 2,9),
-('The hotel was in a great location, close to restaurants and shops', '1', '2021-01-10', 4,10),
-('The room was clean and comfortable, the staff was friendly', '0', '2021-01-11',2,11),
-('Great hotel, friendly staff, and clean rooms', '1', '2021-01-01', 1,12),
-('The location was perfect and the views from the room were amazing', '0', '2021-01-02', 2,13),
-('The breakfast was delicious and the staff was extremely helpful', '1', '2021-01-03', 4,14),
-('The room was clean and comfortable, the service was excellent', '0', '2021-01-04', 4,15),
-('The hotel was in a great location, close to restaurants and shops', '1', '2021-01-05', 5,16),
-('The room was a bit small but overall it was a great stay', '0', '2021-01-06', 2,17),
-('The staff was friendly and helpful, the room was comfortable', '1', '2021-01-07', 3,18),
-('The hotel was clean and well-maintained, the staff was friendly', '0', '2021-01-08', 4,19),
-('The view from the room was amazing, the bed was comfortable', '1', '2021-01-09', 5,20);
+VALUES ('Great hotel, friendly staff, and clean rooms', 4, '2021-01-01', 1,1),
+('The location was perfect and the views from the room were amazing', 4, '2021-01-02', 2,2),
+('The breakfast was delicious and the staff was extremely helpful',5, '2021-01-03', 3,3),
+('The room was clean and comfortable, the service was excellent', 4, '2021-01-04', 4,4),
+('The hotel was in a great location, close to restaurants and shops', 5, '2021-01-05', 5,5),
+('The room was a bit small but overall it was a great stay', 4, '2021-01-06', 3,6),
+('The staff was friendly and helpful, the room was comfortable', 5, '2021-01-07', 4,7),
+('The hotel was clean and well-maintained, the staff was friendly', 4, '2021-01-08', 2,8),
+('The view from the room was amazing, the bed was comfortable', 5, '2021-01-09', 2,9),
+('The hotel was in a great location, close to restaurants and shops', 4, '2021-01-10', 4,10),
+('The room was clean and comfortable, the staff was friendly', 5, '2021-01-11',2,11),
+('Great hotel, friendly staff, and clean rooms', 4, '2021-01-01', 1,12),
+('The location was perfect and the views from the room were amazing', 5, '2021-01-02', 2,13),
+('The breakfast was delicious and the staff was extremely helpful', 4, '2021-01-03', 4,14),
+('The room was clean and comfortable, the service was excellent', 5, '2021-01-04', 4,15),
+('The hotel was in a great location, close to restaurants and shops', 4, '2021-01-05', 5,16),
+('The room was a bit small but overall it was a great stay', 5, '2021-01-06', 2,17),
+('The staff was friendly and helpful, the room was comfortable', 4, '2021-01-07', 3,18),
+('The hotel was clean and well-maintained, the staff was friendly', 5, '2021-01-08', 4,19),
+('The view from the room was amazing, the bed was comfortable', 4, '2021-01-09', 5,20);
 
 -- INSERT TABLE HUMANRESOURCE
 -- insert to job_role
@@ -887,26 +972,26 @@ orme_modified_date,
 orme_user_id )
 
 VALUES 
-( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '452359774', 'P', '2023-02-12', 1 ),
-( 'MENUS#20221127-0002' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '454657953', 'P', '2023-02-12', 2 ),
-( 'MENUS#20221127-0003' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '292664502', 'P','2023-02-12', 3),
-( 'MENUS#20221127-0004' , '2022-01-07 08:10:05', 5, 2000, 23000, 'D', '708430150', 'B','2023-02-12', 4),
-( 'MENUS#20221127-0005' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '783391110', 'P','2023-02-12', 5 ),
-( 'MENUS#20221127-0006' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '791028319', 'P','2023-02-12', 6 ),
-( 'MENUS#20221127-0007' , '2022-01-07 08:10:05', 5, 2000, 23000, 'D', '342368297', 'P','2023-02-12', 7 ),
-( 'MENUS#20221127-0008' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '249696629', 'B','2023-02-12', 8 ),
-( 'MENUS#20221127-0009' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '934733102', 'P','2023-02-12', 9 ),
-( 'MENUS#20221127-0010' , '2022-01-07 08:10:05', 5, 2000, 23000, 'D', '444752581', 'P','2023-02-12', 10 ),
-( 'MENUS#20221127-0011' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '385753208', 'B','2023-02-12', 11 ),
-( 'MENUS#20221127-0012' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '309537644', 'P','2023-02-12', 12 ),
-( 'MENUS#20221127-0013' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '604520880', 'P','2023-02-12', 13 ),
-( 'MENUS#20221127-0014' , '2022-01-07 08:10:05', 5, 2000, 23000, 'D', '414331705', 'P','2023-02-12', 14 ),
-( 'MENUS#20221127-0015' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '952223262', 'B','2023-02-12', 15 ),
-( 'MENUS#20221127-0016' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '760190130', 'P','2023-02-12', 16 ),
-( 'MENUS#20221127-0017' , '2022-01-07 08:10:05', 5, 2000, 23000, 'D', '229575303', 'P','2023-02-12', 17 ),
-( 'MENUS#20221127-0018' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '776779345', 'B','2023-02-12', 18 ),
-( 'MENUS#20221127-0019' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '271329773', 'P','2023-02-12', 19 ),
-( 'MENUS#20221127-0020' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '876950439', 'B','2023-02-12', 20 );
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'P', '2023-02-12', 1 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'P', '2023-02-12', 2 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'P','2023-02-12', 3),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'D', '1111111111', 'B','2023-02-12', 4),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'P','2023-02-12', 5 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'P','2023-02-12', 6 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'D', '1111111111', 'P','2023-02-12', 7 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'B','2023-02-12', 8 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'P','2023-02-12', 9 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'D', '1111111111', 'P','2023-02-12', 10 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'B','2023-02-12', 11 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'P','2023-02-12', 12 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'P','2023-02-12', 13 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'D', '1111111111', 'P','2023-02-12', 14 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'B','2023-02-12', 15 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'P','2023-02-12', 16 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'D', '1111111111', 'P','2023-02-12', 17 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'B','2023-02-12', 18 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'P','2023-02-12', 19 ),
+( 'MENUS#20221127-0001' , '2022-01-07 08:10:05', 5, 2000, 23000, 'CR', '1111111111', 'B','2023-02-12', 20 );
 -- Resto_Menus --
 
 -- 1 Restoran Sumatera
@@ -1007,90 +1092,3 @@ INSERT INTO resto.order_menu_detail (
 ( 10000, 10, 100000, 3000, 3,18 ),
 ( 10000, 10, 100000, 3000, 1,19 ),
 ( 10000, 10, 100000, 3000, 2,20 );
-
---Module Booking
-INSERT INTO booking.special_offers ( spof_name,spof_description, spof_type, spof_discount, spof_start_date, spof_end_date, spof_min_qty, spof_max_qty, spof_modified_date)
-VALUES ('Harian','Diskon hari jumat', 'T', 50000, '2022-01-01', '2022-01-31', 1, 100, NOW()),
-       ('Mingguan','Diskon mingguan', 'C', 20000 , '2022-01-01', '2022-01-31', 1, 100, NOW()),
-       ('Bulanan','Diskon bulanan', 'T', 30000, '2022-01-01', '2022-01-31', 1, 100, NOW()),
-       ('Tahunan','Diskon tahunan', 'C', 60000, '2022-01-01', '2022-01-31', 1, 100, NOW()),
-       ('Tambahan','Promo tambahan', 'T', 40000, '2022-01-01', '2022-01-31', 1, 100, NOW()),
-       ('Paket','Promo paket', 'T', 20000, '2022-01-01', '2022-01-31', 1, 100, NOW()),
-       ('Khusus','Diskon khusus', 'C', 60000, '2022-01-01', '2022-01-31', 1, 100, NOW()),
-       ('Special','Promo spesial', 'I', 100000, '2022-01-01', '2022-01-31', 1, 100, NOW()),
-       ('Member','Diskon member', 'I', 75000, '2022-01-01', '2022-01-31', 1, 100, NOW()),
-       ('Baru','Promo untuk pemesan baru', 'I', 100000, '2022-01-01', '2022-01-31', 1, 100, NOW()),
-       ('MPanas','Diskon musim panas', 'T', 50000, '2022-06-01', '2022-08-31', 1, 100, NOW()),
-       ('MDingin','Promo musim dingin', 'I', 50000, '2022-12-01', '2023-02-28', 1, 100, NOW()),
-       ('Akhir Tahun','Diskon akhir tahun', 'I', 75000, '2022-11-15', '2022-12-31', 1, 100, NOW()),
-       ('Nasional','Promo libur nasional', 'I', 50000, '2022-08-17', '2022-08-19', 1, 100, NOW()),
-       ('Online','Diskon untuk pemesanan online', 'I', 30000, '2022-01-01', '2022-12-31', 1, 100, NOW()),
-       ('Offline','Promo untuk pemesanan offline', 'T', 60000, '2022-01-01', '2022-12-31', 1, 100, NOW()),
-       ('Partai','Diskon untuk pemesanan dalam jumlah besar', 'C', 20000, '2022-01-01', '2022-12-31', 100, 1000, NOW()),
-       ('Little','Promo untuk pemesanan dalam jumlah kecil', 'T', 20000, '2022-01-01', '2022-12-31', 1, 99, NOW()),
-       ('BOC','Diskon untuk pemesanan tiket', 'C', 20000, '2022-01-01', '2022-12-31', 1, 100, NOW()),
-       ('Wisata','Promo untuk pemesanan paket wisata', 'T', 100000, '2022-01-01', '2022-12-31', 1, 100, NOW());
-
-INSERT INTO booking.booking_orders (boor_order_number, boor_order_date, boor_arrival_date, boor_total_room, boor_total_guest, boor_discount, boor_total_tax, boor_total_amount, boor_down_payment, boor_pay_type, boor_is_paid, boor_type, boor_cardnumber, boor_member_type, boor_status, boor_user_id, boor_hotel_id)
-VALUES ('BO#01012022-0001', '2022-01-01', '2022-01-05', 2, 4, 100000, 150000 , 1000000, 250000, 'CR', 'P', 'I', '1234567890123456', '751527261', 'CLEANING', 1, 1),
-       ('BO#02012022-0002', '2022-01-02', '2022-01-07', 1, 2, 50000, 60000, 500000, 100000, 'D', 'P', 'T', '2345678901234567', '383667679', 'CHECKIN', 2, 1),
-       ('BO#03012022-0003', '2022-01-03', '2022-01-08', 3, 6, 175000, 75000,  1500000 , 400000, 'D', 'DP', 'I', '3456789012345678', '264253607', 'CHECKOUT', 3, 1),
-       ('BO#04012022-0004', '2022-01-04', '2022-01-09', 4, 8, 400000, 100000,  2000000 , 500000, 'CR', 'P', 'C', '4567890123456789', '347140510', 'CANCELLED', 4, 2),
-       ('BO#05012022-0005', '2022-01-05', '2022-01-10', 2, 4, 100000 , 100000,  1000000 , 250000, 'C', 'P', 'I', '5678901234567890', '740144935', 'CLEANING', 5, 2),
-       ('BO#06012022-0006', '2022-01-06', '2022-01-11', 1, 2, 50000, 50000, 500000 , 100000, 'PG', 'P', 'T', '6789012345678901', '912995894', 'CHECKIN', 6, 3),
-       ('BO#07012022-0007', '2022-01-07', '2022-01-12', 3, 6, 200000, 150000,  1500000 , 400000, 'D', 'P', 'I', '7890123456789012', '15622368', 'CHECKOUT', 7, 3),
-       ('BO#08012022-0008', '2022-01-08', '2022-01-13', 4, 8, 400000, 200000,  2000000 , 500000, 'CR', 'P', 'C', '8901234567890123', '874033617', 'CANCELLED', 8, 3),
-       ('BO#09012022-0009', '2022-01-09', '2022-01-14', 2, 4, 75000, 100000,  1000000 , 250000, 'D', 'P', 'I', '9012345678901234', '736167877', 'CLEANING', 9, 4),
-       ('BO#10012022-00010', '2022-01-10', '2022-01-15', 1, 2, 75000, 50000,  500000 , 100000,'D', 'P', 'T', '0123456789012345', '523702608', 'CHECKIN', 10, 4),
-       ('BO#01022022-00011', '2022-02-01', '2022-02-05', 2, 4, 150000, 100000,  1000000 , 250000, 'P', 'N', 'I', '1234567890123456', '540613157', 'CLEANING', 11, 5),
-       ('BO#02022022-00012', '2022-02-02', '2022-02-07', 1, 2, 300000, 50000,  500000 , 100000, 'D', 'P', 'T', '2345678901234567', '589081886', 'CHECKIN', 12, 5),
-       ('BO#03022022-00013', '2022-02-03', '2022-02-08', 3, 6, 300000, 150000, 1500000, 400000, 'D', 'P', 'I', '3456789012345678', '614610983', 'CHECKOUT', 13, 2),
-       ('BO#04022022-00014', '2022-02-04', '2022-02-09', 4, 8, 150000, 200000, 2000000, 500000, 'C', 'DP', 'C', '4567890123456789', '697829861', 'CANCELLED', 14, 3),
-       ('BO#05022022-00015', '2022-02-05', '2022-02-10', 2, 4, 50000, 100000, 1000000, 250000,'D', 'P', 'I', '5678901234567890', '339091263', 'CLEANING', 15, 1),
-       ('BO#06022022-00016', '2022-02-06', '2022-02-11', 1, 2, 75000, 50000, 500000, 100000, 'D', 'P', 'T', '6789012345678901', '982511780', 'CHECKIN', 16, 5),
-       ('BO#07022022-00017', '2022-02-07', '2022-02-12', 3, 6, 200000, 150000, 1500000, 400000, 'D', 'P', 'I', '7890123456789012', '128013679', 'CHECKOUT', 17, 1),
-       ('BO#08022022-00018', '2022-02-08', '2022-02-13', 4, 8, 100000, 200000, 2000000, 500000, 'C', 'R', 'C', '8901234567890123', '33797123', 'CANCELLED', 18, 4),
-       ('BO#09022022-00019', '2022-02-09', '2022-02-14', 2, 4, 500000, 100000, 1000000, 250000, 'D', 'P', 'I', '9012345678901234', '362944181', 'CLEANING', 19, 5),
-       ('BO#10022022-00020', '2022-02-10', '2022-02-15', 1, 2, 75000, 50000, 500000, 100000, 'CR', 'DP', 'T', '0123456789012345', '283688167', 'CHECKIN', 20, 3);
-
-
-INSERT INTO booking.booking_order_detail (border_boor_id, borde_checkin, borde_checkout, borde_adults, borde_kids, borde_price, borde_extra, borde_discount, borde_tax, borde_subtotal, borde_faci_id)
-VALUES (1, '2022-01-01 10:00:00', '2022-01-05 12:00:00', 2, 1, 1000000, 500000, 225000,135000,1485000 ,  1),
-       (2, '2022-01-02 11:00:00', '2022-01-07 14:00:00', 1, 0, 600000, 250000, 85000,76500,841500 , 2),
-       (3, '2022-01-03 09:00:00', '2022-01-08 11:00:00', 3, 2, 1500000, 750000, 112500,202500,2227500 , 3),
-       (4, '2022-01-04 12:00:00', '2022-01-09 16:00:00', 4, 2, 2000000, 1000000, 600000,270000,2970000  , 4),
-       (5, '2022-01-05 14:00:00', '2022-01-10 18:00:00', 2, 1, 1000000, 500000, 150000,135000,1485000  ,5),
-       (6, '2022-01-06 08:00:00', '2022-01-11 10:00:00', 1, 0, 600000, 250000, 42500,76500,841500  ,6),
-       (7, '2022-01-07 10:00:00', '2022-01-12 12:00:00', 3, 2, 1500000, 750000, 337500,202500,2227500  ,7),
-       (8, '2022-01-08 13:00:00', '2022-01-13 16:00:00', 4, 2, 2000000, 1000000, 600000,270000,2970000  ,8),
-       (9, '2022-01-09 09:00:00', '2022-01-14 12:00:00', 2, 1, 1000000, 500000, 150000,135000,1485000  ,9),
-       (10, '2022-01-10 11:00:00', '2022-01-15 14:00:00', 1, 0, 600000, 250000, 42500,76500, 841500 ,10),
-       (11, '2022-02-01 10:00:00', '2022-02-05 12:00:00', 2, 1, 1000000, 500000, 75000,135000,1485000 ,11),
-       (12, '2022-02-02 11:00:00', '2022-02-07 14:00:00', 1, 0, 600000, 250000, 85000,76500,841500 ,12),
-       (13, '2022-02-03 09:00:00', '2022-02-08 11:00:00', 3, 2, 1500000, 750000, 337500, 202500,2227500 ,13),
-       (14, '2022-02-04 12:00:00', '2022-02-09 16:00:00', 4, 2, 2000000, 1000000, 600000,270000 ,2970000 ,14),
-       (15, '2022-02-05 14:00:00', '2022-02-10 18:00:00', 2, 1, 1000000, 500000, 150000,135000 ,1485000 , 15),
-       (16, '2022-02-06 08:00:00', '2022-02-11 10:00:00', 1, 0, 600000, 250000,42500,76500,841500 ,16),
-       (17, '2022-02-07 10:00:00', '2022-02-12 12:00:00', 3, 2, 1500000, 750000, 337500,202500 ,2227500 , 17),
-       (18, '2022-02-08 13:00:00', '2022-02-13 16:00:00', 4, 2, 2000000, 1000000, 600000,270000  ,2970000 ,18),
-       (19, '2022-02-09 09:00:00', '2022-02-14 12:00:00', 2, 1, 1000000, 500000, 150000,135000  ,1485000 ,19),
-       (20, '2022-02-10 11:00:00', '2022-02-15 14:00:00', 1, 0, 600000, 250000, 42500,76500 ,841500 ,20);
-
-INSERT INTO booking.user_breakfeast (usbr_borde_id, usbr_modified_date, usbr_total_vacant)
-VALUES (1, '2022-01-01 10:00:00', 2), (2, '2022-01-03 09:00:00', 1), (3, '2022-01-04 12:00:00', 4),
-       (4, '2022-01-05 14:00:00', 2), (5, '2022-01-06 08:00:00', 1), (6, '2022-01-07 10:00:00', 3), (7, '2022-01-08 13:00:00', 4),
-       (8, '2022-01-09 09:00:00', 2), (9, '2022-01-10 11:00:00', 1), (10, '2022-01-11 10:00:00', 2), (11, '2022-01-12 11:00:00', 3),
-       (12, '2022-01-13 09:00:00', 1), (13, '2022-01-14 12:00:00', 4), (14, '2022-01-15 14:00:00', 2), (15, '2022-01-16 08:00:00', 1),
-       (16, '2022-01-17 10:00:00', 3), (17, '2022-01-18 13:00:00', 4), (18, '2022-01-19 09:00:00', 2), (19, '2022-01-20 11:00:00', 1),
-       (20, '2022-01-21 10:00:00', 2);
-
-INSERT INTO booking.booking_order_detail_extra (boex_price, boex_qty, boex_subtotal, boex_measure_unit, boex_borde_id, boex_prit_id)
-VALUES (100000, 2, 200000, 'people', 1,1),(260000, 3, 600000, 'people', 2, 2), (300000, 1, 300000, 'unit', 3, 3), (400000, 4, 1600000, 'people', 4, 4),
-       (500000, 2, 1000000, 'unit', 5,5), (750000, 1, 600000, 'unit', 6, 6), (700000, 3, 2100000, 'people', 7, 7), (800000, 4, 3200000, 'unit', 8, 8),
-       (900000, 2, 1800000, 'people', 9,9), (10000000, 1, 1000000, 'people', 10, 10), (1100000, 2, 2200000, 'kg', 11, 11), (1200000, 3, 3600000, 'kg', 12, 12),
-       (1300000, 1, 1300000, 'kg',13,13),(10000000000, 4, 5600000, 'kg', 14,14), (1500000, 2, 3000000, 'unit', 15, 15), (1600000, 1, 1600000, 'people', 16, 13),
-       (1700000, 3, 5100000, 'people', 17,8),(800000, 4, 7200000, 'kg', 18, 9), (1900000, 2, 3800000, 'people', 19, 7), (2000000, 1, 2000000, 'kg', 20, 12);
-
-INSERT INTO booking.special_offer_coupons (soco_borde_id, soco_spof_id)
-VALUES (1, 1), (2, 2), (3, 3), (4,4), (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10),
-       (11, 11), (12, 12), (13, 13), (14, 14), (15, 15), (16, 16), (17, 17), (18, 18), (19, 19), (20, 20);

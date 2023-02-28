@@ -9,6 +9,7 @@ BEGIN
 	RETURN (
 		SELECT setval('payment."entities_entity_id_seq"',
 					  (SELECT COALESCE(MAX(entity_id), 0) FROM payment.entities) + 1
+					  (SELECT COALESCE(MAX(entity_id), 0) FROM payment.entities) + 1
 		)
 	);
 
@@ -311,6 +312,160 @@ BEGIN
 END; $$
 LANGUAGE plpgsql;
 
+--------------------------------------
+
+CREATE OR REPLACE PROCEDURE payment.InsertPaymentTransaction (
+	TransactionType			text,
+	Amount					int,
+	AccountNumber			text
+)
+AS $$
+
+DECLARE
+	TransactionID int;
+	TransactionNumber text;
+	TransactionNumberRef text;
+	Debit int;
+	Credit int;
+	SourceID int;
+	TargetID int;
+	Note text;
+	UserID int;
+
+BEGIN
+	TransactionID := (SELECT COALESCE(MAX(patr_id) + 1, 1) FROM payment.payment_transaction);
+	TransactionNumber := payment.getTransactionNumber(TransactionID, TransactionType);
+	TransactionNumberRef := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
+	UserID := (SELECT usac_user_id FROM payment.user_accounts WHERE usac_account_number = AccountNumber);
+	CASE
+		-- Top Up
+		WHEN TransactionType = 'TP' 
+			THEN
+				SourceID := (SELECT usac_entity_id FROM payment.user_accounts WHERE usac_account_number = AccountNumber);
+				TargetID := (SELECT usac_account_number FROM payment.user_accounts WHERE usac_account_number = AccountNumber);
+				Credit := 0;
+				Debit := Amount;
+				Note := CONCAT('Top up ', Amount, ' to', TargetID);
+		-- Refund
+		WHEN TransactionType = 'RF'
+			THEN
+				SourceID := 326625809; -- VA Hotel Realta
+				TargetID := (SELECT usac_account_number FROM payment.user_accounts WHERE usac_account_number = AccountNumber);
+				Credit := 0;
+				Debit := Amount;
+				Note := CONCAT('Refund ', Amount, ' to', TargetID);
+		WHEN TransactionType IN ('RPY')
+			THEN
+				SourceID := (SELECT usac_account_number FROM payment.user_accounts WHERE usac_account_number = AccountNumber)::int;
+				TargetID := 326625809; -- VA Hotel Realta
+				Credit := Amount;
+				Debit := 0;
+				Note := CONCAT('Repayment ', Amount, ' to', TargetID);
+	END CASE;		
+				
+	INSERT INTO payment.payment_transaction (
+		patr_user_id,
+		patr_id,
+		patr_trx_number,
+		patr_type,
+		patr_note,
+		patr_source_id,
+		patr_target_id,
+		patr_trx_number_ref,
+		patr_debet,
+		patr_credit
+	) VALUES (
+		UserID,
+		TransactionID,
+		TransactionNumber,
+		TransactionType,
+		Note,
+		SourceID,
+		TargetID,
+		TransactionNumberRef,
+		Debit, 
+		Credit 
+	); 
+
+END; $$ 
+LANGUAGE plpgsql;
+ 
+--------------------------------------
+
+CREATE OR REPLACE PROCEDURE payment.InsertPaymentTransaction(
+	TrxUserID			int,
+	TransactionType		text,
+	Amount				numeric,
+	SourceNumber		text,
+	TargetNumber		text
+)
+AS $$
+
+DECLARE
+	TransactionID int := (SELECT COALESCE(MAX(patr_id) + 1, 1) FROM payment.payment_transaction);
+	TransactionNumber text := payment.getTransactionNumber(TransactionID, TransactionType);
+	PaymentName text := (
+		SELECT "paymentName" FROM payment.user_payment_methods WHERE "accountNumber" = SourceNumber
+	);
+	TransactionNumberRef text := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
+	Credit int := 0;
+	Debit int := 0;
+	OrderNumber text;
+	Note text;
+
+BEGIN
+	-- Top up
+	IF TransactionType = 'TP' THEN
+		Debit := Amount;
+		OrderNumber := CONCAT(PaymentName, '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
+		Note := CONCAT('Dompet Realta top up From ', PaymentName, ', ', SourceNumber); 
+		UPDATE payment.user_accounts SET usac_saldo = (usac_saldo::numeric - Amount) WHERE usac_account_number = SourceNumber;
+		UPDATE payment.user_accounts SET usac_saldo = (usac_saldo::numeric + Amount) WHERE usac_account_number = TargetNumber;
+		
+	-- Refund
+	ELSEIF TransactionType = 'RF' THEN
+		Debit := Amount;
+		OrderNumber := CONCAT('RFND', '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
+		Note := CONCAT('Refund to ', TargetNumber);
+		UPDATE payment.user_accounts SET usac_saldo = (usac_saldo::numeric + Amount) WHERE usac_account_number = TargetNumber;
+		
+	-- Repayment
+	ELSE
+		Credit := Amount;
+		OrderNumber := CONCAT('RPYM', '_', TO_CHAR(NOW()::date, 'YYYYMMDD'), TransactionNumberRef);
+		Note := CONCAT('Repayment from ', PaymentName, SourceNumber);
+		UPDATE payment.user_accounts SET usac_saldo = (usac_saldo::numeric - Amount) WHERE usac_account_number = TargetNumber;
+	END IF;
+	
+	INSERT INTO payment.payment_transaction (
+		patr_user_id,
+		patr_id,
+		patr_trx_number,
+		patr_type,
+		patr_note,
+		patr_source_id,
+		patr_target_id,
+		patr_trx_number_ref,
+		patr_debet,
+		patr_credit,
+		patr_order_number
+	) VALUES (
+		TrxUserID,
+		TransactionID,
+		TransactionNumber,
+		TransactionType,
+		Note,
+		SourceNumber::numeric,
+		TargetNumber::numeric,
+		TransactionNumberRef,
+		Debit,
+		Credit,
+		OrderNumber
+	);
+
+END; $$
+LANGUAGE plpgsql;
+
 -----------------------------------------------------------------------------
 
 ----------------------- Insert Bank -----------------------
@@ -427,7 +582,17 @@ select * from hotel.order_per_faci_and_hotel
 
 select * from payment.user_accounts
 
-select * from payment.payment_transaction
+-- Payment Transaction: Room Booking at Hotel
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
+CALL payment.InsertBookingPaymentTransaction(TBA, 76864);
 
 select * from payment.user_payment_methods
 

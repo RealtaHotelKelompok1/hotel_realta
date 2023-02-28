@@ -560,7 +560,7 @@ create table booking.special_offers (
 create table booking.booking_orders(
 	boor_id serial,
 	boor_order_number varchar(20) unique,
-	boor_order_date timestamp,
+	boor_order_date timestamp DEFAULT now(),
 	boor_arrival_date timestamp,
 	boor_total_room smallInt,
 	boor_total_guest smallInt,
