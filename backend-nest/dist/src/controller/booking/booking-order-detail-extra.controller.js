@@ -11,10 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookingOrderDetailExtraController = void 0;
 const common_1 = require("@nestjs/common");
-const booking_order_detail_extra_service_1 = require("../../service/booking/booking-order-detail-extra.service");
+const booking_order_detail_extra_service_1 = require("src/service/booking/booking-order-detail-extra.service");
 let BookingOrderDetailExtraController = class BookingOrderDetailExtraController {
     constructor(bookingorderdetailextraService) {
         this.bookingorderdetailextraService = bookingorderdetailextraService;
@@ -72,7 +73,7 @@ __decorate([
 ], BookingOrderDetailExtraController.prototype, "remove", null);
 BookingOrderDetailExtraController = __decorate([
     (0, common_1.Controller)('booking-order-detail-extra'),
-    __metadata("design:paramtypes", [booking_order_detail_extra_service_1.BookingOrderDetailExtraService])
+    __metadata("design:paramtypes", [typeof (_a = typeof booking_order_detail_extra_service_1.BookingOrderDetailExtraService !== "undefined" && booking_order_detail_extra_service_1.BookingOrderDetailExtraService) === "function" ? _a : Object])
 ], BookingOrderDetailExtraController);
 exports.BookingOrderDetailExtraController = BookingOrderDetailExtraController;
 //# sourceMappingURL=booking-order-detail-extra.controller.js.map

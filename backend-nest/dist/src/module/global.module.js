@@ -62,12 +62,6 @@ const Vendor_1 = require("../../entities/Vendor");
 const WorkOrderDetail_1 = require("../../entities/WorkOrderDetail");
 const WorkOrders_1 = require("../../entities/WorkOrders");
 const hotel_controller_1 = require("../controller/hotel/hotel.controller");
-const booking_order_detail_extra_controller_1 = require("../controller/booking/booking-order-detail-extra.controller");
-const booking_order_detail_controller_1 = require("../controller/booking/booking-order-detail.controller");
-const booking_orders_controller_1 = require("../controller/booking/booking-orders.controller");
-const special_offer_coupon_controller_1 = require("../controller/booking/special-offer-coupon.controller");
-const special_offers_controller_1 = require("../controller/booking/special_offers.controller");
-const user_breakfeast_controller_1 = require("../controller/booking/user-breakfeast.controller");
 const department_controller_1 = require("../controller/humanresource/department/department.controller");
 const employee_department_history_controller_1 = require("../controller/humanresource/employee_department_history/employee_department_history.controller");
 const employee_pay_history_controller_1 = require("../controller/humanresource/employee_pay_history/employee_pay_history.controller");
@@ -108,8 +102,6 @@ const transaction_controller_1 = require("../controller/payment/transaction/tran
 const transaction_service_1 = require("../service/payment/transaction/transaction.service");
 const auth_controller_2 = require("../controller/payment/auth/auth.controller");
 const auth_service_2 = require("../service/payment/auth/auth.service");
-
-
 let GlobalModule = class GlobalModule {
 };
 GlobalModule = __decorate([

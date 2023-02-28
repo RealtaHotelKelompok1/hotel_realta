@@ -11,10 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserBreakfeastController = void 0;
 const common_1 = require("@nestjs/common");
-const user_breakfeast_service_1 = require("../../service/booking/user-breakfeast.service");
+const user_breakfeast_service_1 = require("src/service/booking/user-breakfeast.service");
 let UserBreakfeastController = class UserBreakfeastController {
     constructor(userbreakfeastService) {
         this.userbreakfeastService = userbreakfeastService;
@@ -72,7 +73,7 @@ __decorate([
 ], UserBreakfeastController.prototype, "remove", null);
 UserBreakfeastController = __decorate([
     (0, common_1.Controller)('user-breakfeast'),
-    __metadata("design:paramtypes", [user_breakfeast_service_1.UserBreakfeastService])
+    __metadata("design:paramtypes", [typeof (_a = typeof user_breakfeast_service_1.UserBreakfeastService !== "undefined" && user_breakfeast_service_1.UserBreakfeastService) === "function" ? _a : Object])
 ], UserBreakfeastController);
 exports.UserBreakfeastController = UserBreakfeastController;
 //# sourceMappingURL=user-breakfeast.controller.js.map

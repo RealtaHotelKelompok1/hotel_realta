@@ -11,10 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SpecialOfferCouponController = void 0;
 const common_1 = require("@nestjs/common");
-const special_offer_coupons_service_1 = require("../../service/booking/special-offer-coupons.service");
+const special_offer_coupons_service_1 = require("src/service/booking/special-offer-coupons.service");
 let SpecialOfferCouponController = class SpecialOfferCouponController {
     constructor(specialoffercouponService) {
         this.specialoffercouponService = specialoffercouponService;
@@ -72,7 +73,7 @@ __decorate([
 ], SpecialOfferCouponController.prototype, "remove", null);
 SpecialOfferCouponController = __decorate([
     (0, common_1.Controller)('special-offer-coupon'),
-    __metadata("design:paramtypes", [special_offer_coupons_service_1.SpecialOfferCouponsService])
+    __metadata("design:paramtypes", [typeof (_a = typeof special_offer_coupons_service_1.SpecialOfferCouponsService !== "undefined" && special_offer_coupons_service_1.SpecialOfferCouponsService) === "function" ? _a : Object])
 ], SpecialOfferCouponController);
 exports.SpecialOfferCouponController = SpecialOfferCouponController;
 //# sourceMappingURL=special-offer-coupon.controller.js.map
