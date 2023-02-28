@@ -861,7 +861,7 @@ const SideBarAdmin = forwardRef(({ showNav }:any, ref:any) => {
                     />
                   </Disclosure.Button>
                   <Disclosure.Panel className="pt-2 w-full">
-                    <Link prefetch href="/admin/payment">
+                    <Link prefetch href="/admin/payment/transaction">
                       <div
                         className={`shadow-2lg pl-3 px-4 py-2 mx-auto rounded-md text-left text-sm font-medium cursor-pointer flex items-center transition-colors ${router.pathname == "/admin/payment"
                           ? "bg-orange-100 text-orange-500"
@@ -879,7 +879,7 @@ const SideBarAdmin = forwardRef(({ showNav }:any, ref:any) => {
                     </Link>
                   </Disclosure.Panel>
                   <Disclosure.Panel className="pt-2 w-full">
-                    <Link prefetch href="#">
+                    <Link prefetch href="/admin/payment/fintech">
                       <div
                         className={`shadow-2lg pl-3 px-4 py-2 mx-auto rounded text-left text-sm font-medium cursor-pointer flex items-center transition-colors ${router.pathname == "#"
                           ? "bg-orange-100 text-orange-500"
@@ -891,31 +891,13 @@ const SideBarAdmin = forwardRef(({ showNav }:any, ref:any) => {
                             } h-5 w-5 text-orange-500`}
                         />
                         <div>
-                          <p>Gateway</p>
+                          <p>Fintech</p>
                         </div>
                       </div>
                     </Link>
                   </Disclosure.Panel>
                   <Disclosure.Panel className="pt-2 w-full">
-                    <Link prefetch href="#">
-                      <div
-                        className={`shadow-2lg pl-3 px-4 py-2 mx-auto rounded text-left text-sm font-medium cursor-pointer flex items-center transition-colors ${router.pathname == "#"
-                          ? "bg-orange-100 text-orange-500"
-                          : "text-orange-900 hover:bg-orange-100 hover:text-orange-500"
-                          }`}
-                      >
-                        <ChevronUpIcon
-                          className={`${open ? 'rotate-90 transform' : ''
-                            } h-5 w-5 text-orange-500`}
-                        />
-                        <div>
-                          <p>User Account</p>
-                        </div>
-                      </div>
-                    </Link>
-                  </Disclosure.Panel>
-                  <Disclosure.Panel className="pt-2 w-full">
-                    <Link prefetch href="#">
+                    <Link prefetch href="/admin/payment/bank">
                       <div
                         className={`shadow-2lg pl-3 px-4 py-2 mx-auto rounded text-left text-sm font-medium cursor-pointer flex items-center transition-colors ${router.pathname == "#"
                           ? "bg-orange-100 text-orange-500"
@@ -928,24 +910,6 @@ const SideBarAdmin = forwardRef(({ showNav }:any, ref:any) => {
                         />
                         <div>
                           <p>Bank</p>
-                        </div>
-                      </div>
-                    </Link>
-                  </Disclosure.Panel>
-                  <Disclosure.Panel className="pt-2 w-full">
-                    <Link prefetch href="#">
-                      <div
-                        className={`shadow-2lg pl-3 px-4 py-2 mx-auto rounded text-left text-sm font-medium cursor-pointer flex items-center transition-colors ${router.pathname == "#"
-                          ? "bg-orange-100 text-orange-500"
-                          : "text-orange-900 hover:bg-orange-100 hover:text-orange-500"
-                          }`}
-                      >
-                        <ChevronUpIcon
-                          className={`${open ? 'rotate-90 transform' : ''
-                            } h-5 w-5 text-orange-500`}
-                        />
-                        <div>
-                          <p>Entity</p>
                         </div>
                       </div>
                     </Link>
