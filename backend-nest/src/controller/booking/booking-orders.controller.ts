@@ -1,8 +1,7 @@
 import { Body, Get, Param, Controller, Post, Delete,Put } from '@nestjs/common';
-import { BookingOrders } from 'entities/BookingOrders';
 import { BookingOrdersService } from 'src/service/booking/booking-orders.service'; 
 
-@Controller('booking-orders')
+@Controller('bookingOrders')
 export class BookingOrdersController {
 
     constructor(private bokingorderService: BookingOrdersService){}
@@ -26,6 +25,11 @@ export class BookingOrdersController {
     @Delete(':id')
     remove(@Param() params): Promise<any> {
         return this.bokingorderService.deleteBookinfOrders(params.id);
+    }
+
+    @Post('CreateBo')
+    async bokingOrder(@Body() body:any) {
+      return await this.bokingorderService.createBokingOrder(body);
     }
 
 }
