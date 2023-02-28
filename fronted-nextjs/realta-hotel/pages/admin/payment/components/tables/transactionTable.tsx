@@ -1,24 +1,19 @@
 import { transactionColumns } from "@/redux/Constant/Payment/columns";
-import { fetchTransactions } from "@/redux/Actions/Payment/transaction";
 import { Container, FormElement, Table, Text, Input, Spacer, Dropdown, Row } from "@nextui-org/react";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { Transaction } from "@/redux/Constant/Payment/interfaces";
 
-export default function TransactionTable() {
-    const dispatch = useDispatch()
+export default function TransactionTable({ data }: {
+    data: Transaction[]
+}) {
 
-    const transactions = useSelector((state: any) => state.transactionReducer.transactions)
     const [searchValue, setSearchValue] = useState("")
     const [selectedTransactionType, setSelectedTransactionType] = useState("transaction type")
 
-    useEffect(() => {
-        dispatch(fetchTransactions())
-    })
-
     const filteredData = useMemo(() => {
         if (searchValue) {
-            return transactions.filter((item: any) => {
+            return data.filter((item: any) => {
                 return Object.values(item).some((value) =>
                     String(value).toLowerCase().includes(searchValue.toLowerCase())
                 );
@@ -26,11 +21,11 @@ export default function TransactionTable() {
         }
 
         if (selectedTransactionType !== "transaction type") {
-            return transactions.filter((item: Transaction) => item.transactionType == selectedTransactionType)
+            return data.filter((item: Transaction) => item.transactionType == selectedTransactionType)
         }
 
-        return transactions
-    }, [transactions, searchValue, selectedTransactionType]);
+        return data
+    }, [data, searchValue, selectedTransactionType]);
 
     return (
         <Container>

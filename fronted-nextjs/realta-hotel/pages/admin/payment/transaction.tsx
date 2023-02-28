@@ -1,29 +1,35 @@
-
-import { Container, Text } from "@nextui-org/react";
 import "@/styles/payment.module.css"
-import { useState } from "react";
 import TransactionTable from "./components/tables/transactionTable";
 import LayoutAdmin from "@/components/Layout/LayoutAdmin";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchTransactions } from "@/redux/Actions/Payment/transaction";
+import InfoChart from "./components/InfoChart";
+import { Col, Row } from "@nextui-org/react";
+import CategoryChart from "./components/CategoryChart";
 
 const Transaction = () => {
-    const [searchValue, setSearchValue] = useState('')
+    const dispatch = useDispatch()
+    const transactions = useSelector((state: any) => state.transactionReducer.transactions)
 
-    const handleSearch = (value: any) => {
-        setSearchValue(value)
-    }
+    useEffect(() => {
+        dispatch(fetchTransactions())
+    })
 
     return (
         <LayoutAdmin>
-            {/* <Container responsive> */}
-                {/* <Text
+            {/* <Text
                     h1
                     size={60}
                     weight="bold"
                 > User's transaction till the world ends... </Text> */}
-                <TransactionTable />
-            {/* </Container> */}
-
+            <Row>
+                <TransactionTable data={transactions} />
+                <Col>
+                    <InfoChart data={transactions} name={"Transaction"} />
+                    <CategoryChart data={transactions} name={"Transaction"} />
+                </Col>
+            </Row>
         </LayoutAdmin>
     )
 }
