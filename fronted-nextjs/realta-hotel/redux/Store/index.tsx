@@ -10,28 +10,29 @@ import userAccountReducer from "../Reducers/Payment/userAccount";
 
 const saga = createSagaMiddleware()
 const reducer = combineReducers({
-    //Master Reducer nya dibawah Comman masing" module
+  //Master Reducer nya dibawah Comman masing" module
 
-    //Users
-    usersReducers: usersReducers,
-  
-    //HR
+  //Users
+  usersReducers: usersReducers,
 
-    //Hotels
+  //HR
 
-    //Booking
+  //Hotels
 
-    //Resto
+  //Booking
 
-    //Payment
-    transactionReducer,
-    bankReducer,
-    userAccountReducer,
-    fintechReducer
+  //Resto
 
-    //Purchase
+  //Payment
+  transactionReducer,
+  bankReducer,
+  userAccountReducer,
+  fintechReducer
+
+  //Purchase
 
 });
+
 const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) =>
