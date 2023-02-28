@@ -1,206 +1,3 @@
--- create database hotel_realta
--- ===========SCHEMA MODULE MASTER ==============
-create schema master;
--- Regions Table
-create table master.regions(
-	region_code serial,
-	region_name varchar(35) unique,
-	constraint region_code_pk primary key (region_code)
-);
-
--- country table
-create table master.country(
-	country_id serial,
-	country_name varchar(55) unique,
-	country_region_id int,
-	constraint country_id_pk primary key (country_id),
-	constraint country_region_id_fk foreign key (country_region_id) references master.regions (region_code)
-);
-
--- provinces table
-create table master.provinces(
-	prov_id serial,
-	prov_name varchar(85),
-	prov_country_id int,
-	constraint prov_id_pk primary key (prov_id),
-	constraint prov_country_id_fk foreign key (prov_country_id) references master.country (country_id)
-);
-
--- address table 
-create table master.address(
-	addr_id serial,
-	addr_line1 varchar(225),
-	addr_line2 varchar(225),
-	addr_postal_code varchar(5),
-	addr_spatial_location json,
-	addr_prov_id int,
-	constraint addr_id primary key (addr_id),
-	constraint addr_prov_id_fk foreign key (addr_prov_id) references master.provinces (prov_id)
-);
-
--- category_grup table
-create table master.category_group(
-	cagro_id serial,
-	cagro_name varchar(25) unique,
-	cagro_description varchar (255),
-	cagro_type varchar(25),
-	cagro_icon varchar(255),
-	cagro_icon_url varchar(255),
-	constraint cagro_id_pk primary key (cagro_id)
-);
-
-
--- policy table
-create table master.policy(
-	poli_id serial,
-	poli_name varchar(55),
-	poli_description varchar(255),
-	constraint poli_id_pk primary key (poli_id)
-);
-
--- policy_category_group
-
-create table master.policy_category_group(
-	poca_poli_id serial PRIMARY KEY,
-	poca_cagro_id int,
-	constraint poca_poli_id_fk foreign key (poca_poli_id) references master.policy (poli_id),
-	constraint poca_cagro_id_fk foreign key (poca_cagro_id) references master.category_group (cagro_id)
-
-);
-
-
--- price_items
-create table master.price_items(
-	prit_id serial,
-	prit_name varchar(55) unique,
-	prit_price money,	
-	prit_description varchar (255),
-	prit_type varchar(25),
-	prit_modified_date timestamp DEFAULT now(),
-	constraint prit_id_pk primary key (prit_id)
-);
-
--- members table
-
-create table master.members(
-	memb_name varchar(15),
-	memb_description varchar(100),
-	constraint memb_name primary key (memb_name)
-);
-
--- service_task table
-create table master.service_task(
-	seta_id serial,
-	seta_name varchar(85) unique,
-	seta_seq smallint,
-	constraint seta_id_pk primary key(seta_id)
-);
-
--- ===========SCHEMA MODULE USERS ==============
-CREATE SCHEMA users;
-
--- RUN 1
-
--- CREATE TABLE roles
-CREATE TABLE users.roles(
-	role_id SERIAL,
-	role_name VARCHAR(35),
-	CONSTRAINT pk_role_id PRIMARY KEY (role_id)
-);
-
--- CREATE TABLE users
-CREATE TABLE users.users(
-	user_id SERIAL,
-	user_full_name VARCHAR(55),
-	user_type VARCHAR(15),
-	user_company_name VARCHAR(255),
-	user_email VARCHAR(256),
-	user_phone_number VARCHAR(25),
-	user_isverified INT DEFAULT NULL,
-	user_modified_date TIMESTAMP DEFAULT now(),
-	CONSTRAINT pk_user_id PRIMARY KEY (user_id),
-	CONSTRAINT u_user_phone_number UNIQUE (user_phone_number),
-	CONSTRAINT u_user_email UNIQUE (user_email)
-);
-
--- RUN 2
--- CREATE TABLE user_members
-CREATE TABLE users.user_members(
-	usme_user_id INT PRIMARY KEY,
-	usme_memb_name VARCHAR(15),
-	usme_promote_date TIMESTAMP,
-	usme_points INT,
-	usme_type VARCHAR(15),
-	CONSTRAINT fk_usme_user_id FOREIGN KEY (usme_user_id)
-		REFERENCES users.users(user_id) 
-			ON DELETE CASCADE
-			ON UPDATE CASCADE,
-	CONSTRAINT fk_useme_memb_name FOREIGN KEY (usme_memb_name)
-		REFERENCES master.members(memb_name)
-			ON DELETE CASCADE
-			ON UPDATE CASCADE
-);
-
--- CREATE TABLE user_profiles
-CREATE TABLE users.user_profiles(
-	uspro_id SERIAL PRIMARY KEY,
-	uspro_national_id VARCHAR(20),
-	uspro_birth DATE,
-	uspro_photo TEXT DEFAULT 'user.png',
-	uspro_job_title VARCHAR(50),
-	uspro_marital_status CHAR(1),
-	uspro_gender CHAR(1),
-	uspro_addr_id INT,
-	uspro_user_id INT,
-	FOREIGN KEY (uspro_addr_id)
-		REFERENCES master.address(addr_id)
-			ON DELETE CASCADE
-			ON UPDATE CASCADE,
-	FOREIGN KEY (uspro_user_id)
-		REFERENCES users.users(user_id)
-			ON DELETE CASCADE
-			ON UPDATE CASCADE
-);
-
--- CREATE TABLE user_roles
-CREATE TABLE users.user_roles(
-	usro_user_id INT,
-	usro_role_id INT,
-	CONSTRAINT pk_usro_user_id PRIMARY KEY (usro_user_id),
-	CONSTRAINT fk_usro_user_id FOREIGN KEY (usro_user_id)
-		REFERENCES users.users(user_id)
-			ON DELETE CASCADE
-			ON UPDATE CASCADE,
-	CONSTRAINT fk_usro_role_id FOREIGN KEY (usro_role_id)
-		REFERENCES users.roles(role_id)
-			ON DELETE RESTRICT
-			ON UPDATE CASCADE
-);
-
-
--- CREATE TABLE user_password
-CREATE TABLE users.user_password(
-	uspa_user_id INT PRIMARY KEY,
-	uspa_passwordHash VARCHAR(128),
-	uspa_passwordSalt VARCHAR(10),
-	CONSTRAINT fk_uspa_user_id FOREIGN KEY (uspa_user_id)
-		REFERENCES users.users(user_id)
-			ON DELETE CASCADE
-			ON UPDATE CASCADE
-);
-
--- CREATE TABLE user_bonus_points
-CREATE TABLE users.user_bonus_points(
-	ubpo_id SERIAL PRIMARY KEY,
-	ubpo_user_id INT,
-	ubpo_total_points INT,
-	ubpo_bonus_type CHAR(1),
-	ubpo_create_on TIMESTAMP,
-	FOREIGN KEY (ubpo_user_id)
-		REFERENCES users.users(user_id)
-			ON DELETE CASCADE
-			ON UPDATE CASCADE
-);
 
 -- ===========SCHEMA MODULE HOTEL ==============
 create schema hotel;
@@ -560,7 +357,7 @@ create table booking.special_offers (
 create table booking.booking_orders(
 	boor_id serial,
 	boor_order_number varchar(20) unique,
-	boor_order_date timestamp,
+	boor_order_date timestamp DEFAULT now(),
 	boor_arrival_date timestamp,
 	boor_total_room smallInt,
 	boor_total_guest smallInt,
@@ -633,52 +430,60 @@ create table booking.special_offer_coupons(
 -- ===========SCHEMA MODULE PAYMENT ==============
 CREATE SCHEMA payment;
 
-CREATE TABLE payment.entities (
-	entity_id serial PRIMARY KEY
+CREATE TABLE payment.entity (
+	entity_id				serial			PRIMARY KEY
 );
 
 CREATE TABLE payment.bank (
-	bank_entity_id int PRIMARY KEY,
-	bank_code varchar(10) UNIQUE,
-	bank_name varchar(55) UNIQUE,
-	bank_modified_date timestamp DEFAULT now(),
-	CONSTRAINT bank_entity_id_fk FOREIGN KEY (bank_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
+	bank_entity_id		  	int 		    PRIMARY KEY,
+	bank_code			  	varchar(10) 	UNIQUE,
+	bank_name			  	varchar(55) 	UNIQUE,
+	bank_modified_date		timestamp,
+	CONSTRAINT bank_entity_id_fk
+		FOREIGN KEY (bank_entity_id) REFERENCES payment.entity(entity_id) ON UPDATE CASCADE
 );
 
 CREATE TABLE payment.payment_gateaway (
-	paga_entity_id int PRIMARY KEY,
-	paga_code varchar(10) UNIQUE,
-	paga_name varchar(55) UNIQUE,
-	paga_modified_date timestamp DEFAULT now(),
-	CONSTRAINT paga_entity_id FOREIGN KEY (paga_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE
+	paga_entity_id		  	int				PRIMARY KEY,
+	paga_code			  	varchar(10)		UNIQUE,
+	paga_name			  	varchar(55)		UNIQUE,
+	paga_modified_date		timestamp,
+	CONSTRAINT paga_entity_id
+		FOREIGN KEY (paga_entity_id) REFERENCES payment.entity(entity_id) ON UPDATE CASCADE
 );
 
 CREATE TABLE payment.user_accounts (
-	usac_entity_id int,
-	usac_user_id int,
-	usac_account_number varchar(25) UNIQUE,
-	usac_saldo numeric,
-	usac_type varchar(15), -- debet | cc | payment
-	usac_expmonth smallint,
-	usac_expyear smallint,
-  	usac_modified_date timestamp DEFAULT now(),
-	CONSTRAINT user_accounts_pk PRIMARY KEY (usac_entity_id, usac_user_id),
-	CONSTRAINT usac_entity_id_fk FOREIGN KEY (usac_entity_id) REFERENCES payment.entities(entity_id) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT usac_user_id_fk FOREIGN KEY (usac_user_id) REFERENCES users.users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+	usac_entity_id		    int,
+	usac_user_id		    int,
+	usac_account_number	  	varchar(25) UNIQUE,
+	usac_saldo			    numeric,
+	usac_type			    varchar(15), -- debet | cc | payment
+	usac_expmonth		    smallint,
+	usac_expyear		    smallint,
+	usac_modified_date	  	timestamp,
+	usac_card_holder_name	varchar(50),
+	usac_secured_key		varchar,
+	CONSTRAINT user_accounts_pk
+		PRIMARY KEY (usac_entity_id, usac_user_id),
+	CONSTRAINT usac_entity_id_fk
+		FOREIGN KEY (usac_entity_id) REFERENCES payment.entity(entity_id) ON UPDATE CASCADE,
+	CONSTRAINT usac_user_id_fk
+		FOREIGN KEY (usac_user_id) REFERENCES users.users(user_id) ON UPDATE CASCADE
 );
 
 CREATE TABLE payment.payment_transaction (
-	patr_id serial PRIMARY KEY,
-	patr_trx_number varchar(55) UNIQUE,
-	patr_debet numeric,
-	patr_credit numeric,
-	patr_type char(3),
-	patr_note varchar(255),
-	patr_modified_date timestamp DEFAULT now(),
-	patr_order_number varchar(55), 
-	patr_trx_number_ref varchar(55) UNIQUE,
-	patr_source_id int,
-	patr_target_id int,
-	patr_user_id int,
-  	CONSTRAINT patr_user_id_fk FOREIGN KEY (patr_user_id) REFERENCES users.users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+	patr_id				serial		  	PRIMARY KEY,
+	patr_trx_number		varchar(55)		UNIQUE,
+	patr_debet			numeric,
+	patr_credit			numeric,
+	patr_type			char(3),
+	patr_note			varchar(255),
+	patr_modified_date	timestamp,
+	patr_order_number	varchar(55), 
+	patr_trx_number_ref	varchar(55) 	UNIQUE,
+	patr_source_id		int,
+	patr_target_id		int,
+	patr_user_id		int,
+  CONSTRAINT patr_user_id_fk
+		FOREIGN KEY (patr_user_id) REFERENCES users.users(user_id) ON UPDATE CASCADE
 );
