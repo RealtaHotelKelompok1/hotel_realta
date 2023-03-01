@@ -11,11 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookingOrderDetailController = void 0;
 const common_1 = require("@nestjs/common");
-const booking_order_detail_service_1 = require("src/service/booking/booking-order-detail.service");
+const booking_order_detail_service_1 = require("../../service/booking/booking-order-detail.service");
 let BookingOrderDetailController = class BookingOrderDetailController {
     constructor(bookingorderdetailService) {
         this.bookingorderdetailService = bookingorderdetailService;
@@ -73,7 +72,7 @@ __decorate([
 ], BookingOrderDetailController.prototype, "remove", null);
 BookingOrderDetailController = __decorate([
     (0, common_1.Controller)('booking-order-detail'),
-    __metadata("design:paramtypes", [typeof (_a = typeof booking_order_detail_service_1.BookingOrderDetailService !== "undefined" && booking_order_detail_service_1.BookingOrderDetailService) === "function" ? _a : Object])
+    __metadata("design:paramtypes", [booking_order_detail_service_1.BookingOrderDetailService])
 ], BookingOrderDetailController);
 exports.BookingOrderDetailController = BookingOrderDetailController;
 //# sourceMappingURL=booking-order-detail.controller.js.map

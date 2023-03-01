@@ -12,7 +12,7 @@ export class HotelController {
 
     @Get('viewByName')
     findByname(@Param() Params){
-        return this.hotelService.findByName(Params)
+        return this.hotelService.findById(Params)
     }
 
     @Post('insert')

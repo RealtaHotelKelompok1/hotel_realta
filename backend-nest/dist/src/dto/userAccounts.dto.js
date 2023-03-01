@@ -20,19 +20,19 @@ __decorate([
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], UserAccountsDto.prototype, "accountType", void 0);
+], UserAccountsDto.prototype, "paymentType", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], UserAccountsDto.prototype, "securedKey", void 0);
 __decorate([
-    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], UserAccountsDto.prototype, "cardHolderName", void 0);
+], UserAccountsDto.prototype, "paymentName", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UserAccountsDto.prototype, "entityName", void 0);
+], UserAccountsDto.prototype, "cardHolderName", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
@@ -45,5 +45,9 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
 ], UserAccountsDto.prototype, "expYear", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Number)
+], UserAccountsDto.prototype, "balance", void 0);
 exports.UserAccountsDto = UserAccountsDto;
 //# sourceMappingURL=userAccounts.dto.js.map

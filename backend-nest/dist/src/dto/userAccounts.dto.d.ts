@@ -1,10 +1,11 @@
 export declare class UserAccountsDto {
     userId: number;
-    accountType: string;
+    paymentType: string;
     securedKey: string;
+    paymentName: string;
     cardHolderName: string;
-    entityName: string;
     accountNumber: string;
     expMonth: number;
     expYear: number;
+    balance: number;
 }

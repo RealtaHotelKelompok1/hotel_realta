@@ -16,13 +16,8 @@ exports.UserAccountsService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const UserAccounts_1 = require("../../../../entities/UserAccounts");
-<<<<<<< Updated upstream
 const enums_1 = require("../../../types/enums");
 const typeorm_2 = require("typeorm");
-=======
-const typeorm_2 = require("typeorm");
-const enums_1 = require("../../../types/enums");
->>>>>>> Stashed changes
 const bcrypt = require("bcrypt");
 let UserAccountsService = class UserAccountsService {
     constructor(UserAccountsRepository) {
@@ -38,13 +33,9 @@ let UserAccountsService = class UserAccountsService {
                 return new common_1.HttpException({ error: `Data with query ${query} is not found!` }, common_1.HttpStatus.NOT_FOUND, { cause: err });
             });
         }
-<<<<<<< Updated upstream
         return await this.UserAccountsRepository.query(`
 	  SELECT * FROM payment.user_payment_methods
 	  `)
-=======
-        return await this.UserAccountsRepository.find()
->>>>>>> Stashed changes
             .then((result) => {
             return result;
         })
@@ -55,7 +46,6 @@ let UserAccountsService = class UserAccountsService {
     async update(accountNumber, dataToUpdate) {
         const salt = bcrypt.genSaltSync(10);
         const hashedKey = bcrypt.hashSync(dataToUpdate.securedKey, salt);
-<<<<<<< Updated upstream
         const accountExists = await this.UserAccountsRepository.query(`
 			SELECT * FROM payment.user_accounts
 			WHERE usac_account_number = '${accountNumber}'
@@ -72,15 +62,6 @@ let UserAccountsService = class UserAccountsService {
         else {
             return new common_1.HttpException({ error: `Account ${accountNumber} is not found!` }, common_1.HttpStatus.NOT_FOUND);
         }
-=======
-        return await this.UserAccountsRepository.update({ usacAccountNumber: accountNumber }, { usacSecuredKey: hashedKey })
-            .then(() => {
-            return `Account ${accountNumber} is successfully updated!`;
-        })
-            .catch((err) => {
-            return new common_1.HttpException({ error: `Failed to update account ${accountNumber}` }, common_1.HttpStatus.BAD_REQUEST, { cause: err });
-        });
->>>>>>> Stashed changes
     }
     async create(newData) {
         for (const data in newData) {
@@ -90,16 +71,11 @@ let UserAccountsService = class UserAccountsService {
         }
         const salt = bcrypt.genSaltSync(10);
         const hashedKey = bcrypt.hashSync(newData.securedKey, salt);
-<<<<<<< Updated upstream
         if (!enums_1.AccountType.fintech.includes(newData.paymentName)) {
-=======
-        if (newData.accountType !== enums_1.AccountType.dompet) {
->>>>>>> Stashed changes
             if (newData.expMonth == null || newData.expYear == null) {
                 return "Bank expiry date can't be null!";
             }
         }
-<<<<<<< Updated upstream
         return await this.UserAccountsRepository.query(`CALL payment.InsertUserAccount($1, $2, $3, $4, $5, $6, $7, $8, $9)`, [
             newData.userId,
             newData.paymentType,
@@ -113,36 +89,17 @@ let UserAccountsService = class UserAccountsService {
         ])
             .then(() => {
             return this.UserAccountsRepository.query(`SELECT * FROM payment.user_payment_methods WHERE "userId" = $1`, [newData.userId]);
-=======
-        return await this.UserAccountsRepository.query(`CALL payment.InsertUserAccount($1, $2, $3, $4, $5, $6, $7, $8)`, [
-            newData.userId,
-            newData.accountType,
-            newData.cardHolderName,
-            hashedKey,
-            newData.entityName,
-            newData.accountNumber,
-            newData.expMonth,
-            newData.expYear
-        ])
-            .then(() => {
-            return this.UserAccountsRepository.query(`SELECT * FROM payment.user_payment_methods WHERE userId = $1`, [newData.userId]);
->>>>>>> Stashed changes
         })
             .catch((err) => {
             return "There's an error in adding new account, " + err;
         });
     }
     async delete(accountNumber) {
-<<<<<<< Updated upstream
         const accountExists = await this.UserAccountsRepository.query(`
 			SELECT * FROM payment.user_accounts
 			WHERE usac_account_number = '${accountNumber}'
 			`);
         if (accountExists.length > 0) {
-=======
-        const accountExists = this.UserAccountsRepository.findOneByOrFail({ usacAccountNumber: accountNumber });
-        if (accountExists) {
->>>>>>> Stashed changes
             return await this.UserAccountsRepository.query(`
 				DELETE FROM payment.user_accounts
 				WHERE usac_account_number = '${accountNumber}'

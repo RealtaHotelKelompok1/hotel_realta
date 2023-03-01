@@ -14,18 +14,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BankController = void 0;
 const common_1 = require("@nestjs/common");
-<<<<<<< Updated upstream:backend-nest/dist/src/controller/payment/bank/bank.controller.js
 const bank_service_1 = require("../../../service/payment/bank/bank.service");
 const bank_dto_1 = require("../../../dto/bank.dto");
 let BankController = class BankController {
     constructor(bankService) {
         this.bankService = bankService;
-=======
-const booking_orders_service_1 = require("../../service/booking/booking-orders.service");
-let BookingOrdersController = class BookingOrdersController {
-    constructor(bokingorderService) {
-        this.bokingorderService = bokingorderService;
->>>>>>> Stashed changes:backend-nest/dist/src/controller/payment/bank/booking-orders.controller.js
     }
     async findAllBank() {
         return await this.bankService.find();
@@ -61,22 +54,14 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-<<<<<<< Updated upstream:backend-nest/dist/src/controller/payment/bank/bank.controller.js
     __metadata("design:paramtypes", [Number, bank_dto_1.BankDto]),
-=======
-    __metadata("design:paramtypes", [Object]),
->>>>>>> Stashed changes:backend-nest/dist/src/controller/payment/bank/booking-orders.controller.js
     __metadata("design:returntype", Promise)
 ], BankController.prototype, "updateBank", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-<<<<<<< Updated upstream:backend-nest/dist/src/controller/payment/bank/bank.controller.js
     __metadata("design:paramtypes", [bank_dto_1.BankDto]),
-=======
-    __metadata("design:paramtypes", [Object, Object]),
->>>>>>> Stashed changes:backend-nest/dist/src/controller/payment/bank/booking-orders.controller.js
     __metadata("design:returntype", Promise)
 ], BankController.prototype, "insertBank", null);
 __decorate([
@@ -85,7 +70,6 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
-<<<<<<< Updated upstream:backend-nest/dist/src/controller/payment/bank/bank.controller.js
 ], BankController.prototype, "deleteBank", null);
 BankController = __decorate([
     (0, common_1.Controller)('bank'),
@@ -93,12 +77,3 @@ BankController = __decorate([
 ], BankController);
 exports.BankController = BankController;
 //# sourceMappingURL=bank.controller.js.map
-=======
-], BookingOrdersController.prototype, "remove", null);
-BookingOrdersController = __decorate([
-    (0, common_1.Controller)('booking-orders'),
-    __metadata("design:paramtypes", [booking_orders_service_1.BookingOrdersService])
-], BookingOrdersController);
-exports.BookingOrdersController = BookingOrdersController;
-//# sourceMappingURL=booking-orders.controller.js.map
->>>>>>> Stashed changes:backend-nest/dist/src/controller/payment/bank/booking-orders.controller.js
