@@ -30,6 +30,23 @@ CREATE OR REPLACE VIEW payment.user_transactions AS (
 		p.patr_trx_number 		"transactionNumber",
 		TO_CHAR(patr_modified_date, 'DD Mon YYYY') "trxDate",
 		TO_CHAR(patr_modified_date, 'HH12:MI AM') "trxTime",
+		(
+			CASE
+				WHEN p.patr_type = 'ORM'
+				THEN (
+					SELECT orme_is_paid
+					FROM resto.order_menus
+					WHERE orme_order_number = p.patr_order_number
+				)
+				WHEN p.patr_type = 'BO'
+				THEN (
+					SELECT boor_is_paid
+					FROM booking.booking_orders
+					WHERE boor_order_number = p.patr_order_number
+				)
+				ELSE 'Completed'
+			END
+		) AS "status",
 		p.patr_debet			"debit",
 		p.patr_credit			"credit",	
 		p.patr_type				"transactionType",
@@ -48,6 +65,7 @@ CREATE OR REPLACE VIEW payment.user_transactions AS (
 	FROM payment.payment_transaction p
 	JOIN users.users u ON u.user_id = p.patr_user_id
 )
+
 -- View: Order menu + facility name + hotel name
 CREATE VIEW resto.order_per_faci_and_hotel
 AS (
