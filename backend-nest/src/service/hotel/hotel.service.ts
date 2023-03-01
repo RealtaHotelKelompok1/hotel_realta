@@ -55,8 +55,12 @@ export class HotelService {
   }
 
   async findLastOrder() {
-    return await this.hotelsRepository.query(' SELECT * FROM booking.booking_orders ORDER BY boor_id DESC LIMIT 1')
+    return await this.hotelsRepository.query('SELECT * FROM booking.booking_orders ORDER BY boor_id DESC LIMIT 1')
   }
+
+  async getInvoice(){
+    return await this.hotelsRepository.query('SELECT * FROM booking.getbookinginvoice')
+}
   
 
   // review user
