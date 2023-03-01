@@ -13,37 +13,22 @@ export class HotelService {
   async findAllHotel(): Promise<any> {
     return await this.hotelsRepository.find();
   }
+  // find address
+  async findAddress() {
+    return await this.hotelsRepository.query('select * from hotel.address');
+  }
   // insert in table hotel
   async createHotel(data: Hotels): Promise<Hotels> {
     return await this.hotelsRepository.save(this.hotelsRepository.create(data));
   }
 
-  // insert in table hotel2
-  // async createHotel(data: Hotels):Promise<Hotels>{
-  //     enum ratingHotel{
-  //         A=5,
-  //         B=4,
-  //         C=3,
-  //         D=2,
-  //     }
-  //     let a = ratingHotel.A
-
-  //     if(data.hotelRatingStar !== a) {
-  //         console.log('errror')
-  //     } else {
-  //         const result = await this.hotelsRepository.save(
-  //             this.hotelsRepository.create(data)
-  //         )
-  //         return result;
-  //     }
-  // }
   //view by hotel name
-  async findByName(hotelName: any): Promise<any> {
-    return await this.hotelsRepository.findOneBy({ hotelName: hotelName });
+  async findById(id: any): Promise<any> {
+    return await this.hotelsRepository.findOneBy({ hotelId: id });
   }
   // update
-  async updateHotel(id: string, data: Hotels): Promise<any> {
-    return this.hotelsRepository
+  async updateHotel(id: any, data: Hotels): Promise<any> {
+    return await this.hotelsRepository
       .createQueryBuilder()
       .update()
       .set({
@@ -63,4 +48,35 @@ export class HotelService {
     await this.hotelsRepository.delete({ hotelId: id });
     return 'berhasil hapus data';
   }
+
+  // prosedur
+  async findProcedure() {
+    return await this.hotelsRepository.query('SELECT * FROM hotel.card_hotel');
+  }
+
+  async findLastOrder() {
+    return await this.hotelsRepository.query('SELECT * FROM booking.booking_orders ORDER BY boor_id DESC LIMIT 1')
+  }
+
+  async getInvoice(){
+    return await this.hotelsRepository.query('SELECT * FROM booking.getbookinginvoice')
+}
+  
+
+  // review user
+  // async reviewHotel(id: any) {
+  //   return await this.hotelsRepository.query(
+  //     'select * from hotel.get_review($1)',
+  //     [id],
+  //   );
+  // }
+
+  // get card by id
+  // async getIdCard(id: number) {
+  //   const inputValue = typeof id === undefined ? id : 0;
+  //   return await this.hotelsRepository.query(
+  //     'select * from hotel.get_cardid($1)',
+  //     [inputValue],
+  //   );
+  // }
 }

@@ -1,0 +1,58 @@
+CREATE OR REPLACE FUNCTION booking.getInvoice(p_id INTEGER)
+RETURNS TABLE (
+	p_user_id int,
+	p_user_full_name varchar,
+	p_user_phone_number varchar,
+	p_usme_memb_name varchar,
+	p_usme_promote_date timestamp,
+	p_usme_points int,
+	p_boor_id int,
+	p_boor_order_number varchar,
+	p_boor_order_date timestamp,
+	p_boor_is_paid char,
+	p_boor_pay_type char,
+	p_boor_total_room smallint,
+	p_boor_total_amount money,
+	p_borde_adults int,
+	p_borde_kids int,
+	p_borde_price money,
+	p_borde_discount money,
+	p_borde_subtotal money,
+	p_faci_name varchar
+) AS $$
+BEGIN
+	RETURN QUERY
+	SELECT users.user_id, 
+	users.user_full_name, 
+	users.user_phone_number, 
+	usme.usme_memb_name, 
+	usme.usme_promote_date, 
+	usme.usme_points,
+	boor.boor_id,
+	boor.boor_order_number,
+	boor.boor_order_date,
+	boor.boor_is_paid,
+	boor.boor_pay_type,
+	boor.boor_total_room,
+	boor.boor_total_amount,
+	borde.borde_adults,
+	borde.borde_kids,
+	borde.borde_price,
+	borde.borde_discount,
+	borde.borde_subtotal,
+	faci.faci_name
+	
+	FROM users.users users
+	JOIN users.user_members usme
+	ON users.user_id = usme.usme_user_id
+	JOIN booking.booking_orders boor
+	ON users.user_id = boor.boor_user_id
+	JOIN booking.booking_order_detail borde
+	ON boor.boor_id = borde.border_boor_id
+	JOIN hotel.facilities faci
+	ON borde.borde_faci_id = faci.faci_id
+	WHERE boor.boor_id = p_id;
+END;
+$$ LANGUAGE plpgsql
+
+select * from  booking.getInvoice(6)

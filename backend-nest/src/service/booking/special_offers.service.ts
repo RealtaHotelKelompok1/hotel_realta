@@ -3,9 +3,10 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SpecialOffers } from 'entities/SpecialOffers';
 
+
 @Injectable()
 export class SpecialOffersService {
-    
+ 
     
     constructor(
         @InjectRepository(SpecialOffers)
@@ -53,4 +54,5 @@ async deleteSpecialOffers(spofId: number): Promise<any> {
         return error;
       });
 }
+
 }

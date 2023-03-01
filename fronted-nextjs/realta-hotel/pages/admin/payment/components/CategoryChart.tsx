@@ -6,7 +6,37 @@ export default function CategoryChart({ data, name }: {
     data: any[]
     name: string
 }) {
-    console.log(data)
+    const cities = [
+        {
+            name: 'New York',
+            sales: 9800,
+        },
+        {
+            name: 'London',
+            sales: 4567,
+        },
+        {
+            name: 'Hong Kong',
+            sales: 3908,
+        },
+        {
+            name: 'San Francisco',
+            sales: 2400,
+        },
+        {
+            name: 'Singapore',
+            sales: 1908,
+        },
+        {
+            name: 'Zurich',
+            sales: 1398,
+        },
+    ];
+
+    const valueFormatter = (number: number) => (
+        `$ ${Intl.NumberFormat('us').format(number).toString()}`
+    );
+
     return (
         <Container className={styles.container}>
             <Card variant="bordered">
@@ -18,17 +48,11 @@ export default function CategoryChart({ data, name }: {
                 <Card.Body className={styles.body}>
                     <DonutChart
                         data={data}
-                        // category="transactionType"
+                        category="credit"
                         dataKey="transactionType"
-                        colors={["blue", "red", "yellow", "amber"]}
-                        variant="pie"
-                        // valueFormatter={undefined}
-                        // label={undefined}
-                        showLabel={true}
-                        showTooltip={true}
-                        showAnimation={true}
-                        height="h-44"
-                        marginTop="mt-0"
+                        valueFormatter={valueFormatter}
+                        marginTop="mt-6"
+                        colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
                     />
                 </Card.Body>
             </Card>
