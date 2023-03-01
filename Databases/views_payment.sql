@@ -55,9 +55,16 @@ CREATE OR REPLACE VIEW payment.user_transactions AS (
 		p.patr_source_id		"sourceNumber",
 		p.patr_target_id		"targetNumber",
 		(
-			SELECT "paymentName" 
-			FROM payment.user_payment_methods
-			WHERE "accountNumber" = p.patr_target_id::text
+			-- TODO: Tambahin buat outside Top Up & Orders
+			CASE
+				WHEN p.patr_type = 'TP'
+				THEN (
+					SELECT "paymentName" 
+					FROM payment.user_payment_methods
+					WHERE "accountNumber" = p.patr_target_id::text
+					)
+				ELSE 'Realta Group'
+			END
 		) "targetPaymentName",
 		p.patr_trx_number_ref	"transactionRef",
 		p.patr_user_id			"userId",
