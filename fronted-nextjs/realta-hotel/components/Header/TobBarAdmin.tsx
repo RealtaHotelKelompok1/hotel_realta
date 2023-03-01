@@ -15,28 +15,28 @@ import Cookies from "js-cookie";
 
 export default function TopBarAdmin({ showNav, setShowNav }:any) {
   const router = useRouter();
-  const userFullName: any = localStorage.getItem('userFullName');
-  const userPhoto: any = localStorage.getItem('userPhoto');
-  const profilePhotoMe: any = localStorage.getItem('profilePhotoMe');
-  const profileNameMe: any = localStorage.getItem('userFullNameNew');
+  // const userFullName: any = localStorage.getItem('userFullName');
+  // const userPhoto: any = localStorage.getItem('userPhoto');
+  // const profilePhotoMe: any = localStorage.getItem('profilePhotoMe');
+  // const profileNameMe: any = localStorage.getItem('userFullNameNew');
 
-  let myPhoto: any; 
-  if (profilePhotoMe) {
-    myPhoto = profilePhotoMe;
-  } else if (userPhoto) { 
-    myPhoto = userPhoto;
-  } else {
-    myPhoto = "user.png"
-  }
+  // let myPhoto: any; 
+  // if (profilePhotoMe) {
+  //   myPhoto = profilePhotoMe;
+  // } else if (userPhoto) { 
+  //   myPhoto = userPhoto;
+  // } else {
+  //   myPhoto = "user.png"
+  // }
 
-  let myName: any; 
-  if (profileNameMe) {
-    myName = profileNameMe;
-  } else if (userFullName) { 
-    myName = userFullName;
-  } else {
-    myName = "";
-  }
+  // let myName: any; 
+  // if (profileNameMe) {
+  //   myName = profileNameMe;
+  // } else if (userFullName) { 
+  //   myName = userFullName;
+  // } else {
+  //   myName = "";
+  // }
 
   // useDispatch
   const dispatch:any = useDispatch();
@@ -150,7 +150,7 @@ export default function TopBarAdmin({ showNav, setShowNav }:any) {
         </Popover>
         <Menu as="div" className="relative inline-block text-left">
           <div>
-            <Menu.Button className="inline-flex w-full justify-center items-center">
+            {/* <Menu.Button className="inline-flex w-full justify-center items-center">
               <picture>
                 <img
                   src={"/images/"+myPhoto}
@@ -162,7 +162,7 @@ export default function TopBarAdmin({ showNav, setShowNav }:any) {
                 {myName}
               </span>
               <ChevronDownIcon className="ml-2 h-4 w-4 text-gray-700" />
-            </Menu.Button>
+            </Menu.Button> */}
           </div>
           <Transition
             as={Fragment}
