@@ -1,7 +1,6 @@
 import { transactionColumns } from "@/redux/Constant/Payment/columns";
 import { Container, FormElement, Table, Text, Input, Spacer, Dropdown, Row } from "@nextui-org/react";
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
-import { useDispatch } from "react-redux"
+import { ChangeEvent, useMemo, useState } from "react";
 import { Transaction } from "@/redux/Constant/Payment/interfaces";
 
 export default function TransactionTable({ data }: {

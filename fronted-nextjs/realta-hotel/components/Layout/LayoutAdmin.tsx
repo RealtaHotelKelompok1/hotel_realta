@@ -30,12 +30,12 @@ const LayoutAdmin = ({ children }:any) => {
     };
   }, []);
 
-  const router = useRouter();
-  const roleId: any = localStorage.getItem("roleId");
-  if (roleId != 4) {
-    router.back();
-    return Custom401();
-  }
+  // const router = useRouter();
+  // const roleId: any = localStorage.getItem("roleId");
+  // if (roleId != 4) {
+  //   router.back();
+  //   return Custom401();
+  // }
 
   return (
     <>
@@ -62,4 +62,5 @@ const LayoutAdmin = ({ children }:any) => {
   );
 }
 
-export default WithAuth(LayoutAdmin);
+// export default WithAuth(LayoutAdmin);
+export default LayoutAdmin

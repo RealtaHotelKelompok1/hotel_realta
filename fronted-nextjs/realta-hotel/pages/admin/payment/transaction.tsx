@@ -25,10 +25,10 @@ const Transaction = () => {
                 > User's transaction till the world ends... </Text> */}
             <Row>
                 <TransactionTable data={transactions} />
-                <Col>
+                <div>
                     <InfoChart data={transactions} name={"Transaction"} />
-                    <CategoryChart data={transactions} name={"Transaction"} />
-                </Col>
+                    {/* <CategoryChart data={transactions} name={"Transaction"} /> */}
+                </div>
             </Row>
         </LayoutAdmin>
     )
