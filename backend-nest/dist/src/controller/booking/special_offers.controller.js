@@ -49,7 +49,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SpecialOffersController.prototype, "findbyid", null);
 __decorate([
-    (0, common_1.Post)("create"),
+    (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
