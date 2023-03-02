@@ -30,7 +30,7 @@ import {
     findlastOrder() {
       return this.hotelService.findLastOrder();
     }
-  
+    
     @Get('invoice')
     async getInvoice(){
         return await this.hotelService.getInvoice()
@@ -39,8 +39,18 @@ import {
     @Get('address')
     findAddress() {
       return this.hotelService.findAddress();
-      }
-      
+    }
+  
+    // @Get('card/:id')
+    // getIdCard(@Param() param: any) {
+    //   return this.hotelService.getIdCard(param.id);
+    // }
+  
+    // @Get('review/:id')
+    // reviewHotel(@Param() param: any) {
+    //   return this.hotelService.reviewHotel(param.id);
+    // }
+    
     @Get('view/:id')
     findByname(@Param() Params) {
       return this.hotelService.findById(Params.id);
