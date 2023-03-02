@@ -15,31 +15,15 @@ class BankDto {
 }
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-<<<<<<< Updated upstream
-=======
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MaxLength)(10, {
-        message: 'Bank code is too long!',
-    }),
->>>>>>> Stashed changes
     __metadata("design:type", String)
 ], BankDto.prototype, "bankCode", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-<<<<<<< Updated upstream
     __metadata("design:type", String)
 ], BankDto.prototype, "bankName", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
 ], BankDto.prototype, "bankModifiedDate", void 0);
-=======
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MaxLength)(55, {
-        message: 'Bank name is too long!',
-    }),
-    __metadata("design:type", String)
-], BankDto.prototype, "bankName", void 0);
->>>>>>> Stashed changes
 exports.BankDto = BankDto;
 //# sourceMappingURL=bank.dto.js.map

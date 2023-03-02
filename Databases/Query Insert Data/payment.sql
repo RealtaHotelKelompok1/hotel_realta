@@ -203,7 +203,7 @@ BEGIN
 	TransactionNumberRef := FLOOR(RANDOM() * POWER(CAST(10 as BIGINT), 15))::text;
 	
 -- 	IF PaymentType = 'Dompet Realta' THEN
-	UPDATE payment.user_accounts SET usac_saldo = (usac_saldo::numeric - Amount) WHERE usac_account_number = SourceNumber;
+	UPDATE payment.user_accounts SET usac_saldo = (usac_saldo::numeric - Amount) WHERE usac_account_number = SourceNumber::text;
 -- 	END IF;
 	
 	INSERT INTO payment.payment_transaction (

@@ -19,7 +19,8 @@ import {
     @Get('view')
     findAllHotel() {
       return this.hotelService.findAllHotel();
-    }
+      }
+      
     @Get('card')
     findProcedure() {
       return this.hotelService.findProcedure();
@@ -29,7 +30,7 @@ import {
     findlastOrder() {
       return this.hotelService.findLastOrder();
     }
-  
+    
     @Get('invoice')
     async getInvoice(){
         return await this.hotelService.getInvoice()
@@ -49,7 +50,7 @@ import {
     // reviewHotel(@Param() param: any) {
     //   return this.hotelService.reviewHotel(param.id);
     // }
-  
+    
     @Get('view/:id')
     findByname(@Param() Params) {
       return this.hotelService.findById(Params.id);

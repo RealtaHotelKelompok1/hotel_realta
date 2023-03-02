@@ -61,14 +61,13 @@ export class TransactionService {
                 return "There's an error in adding new payment transaction, " + err
             })
         
-        // Booking
+        // Orders
         } else {
             return await this.paymentTransactionRepository.query(
-                `CALL payment.InsertBookingPaymentTransaction($1, $2, $3, $4, $5, $6)`,
+                `CALL payment.InsertBookingPaymentTransaction($1, $2, $3, $4, $5)`,
                 [
                     newTransaction.userId, 
                     newTransaction.orderNumber,
-                    newTransaction.paymentType,
                     newTransaction.amount,
                     newTransaction.sourceNumber,
                     newTransaction.targetNumber,

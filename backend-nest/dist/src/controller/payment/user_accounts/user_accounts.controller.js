@@ -11,19 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-<<<<<<< Updated upstream
-=======
-var _a;
->>>>>>> Stashed changes
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserAccountsController = void 0;
 const common_1 = require("@nestjs/common");
 const route_params_decorator_1 = require("@nestjs/common/decorators/http/route-params.decorator");
-<<<<<<< Updated upstream
 const userAccounts_dto_1 = require("../../../dto/userAccounts.dto");
-=======
-const userAccounts_dto_1 = require("src/dto/userAccounts.dto");
->>>>>>> Stashed changes
 const user_accounts_service_1 = require("../../../service/payment/user_accounts/user_accounts.service");
 let UserAccountsController = class UserAccountsController {
     constructor(userAccountsService) {
@@ -34,47 +26,28 @@ let UserAccountsController = class UserAccountsController {
     }
     async findByFilter(filter) {
         switch (true) {
-<<<<<<< Updated upstream
             case filter.userId !== undefined:
                 return await this.userAccountsService.find(`
 					SELECT *
 					FROM payment.user_payment_methods
 					WHERE "userId" = ${filter.userId}
-=======
-            case filter.userId != undefined:
-                return await this.userAccountsService.find(`
-					SELECT *
-					FROM payment.user_payment_methods
-					WHERE userId = ${filter.userId}
->>>>>>> Stashed changes
 					`);
             case filter.userName != undefined:
                 return await this.userAccountsService.find(`
 					SELECT *
 					FROM payment.user_payment_methods
-<<<<<<< Updated upstream
 					WHERE "fullName" ILIKE '%${filter.userName}%'
-=======
-					WHERE fullName ILIKE '%${filter.userName}%'
->>>>>>> Stashed changes
 					`);
             case filter.accountNumber != undefined:
                 return await this.userAccountsService.find(`
 					SELECT *
 					FROM payment.user_payment_methods
-<<<<<<< Updated upstream
 					WHERE "accountNumber" = '${filter.accountNumber}'
-=======
-					WHERE accountNumber = '${filter.accountNumber}'
->>>>>>> Stashed changes
 					`);
         }
     }
     async addAccount(body) {
-<<<<<<< Updated upstream
         console.log('data di controller', body);
-=======
->>>>>>> Stashed changes
         return await this.userAccountsService.create(body);
     }
     async updateAccount(accountNumber, body) {
@@ -101,11 +74,7 @@ __decorate([
     (0, common_1.Post)('add'),
     __param(0, (0, route_params_decorator_1.Body)()),
     __metadata("design:type", Function),
-<<<<<<< Updated upstream
     __metadata("design:paramtypes", [userAccounts_dto_1.UserAccountsDto]),
-=======
-    __metadata("design:paramtypes", [typeof (_a = typeof userAccounts_dto_1.UserAccountsDto !== "undefined" && userAccounts_dto_1.UserAccountsDto) === "function" ? _a : Object]),
->>>>>>> Stashed changes
     __metadata("design:returntype", Promise)
 ], UserAccountsController.prototype, "addAccount", null);
 __decorate([
