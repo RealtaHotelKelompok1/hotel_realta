@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Address } from 'entities/Address';
 import { Bank } from 'entities/Bank';
@@ -105,6 +105,23 @@ import { TransactionController } from 'src/controller/payment/transaction/transa
 import { TransactionService } from 'src/service/payment/transaction/transaction.service';
 import { UserAccountAuthController } from 'src/controller/payment/auth/auth.controller';
 import { UserAccountAuthService } from 'src/service/payment/auth/auth.service';
+import { SpecialOffersService } from 'src/service/booking/special_offers.service';
+import { SpecialOfferCouponsService } from 'src/service/booking/special-offer-coupons.service';
+import { BookingOrdersService } from 'src/service/booking/booking-orders.service';
+import { BookingOrderDetailService } from 'src/service/booking/booking-order-detail.service';
+import { BookingOrderDetailExtraService } from 'src/service/booking/booking-order-detail-extra.service';
+import { UserBreakfeastService } from 'src/service/booking/user-breakfeast.service';
+import { PriceItemsService } from 'src/service/master/price-items/price-items.service';
+import { BookingOrderDetailExtraController } from 'src/controller/booking/booking-order-detail-extra.controller';
+import { BookingOrderDetailController } from 'src/controller/booking/booking-order-detail.controller';
+import { SpecialOfferCouponController } from 'src/controller/booking/special-offer-coupon.controller';
+import { SpecialOffersController } from 'src/controller/booking/special_offers.controller';
+import { UserBreakfeastController } from 'src/controller/booking/user-breakfeast.controller';
+import { PriceItemsController } from 'src/controller/master/price-items/price-items.controller';
+import { Facilities } from 'entities/Facilities';
+import { FacilityPhotos } from 'entities/FacilityPhotos';
+import { FacilityPriceHistory } from 'entities/FacilityPriceHistory';
+import { HotelReviews } from 'entities/HotelReviews';
 
 @Module({
   imports: [
@@ -118,6 +135,11 @@ import { UserAccountAuthService } from 'src/service/payment/auth/auth.service';
       Country,
       Department,
       Hotels,
+      HotelReviews,
+      Facilities,
+      FacilityPriceHistory,
+      Facilities,
+      FacilityPhotos,
       JobRole,
       Members,
       OrderMenuDetail,
@@ -167,10 +189,10 @@ import { UserAccountAuthService } from 'src/service/payment/auth/auth.service';
     /* HOTEL */
 
     HotelController,
-    // HotelReviewController,
-    // FacilityPriceHistoryController,
-    // FacilityController,
-    // FacilityPhotosController,
+    HotelReviewController,
+    FacilityPriceHistoryController,
+    FacilityController,
+    FacilityPhotosController,
 
     /* USERS */
     UsersController,
@@ -183,6 +205,13 @@ import { UserAccountAuthService } from 'src/service/payment/auth/auth.service';
     UserprofilesController,
     
     /* BOOKING */
+    SpecialOffersController,
+    BookingOrderDetailController,
+    BookingOrderDetailExtraController,
+    SpecialOfferCouponController,
+    UserBreakfeastController,
+    BookingOrdersController,
+
     /* RESTO */
     RestoController,
     OrderMenuDetailController,
@@ -197,7 +226,9 @@ import { UserAccountAuthService } from 'src/service/payment/auth/auth.service';
     UserAccountAuthController,
 
     /* PURCHASING */
-    /* MASTER */],
+    /* MASTER */
+    PriceItemsController
+  ],
   providers: [
     /* HUMANRESOURCE */
     DepartmentService,
@@ -208,12 +239,13 @@ import { UserAccountAuthService } from 'src/service/payment/auth/auth.service';
     WorkOrderDetailService,
     EmployeeDepartmentHistoryService,
     WorkOrdersService,
+
     /* HOTEL */
     HotelService,
-    // HotelReviewService,
-    // FacilityPriceHistoryService,
-    // FacilityService,
-    // FacilityPhotosService,
+    HotelReviewService,
+    FacilityPriceHistoryService,
+    FacilityService,
+    FacilityPhotosService,
 
     /* USERS */
     UsersService,
@@ -224,7 +256,15 @@ import { UserAccountAuthService } from 'src/service/payment/auth/auth.service';
     UserbonuspointsService,
     UsermembersService,
     UserprofilesService,
+
     /* BOOKING */
+    SpecialOffersService,
+    SpecialOfferCouponsService,
+    BookingOrdersService,
+    BookingOrderDetailService,
+    BookingOrderDetailExtraService,
+    UserBreakfeastService,
+    
     /* RESTO */
     RestoService,
     OrderMenuDetailService,
@@ -240,6 +280,7 @@ import { UserAccountAuthService } from 'src/service/payment/auth/auth.service';
     
     /* PURCHASING */
     /* MASTER */
+    PriceItemsService,
   ],
 })
 export class GlobalModule {}

@@ -61,7 +61,12 @@ const Users_1 = require("../../entities/Users");
 const Vendor_1 = require("../../entities/Vendor");
 const WorkOrderDetail_1 = require("../../entities/WorkOrderDetail");
 const WorkOrders_1 = require("../../entities/WorkOrders");
+const facility_controller_1 = require("../controller/hotel/facility.controller");
+const facility_photos_controller_1 = require("../controller/hotel/facility_photos.controller");
+const booking_orders_controller_1 = require("../controller/booking/booking-orders.controller");
+const facility_price_history_controller_1 = require("../controller/hotel/facility_price_history.controller");
 const hotel_controller_1 = require("../controller/hotel/hotel.controller");
+const hotel_review_controller_1 = require("../controller/hotel/hotel_review.controller");
 const department_controller_1 = require("../controller/humanresource/department/department.controller");
 const employee_department_history_controller_1 = require("../controller/humanresource/employee_department_history/employee_department_history.controller");
 const employee_pay_history_controller_1 = require("../controller/humanresource/employee_pay_history/employee_pay_history.controller");
@@ -77,7 +82,11 @@ const userpassword_controller_1 = require("../controller/users/userpassword/user
 const userprofiles_controller_1 = require("../controller/users/userprofiles/userprofiles.controller");
 const userroles_controller_1 = require("../controller/users/userroles/userroles.controller");
 const users_controller_1 = require("../controller/users/users/users.controller");
+const facility_service_1 = require("../service/hotel/facility.service");
+const facility_photos_service_1 = require("../service/hotel/facility_photos.service");
+const facility_price_history_service_1 = require("../service/hotel/facility_price_history.service");
 const hotel_service_1 = require("../service/hotel/hotel.service");
+const hotel_review_service_1 = require("../service/hotel/hotel_review.service");
 const department_service_1 = require("../service/humanresource/department/department.service");
 const employee_department_history_service_1 = require("../service/humanresource/employee_department_history/employee_department_history.service");
 const employee_pay_history_service_1 = require("../service/humanresource/employee_pay_history/employee_pay_history.service");
@@ -102,6 +111,23 @@ const transaction_controller_1 = require("../controller/payment/transaction/tran
 const transaction_service_1 = require("../service/payment/transaction/transaction.service");
 const auth_controller_2 = require("../controller/payment/auth/auth.controller");
 const auth_service_2 = require("../service/payment/auth/auth.service");
+const special_offers_service_1 = require("../service/booking/special_offers.service");
+const special_offer_coupons_service_1 = require("../service/booking/special-offer-coupons.service");
+const booking_orders_service_1 = require("../service/booking/booking-orders.service");
+const booking_order_detail_service_1 = require("../service/booking/booking-order-detail.service");
+const booking_order_detail_extra_service_1 = require("../service/booking/booking-order-detail-extra.service");
+const user_breakfeast_service_1 = require("../service/booking/user-breakfeast.service");
+const price_items_service_1 = require("../service/master/price-items/price-items.service");
+const booking_order_detail_extra_controller_1 = require("../controller/booking/booking-order-detail-extra.controller");
+const booking_order_detail_controller_1 = require("../controller/booking/booking-order-detail.controller");
+const special_offer_coupon_controller_1 = require("../controller/booking/special-offer-coupon.controller");
+const special_offers_controller_1 = require("../controller/booking/special_offers.controller");
+const user_breakfeast_controller_1 = require("../controller/booking/user-breakfeast.controller");
+const price_items_controller_1 = require("../controller/master/price-items/price-items.controller");
+const Facilities_1 = require("../../entities/Facilities");
+const FacilityPhotos_1 = require("../../entities/FacilityPhotos");
+const FacilityPriceHistory_1 = require("../../entities/FacilityPriceHistory");
+const HotelReviews_1 = require("../../entities/HotelReviews");
 let GlobalModule = class GlobalModule {
 };
 GlobalModule = __decorate([
@@ -117,6 +143,11 @@ GlobalModule = __decorate([
                 Country_1.Country,
                 Department_1.Department,
                 Hotels_1.Hotels,
+                HotelReviews_1.HotelReviews,
+                Facilities_1.Facilities,
+                FacilityPriceHistory_1.FacilityPriceHistory,
+                Facilities_1.Facilities,
+                FacilityPhotos_1.FacilityPhotos,
                 JobRole_1.JobRole,
                 Members_1.Members,
                 OrderMenuDetail_1.OrderMenuDetail,
@@ -162,6 +193,10 @@ GlobalModule = __decorate([
             work_order_detail_controller_1.WorkOrderDetailController,
             work_orders_controller_1.WorkOrdersController,
             hotel_controller_1.HotelController,
+            hotel_review_controller_1.HotelReviewController,
+            facility_price_history_controller_1.FacilityPriceHistoryController,
+            facility_controller_1.FacilityController,
+            facility_photos_controller_1.FacilityPhotosController,
             users_controller_1.UsersController,
             roles_controller_1.RolesController,
             userroles_controller_1.UserrolesController,
@@ -170,6 +205,12 @@ GlobalModule = __decorate([
             userbonuspoints_controller_1.UserbonuspointsController,
             usermembers_controller_1.UsermembersController,
             userprofiles_controller_1.UserprofilesController,
+            special_offers_controller_1.SpecialOffersController,
+            booking_order_detail_controller_1.BookingOrderDetailController,
+            booking_order_detail_extra_controller_1.BookingOrderDetailExtraController,
+            special_offer_coupon_controller_1.SpecialOfferCouponController,
+            user_breakfeast_controller_1.UserBreakfeastController,
+            booking_orders_controller_1.BookingOrdersController,
             restoMenus_controller_1.RestoController,
             restoMenuDetail_controller_1.OrderMenuDetailController,
             restoMenuPhotos_controller_1.RestoMenuPhotosContoller,
@@ -179,6 +220,7 @@ GlobalModule = __decorate([
             user_accounts_controller_1.UserAccountsController,
             transaction_controller_1.TransactionController,
             auth_controller_2.UserAccountAuthController,
+            price_items_controller_1.PriceItemsController
         ],
         providers: [
             department_service_1.DepartmentService,
@@ -189,6 +231,10 @@ GlobalModule = __decorate([
             employee_department_history_service_1.EmployeeDepartmentHistoryService,
             work_orders_service_1.WorkOrdersService,
             hotel_service_1.HotelService,
+            hotel_review_service_1.HotelReviewService,
+            facility_price_history_service_1.FacilityPriceHistoryService,
+            facility_service_1.FacilityService,
+            facility_photos_service_1.FacilityPhotosService,
             users_service_1.UsersService,
             roles_service_1.RolesService,
             userroles_service_1.UserrolesService,
@@ -197,6 +243,12 @@ GlobalModule = __decorate([
             userbonuspoints_service_1.UserbonuspointsService,
             usermembers_service_1.UsermembersService,
             userprofiles_service_1.UserprofilesService,
+            special_offers_service_1.SpecialOffersService,
+            special_offer_coupons_service_1.SpecialOfferCouponsService,
+            booking_orders_service_1.BookingOrdersService,
+            booking_order_detail_service_1.BookingOrderDetailService,
+            booking_order_detail_extra_service_1.BookingOrderDetailExtraService,
+            user_breakfeast_service_1.UserBreakfeastService,
             restoMenus_service_1.RestoService,
             restoMenuDetail_service_1.OrderMenuDetailService,
             restoMenuPhotos_service_1.restoMenuPhotoService,
@@ -206,6 +258,7 @@ GlobalModule = __decorate([
             user_accounts_service_1.UserAccountsService,
             transaction_service_1.TransactionService,
             auth_service_2.UserAccountAuthService,
+            price_items_service_1.PriceItemsService,
         ],
     })
 ], GlobalModule);
