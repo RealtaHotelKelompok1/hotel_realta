@@ -53,6 +53,12 @@ CREATE OR REPLACE VIEW payment.user_transactions AS (
 		p.patr_note				"transactionNote",
 		p.patr_order_number		"orderNumber",
 		p.patr_source_id		"sourceNumber",
+		(
+			-- TODO: Tambahin buat outside Top Up & Orders
+			SELECT "paymentName"
+			FROM payment.user_payment_methods
+			WHERE "accountNumber" = p.patr_source_id::text
+		) "sourcePaymentName",
 		p.patr_target_id		"targetNumber",
 		(
 			-- TODO: Tambahin buat outside Top Up & Orders
